@@ -1,0 +1,11 @@
+#verificar porta disponivel
+netstat -aof | finstr 5432
+
+#Create network
+docker create network library-network
+
+#rodar contanier Postgre na versão 16.3
+docker run --name librarydb -p 5432:5432 -e POSTGRES_PASSWORD=123 -e POSTGRES_USER=postgres -e POSTGRES_DB=library --network library-network -d postgres:16.3
+
+#rodar pgadmin4
+docker run -d -p 15432:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=231247 --network library-network dpage/pgadmin4

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: projectoads
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/TB_ADS
+    username: postgres
+    password: 231247
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # cria/atualiza tabelas automaticamente
+    show-sql: true       # mostra SQL no console
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+jwt:
+  secret: YWJjMTIzNDU2Nzg5YWJjMTIzNDU2Nzg5

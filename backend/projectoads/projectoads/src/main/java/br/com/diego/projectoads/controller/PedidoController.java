@@ -1,0 +1,101 @@
+package br.com.diego.projectoads.controller;
+
+import br.com.diego.projectoads.dto.PedidoRequest;
+import br.com.diego.projectoads.dto.PedidoResponse;
+import br.com.diego.projectoads.model.Pedido;
+import br.com.diego.projectoads.service.PedidoService;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/pedidos")
+public class PedidoController {
+
+    private final PedidoService pedidoService;
+
+    public PedidoController(PedidoService pedidoService) {
+        this.pedidoService = pedidoService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PedidoResponse>> listar() {
+        return ResponseEntity.ok(
+                pedidoService.listar()
+                        .stream()
+                        .map(PedidoResponse::new)
+                        .toList()
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PedidoResponse> buscar(@PathVariable UUID id) {
+        return ResponseEntity.ok(new PedidoResponse(pedidoService.buscar(id)));
+    }
+
+    @PostMapping
+    public ResponseEntity<PedidoResponse> criar(@RequestBody PedidoRequest req) {
+
+        // 🔥
+        var prioridade = req.getPrioridade();
+
+        System.out.println("Prioridade recebida: " + prioridade);
+
+        Pedido salvo = pedidoService.criarPedido(req);
+        return ResponseEntity.status(201).body(new PedidoResponse(salvo));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PedidoResponse> atualizar(
+            @PathVariable UUID id,
+            @RequestBody Pedido pedido
+    ) {
+        return ResponseEntity.ok(new PedidoResponse(pedidoService.atualizar(id, pedido)));
+    }
+
+    @PatchMapping("/{id}/finalizar")
+    public ResponseEntity<PedidoResponse> finalizar(@PathVariable UUID id) {
+        return ResponseEntity.ok(new PedidoResponse(pedidoService.finalizar(id)));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable UUID id) {
+        pedidoService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/dashboard")
+    public ResponseEntity<Map<String, Object>> dashboard(
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate inicio,
+
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate fim
+    ) {
+        return ResponseEntity.ok(pedidoService.getDashboard(inicio, fim));
+    }
+
+    @GetMapping("/dashboard/usuario/{usuarioId}")
+    public ResponseEntity<Map<String, Object>> dashboardUsuario(
+            @PathVariable UUID usuarioId,
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate inicio,
+
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate fim
+    ) {
+        return ResponseEntity.ok(
+                pedidoService.getDashboardUsuario(usuarioId, inicio, fim)
+        );
+    }
+}

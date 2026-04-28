@@ -1,0 +1,67 @@
+package br.com.diego.projectoads.dto;
+
+import br.com.diego.projectoads.model.Usuario;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public class UsuarioResponse {
+
+    private UUID id;
+    private String nome;
+    private String login;
+    private String perfil;
+    private Boolean ativo;
+    private Boolean bloqueado;
+    private Integer tentativasLogin;
+    private UUID empresaId;
+    private String empresa;
+    private LocalDateTime dataCriacao;
+    private String cargo;
+    private String departamento;
+    private BigDecimal salario;
+    private LocalDate dataInicio;
+    private String telefone;
+    private String email;
+    private String documento;
+
+    public UsuarioResponse(Usuario u) {
+        this.id = u.getId();
+        this.nome = u.getNome();
+        this.login = u.getLogin();
+        this.perfil = u.getPerfil() != null ? u.getPerfil().name() : null;
+        this.ativo = u.getAtivo();
+        this.bloqueado = u.getBloqueado();
+        this.tentativasLogin = u.getTentativasLogin();
+        this.empresaId = u.getEmpresa() != null ? u.getEmpresa().getId() : null;
+        this.empresa = u.getEmpresa() != null ? u.getEmpresa().getNome() : null;
+        this.dataCriacao = u.getDataCriacao();
+        this.cargo = u.getCargo();
+        this.departamento = u.getDepartamento();
+        this.salario = u.getSalario();
+        this.dataInicio = u.getDataInicio();
+        this.telefone = u.getTelefone();
+        this.email = u.getEmail();
+        this.documento = u.getDocumento();
+    }
+
+    public UUID getId() { return id; }
+    public String getNome() { return nome; }
+    public String getLogin() { return login; }
+    public String getPerfil() { return perfil; }
+    public Boolean getAtivo() { return ativo; }
+    public Boolean getBloqueado() { return bloqueado; }
+    public Integer getTentativasLogin() { return tentativasLogin; }
+    public UUID getEmpresaId() { return empresaId; }
+    public String getEmpresa() { return empresa; }
+    public LocalDateTime getDataCriacao() { return dataCriacao; }
+    public String getCargo() { return cargo; }
+    public String getDepartamento() { return departamento; }
+    public BigDecimal getSalario() { return salario; }
+    public LocalDate getDataInicio() { return dataInicio; }
+    public String getTelefone() { return telefone; }
+    public String getEmail() { return email; }
+    public String getDocumento() { return documento; }
+}

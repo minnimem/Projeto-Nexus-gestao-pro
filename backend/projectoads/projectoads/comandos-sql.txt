@@ -1,0 +1,65 @@
+
+
+
+
+CREATE TABLE categoria (
+    id_categoria UUID NOT NULL PRIMARY KEY,
+    nome VARCHAR(100),
+    descricao VARCHAR(255)
+);
+
+CREATE TABLE marca (
+    id_marca UUID NOT NULL PRIMARY KEY,
+    nome VARCHAR(100),
+    descricao VARCHAR(255)
+);
+
+CREATE TABLE fornecedor (
+    id_fornecedor UUID NOT NULL PRIMARY KEY,
+    nome VARCHAR(180) NOT NULL UNIQUE,
+    documento VARCHAR(30) NOT NULL UNIQUE,
+    telefone VARCHAR(20),
+    email VARCHAR(120) UNIQUE,
+    endereco VARCHAR(255)
+);
+
+CREATE TABLE estoque (
+    id_estoque UUID PRIMARY KEY,
+    id_produto UUID NOT NULL,
+    quantidade INT NOT NULL DEFAULT 0 CHECK (quantidade >= 0),
+    qta_minimo INT,
+    qta_maximo INT,
+    localizacao VARCHAR(60) NOT NULL,
+
+    UNIQUE (id_produto, localizacao),
+
+    FOREIGN KEY (id_produto)
+        REFERENCES produto(id_produto)
+        ON DELETE CASCADE
+);
+
+---------------------------------------------------------------------------------
+ALTER TABLE pedido
+ADD CONSTRAINT fk_pedido_cliente
+FOREIGN KEY (id_cliente)
+REFERENCES cliente(id_cliente)
+ON DELETE CASCADE;
+
+
+ALTER TABLE pedido
+ADD CONSTRAINT fk_pedido_usuario
+FOREIGN KEY (id_usuario)
+REFERENCES usuario(id_usuario)
+ON DELETE CASCADE;
+
+#deletando se existir fk_pedido_cliente /pedido
+ALTER TABLE pedido DROP CONSTRAINT IF EXISTS fk_pedido_cliente;
+ALTER TABLE pedido DROP CONSTRAINT IF EXISTS fk_pedido_usuario;
+
+##ENUM
+CREATE TYPE perfil_tipo AS ENUM ('USER', 'ADMIN');
+
+ALTER TABLE usuario
+ADD COLUMN perfil perfil_tipo DEFAULT 'USER';
+
+-------------------------------------------------------------------------------
