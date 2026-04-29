@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -26,6 +27,9 @@ public class Financeiro {
 
     @Column(name = "data_lancamento", nullable = false)
     private LocalDateTime dataLancamento;
+
+    @Column(name = "data_vencimento")
+    private LocalDate dataVencimento;
 
     @Column(name = "descricao", nullable = false, length = 255)
     private String descricao;

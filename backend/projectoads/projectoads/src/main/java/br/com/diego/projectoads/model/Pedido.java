@@ -3,6 +3,7 @@ package br.com.diego.projectoads.model;
 import br.com.diego.projectoads.config.Enum.PrioridadeEntrega;
 import br.com.diego.projectoads.config.Enum.MetodoPagamento;
 import br.com.diego.projectoads.config.Enum.StatusPedido;
+import br.com.diego.projectoads.config.Enum.TipoEntrega;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -56,9 +57,22 @@ public class Pedido {
     @Column(name = "metodo_pagamento", length = 30)
     private MetodoPagamento metodoPagamento = MetodoPagamento.PIX;
 
+    @Column(name = "parcelas_pagamento")
+    private Integer parcelasPagamento = 1;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "prioridade", nullable = false, length = 20)
     private PrioridadeEntrega prioridade = PrioridadeEntrega.NORMAL;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_entrega", length = 30)
+    private TipoEntrega tipoEntrega = TipoEntrega.RETIRADA_LOJA;
+
+    @Column(name = "endereco_entrega", length = 255)
+    private String enderecoEntrega;
+
+    @Column(name = "observacao_entrega", length = 255)
+    private String observacaoEntrega;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens = new ArrayList<>();

@@ -2,21 +2,29 @@ package br.com.diego.projectoads.service;
 
 import br.com.diego.projectoads.config.Enum.PrioridadeEntrega;
 import br.com.diego.projectoads.config.Enum.MetodoPagamento;
+import br.com.diego.projectoads.config.Enum.StatusEntrega;
 import br.com.diego.projectoads.config.Enum.StatusPedido;
+import br.com.diego.projectoads.config.Enum.TipoEntrega;
 import br.com.diego.projectoads.dto.ItemPedidoRequest;
+import br.com.diego.projectoads.dto.PedidoFinalizacaoRequest;
 import br.com.diego.projectoads.dto.PedidoRequest;
 import br.com.diego.projectoads.exception.BusinessException;
 import br.com.diego.projectoads.model.Cliente;
+import br.com.diego.projectoads.model.Entrega;
 import br.com.diego.projectoads.model.ItemPedido;
 import br.com.diego.projectoads.model.Pedido;
 import br.com.diego.projectoads.model.Produto;
 import br.com.diego.projectoads.model.Usuario;
 import br.com.diego.projectoads.repository.ClienteRepository;
+import br.com.diego.projectoads.repository.EntregaRepository;
+import br.com.diego.projectoads.repository.ItemPedidoRepository;
 import br.com.diego.projectoads.repository.PedidoRepository;
 import br.com.diego.projectoads.repository.ProdutoRepository;
 import br.com.diego.projectoads.repository.UsuarioRepository;
 
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,30 +38,45 @@ import java.util.*;
 public class PedidoService {
 
     private static final StatusPedido STATUS_VENDA_FINALIZADA = StatusPedido.FINALIZADA;
+    private static final List<StatusPedido> STATUS_VENDAS_CONTABILIZADAS = List.of(
+            StatusPedido.FINALIZADA,
+            StatusPedido.RECEBIDO,
+            StatusPedido.ENTREGUE,
+            StatusPedido.CONCLUIDO
+    );
 
     private final PedidoRepository pedidoRepository;
+    private final ItemPedidoRepository itemPedidoRepository;
     private final ProdutoRepository produtoRepository;
     private final ClienteRepository clienteRepository;
     private final UsuarioRepository usuarioRepository;
+    private final EntregaRepository entregaRepository;
     private final EstoqueService estoqueService;
     private final FinanceiroService financeiroService;
+    private final CaixaService caixaService;
     private final AuditoriaService auditoriaService;
 
     public PedidoService(
             PedidoRepository pedidoRepository,
+            ItemPedidoRepository itemPedidoRepository,
             ProdutoRepository produtoRepository,
             ClienteRepository clienteRepository,
             UsuarioRepository usuarioRepository,
+            EntregaRepository entregaRepository,
             EstoqueService estoqueService,
             FinanceiroService financeiroService,
+            CaixaService caixaService,
             AuditoriaService auditoriaService
     ) {
         this.pedidoRepository = pedidoRepository;
+        this.itemPedidoRepository = itemPedidoRepository;
         this.produtoRepository = produtoRepository;
         this.clienteRepository = clienteRepository;
         this.usuarioRepository = usuarioRepository;
+        this.entregaRepository = entregaRepository;
         this.estoqueService = estoqueService;
         this.financeiroService = financeiroService;
+        this.caixaService = caixaService;
         this.auditoriaService = auditoriaService;
     }
 
@@ -65,20 +88,18 @@ public class PedidoService {
         LocalDateTime fimDateTime = fim.atTime(23, 59, 59);
 
         Map<String, Object> dados = new LinkedHashMap<>();
-        StatusPedido statusVendaConcluida = STATUS_VENDA_FINALIZADA;
-
         Long totalVendas = Optional.ofNullable(
-                pedidoRepository.totalPedidosConcluidos(statusVendaConcluida)
+                pedidoRepository.totalPedidosConcluidos(STATUS_VENDAS_CONTABILIZADAS, inicioDateTime, fimDateTime)
         ).orElse(0L);
 
         Long pedidosPendentes = pedidoRepository.countByStatus(StatusPedido.PENDENTE);
 
         BigDecimal receitaTotal = Optional.ofNullable(
-                pedidoRepository.receitaPorPeriodo(statusVendaConcluida, inicioDateTime, fimDateTime)
+                pedidoRepository.receitaPorPeriodo(STATUS_VENDAS_CONTABILIZADAS, inicioDateTime, fimDateTime)
         ).orElse(BigDecimal.ZERO);
 
         BigDecimal vendasHoje = Optional.ofNullable(
-                pedidoRepository.vendasHoje(statusVendaConcluida)
+                pedidoRepository.vendasHoje(STATUS_VENDAS_CONTABILIZADAS)
         ).orElse(BigDecimal.ZERO);
 
         BigDecimal ticketMedio = totalVendas > 0
@@ -87,7 +108,7 @@ public class PedidoService {
 
         BigDecimal receitaAnterior = Optional.ofNullable(
                 pedidoRepository.receitaPorPeriodo(
-                        statusVendaConcluida,
+                        STATUS_VENDAS_CONTABILIZADAS,
                         inicioDateTime.minusDays(30),
                         fimDateTime.minusDays(30)
                 )
@@ -103,7 +124,7 @@ public class PedidoService {
         dados.put("crescimento", crescimento);
 
         List<Map<String, Object>> vendasPorDia = pedidoRepository
-                .vendasPorDia(statusVendaConcluida, inicioDateTime, fimDateTime)
+                .vendasPorDia(STATUS_VENDAS_CONTABILIZADAS, inicioDateTime, fimDateTime)
                 .stream()
                 .map(obj -> {
                     Map<String, Object> item = new LinkedHashMap<>();
@@ -116,7 +137,7 @@ public class PedidoService {
         dados.put("vendasPorDia", vendasPorDia);
 
         List<Map<String, Object>> rankingProdutos = pedidoRepository
-                .rankingProdutos(statusVendaConcluida, inicioDateTime, fimDateTime, PageRequest.of(0, 5))
+                .rankingProdutos(STATUS_VENDAS_CONTABILIZADAS, inicioDateTime, fimDateTime, PageRequest.of(0, 5))
                 .stream()
                 .map(obj -> {
                     Map<String, Object> item = new LinkedHashMap<>();
@@ -156,14 +177,12 @@ public class PedidoService {
         LocalDateTime fimDateTime = fim.atTime(23, 59, 59);
 
         Map<String, Object> dados = new LinkedHashMap<>();
-        StatusPedido statusVendaConcluida = STATUS_VENDA_FINALIZADA;
-
         Long totalPedidos = Optional.ofNullable(
-                pedidoRepository.totalPedidosPorUsuario(usuarioId)
+                pedidoRepository.totalPedidosPorUsuario(usuarioId, STATUS_VENDAS_CONTABILIZADAS, inicioDateTime, fimDateTime)
         ).orElse(0L);
 
         BigDecimal receita = Optional.ofNullable(
-                pedidoRepository.receitaPorUsuario(usuarioId, statusVendaConcluida, inicioDateTime, fimDateTime)
+                pedidoRepository.receitaPorUsuario(usuarioId, STATUS_VENDAS_CONTABILIZADAS, inicioDateTime, fimDateTime)
         ).orElse(BigDecimal.ZERO);
 
         BigDecimal ticketMedio = totalPedidos > 0
@@ -176,7 +195,7 @@ public class PedidoService {
         dados.put("ticketMedio", ticketMedio);
 
         List<Map<String, Object>> vendasPorDia = pedidoRepository
-                .vendasPorDiaUsuario(usuarioId, statusVendaConcluida, inicioDateTime, fimDateTime)
+                .vendasPorDiaUsuario(usuarioId, STATUS_VENDAS_CONTABILIZADAS, inicioDateTime, fimDateTime)
                 .stream()
                 .map(obj -> {
                     Map<String, Object> item = new LinkedHashMap<>();
@@ -191,7 +210,7 @@ public class PedidoService {
         BigDecimal receitaAnterior = Optional.ofNullable(
                 pedidoRepository.receitaPorUsuario(
                         usuarioId,
-                        statusVendaConcluida,
+                        STATUS_VENDAS_CONTABILIZADAS,
                         inicioDateTime.minusDays(30),
                         fimDateTime.minusDays(30)
                 )
@@ -203,12 +222,16 @@ public class PedidoService {
     }
 
     public List<Pedido> listar() {
-        return pedidoRepository.findAll();
+        return pedidoRepository.findAllWithDetails();
     }
 
     public Pedido buscar(UUID id) {
-        return pedidoRepository.findById(id)
+        return pedidoRepository.findDetailedById(id)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+    }
+
+    public List<ItemPedido> listarItens(UUID id) {
+        return itemPedidoRepository.findByPedidoIdWithProduto(id);
     }
 
     @Transactional
@@ -241,10 +264,13 @@ public class PedidoService {
         pedido.setUsuario(usuario);
         pedido.setEmpresa(usuario.getEmpresa());
         MetodoPagamento metodoPagamento = req.getMetodoPagamento() != null ? req.getMetodoPagamento() : MetodoPagamento.PIX;
-        boolean pagarNaEntrega = MetodoPagamento.PAGAR_NA_ENTREGA.equals(metodoPagamento);
         pedido.setMetodoPagamento(metodoPagamento);
-        pedido.setStatus(pagarNaEntrega ? StatusPedido.PENDENTE : STATUS_VENDA_FINALIZADA);
+        pedido.setParcelasPagamento(normalizarParcelas(metodoPagamento, req.getParcelas()));
+        pedido.setStatus(StatusPedido.PENDENTE);
         pedido.setDataPedido(LocalDateTime.now());
+        pedido.setTipoEntrega(req.getTipoEntrega() != null ? req.getTipoEntrega() : TipoEntrega.RETIRADA_LOJA);
+        pedido.setEnderecoEntrega(normalizarTexto(req.getEnderecoEntrega()));
+        pedido.setObservacaoEntrega(normalizarTexto(req.getObservacaoEntrega()));
 
         // 🔥 PRIORIDADE
         pedido.setPrioridade(
@@ -312,22 +338,16 @@ public class PedidoService {
         // =========================
         // 📦 BAIXA DE ESTOQUE
         // =========================
-        if (!pagarNaEntrega) {
-            baixarEstoque(pedido);
-        }
+        // A baixa de estoque acontece somente quando o caixa recebe o pagamento.
 
         // =========================
         // 💾 SALVAR
         // =========================
         Pedido salvo = pedidoRepository.save(pedido);
-        if (pagarNaEntrega) {
-            auditoriaService.registrar("Vendas", "VENDA_AGUARDANDO_ENTREGA",
-                    "Venda aguardando pagamento na entrega no valor " + salvo.getValorTotalPedido(), salvo.getId());
-        } else {
-            registrarReceitaPedido(salvo, usuario);
-            auditoriaService.registrar("Vendas", "VENDA_FINALIZADA",
-                    "Venda finalizada no valor " + salvo.getValorTotalPedido(), salvo.getId());
-        }
+        registrarEntregaSeNecessario(salvo);
+        auditoriaService.registrar("Vendas", "VENDA_AGUARDANDO_CAIXA",
+                "Venda registrada pelo vendedor aguardando recebimento no caixa no valor " + salvo.getValorTotalPedido(),
+                salvo.getId());
 
         return salvo;
     }
@@ -340,11 +360,25 @@ public class PedidoService {
         existente.setStatus(pedido.getStatus());
 
         if (pedido.getItens() != null) {
+            if (pedido.getItens().isEmpty()) {
+                throw new BusinessException("Pedido nao pode ficar sem itens.");
+            }
+
             existente.getItens().clear();
 
             for (ItemPedido item : pedido.getItens()) {
+                if (item.getProduto() == null || item.getProduto().getIdProduto() == null) {
+                    throw new BusinessException("Produto obrigatorio na atualizacao do pedido.");
+                }
+
+                if (item.getQuantidade() == null || item.getQuantidade() <= 0) {
+                    throw new BusinessException("Quantidade invalida na atualizacao do pedido.");
+                }
+
                 existente.adicionarItem(item);
             }
+
+            existente.calcularTotal();
         }
 
         return pedidoRepository.save(existente);
@@ -352,23 +386,105 @@ public class PedidoService {
 
     @Transactional
     public Pedido finalizar(UUID id) {
+        return finalizar(id, null);
+    }
+
+    @Transactional
+    public Pedido finalizar(UUID id, PedidoFinalizacaoRequest request) {
         Pedido pedido = buscar(id);
+
+        if (pedido.getItens() == null || pedido.getItens().isEmpty()) {
+            throw new BusinessException("Pedido sem itens cadastrados nao pode ser finalizado.");
+        }
 
         if (StatusPedido.CANCELADO.equals(pedido.getStatus()) || StatusPedido.CANCELADA.equals(pedido.getStatus())) {
             throw new BusinessException("Pedido cancelado nao pode ser finalizado");
         }
 
         if (STATUS_VENDA_FINALIZADA.equals(pedido.getStatus())) {
+            caixaService.registrarVendaPedido(pedido, usuarioAtual());
             return pedido;
         }
 
-        baixarEstoque(pedido);
-        registrarReceitaPedido(pedido, pedido.getUsuario());
+        Usuario operadorCaixa = usuarioAtual();
+        MetodoPagamento metodoPagamento = request != null && request.getMetodoPagamento() != null
+                ? request.getMetodoPagamento()
+                : pedido.getMetodoPagamento();
+
+        pedido.setMetodoPagamento(metodoPagamento != null ? metodoPagamento : MetodoPagamento.PIX);
+        pedido.setParcelasPagamento(normalizarParcelas(pedido.getMetodoPagamento(), request != null ? request.getParcelas() : pedido.getParcelasPagamento()));
+        String detalhesPagamento = request != null ? normalizarTexto(request.getDetalhesPagamento()) : null;
+
         pedido.setStatus(STATUS_VENDA_FINALIZADA);
         Pedido salvo = pedidoRepository.save(pedido);
+
+        baixarEstoque(salvo);
+        registrarReceitaPedido(salvo, operadorCaixa, detalhesPagamento);
+        caixaService.registrarVendaPedido(salvo, operadorCaixa, detalhesPagamento);
+        registrarEntregaSeNecessario(salvo);
         auditoriaService.registrar("Vendas", "VENDA_FINALIZADA",
-                "Venda concretizada apos entrega/pagamento no valor " + salvo.getValorTotalPedido(), salvo.getId());
+                "Venda recebida pelo caixa no valor " + salvo.getValorTotalPedido(), salvo.getId());
         return salvo;
+    }
+
+    @Transactional
+    public Pedido cancelarInconsistente(UUID id) {
+        Pedido pedido = buscar(id);
+
+        if (pedido.getItens() != null && !pedido.getItens().isEmpty()) {
+            throw new BusinessException("Somente pedidos sem itens podem ser cancelados por esta acao.");
+        }
+
+        if (StatusPedido.CANCELADO.equals(pedido.getStatus()) || StatusPedido.CANCELADA.equals(pedido.getStatus())) {
+            return pedido;
+        }
+
+        pedido.setStatus(StatusPedido.CANCELADO);
+        Pedido salvo = pedidoRepository.save(pedido);
+        auditoriaService.registrar(
+                "Vendas",
+                "PEDIDO_INCONSISTENTE_CANCELADO",
+                "Pedido sem itens cancelado administrativamente: " + (salvo.getNumero() != null ? salvo.getNumero() : salvo.getId()),
+                salvo.getId()
+        );
+        return salvo;
+    }
+
+    @Transactional
+    public int cancelarInconsistentes(List<UUID> ids) {
+        if (ids == null || ids.isEmpty()) {
+            throw new BusinessException("Informe ao menos um pedido para cancelamento em lote.");
+        }
+
+        int cancelados = 0;
+        Set<UUID> unicos = new LinkedHashSet<>(ids);
+        for (UUID id : unicos) {
+            if (id == null) {
+                continue;
+            }
+            cancelarInconsistente(id);
+            cancelados++;
+        }
+
+        if (cancelados == 0) {
+            throw new BusinessException("Nenhum pedido valido foi enviado para cancelamento.");
+        }
+
+        return cancelados;
+    }
+
+    private Usuario usuarioAtual() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication.getName() == null) {
+            throw new BusinessException("Usuario autenticado nao encontrado.");
+        }
+
+        return usuarioRepository.findByLoginIgnoreCase(authentication.getName())
+                .orElseThrow(() -> new BusinessException("Usuario autenticado nao encontrado."));
+    }
+
+    private String normalizarTexto(String valor) {
+        return valor == null || valor.isBlank() ? null : valor.trim();
     }
 
     private void baixarEstoque(Pedido pedido) {
@@ -380,13 +496,49 @@ public class PedidoService {
         }
     }
 
-    private void registrarReceitaPedido(Pedido pedido, Usuario usuario) {
+    private void registrarReceitaPedido(Pedido pedido, Usuario usuario, String detalhesPagamento) {
         financeiroService.registrarReceitaPedido(
                 pedido,
                 pedido.getMetodoPagamento() != null ? pedido.getMetodoPagamento() : MetodoPagamento.PIX,
                 pedido.getValorTotalPedido(),
-                usuario
+                usuario,
+                detalhesPagamento
         );
+    }
+
+    private Integer normalizarParcelas(MetodoPagamento metodoPagamento, Integer parcelas) {
+        if (MetodoPagamento.CARTAO_CREDITO.equals(metodoPagamento) || MetodoPagamento.BOLETO.equals(metodoPagamento)) {
+            int valor = parcelas != null ? parcelas : 1;
+            return Math.max(1, Math.min(valor, 12));
+        }
+
+        return 1;
+    }
+
+    private void registrarEntregaSeNecessario(Pedido pedido) {
+        if (pedido == null || pedido.getId() == null || !TipoEntrega.ENTREGA.equals(pedido.getTipoEntrega())) {
+            return;
+        }
+
+        if (entregaRepository.existsByPedidoId(pedido.getId())) {
+            return;
+        }
+
+        Entrega entrega = new Entrega();
+        entrega.setPedido(pedido);
+        entrega.setStatus(StatusEntrega.PENDENTE);
+        entrega.setPrioridade(pedido.getPrioridade() != null ? pedido.getPrioridade().name() : "NORMAL");
+        entrega.setEnderecoEntrega(
+                normalizarTexto(pedido.getEnderecoEntrega()) != null
+                        ? normalizarTexto(pedido.getEnderecoEntrega())
+                        : pedido.getCliente() != null ? normalizarTexto(pedido.getCliente().getEndereco()) : null
+        );
+        entrega.setTelefoneContato(pedido.getCliente() != null ? normalizarTexto(pedido.getCliente().getTelefone()) : null);
+        entrega.setObservacao(normalizarTexto(pedido.getObservacaoEntrega()));
+        entregaRepository.save(entrega);
+
+        auditoriaService.registrar("Logistica", "ENTREGA_CRIADA",
+                "Entrega criada automaticamente apos recebimento no caixa.", pedido.getId());
     }
 
     @Transactional

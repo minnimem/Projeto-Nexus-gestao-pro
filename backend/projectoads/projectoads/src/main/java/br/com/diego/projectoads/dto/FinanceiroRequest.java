@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -19,6 +20,8 @@ import java.util.UUID;
 public class FinanceiroRequest {
 
     private LocalDateTime dataLancamento;
+
+    private LocalDate dataVencimento;
 
     @NotBlank(message = "Descrição é obrigatória")
     @Size(max = 255, message = "Descrição não pode ultrapassar 255 caracteres")

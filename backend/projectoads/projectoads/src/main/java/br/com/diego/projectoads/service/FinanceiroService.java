@@ -168,6 +168,26 @@ public class FinanceiroService {
     }
 
     @Transactional
+    public FinanceiroResponse baixar(UUID id) {
+        Financeiro financeiro = buscarEntidade(id);
+
+        if (!StatusPagamento.PENDENTE.equals(financeiro.getStatus())) {
+            throw new BusinessException("Somente lancamentos pendentes podem ser baixados.");
+        }
+
+        financeiro.setStatus(StatusPagamento.APROVADO);
+        financeiro.setDataLancamento(LocalDateTime.now());
+        financeiro.setObservacao(adicionarObservacao(
+                financeiro.getObservacao(),
+                "Baixado em " + LocalDateTime.now()
+        ));
+
+        Financeiro salvo = financeiroRepository.save(financeiro);
+        auditoriaService.registrar("Financeiro", "BAIXAR", "Lancamento financeiro baixado", id);
+        return toResponse(salvo);
+    }
+
+    @Transactional
     public FinanceiroResponse estornar(UUID id) {
         Financeiro original = buscarEntidade(id);
 
@@ -208,6 +228,15 @@ public class FinanceiroService {
                                                      MetodoPagamento metodoPagamento,
                                                      BigDecimal valor,
                                                      Usuario usuario) {
+        return registrarReceitaPedido(pedido, metodoPagamento, valor, usuario, null);
+    }
+
+    @Transactional
+    public FinanceiroResponse registrarReceitaPedido(Pedido pedido,
+                                                     MetodoPagamento metodoPagamento,
+                                                     BigDecimal valor,
+                                                     Usuario usuario,
+                                                     String detalhesPagamento) {
         if (pedido == null) {
             throw new BusinessException("Pedido obrigatório para registrar receita.");
         }
@@ -233,9 +262,17 @@ public class FinanceiroService {
         financeiro.setEmpresa(usuario != null && usuario.getEmpresa() != null
                 ? usuario.getEmpresa()
                 : pedido.getEmpresa());
-        financeiro.setObservacao("Lançamento automático gerado pela finalização do pedido.");
+        financeiro.setObservacao(criarObservacaoPedido(detalhesPagamento));
 
         return toResponse(financeiroRepository.save(financeiro));
+    }
+
+    private String criarObservacaoPedido(String detalhesPagamento) {
+        String observacao = "Lancamento automatico gerado pela finalizacao do pedido.";
+        if (detalhesPagamento == null || detalhesPagamento.isBlank()) {
+            return observacao;
+        }
+        return observacao + " Pagamento misto: " + detalhesPagamento.trim();
     }
 
     private void preencher(Financeiro financeiro, FinanceiroRequest request) {
@@ -244,6 +281,7 @@ public class FinanceiroService {
                         ? request.getDataLancamento()
                         : LocalDateTime.now()
         );
+        financeiro.setDataVencimento(request.getDataVencimento());
 
         financeiro.setDescricao(request.getDescricao().trim());
         financeiro.setTipo(request.getTipo());
@@ -351,6 +389,7 @@ public class FinanceiroService {
         return FinanceiroResponse.builder()
                 .id(f.getId())
                 .dataLancamento(f.getDataLancamento())
+                .dataVencimento(f.getDataVencimento())
                 .descricao(f.getDescricao())
                 .tipo(f.getTipo())
                 .categoria(f.getCategoria())

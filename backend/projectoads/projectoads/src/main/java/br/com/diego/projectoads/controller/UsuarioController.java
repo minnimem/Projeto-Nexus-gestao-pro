@@ -1,6 +1,7 @@
 package br.com.diego.projectoads.controller;
 
 import br.com.diego.projectoads.config.Enum.Perfil;
+import br.com.diego.projectoads.dto.UsuarioPermissoesRequest;
 import br.com.diego.projectoads.dto.UsuarioRequest;
 import br.com.diego.projectoads.dto.UsuarioResponse;
 import br.com.diego.projectoads.exception.BusinessException;
@@ -185,6 +186,22 @@ public class UsuarioController {
         usuarioService.salvar(usuario);
 
         return ResponseEntity.ok("Perfil atualizado com sucesso");
+    }
+
+    @PatchMapping("/{id}/acesso")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UsuarioResponse> alterarAcesso(@PathVariable UUID id,
+                                                         @RequestParam boolean ativo) {
+        return ResponseEntity.ok(new UsuarioResponse(usuarioService.alterarAcesso(id, ativo)));
+    }
+
+    @PatchMapping("/{id}/permissoes")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UsuarioResponse> alterarPermissoes(@PathVariable UUID id,
+                                                             @RequestBody UsuarioPermissoesRequest request) {
+        return ResponseEntity.ok(new UsuarioResponse(
+                usuarioService.alterarPermissoes(id, request.getPermissoesExtras(), request.getPermissoesBloqueadas())
+        ));
     }
 
 

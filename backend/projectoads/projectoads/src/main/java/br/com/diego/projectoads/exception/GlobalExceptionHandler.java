@@ -44,8 +44,17 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<?> handleJsonParse(HttpMessageNotReadableException ex) {
+        Throwable causa = ex;
+        while (causa.getCause() != null) {
+            causa = causa.getCause();
+        }
+        String detalhe = causa.getMessage() != null ? causa.getMessage() : ex.getMessage();
+
         return ResponseEntity.badRequest().body(
-                Map.of("erro", "Dados enviados em formato invalido. Verifique prioridade, pagamento e campos obrigatorios.")
+                Map.of(
+                        "erro", "Dados enviados em formato invalido. Verifique perfil, datas, valores e campos obrigatorios.",
+                        "detalhe", detalhe
+                )
         );
     }
 
@@ -53,8 +62,17 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleGeneric(Exception ex) {
         log.error("Erro interno no servidor", ex);
 
+        Throwable causa = ex;
+        while (causa.getCause() != null) {
+            causa = causa.getCause();
+        }
+        String detalhe = causa.getMessage() != null ? causa.getMessage() : ex.getMessage();
+
         return ResponseEntity.status(500).body(
-                Map.of("erro", "Erro interno no servidor")
+                Map.of(
+                        "erro", "Erro interno no servidor",
+                        "detalhe", detalhe != null ? detalhe : "Sem detalhe disponivel"
+                )
         );
     }
 }

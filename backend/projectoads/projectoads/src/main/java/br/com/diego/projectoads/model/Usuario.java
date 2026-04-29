@@ -1,6 +1,7 @@
 package br.com.diego.projectoads.model;
 
 import br.com.diego.projectoads.config.Enum.Perfil;
+import br.com.diego.projectoads.config.StringSetConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -11,6 +12,8 @@ import lombok.ToString;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -85,6 +88,14 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
+
+    @Convert(converter = StringSetConverter.class)
+    @Column(name = "permissoes_extras", length = 2000)
+    private Set<String> permissoesExtras = new LinkedHashSet<>();
+
+    @Convert(converter = StringSetConverter.class)
+    @Column(name = "permissoes_bloqueadas", length = 2000)
+    private Set<String> permissoesBloqueadas = new LinkedHashSet<>();
 
     @PrePersist
     public void prePersist() {

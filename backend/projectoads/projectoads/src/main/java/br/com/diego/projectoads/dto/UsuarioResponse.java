@@ -5,6 +5,7 @@ import br.com.diego.projectoads.model.Usuario;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class UsuarioResponse {
@@ -26,6 +27,8 @@ public class UsuarioResponse {
     private String telefone;
     private String email;
     private String documento;
+    private List<String> permissoesExtras;
+    private List<String> permissoesBloqueadas;
 
     public UsuarioResponse(Usuario u) {
         this.id = u.getId();
@@ -45,6 +48,8 @@ public class UsuarioResponse {
         this.telefone = u.getTelefone();
         this.email = u.getEmail();
         this.documento = u.getDocumento();
+        this.permissoesExtras = u.getPermissoesExtras() != null ? u.getPermissoesExtras().stream().sorted().toList() : List.of();
+        this.permissoesBloqueadas = u.getPermissoesBloqueadas() != null ? u.getPermissoesBloqueadas().stream().sorted().toList() : List.of();
     }
 
     public UUID getId() { return id; }
@@ -64,4 +69,6 @@ public class UsuarioResponse {
     public String getTelefone() { return telefone; }
     public String getEmail() { return email; }
     public String getDocumento() { return documento; }
+    public List<String> getPermissoesExtras() { return permissoesExtras; }
+    public List<String> getPermissoesBloqueadas() { return permissoesBloqueadas; }
 }

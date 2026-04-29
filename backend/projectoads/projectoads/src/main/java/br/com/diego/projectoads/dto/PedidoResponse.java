@@ -25,6 +25,11 @@ public class PedidoResponse {
     public String prioridade;
     public String metodoPagamento;
     public String metodoPagamentoDescricao;
+    public Integer parcelasPagamento;
+    public String tipoEntrega;
+    public String tipoEntregaDescricao;
+    public String enderecoEntrega;
+    public String observacaoEntrega;
     public List<ItemResponse> itens;
 
     public PedidoResponse(Pedido pedido) {
@@ -42,6 +47,11 @@ public class PedidoResponse {
         this.prioridade = pedido.getPrioridade() != null ? pedido.getPrioridade().name() : null;
         this.metodoPagamento = pedido.getMetodoPagamento() != null ? pedido.getMetodoPagamento().name() : null;
         this.metodoPagamentoDescricao = pedido.getMetodoPagamento() != null ? pedido.getMetodoPagamento().getDescricao() : null;
+        this.parcelasPagamento = pedido.getParcelasPagamento();
+        this.tipoEntrega = pedido.getTipoEntrega() != null ? pedido.getTipoEntrega().name() : null;
+        this.tipoEntregaDescricao = pedido.getTipoEntrega() != null ? pedido.getTipoEntrega().getDescricao() : null;
+        this.enderecoEntrega = pedido.getEnderecoEntrega();
+        this.observacaoEntrega = pedido.getObservacaoEntrega();
         this.itens = pedido.getItens() != null && Hibernate.isInitialized(pedido.getItens())
                 ? pedido.getItens()
                         .stream()
@@ -54,6 +64,8 @@ public class PedidoResponse {
         public UUID id;
         public UUID produtoId;
         public String produto;
+        public String codigoBarras;
+        public String sku;
         public Integer quantidade;
         public BigDecimal precoUnit;
         public BigDecimal subtotal;
@@ -62,6 +74,8 @@ public class PedidoResponse {
             this.id = item.getId();
             this.produtoId = item.getProduto() != null ? item.getProduto().getIdProduto() : null;
             this.produto = item.getProduto() != null ? item.getProduto().getNomeProduto() : null;
+            this.codigoBarras = item.getProduto() != null ? item.getProduto().getCodBarras() : null;
+            this.sku = item.getProduto() != null ? item.getProduto().getSku() : null;
             this.quantidade = item.getQuantidade();
             this.precoUnit = item.getPrecoUnit();
             this.subtotal = item.getPrecoUnit() != null && item.getQuantidade() != null

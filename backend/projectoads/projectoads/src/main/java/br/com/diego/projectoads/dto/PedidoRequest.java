@@ -2,6 +2,7 @@ package br.com.diego.projectoads.dto;
 
 import br.com.diego.projectoads.config.Enum.PrioridadeEntrega;
 import br.com.diego.projectoads.config.Enum.MetodoPagamento;
+import br.com.diego.projectoads.config.Enum.TipoEntrega;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,14 @@ public class PedidoRequest {
     private BigDecimal desconto = BigDecimal.ZERO;
 
     private MetodoPagamento metodoPagamento = MetodoPagamento.PIX;
+
+    private Integer parcelas = 1;
+
+    private TipoEntrega tipoEntrega = TipoEntrega.RETIRADA_LOJA;
+
+    private String enderecoEntrega;
+
+    private String observacaoEntrega;
 
     private List<ItemPedidoRequest> itens;
 }

@@ -4,6 +4,9 @@ package br.com.diego.projectoads.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +16,8 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DatabaseConfiguration {
+
+    private static final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);
 
     @Value("${spring.datasource.username}")
     private String username;
@@ -54,5 +59,24 @@ public class DatabaseConfiguration {
         config.setConnectionTestQuery("select 1"); //testar se esta conectado com bando
 
         return new HikariDataSource(config);
+    }
+
+    @Bean
+    public ApplicationRunner atualizarRestricoesDoCaixa(DataSource dataSource) {
+        return args -> {
+            try (var connection = dataSource.getConnection();
+                 var statement = connection.createStatement()) {
+                statement.execute("alter table if exists public.usuario add column if not exists permissoes_extras varchar(2000)");
+                statement.execute("alter table if exists public.usuario add column if not exists permissoes_bloqueadas varchar(2000)");
+                statement.execute("alter table if exists public.caixa drop constraint if exists caixa_perfil_check");
+                statement.execute("""
+                        alter table if exists public.caixa
+                        add constraint caixa_perfil_check
+                        check (perfil in ('ADMIN', 'GERENTE', 'VENDEDOR', 'OPERADOR_CAIXA', 'ESTOQUISTA', 'FINANCEIRO'))
+                        """);
+            } catch (Exception ex) {
+                log.warn("Nao foi possivel atualizar a restricao caixa_perfil_check.", ex);
+            }
+        };
     }
 }

@@ -15,10 +15,15 @@ public class LogisticaResponse {
 
     private UUID pedidoId;
     private String numeroPedido;
+    private String clienteNome;
     private BigDecimal totalPedido;
+    private String enderecoEntrega;
+    private String telefoneContato;
 
     private String status;
     private String prioridade;
+    private UUID rotaId;
+    private String rotaNome;
 
     private String transportadora;
     private String codigoRastreio;

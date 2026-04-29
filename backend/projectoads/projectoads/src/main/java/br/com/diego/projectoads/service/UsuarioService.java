@@ -14,13 +14,19 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class UsuarioService {
@@ -33,6 +39,7 @@ public class UsuarioService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final LoginAuditoriaRepository loginAuditoriaRepository;
+    private final UsuarioPermissionService usuarioPermissionService;
     private final AuditoriaService auditoriaService;
 
     public UsuarioService(UsuarioRepository repository,
@@ -40,12 +47,14 @@ public class UsuarioService {
                            AuthenticationManager authenticationManager,
                            JwtService jwtService,
                            LoginAuditoriaRepository loginAuditoriaRepository,
+                           UsuarioPermissionService usuarioPermissionService,
                            AuditoriaService auditoriaService) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.loginAuditoriaRepository = loginAuditoriaRepository;
+        this.usuarioPermissionService = usuarioPermissionService;
         this.auditoriaService = auditoriaService;
     }
 
@@ -91,6 +100,8 @@ public class UsuarioService {
             resposta.put("perfil", usuario.getPerfil().name());
             resposta.put("empresaId", usuario.getEmpresa().getId());
             resposta.put("empresa", usuario.getEmpresa().getNome());
+            resposta.put("permissoesExtras", usuario.getPermissoesExtras() != null ? usuario.getPermissoesExtras().stream().sorted().toList() : List.of());
+            resposta.put("permissoesBloqueadas", usuario.getPermissoesBloqueadas() != null ? usuario.getPermissoesBloqueadas().stream().sorted().toList() : List.of());
 
             return resposta;
 
@@ -233,6 +244,71 @@ public class UsuarioService {
         }
 
         return repository.save(usuario);
+    }
+
+    @Transactional
+    public Usuario alterarAcesso(UUID id, boolean ativo) {
+        Usuario usuario = repository.findById(id)
+                .orElseThrow(() -> new BusinessException("Usuario nao encontrado"));
+
+        if (!ativo && usuarioLogado(usuario)) {
+            throw new BusinessException("Voce nao pode revogar o proprio acesso.");
+        }
+
+        if (!ativo && Perfil.ADMIN.equals(usuario.getPerfil())) {
+            throw new BusinessException("Nao e permitido revogar acesso de usuario ADMIN por esta tela.");
+        }
+
+        usuario.setAtivo(ativo);
+
+        if (ativo) {
+            usuario.setBloqueado(false);
+            usuario.setBloqueadoAte(null);
+            usuario.setTentativasLogin(0);
+        } else {
+            usuario.setBloqueado(true);
+            usuario.setBloqueadoAte(null);
+        }
+
+        Usuario salvo = repository.save(usuario);
+        auditoriaService.registrar(
+                "Usuarios",
+                ativo ? "CONCEDER_ACESSO" : "REVOGAR_ACESSO",
+                (ativo ? "Acesso concedido para " : "Acesso revogado de ") + salvo.getLogin(),
+                salvo.getId()
+        );
+        return salvo;
+    }
+
+    @Transactional
+    public Usuario alterarPermissoes(UUID id, Collection<String> permissoesExtras, Collection<String> permissoesBloqueadas) {
+        Usuario usuario = repository.findById(id)
+                .orElseThrow(() -> new BusinessException("Usuario nao encontrado"));
+
+        if (Perfil.ADMIN.equals(usuario.getPerfil())) {
+            throw new BusinessException("Permissoes manuais de usuario ADMIN nao podem ser alteradas por esta tela.");
+        }
+
+        usuario.setPermissoesExtras(new LinkedHashSet<>(usuarioPermissionService.normalizePermissions(permissoesExtras)));
+        usuario.setPermissoesBloqueadas(new LinkedHashSet<>(usuarioPermissionService.normalizePermissions(permissoesBloqueadas)));
+        usuario.getPermissoesExtras().removeAll(usuario.getPermissoesBloqueadas());
+
+        Usuario salvo = repository.save(usuario);
+        auditoriaService.registrar(
+                "Usuarios",
+                "PERMISSOES_MANUAIS",
+                "Permissoes manuais atualizadas para " + salvo.getLogin(),
+                salvo.getId()
+        );
+        return salvo;
+    }
+
+    private boolean usuarioLogado(Usuario usuario) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication != null
+                && authentication.getName() != null
+                && usuario.getLogin() != null
+                && usuario.getLogin().equalsIgnoreCase(authentication.getName());
     }
 
     private String normalizar(String valor) {

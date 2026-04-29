@@ -16,6 +16,7 @@ public class RoleHierarchyConfig {
         hierarchy.setHierarchy("""
                 ROLE_ADMIN > ROLE_GERENTE
                 ROLE_GERENTE > ROLE_VENDEDOR
+                ROLE_GERENTE > ROLE_OPERADOR_CAIXA
                 ROLE_GERENTE > ROLE_ESTOQUISTA
                 ROLE_ADMIN > ROLE_FINANCEIRO
                 """);

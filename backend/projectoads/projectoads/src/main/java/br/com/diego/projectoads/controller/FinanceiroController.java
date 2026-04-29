@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/financeiro")
-@PreAuthorize("hasAnyRole('ADMIN', 'GERENTE', 'FINANCEIRO')")
+@PreAuthorize("@usuarioPermissionService.canAccessModule(authentication, 'financeiro')")
 public class FinanceiroController {
 
     private final FinanceiroService financeiroService;
@@ -58,6 +58,7 @@ public class FinanceiroController {
     }
 
     @PostMapping
+    @PreAuthorize("@usuarioPermissionService.canPerform(authentication, 'mutateFinance')")
     public ResponseEntity<FinanceiroResponse> criar(
             @RequestBody @Valid FinanceiroRequest request
     ) {
@@ -69,6 +70,7 @@ public class FinanceiroController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("@usuarioPermissionService.canPerform(authentication, 'mutateFinance')")
     public ResponseEntity<FinanceiroResponse> atualizar(
             @PathVariable UUID id,
             @RequestBody @Valid FinanceiroRequest request
@@ -91,15 +93,22 @@ public class FinanceiroController {
      * Cancelamento seguro: mantém histórico/auditoria.
      */
     @PatchMapping("/{id}/cancelar")
+    @PreAuthorize("@usuarioPermissionService.canPerform(authentication, 'mutateFinance')")
     public ResponseEntity<FinanceiroResponse> cancelar(@PathVariable UUID id) {
         return ResponseEntity.ok(financeiroService.cancelar(id));
+    }
+
+    @PatchMapping("/{id}/baixar")
+    @PreAuthorize("@usuarioPermissionService.canPerform(authentication, 'mutateFinance')")
+    public ResponseEntity<FinanceiroResponse> baixar(@PathVariable UUID id) {
+        return ResponseEntity.ok(financeiroService.baixar(id));
     }
 
     /**
      * Estorno seguro: mantém histórico/auditoria.
      */
     @PatchMapping("/{id}/estornar")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("@usuarioPermissionService.canPerform(authentication, 'reverseFinance')")
     public ResponseEntity<FinanceiroResponse> estornar(@PathVariable UUID id) {
         return ResponseEntity.ok(financeiroService.estornar(id));
     }

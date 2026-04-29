@@ -1,5 +1,7 @@
 package br.com.diego.projectoads.controller;
 
+import br.com.diego.projectoads.dto.PedidoFinalizacaoRequest;
+import br.com.diego.projectoads.dto.PedidoCancelamentoLoteRequest;
 import br.com.diego.projectoads.dto.PedidoRequest;
 import br.com.diego.projectoads.dto.PedidoResponse;
 import br.com.diego.projectoads.model.Pedido;
@@ -7,6 +9,7 @@ import br.com.diego.projectoads.service.PedidoService;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -39,6 +42,16 @@ public class PedidoController {
         return ResponseEntity.ok(new PedidoResponse(pedidoService.buscar(id)));
     }
 
+    @GetMapping("/{id}/itens")
+    public ResponseEntity<List<PedidoResponse.ItemResponse>> listarItens(@PathVariable UUID id) {
+        return ResponseEntity.ok(
+                pedidoService.listarItens(id)
+                        .stream()
+                        .map(PedidoResponse.ItemResponse::new)
+                        .toList()
+        );
+    }
+
     @PostMapping
     public ResponseEntity<PedidoResponse> criar(@RequestBody PedidoRequest req) {
 
@@ -60,8 +73,26 @@ public class PedidoController {
     }
 
     @PatchMapping("/{id}/finalizar")
-    public ResponseEntity<PedidoResponse> finalizar(@PathVariable UUID id) {
-        return ResponseEntity.ok(new PedidoResponse(pedidoService.finalizar(id)));
+    public ResponseEntity<PedidoResponse> finalizar(
+            @PathVariable UUID id,
+            @RequestBody(required = false) PedidoFinalizacaoRequest request
+    ) {
+        return ResponseEntity.ok(new PedidoResponse(pedidoService.finalizar(id, request)));
+    }
+
+    @PatchMapping("/{id}/cancelar-inconsistente")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<PedidoResponse> cancelarInconsistente(@PathVariable UUID id) {
+        return ResponseEntity.ok(new PedidoResponse(pedidoService.cancelarInconsistente(id)));
+    }
+
+    @PatchMapping("/cancelar-inconsistentes")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Map<String, Object>> cancelarInconsistentes(
+            @RequestBody PedidoCancelamentoLoteRequest request
+    ) {
+        int cancelados = pedidoService.cancelarInconsistentes(request != null ? request.ids() : null);
+        return ResponseEntity.ok(Map.of("cancelados", cancelados));
     }
 
     @DeleteMapping("/{id}")
