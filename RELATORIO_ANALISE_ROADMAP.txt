@@ -73,6 +73,7 @@ Ultimas entregas concluidas nesta rodada
 - Roteiro de homologacao Asaas sandbox criado em docs/HOMOLOGACAO_ASAAS.md, cobrindo variaveis, Pix, boleto, webhook, eventos tratados e checklist de producao.
 - Modelo .env.backend.example e script scripts/test-asaas-webhook.ps1 adicionados para facilitar teste local do webhook Asaas sem versionar segredos.
 - Testes unitarios do webhook Asaas adicionados, cobrindo token valido, token invalido e operacao sem token configurado; suite Maven validada com 11 testes sem falhas.
+- Testes unitarios do processamento financeiro de webhook Asaas adicionados, cobrindo aprovacao, estorno, cancelamento, evento desconhecido e payload sem paymentId; suite Maven validada com 16 testes sem falhas.
 
 
 1. JA IMPLEMENTADO OU BEM AVANCADO
