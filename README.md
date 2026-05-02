@@ -104,6 +104,11 @@ Resumo diario pode ser enviado automaticamente pelo agendamento ou manualmente p
 O roteiro de sandbox para Pix, boleto e webhook esta em `docs/HOMOLOGACAO_ASAAS.md`.
 O script `scripts/test-asaas-webhook.ps1` simula eventos do Asaas contra o backend local.
 
+## Homologacao de notificacoes externas
+
+O roteiro para follow-ups, estoque baixo e resumo diario esta em `docs/HOMOLOGACAO_NOTIFICACOES.md`.
+O script `scripts/mock-notification-webhook.js` sobe um receptor local para conferir os payloads enviados pelo backend.
+
 ## Validacao rapida
 
 ```bash
