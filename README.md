@@ -59,7 +59,7 @@ DB_PASSWORD=sua-senha-local
 JWT_SECRET=sua-chave-base64
 ```
 
-Se `DB_URL` e `DB_USERNAME` nao forem informadas, o backend usa os valores locais acima. A senha do banco deve ser informada por `DB_PASSWORD`.
+Se `DB_URL` e `DB_USERNAME` nao forem informadas, o backend usa os valores locais acima. A senha do banco deve ser informada por `DB_PASSWORD`. Existe um modelo completo em `.env.backend.example`.
 
 ## Modulos ja mapeados
 
@@ -102,6 +102,7 @@ Resumo diario pode ser enviado automaticamente pelo agendamento ou manualmente p
 ## Homologacao Asaas
 
 O roteiro de sandbox para Pix, boleto e webhook esta em `docs/HOMOLOGACAO_ASAAS.md`.
+O script `scripts/test-asaas-webhook.ps1` simula eventos do Asaas contra o backend local.
 
 ## Validacao rapida
 

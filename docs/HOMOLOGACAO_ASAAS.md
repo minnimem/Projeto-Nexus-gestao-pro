@@ -25,6 +25,7 @@ $env:ASAAS_WEBHOOK_TOKEN="token-forte-para-webhook"
 ```
 
 Nunca versionar `ASAAS_API_KEY`, `ASAAS_WEBHOOK_TOKEN`, `DB_PASSWORD` ou `JWT_SECRET`.
+Use `.env.backend.example` como modelo de preenchimento local.
 
 ## 2. Subir backend e frontend
 
@@ -106,23 +107,9 @@ asaas-access-token: mesmo-valor-de-ASAAS_WEBHOOK_TOKEN
 Antes do teste real pelo painel, valide o endpoint com um ID externo gravado em um financeiro:
 
 ```powershell
-$headers = @{
-  "Content-Type" = "application/json"
-  "asaas-access-token" = $env:ASAAS_WEBHOOK_TOKEN
-}
-
-$body = @{
-  event = "PAYMENT_RECEIVED"
-  payment = @{
-    id = "pay_id_existente_no_financeiro"
-  }
-} | ConvertTo-Json -Depth 5
-
-Invoke-WebRequest `
-  -Method POST `
-  -Uri "http://localhost:8081/webhooks/asaas" `
-  -Headers $headers `
-  -Body $body
+.\scripts\test-asaas-webhook.ps1 `
+  -PaymentId "pay_id_existente_no_financeiro" `
+  -Event "PAYMENT_RECEIVED"
 ```
 
 Resultado esperado:
