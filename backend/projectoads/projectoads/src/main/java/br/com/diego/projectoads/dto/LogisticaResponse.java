@@ -16,6 +16,8 @@ public class LogisticaResponse {
     private UUID pedidoId;
     private String numeroPedido;
     private String clienteNome;
+    private UUID filialId;
+    private String filial;
     private BigDecimal totalPedido;
     private String enderecoEntrega;
     private String telefoneContato;

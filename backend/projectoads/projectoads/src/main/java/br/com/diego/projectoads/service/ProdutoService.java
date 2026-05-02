@@ -2,9 +2,15 @@ package br.com.diego.projectoads.service;
 
 import br.com.diego.projectoads.dto.ProdutoRequest;
 import br.com.diego.projectoads.exception.BusinessException;
+import br.com.diego.projectoads.model.Categoria;
 import br.com.diego.projectoads.model.Estoque;
+import br.com.diego.projectoads.model.Fornecedor;
+import br.com.diego.projectoads.model.Marca;
 import br.com.diego.projectoads.model.Produto;
+import br.com.diego.projectoads.repository.CategoriaRepository;
 import br.com.diego.projectoads.repository.EstoqueRepository;
+import br.com.diego.projectoads.repository.FornecedorRepository;
+import br.com.diego.projectoads.repository.MarcaRepository;
 import br.com.diego.projectoads.repository.ProdutoRepository;
 
 import org.springframework.stereotype.Service;
@@ -22,10 +28,20 @@ public class ProdutoService {
 
     private final ProdutoRepository repository;
     private final EstoqueRepository estoqueRepository;
+    private final FornecedorRepository fornecedorRepository;
+    private final CategoriaRepository categoriaRepository;
+    private final MarcaRepository marcaRepository;
 
-    public ProdutoService(ProdutoRepository repository, EstoqueRepository estoqueRepository) {
+    public ProdutoService(ProdutoRepository repository,
+                          EstoqueRepository estoqueRepository,
+                          FornecedorRepository fornecedorRepository,
+                          CategoriaRepository categoriaRepository,
+                          MarcaRepository marcaRepository) {
         this.repository = repository;
         this.estoqueRepository = estoqueRepository;
+        this.fornecedorRepository = fornecedorRepository;
+        this.categoriaRepository = categoriaRepository;
+        this.marcaRepository = marcaRepository;
     }
 
     public List<Produto> listar() {
@@ -54,6 +70,9 @@ public class ProdutoService {
         p.setDescontoPercentual(req.descontoPercentual);
 
         p.setGarantiaMes(req.garantiaMes);
+        p.setCategoria(resolverCategoria(req.idCategoria));
+        p.setMarca(resolverMarca(req.idMarca));
+        p.setFornecedor(resolverFornecedor(req.idFornecedor));
         p.setAtivo(true);
 
         Produto produtoSalvo = repository.save(p);
@@ -85,6 +104,9 @@ public class ProdutoService {
         p.setDescontoPercentual(req.descontoPercentual);
 
         p.setGarantiaMes(req.garantiaMes);
+        p.setCategoria(resolverCategoria(req.idCategoria));
+        p.setMarca(resolverMarca(req.idMarca));
+        p.setFornecedor(resolverFornecedor(req.idFornecedor));
         atualizarLimitesEstoque(p, req);
 
         return repository.save(p);
@@ -126,7 +148,7 @@ public class ProdutoService {
 
     private void criarEstoqueInicial(Produto produto, ProdutoRequest req) {
         if (produto.getIdProduto() == null ||
-                estoqueRepository.findByProdutoIdProduto(produto.getIdProduto()).isPresent()) {
+                estoqueRepository.findByProdutoIdProdutoAndLocalizacaoIgnoreCase(produto.getIdProduto(), "GERAL").isPresent()) {
             return;
         }
 
@@ -144,7 +166,7 @@ public class ProdutoService {
             return;
         }
 
-        Estoque estoque = estoqueRepository.findByProdutoIdProduto(produto.getIdProduto())
+        Estoque estoque = estoqueRepository.findByProdutoIdProdutoAndLocalizacaoIgnoreCase(produto.getIdProduto(), "GERAL")
                 .orElseGet(() -> {
                     Estoque novoEstoque = new Estoque();
                     novoEstoque.setProduto(produto);
@@ -209,5 +231,32 @@ public class ProdutoService {
         } while (repository.findByCodBarras(codigo).isPresent());
 
         return codigo;
+    }
+
+    private Fornecedor resolverFornecedor(UUID fornecedorId) {
+        if (fornecedorId == null) {
+            return null;
+        }
+
+        return fornecedorRepository.findById(fornecedorId)
+                .orElseThrow(() -> new BusinessException("Fornecedor nao encontrado"));
+    }
+
+    private Categoria resolverCategoria(UUID categoriaId) {
+        if (categoriaId == null) {
+            return null;
+        }
+
+        return categoriaRepository.findById(categoriaId)
+                .orElseThrow(() -> new BusinessException("Categoria nao encontrada"));
+    }
+
+    private Marca resolverMarca(UUID marcaId) {
+        if (marcaId == null) {
+            return null;
+        }
+
+        return marcaRepository.findById(marcaId)
+                .orElseThrow(() -> new BusinessException("Marca nao encontrada"));
     }
 }

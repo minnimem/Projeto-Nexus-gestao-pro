@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -24,11 +25,15 @@ public class UsuarioRequest {
 
     private Perfil perfil;
 
+    private UUID filialId;
+
     private String cargo;
 
     private String departamento;
 
     private BigDecimal salario;
+
+    private BigDecimal metaVendas;
 
     private LocalDate dataInicio;
 

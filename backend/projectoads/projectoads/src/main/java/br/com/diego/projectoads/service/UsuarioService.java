@@ -100,6 +100,8 @@ public class UsuarioService {
             resposta.put("perfil", usuario.getPerfil().name());
             resposta.put("empresaId", usuario.getEmpresa().getId());
             resposta.put("empresa", usuario.getEmpresa().getNome());
+            resposta.put("filialId", usuario.getFilial() != null ? usuario.getFilial().getId() : null);
+            resposta.put("filial", usuario.getFilial() != null ? usuario.getFilial().getNome() : null);
             resposta.put("permissoesExtras", usuario.getPermissoesExtras() != null ? usuario.getPermissoesExtras().stream().sorted().toList() : List.of());
             resposta.put("permissoesBloqueadas", usuario.getPermissoesBloqueadas() != null ? usuario.getPermissoesBloqueadas().stream().sorted().toList() : List.of());
 
@@ -197,6 +199,7 @@ public class UsuarioService {
         usuario.setCargo(normalizar(request.getCargo()));
         usuario.setDepartamento(normalizar(request.getDepartamento()));
         usuario.setSalario(request.getSalario());
+        usuario.setMetaVendas(request.getMetaVendas());
         usuario.setDataInicio(request.getDataInicio());
         usuario.setTelefone(normalizar(request.getTelefone()));
         usuario.setEmail(normalizar(request.getEmail()));

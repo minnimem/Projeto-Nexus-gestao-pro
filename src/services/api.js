@@ -1,12 +1,16 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8081";
 
 function getToken() {
-  return localStorage.getItem("nexus.token");
+  return sessionStorage.getItem("nexus.token");
 }
 
 function getErrorMessage(data, fallback) {
   if (!data) return fallback;
   if (typeof data === "string") return data;
+  if (typeof data === "object") {
+    const validationMessages = Object.values(data).filter(Boolean);
+    if (validationMessages.length > 0) return validationMessages.join(" ");
+  }
   return data.message || data.mensagem || data.error || fallback;
 }
 

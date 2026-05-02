@@ -13,6 +13,12 @@ public interface EstoqueRepository extends JpaRepository<Estoque, UUID> {
 
     Optional<Estoque> findByProdutoIdProduto(UUID idProduto);
 
+    Optional<Estoque> findByProdutoIdProdutoAndLocalizacaoIgnoreCase(UUID idProduto, String localizacao);
+
+    List<Estoque> findByProdutoIdProdutoOrderByLocalizacaoAsc(UUID idProduto);
+
+    List<Estoque> findAllByOrderByProdutoNomeProdutoAscLocalizacaoAsc();
+
     // estoque abaixo do mínimo
     @Query("""
     SELECT e FROM Estoque e

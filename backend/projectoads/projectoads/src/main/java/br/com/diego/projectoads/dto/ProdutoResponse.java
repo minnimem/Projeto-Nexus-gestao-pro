@@ -17,6 +17,12 @@ public class ProdutoResponse {
     public Integer estoqueMinimo;
     public Integer estoqueMaximo;
     public Boolean ativo;
+    public UUID categoriaId;
+    public String categoria;
+    public UUID marcaId;
+    public String marca;
+    public UUID fornecedorId;
+    public String fornecedor;
 
     public ProdutoResponse(Produto p) {
         this.id = p.getIdProduto();
@@ -29,6 +35,12 @@ public class ProdutoResponse {
         this.estoqueMinimo = calcularEstoqueMinimo(p);
         this.estoqueMaximo = calcularEstoqueMaximo(p);
         this.ativo = p.isAtivo();
+        this.categoriaId = p.getCategoria() != null ? p.getCategoria().getId() : null;
+        this.categoria = p.getCategoria() != null ? p.getCategoria().getNome() : null;
+        this.marcaId = p.getMarca() != null ? p.getMarca().getId() : null;
+        this.marca = p.getMarca() != null ? p.getMarca().getNome() : null;
+        this.fornecedorId = p.getFornecedor() != null ? p.getFornecedor().getId() : null;
+        this.fornecedor = p.getFornecedor() != null ? p.getFornecedor().getNome() : null;
     }
 
     private Integer calcularQuantidadeEstoque(Produto p) {

@@ -3,9 +3,9 @@ spring:
     name: projectoads
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/TB_ADS
-    username: postgres
-    password: 231247
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/TB_ADS}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -20,4 +20,18 @@ server:
   port: 8081
 
 jwt:
-  secret: YWJjMTIzNDU2Nzg5YWJjMTIzNDU2Nzg5
+  secret: ${JWT_SECRET}
+
+asaas:
+  enabled: ${ASAAS_ENABLED:false}
+  api-key: ${ASAAS_API_KEY:}
+  base-url: ${ASAAS_BASE_URL:https://api-sandbox.asaas.com/v3}
+  webhook-token: ${ASAAS_WEBHOOK_TOKEN:}
+
+notifications:
+  enabled: ${NOTIFICATIONS_ENABLED:false}
+  webhook-url: ${NOTIFICATIONS_WEBHOOK_URL:}
+  token: ${NOTIFICATIONS_TOKEN:}
+  follow-up-cron: ${NOTIFICATIONS_FOLLOW_UP_CRON:0 0 8 * * *}
+  stock-cron: ${NOTIFICATIONS_STOCK_CRON:0 15 8 * * *}
+  daily-summary-cron: ${NOTIFICATIONS_DAILY_SUMMARY_CRON:0 0 18 * * *}

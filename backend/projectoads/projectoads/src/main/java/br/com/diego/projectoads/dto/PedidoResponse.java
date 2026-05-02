@@ -19,6 +19,8 @@ public class PedidoResponse {
     public String usuario;
     public UUID empresaId;
     public String empresa;
+    public UUID filialId;
+    public String filial;
     public LocalDateTime data;
     public BigDecimal valor;
     public String status;
@@ -41,6 +43,8 @@ public class PedidoResponse {
         this.usuario = pedido.getUsuario() != null ? pedido.getUsuario().getNome() : null;
         this.empresaId = pedido.getEmpresa() != null ? pedido.getEmpresa().getId() : null;
         this.empresa = pedido.getEmpresa() != null ? pedido.getEmpresa().getNome() : null;
+        this.filialId = pedido.getFilial() != null ? pedido.getFilial().getId() : null;
+        this.filial = pedido.getFilial() != null ? pedido.getFilial().getNome() : null;
         this.data = pedido.getDataPedido();
         this.valor = pedido.getValorTotalPedido();
         this.status = pedido.getStatus() != null ? pedido.getStatus().name() : null;

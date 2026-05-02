@@ -5,7 +5,9 @@ import br.com.diego.projectoads.dto.UsuarioPermissoesRequest;
 import br.com.diego.projectoads.dto.UsuarioRequest;
 import br.com.diego.projectoads.dto.UsuarioResponse;
 import br.com.diego.projectoads.exception.BusinessException;
+import br.com.diego.projectoads.model.Filial;
 import br.com.diego.projectoads.model.Usuario;
+import br.com.diego.projectoads.repository.FilialRepository;
 import br.com.diego.projectoads.repository.UsuarioRepository;
 import br.com.diego.projectoads.service.UsuarioService;
 
@@ -25,11 +27,14 @@ public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioService usuarioService;
+    private final FilialRepository filialRepository;
 
     public UsuarioController(UsuarioRepository usuarioRepository,
-                             UsuarioService usuarioService) {
+                             UsuarioService usuarioService,
+                             FilialRepository filialRepository) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioService = usuarioService;
+        this.filialRepository = filialRepository;
     }
 
     // =========================
@@ -219,10 +224,29 @@ public class UsuarioController {
         usuario.setCargo(normalizar(req.getCargo()));
         usuario.setDepartamento(normalizar(req.getDepartamento()));
         usuario.setSalario(req.getSalario());
+        usuario.setMetaVendas(req.getMetaVendas());
         usuario.setDataInicio(req.getDataInicio());
         usuario.setTelefone(normalizar(req.getTelefone()));
         usuario.setEmail(normalizar(req.getEmail()));
         usuario.setDocumento(normalizar(req.getDocumento()));
+        usuario.setFilial(resolverFilial(req.getFilialId(), usuario));
+    }
+
+    private Filial resolverFilial(UUID filialId, Usuario usuario) {
+        if (filialId == null) {
+            return null;
+        }
+
+        Filial filial = filialRepository.findById(filialId)
+                .orElseThrow(() -> new BusinessException("Filial nao encontrada"));
+
+        UUID empresaUsuarioId = usuario.getEmpresa() != null ? usuario.getEmpresa().getId() : null;
+        UUID empresaFilialId = filial.getEmpresa() != null ? filial.getEmpresa().getId() : null;
+        if (empresaUsuarioId == null || !empresaUsuarioId.equals(empresaFilialId)) {
+            throw new BusinessException("Filial nao pertence a empresa do usuario");
+        }
+
+        return filial;
     }
 
     private String normalizar(String valor) {

@@ -52,7 +52,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/",
                                 "/health",
-                                "/auth/**"
+                                "/auth/**",
+                                "/webhooks/asaas"
                         ).permitAll()
 
                         // =========================

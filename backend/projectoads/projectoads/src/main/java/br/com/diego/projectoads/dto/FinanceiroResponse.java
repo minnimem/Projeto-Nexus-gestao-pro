@@ -26,5 +26,19 @@ public class FinanceiroResponse {
     private StatusPagamento status;
     private UUID pedidoId;
     private UUID usuarioId;
+    private UUID filialId;
+    private String filial;
+    private UUID recorrenciaId;
     private String observacao;
+    private String codigoCobranca;
+    private String pixCopiaCola;
+    private String pixQrCodeUrl;
+    private String boletoLinhaDigitavel;
+    private String boletoNumeroDocumento;
+    private String boletoNossoNumero;
+    private String cobrancaProvedor;
+    private String cobrancaExternaId;
+    private String cobrancaUrl;
+    private LocalDateTime cobrancaGeradaEm;
+    private LocalDateTime cobrancaExpiraEm;
 }

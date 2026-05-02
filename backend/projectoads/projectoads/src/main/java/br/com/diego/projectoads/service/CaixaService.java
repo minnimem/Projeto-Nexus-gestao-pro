@@ -6,6 +6,7 @@ import br.com.diego.projectoads.config.Enum.TipoMovimentoCaixa;
 import br.com.diego.projectoads.dto.*;
 import br.com.diego.projectoads.exception.BusinessException;
 import br.com.diego.projectoads.model.Caixa;
+import br.com.diego.projectoads.model.Filial;
 import br.com.diego.projectoads.model.MovimentoCaixa;
 import br.com.diego.projectoads.model.Pedido;
 import br.com.diego.projectoads.model.Usuario;
@@ -350,6 +351,7 @@ public class CaixaService {
         BigDecimal totalPagamentosRecebidos = total(caixa, TipoMovimentoCaixa.PAGAMENTO_RECEBIDO);
         BigDecimal totalSuprimentos = total(caixa, TipoMovimentoCaixa.SUPRIMENTO);
         BigDecimal totalSangrias = total(caixa, TipoMovimentoCaixa.SANGRIA);
+        Filial filial = caixa.getUsuario() != null ? caixa.getUsuario().getFilial() : null;
         BigDecimal saldo = StatusCaixa.FECHADO.equals(caixa.getStatus()) && caixa.getSaldoCalculado() != null
                 ? caixa.getSaldoCalculado()
                 : nvl(caixa.getValorInicial()).add(totalVendas).add(totalPagamentosRecebidos).add(totalSuprimentos).subtract(totalSangrias);
@@ -362,6 +364,8 @@ public class CaixaService {
                 .perfil(caixa.getPerfil())
                 .empresaId(caixa.getEmpresa() != null ? caixa.getEmpresa().getId() : null)
                 .empresaNome(caixa.getEmpresa() != null ? caixa.getEmpresa().getNome() : null)
+                .filialId(filial != null ? filial.getId() : null)
+                .filial(filial != null ? filial.getNome() : null)
                 .dataAbertura(caixa.getDataAbertura())
                 .dataFechamento(caixa.getDataFechamento())
                 .valorInicial(nvl(caixa.getValorInicial()))

@@ -16,6 +16,7 @@ public class PedidoRequest {
 
     private UUID clienteId;
     private UUID usuarioId;
+    private UUID filialId;
 
     private PrioridadeEntrega prioridade = PrioridadeEntrega.NORMAL;
 
@@ -30,6 +31,8 @@ public class PedidoRequest {
     private String enderecoEntrega;
 
     private String observacaoEntrega;
+
+    private Boolean orcamento = false;
 
     private List<ItemPedidoRequest> itens;
 }

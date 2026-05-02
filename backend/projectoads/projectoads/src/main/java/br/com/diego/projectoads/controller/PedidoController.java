@@ -1,6 +1,7 @@
 package br.com.diego.projectoads.controller;
 
 import br.com.diego.projectoads.dto.PedidoFinalizacaoRequest;
+import br.com.diego.projectoads.dto.FinanceiroResponse;
 import br.com.diego.projectoads.dto.PedidoCancelamentoLoteRequest;
 import br.com.diego.projectoads.dto.PedidoRequest;
 import br.com.diego.projectoads.dto.PedidoResponse;
@@ -78,6 +79,29 @@ public class PedidoController {
             @RequestBody(required = false) PedidoFinalizacaoRequest request
     ) {
         return ResponseEntity.ok(new PedidoResponse(pedidoService.finalizar(id, request)));
+    }
+
+    @PatchMapping("/{id}/gerar-cobranca")
+    public ResponseEntity<FinanceiroResponse> gerarCobranca(
+            @PathVariable UUID id,
+            @RequestBody(required = false) PedidoFinalizacaoRequest request
+    ) {
+        return ResponseEntity.ok(pedidoService.gerarCobranca(id, request));
+    }
+
+    @PatchMapping("/{id}/converter-orcamento")
+    public ResponseEntity<PedidoResponse> converterOrcamento(@PathVariable UUID id) {
+        return ResponseEntity.ok(new PedidoResponse(pedidoService.converterOrcamento(id)));
+    }
+
+    @PatchMapping("/{id}/iniciar-separacao")
+    public ResponseEntity<PedidoResponse> iniciarSeparacao(@PathVariable UUID id) {
+        return ResponseEntity.ok(new PedidoResponse(pedidoService.iniciarSeparacao(id)));
+    }
+
+    @PatchMapping("/{id}/concluir-separacao")
+    public ResponseEntity<PedidoResponse> concluirSeparacao(@PathVariable UUID id) {
+        return ResponseEntity.ok(new PedidoResponse(pedidoService.concluirSeparacao(id)));
     }
 
     @PatchMapping("/{id}/cancelar-inconsistente")

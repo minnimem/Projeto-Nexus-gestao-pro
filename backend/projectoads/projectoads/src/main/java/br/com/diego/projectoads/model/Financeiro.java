@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@ToString(exclude = {"pedido", "usuario"})
+@ToString(exclude = {"pedido", "usuario", "filial"})
 @Table(name = "financeiro", schema = "public")
 public class Financeiro {
 
@@ -66,6 +66,47 @@ public class Financeiro {
     @ManyToOne
     @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "filial_id")
+    private Filial filial;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recorrencia_id")
+    private RecorrenciaFinanceira recorrencia;
+
+    @Column(name = "codigo_cobranca", length = 40)
+    private String codigoCobranca;
+
+    @Column(name = "pix_copia_cola", columnDefinition = "TEXT")
+    private String pixCopiaCola;
+
+    @Column(name = "pix_qr_code_url", length = 1000)
+    private String pixQrCodeUrl;
+
+    @Column(name = "boleto_linha_digitavel", length = 140)
+    private String boletoLinhaDigitavel;
+
+    @Column(name = "boleto_numero_documento", length = 60)
+    private String boletoNumeroDocumento;
+
+    @Column(name = "boleto_nosso_numero", length = 60)
+    private String boletoNossoNumero;
+
+    @Column(name = "cobranca_provedor", length = 30)
+    private String cobrancaProvedor;
+
+    @Column(name = "cobranca_externa_id", length = 80)
+    private String cobrancaExternaId;
+
+    @Column(name = "cobranca_url", length = 1000)
+    private String cobrancaUrl;
+
+    @Column(name = "cobranca_gerada_em")
+    private LocalDateTime cobrancaGeradaEm;
+
+    @Column(name = "cobranca_expira_em")
+    private LocalDateTime cobrancaExpiraEm;
 
     @PrePersist
     public void prePersist() {

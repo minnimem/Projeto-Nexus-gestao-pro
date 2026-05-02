@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@ToString (exclude = "produto")
+@ToString(exclude = {"produto", "filial"})
 @Table(name = "estoque")
 public class Estoque {
     @Id
@@ -22,6 +22,10 @@ public class Estoque {
     @ManyToOne
     @JoinColumn(name = "id_produto", nullable = false)
     private Produto produto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "filial_id")
+    private Filial filial;
 
     @Column (name = "quantidade", nullable = false)
     private Integer quantidade;

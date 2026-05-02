@@ -46,6 +46,8 @@ public class FinanceiroRequest {
 
     private UUID usuarioId;
 
+    private UUID filialId;
+
     @Size(max = 1000, message = "Observação não pode ultrapassar 1000 caracteres")
     private String observacao;
 }

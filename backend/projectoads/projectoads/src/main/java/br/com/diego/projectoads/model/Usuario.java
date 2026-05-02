@@ -20,7 +20,7 @@ import java.util.UUID;
 @Table(name = "usuario", schema = "public")
 @Getter
 @Setter
-@ToString(exclude = "senhaUsuario")
+@ToString(exclude = {"senhaUsuario", "filial"})
 public class Usuario {
 
     @Id
@@ -73,6 +73,9 @@ public class Usuario {
     @Column(name = "salario", precision = 12, scale = 2)
     private BigDecimal salario;
 
+    @Column(name = "meta_vendas", precision = 12, scale = 2)
+    private BigDecimal metaVendas;
+
     @Column(name = "data_inicio")
     private LocalDate dataInicio;
 
@@ -88,6 +91,10 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "filial_id")
+    private Filial filial;
 
     @Convert(converter = StringSetConverter.class)
     @Column(name = "permissoes_extras", length = 2000)

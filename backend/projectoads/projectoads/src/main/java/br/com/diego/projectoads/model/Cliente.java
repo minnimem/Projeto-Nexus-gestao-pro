@@ -49,6 +49,9 @@ public class Cliente {
     @Column(name = "endereco", length = 200)
     private String endereco;
 
+    @Column(name = "asaas_customer_id", length = 80)
+    private String asaasCustomerId;
+
     @CreationTimestamp
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;

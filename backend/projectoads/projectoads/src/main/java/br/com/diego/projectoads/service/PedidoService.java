@@ -5,18 +5,21 @@ import br.com.diego.projectoads.config.Enum.MetodoPagamento;
 import br.com.diego.projectoads.config.Enum.StatusEntrega;
 import br.com.diego.projectoads.config.Enum.StatusPedido;
 import br.com.diego.projectoads.config.Enum.TipoEntrega;
+import br.com.diego.projectoads.dto.FinanceiroResponse;
 import br.com.diego.projectoads.dto.ItemPedidoRequest;
 import br.com.diego.projectoads.dto.PedidoFinalizacaoRequest;
 import br.com.diego.projectoads.dto.PedidoRequest;
 import br.com.diego.projectoads.exception.BusinessException;
 import br.com.diego.projectoads.model.Cliente;
 import br.com.diego.projectoads.model.Entrega;
+import br.com.diego.projectoads.model.Filial;
 import br.com.diego.projectoads.model.ItemPedido;
 import br.com.diego.projectoads.model.Pedido;
 import br.com.diego.projectoads.model.Produto;
 import br.com.diego.projectoads.model.Usuario;
 import br.com.diego.projectoads.repository.ClienteRepository;
 import br.com.diego.projectoads.repository.EntregaRepository;
+import br.com.diego.projectoads.repository.FilialRepository;
 import br.com.diego.projectoads.repository.ItemPedidoRepository;
 import br.com.diego.projectoads.repository.PedidoRepository;
 import br.com.diego.projectoads.repository.ProdutoRepository;
@@ -51,6 +54,7 @@ public class PedidoService {
     private final ClienteRepository clienteRepository;
     private final UsuarioRepository usuarioRepository;
     private final EntregaRepository entregaRepository;
+    private final FilialRepository filialRepository;
     private final EstoqueService estoqueService;
     private final FinanceiroService financeiroService;
     private final CaixaService caixaService;
@@ -63,6 +67,7 @@ public class PedidoService {
             ClienteRepository clienteRepository,
             UsuarioRepository usuarioRepository,
             EntregaRepository entregaRepository,
+            FilialRepository filialRepository,
             EstoqueService estoqueService,
             FinanceiroService financeiroService,
             CaixaService caixaService,
@@ -74,6 +79,7 @@ public class PedidoService {
         this.clienteRepository = clienteRepository;
         this.usuarioRepository = usuarioRepository;
         this.entregaRepository = entregaRepository;
+        this.filialRepository = filialRepository;
         this.estoqueService = estoqueService;
         this.financeiroService = financeiroService;
         this.caixaService = caixaService;
@@ -93,6 +99,9 @@ public class PedidoService {
         ).orElse(0L);
 
         Long pedidosPendentes = pedidoRepository.countByStatus(StatusPedido.PENDENTE);
+        Long orcamentos = pedidoRepository.countByStatus(StatusPedido.ORCAMENTO);
+        Long pedidosEmSeparacao = pedidoRepository.countByStatus(StatusPedido.SEPARACAO);
+        Long pedidosSeparados = pedidoRepository.countByStatus(StatusPedido.SEPARADO);
 
         BigDecimal receitaTotal = Optional.ofNullable(
                 pedidoRepository.receitaPorPeriodo(STATUS_VENDAS_CONTABILIZADAS, inicioDateTime, fimDateTime)
@@ -118,6 +127,9 @@ public class PedidoService {
 
         dados.put("totalVendas", totalVendas);
         dados.put("pedidosPendentes", pedidosPendentes);
+        dados.put("pedidosEmSeparacao", pedidosEmSeparacao);
+        dados.put("pedidosSeparados", pedidosSeparados);
+        dados.put("orcamentos", orcamentos);
         dados.put("receitaTotal", receitaTotal);
         dados.put("vendasHoje", vendasHoje);
         dados.put("ticketMedio", ticketMedio);
@@ -263,10 +275,12 @@ public class PedidoService {
         pedido.setCliente(cliente);
         pedido.setUsuario(usuario);
         pedido.setEmpresa(usuario.getEmpresa());
+        pedido.setFilial(resolverFilial(req.getFilialId(), usuario));
         MetodoPagamento metodoPagamento = req.getMetodoPagamento() != null ? req.getMetodoPagamento() : MetodoPagamento.PIX;
         pedido.setMetodoPagamento(metodoPagamento);
         pedido.setParcelasPagamento(normalizarParcelas(metodoPagamento, req.getParcelas()));
-        pedido.setStatus(StatusPedido.PENDENTE);
+        boolean isOrcamento = Boolean.TRUE.equals(req.getOrcamento());
+        pedido.setStatus(isOrcamento ? StatusPedido.ORCAMENTO : StatusPedido.PENDENTE);
         pedido.setDataPedido(LocalDateTime.now());
         pedido.setTipoEntrega(req.getTipoEntrega() != null ? req.getTipoEntrega() : TipoEntrega.RETIRADA_LOJA);
         pedido.setEnderecoEntrega(normalizarTexto(req.getEnderecoEntrega()));
@@ -344,10 +358,17 @@ public class PedidoService {
         // 💾 SALVAR
         // =========================
         Pedido salvo = pedidoRepository.save(pedido);
-        registrarEntregaSeNecessario(salvo);
-        auditoriaService.registrar("Vendas", "VENDA_AGUARDANDO_CAIXA",
-                "Venda registrada pelo vendedor aguardando recebimento no caixa no valor " + salvo.getValorTotalPedido(),
-                salvo.getId());
+        if (!isOrcamento) {
+            registrarEntregaSeNecessario(salvo);
+        }
+        auditoriaService.registrar(
+                "Vendas",
+                isOrcamento ? "ORCAMENTO_CRIADO" : "VENDA_AGUARDANDO_CAIXA",
+                isOrcamento
+                        ? "Orcamento registrado no valor " + salvo.getValorTotalPedido()
+                        : "Venda registrada pelo vendedor aguardando recebimento no caixa no valor " + salvo.getValorTotalPedido(),
+                salvo.getId()
+        );
 
         return salvo;
     }
@@ -387,6 +408,98 @@ public class PedidoService {
     @Transactional
     public Pedido finalizar(UUID id) {
         return finalizar(id, null);
+    }
+
+    @Transactional
+    public FinanceiroResponse gerarCobranca(UUID id, PedidoFinalizacaoRequest request) {
+        Pedido pedido = buscar(id);
+
+        if (pedido.getItens() == null || pedido.getItens().isEmpty()) {
+            throw new BusinessException("Pedido sem itens nao pode gerar cobranca.");
+        }
+
+        if (!StatusPedido.PENDENTE.equals(pedido.getStatus()) && !StatusPedido.SEPARADO.equals(pedido.getStatus())) {
+            throw new BusinessException("Cobranca disponivel apenas para pedidos pendentes ou separados.");
+        }
+
+        MetodoPagamento metodoPagamento = request != null && request.getMetodoPagamento() != null
+                ? request.getMetodoPagamento()
+                : pedido.getMetodoPagamento();
+
+        pedido.setMetodoPagamento(metodoPagamento != null ? metodoPagamento : MetodoPagamento.PIX);
+        pedido.setParcelasPagamento(normalizarParcelas(
+                pedido.getMetodoPagamento(),
+                request != null ? request.getParcelas() : pedido.getParcelasPagamento()
+        ));
+        Pedido salvo = pedidoRepository.save(pedido);
+
+        return financeiroService.gerarCobrancaPedido(salvo, salvo.getMetodoPagamento(), usuarioAtual());
+    }
+
+    @Transactional
+    public Pedido iniciarSeparacao(UUID id) {
+        Pedido pedido = buscar(id);
+
+        if (!StatusPedido.PENDENTE.equals(pedido.getStatus())) {
+            throw new BusinessException("Somente pedidos pendentes podem iniciar separacao.");
+        }
+
+        if (pedido.getItens() == null || pedido.getItens().isEmpty()) {
+            throw new BusinessException("Pedido sem itens nao pode entrar em separacao.");
+        }
+
+        pedido.setStatus(StatusPedido.SEPARACAO);
+        Pedido salvo = pedidoRepository.save(pedido);
+        auditoriaService.registrar(
+                "Vendas",
+                "SEPARACAO_INICIADA",
+                "Separacao iniciada para o pedido " + salvo.getNumero(),
+                salvo.getId()
+        );
+        return salvo;
+    }
+
+    @Transactional
+    public Pedido concluirSeparacao(UUID id) {
+        Pedido pedido = buscar(id);
+
+        if (!StatusPedido.SEPARACAO.equals(pedido.getStatus())) {
+            throw new BusinessException("Somente pedidos em separacao podem ser marcados como separados.");
+        }
+
+        pedido.setStatus(StatusPedido.SEPARADO);
+        Pedido salvo = pedidoRepository.save(pedido);
+        auditoriaService.registrar(
+                "Vendas",
+                "SEPARACAO_CONCLUIDA",
+                "Pedido " + salvo.getNumero() + " separado e pronto para recebimento.",
+                salvo.getId()
+        );
+        return salvo;
+    }
+
+    @Transactional
+    public Pedido converterOrcamento(UUID id) {
+        Pedido pedido = buscar(id);
+
+        if (!StatusPedido.ORCAMENTO.equals(pedido.getStatus())) {
+            throw new BusinessException("Somente orcamentos podem ser convertidos em pedido.");
+        }
+
+        if (pedido.getItens() == null || pedido.getItens().isEmpty()) {
+            throw new BusinessException("Orcamento sem itens nao pode ser convertido.");
+        }
+
+        pedido.setStatus(StatusPedido.PENDENTE);
+        Pedido salvo = pedidoRepository.save(pedido);
+        registrarEntregaSeNecessario(salvo);
+        auditoriaService.registrar(
+                "Vendas",
+                "ORCAMENTO_CONVERTIDO",
+                "Orcamento convertido em pedido aguardando recebimento no caixa.",
+                salvo.getId()
+        );
+        return salvo;
     }
 
     @Transactional
@@ -485,6 +598,23 @@ public class PedidoService {
 
     private String normalizarTexto(String valor) {
         return valor == null || valor.isBlank() ? null : valor.trim();
+    }
+
+    private Filial resolverFilial(UUID filialId, Usuario usuario) {
+        if (filialId == null) {
+            return usuario != null ? usuario.getFilial() : null;
+        }
+
+        Filial filial = filialRepository.findById(filialId)
+                .orElseThrow(() -> new BusinessException("Filial nao encontrada"));
+
+        UUID empresaUsuarioId = usuario != null && usuario.getEmpresa() != null ? usuario.getEmpresa().getId() : null;
+        UUID empresaFilialId = filial.getEmpresa() != null ? filial.getEmpresa().getId() : null;
+        if (empresaUsuarioId == null || !empresaUsuarioId.equals(empresaFilialId)) {
+            throw new BusinessException("Filial nao pertence a empresa do pedido");
+        }
+
+        return filial;
     }
 
     private void baixarEstoque(Pedido pedido) {

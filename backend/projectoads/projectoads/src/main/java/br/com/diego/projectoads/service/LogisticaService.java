@@ -117,6 +117,10 @@ public class LogisticaService {
             r.setPedidoId(pedido.getId());
             r.setNumeroPedido(pedido.getNumero());
             r.setTotalPedido(pedido.getValorTotalPedido());
+            if (pedido.getFilial() != null) {
+                r.setFilialId(pedido.getFilial().getId());
+                r.setFilial(pedido.getFilial().getNome());
+            }
             if (pedido.getCliente() != null) {
                 r.setClienteNome(pedido.getCliente().getNome());
             }

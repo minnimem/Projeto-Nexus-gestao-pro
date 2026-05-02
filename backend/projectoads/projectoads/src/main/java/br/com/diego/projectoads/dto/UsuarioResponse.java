@@ -19,10 +19,13 @@ public class UsuarioResponse {
     private Integer tentativasLogin;
     private UUID empresaId;
     private String empresa;
+    private UUID filialId;
+    private String filial;
     private LocalDateTime dataCriacao;
     private String cargo;
     private String departamento;
     private BigDecimal salario;
+    private BigDecimal metaVendas;
     private LocalDate dataInicio;
     private String telefone;
     private String email;
@@ -40,10 +43,13 @@ public class UsuarioResponse {
         this.tentativasLogin = u.getTentativasLogin();
         this.empresaId = u.getEmpresa() != null ? u.getEmpresa().getId() : null;
         this.empresa = u.getEmpresa() != null ? u.getEmpresa().getNome() : null;
+        this.filialId = u.getFilial() != null ? u.getFilial().getId() : null;
+        this.filial = u.getFilial() != null ? u.getFilial().getNome() : null;
         this.dataCriacao = u.getDataCriacao();
         this.cargo = u.getCargo();
         this.departamento = u.getDepartamento();
         this.salario = u.getSalario();
+        this.metaVendas = u.getMetaVendas();
         this.dataInicio = u.getDataInicio();
         this.telefone = u.getTelefone();
         this.email = u.getEmail();
@@ -61,10 +67,13 @@ public class UsuarioResponse {
     public Integer getTentativasLogin() { return tentativasLogin; }
     public UUID getEmpresaId() { return empresaId; }
     public String getEmpresa() { return empresa; }
+    public UUID getFilialId() { return filialId; }
+    public String getFilial() { return filial; }
     public LocalDateTime getDataCriacao() { return dataCriacao; }
     public String getCargo() { return cargo; }
     public String getDepartamento() { return departamento; }
     public BigDecimal getSalario() { return salario; }
+    public BigDecimal getMetaVendas() { return metaVendas; }
     public LocalDate getDataInicio() { return dataInicio; }
     public String getTelefone() { return telefone; }
     public String getEmail() { return email; }

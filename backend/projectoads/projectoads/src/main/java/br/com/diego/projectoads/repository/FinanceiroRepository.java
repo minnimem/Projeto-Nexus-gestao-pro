@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface FinanceiroRepository extends JpaRepository<Financeiro, UUID> {
@@ -43,4 +44,12 @@ public interface FinanceiroRepository extends JpaRepository<Financeiro, UUID> {
             LocalDateTime inicio,
             LocalDateTime fim
     );
+
+    Optional<Financeiro> findFirstByPedidoIdAndTipoAndStatusOrderByDataLancamentoDesc(
+            UUID pedidoId,
+            TipoFinanceiro tipo,
+            StatusPagamento status
+    );
+
+    Optional<Financeiro> findFirstByCobrancaExternaId(String cobrancaExternaId);
 }

@@ -18,7 +18,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@ToString(exclude = {"cliente", "itens", "usuario"})
+@ToString(exclude = {"cliente", "itens", "usuario", "filial"})
 @Table(name = "pedido", schema = "public")
 public class Pedido {
 
@@ -45,6 +45,10 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "filial_id")
+    private Filial filial;
 
     @Column(name = "valor_total_pedido", precision = 18, scale = 2, nullable = false)
     private BigDecimal valorTotalPedido;

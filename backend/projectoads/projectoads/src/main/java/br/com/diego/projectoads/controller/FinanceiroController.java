@@ -104,6 +104,12 @@ public class FinanceiroController {
         return ResponseEntity.ok(financeiroService.baixar(id));
     }
 
+    @PatchMapping("/{id}/gerar-cobranca")
+    @PreAuthorize("@usuarioPermissionService.canPerform(authentication, 'mutateFinance')")
+    public ResponseEntity<FinanceiroResponse> gerarCobranca(@PathVariable UUID id) {
+        return ResponseEntity.ok(financeiroService.gerarCobranca(id));
+    }
+
     /**
      * Estorno seguro: mantém histórico/auditoria.
      */

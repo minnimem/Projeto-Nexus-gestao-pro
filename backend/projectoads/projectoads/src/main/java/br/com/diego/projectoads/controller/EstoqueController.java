@@ -1,6 +1,10 @@
 package br.com.diego.projectoads.controller;
 
 import br.com.diego.projectoads.dto.EstoqueBaixoResponse;
+import br.com.diego.projectoads.dto.EstoqueAjusteRequest;
+import br.com.diego.projectoads.dto.EstoqueCompraRequest;
+import br.com.diego.projectoads.dto.EstoqueSaldoResponse;
+import br.com.diego.projectoads.dto.EstoqueTransferenciaRequest;
 import br.com.diego.projectoads.service.EstoqueService;
 
 import org.springframework.http.ResponseEntity;
@@ -35,8 +39,31 @@ public class EstoqueController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/compra")
+    public ResponseEntity<Void> compra(@RequestBody EstoqueCompraRequest request) {
+        estoqueService.registrarCompra(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/ajuste")
+    public ResponseEntity<Void> ajuste(@RequestBody EstoqueAjusteRequest request) {
+        estoqueService.ajustarPorInventario(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/transferencia")
+    public ResponseEntity<Void> transferencia(@RequestBody EstoqueTransferenciaRequest request) {
+        estoqueService.transferir(request);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/baixo")
     public ResponseEntity<List<EstoqueBaixoResponse>> baixo() {
         return ResponseEntity.ok(estoqueService.estoqueBaixo());
+    }
+
+    @GetMapping("/saldos")
+    public ResponseEntity<List<EstoqueSaldoResponse>> saldos() {
+        return ResponseEntity.ok(estoqueService.saldosPorLocal());
     }
 }

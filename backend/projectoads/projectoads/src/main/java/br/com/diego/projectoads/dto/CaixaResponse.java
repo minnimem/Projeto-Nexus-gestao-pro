@@ -20,6 +20,8 @@ public class CaixaResponse {
     private Perfil perfil;
     private UUID empresaId;
     private String empresaNome;
+    private UUID filialId;
+    private String filial;
     private LocalDateTime dataAbertura;
     private LocalDateTime dataFechamento;
     private BigDecimal valorInicial;
