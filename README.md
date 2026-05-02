@@ -114,6 +114,10 @@ O script `scripts/mock-notification-webhook.js` sobe um receptor local para conf
 O roteiro para impressao/leitura de etiquetas Code128 esta em `docs/HOMOLOGACAO_ETIQUETAS_CODE128.md`.
 O script `scripts/generate-code128-label-calibration.js` gera uma folha HTML de calibracao.
 
+## Homologacao fiscal real
+
+O roteiro tecnico para evoluir NF-e, NFC-e e NFS-e reais esta em `docs/HOMOLOGACAO_FISCAL_REAL.md`.
+
 ## Validacao rapida
 
 ```bash
