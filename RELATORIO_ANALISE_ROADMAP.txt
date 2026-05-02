@@ -78,6 +78,7 @@ Ultimas entregas concluidas nesta rodada
 - Testes unitarios dos endpoints administrativos de notificacao externa adicionados, cobrindo retorno de follow-ups, estoque baixo e resumo diario; suite Maven validada com 19 testes sem falhas.
 - Testes unitarios do agendamento de follow-ups externos adicionados, cobrindo notificacoes desligadas e envio com marcacao de notificacao externa; suite Maven validada com 21 testes sem falhas.
 - Testes unitarios dos agendadores de estoque baixo e resumo diario externo adicionados, cobrindo notificacoes desligadas, ausencia de itens e envio/auditoria; suite Maven validada com 26 testes sem falhas.
+- Roteiro de homologacao de etiquetas Code128 criado em docs/HOMOLOGACAO_ETIQUETAS_CODE128.md, com gerador scripts/generate-code128-label-calibration.js para folha de calibracao 60mm x 35mm.
 
 
 1. JA IMPLEMENTADO OU BEM AVANCADO

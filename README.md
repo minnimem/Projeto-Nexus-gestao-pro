@@ -109,6 +109,11 @@ O script `scripts/test-asaas-webhook.ps1` simula eventos do Asaas contra o backe
 O roteiro para follow-ups, estoque baixo e resumo diario esta em `docs/HOMOLOGACAO_NOTIFICACOES.md`.
 O script `scripts/mock-notification-webhook.js` sobe um receptor local para conferir os payloads enviados pelo backend.
 
+## Homologacao de etiquetas
+
+O roteiro para impressao/leitura de etiquetas Code128 esta em `docs/HOMOLOGACAO_ETIQUETAS_CODE128.md`.
+O script `scripts/generate-code128-label-calibration.js` gera uma folha HTML de calibracao.
+
 ## Validacao rapida
 
 ```bash
