@@ -78,6 +78,14 @@ Criar um modulo fiscal isolado:
 - `FiscalProvider`: interface para provedor real, com implementacoes por SEFAZ/NFS-e/provedor terceiro.
 - `FiscalConfig`: configuracao por empresa/filial.
 
+Base administrativa ja iniciada no backend:
+
+- Entidade `ConfiguracaoFiscal` para empresa, filial opcional, modelo fiscal, ambiente, serie, proximo numero, provedor e endpoints.
+- Endpoint protegido para `ADMIN` e `GERENTE`: `GET /configuracoes-fiscais`, `POST /configuracoes-fiscais` e `PUT /configuracoes-fiscais/{id}`.
+- Modelos aceitos: `NFE`, `NFCE` e `NFSE`.
+- Ambientes aceitos: `HOMOLOGACAO` e `PRODUCAO`.
+- Campos sensiveis guardam apenas nomes de variaveis/aliases, como `certificadoSenhaEnv` e `cscTokenEnv`; a senha real do certificado e o token CSC devem ficar fora do Git.
+
 Estados sugeridos:
 
 - `PENDENTE`
@@ -112,6 +120,9 @@ Estados sugeridos:
 
 ## 8. Checklist de homologacao
 
+- Configuracao fiscal cadastrada por empresa/filial/modelo em `HOMOLOGACAO`.
+- Serie e proximo numero conferidos com contador/SEFAZ/municipio.
+- Alias do certificado e nomes de variaveis sensiveis preenchidos sem gravar segredo real no banco ou no Git.
 - Certificado carregado sem expor senha no Git.
 - Empresa/filial credenciada no ambiente correto.
 - Status de servico consultado com sucesso.

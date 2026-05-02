@@ -78,6 +78,9 @@ Ultimas entregas concluidas nesta rodada
 - Testes unitarios dos endpoints administrativos de notificacao externa adicionados, cobrindo retorno de follow-ups, estoque baixo e resumo diario; suite Maven validada com 19 testes sem falhas.
 - Testes unitarios do agendamento de follow-ups externos adicionados, cobrindo notificacoes desligadas e envio com marcacao de notificacao externa; suite Maven validada com 21 testes sem falhas.
 - Testes unitarios dos agendadores de estoque baixo e resumo diario externo adicionados, cobrindo notificacoes desligadas, ausencia de itens e envio/auditoria; suite Maven validada com 26 testes sem falhas.
+- Fundacao de configuracao fiscal real adicionada no backend: entidade, repositorio, DTOs, service, controller protegido para ADMIN/GERENTE e testes unitarios para empresa/filial/modelo/validacoes.
+- Endpoint administrativo fiscal criado: GET/POST/PUT /configuracoes-fiscais, com modelos NFE/NFCE/NFSE, ambientes HOMOLOGACAO/PRODUCAO e armazenamento apenas de aliases/nomes de variaveis para segredos de certificado/CSC.
+- Suite Maven validada apos a base fiscal com 30 testes sem falhas.
 - Roteiro de homologacao de etiquetas Code128 criado em docs/HOMOLOGACAO_ETIQUETAS_CODE128.md, com gerador scripts/generate-code128-label-calibration.js para folha de calibracao 60mm x 35mm.
 - Roteiro tecnico de homologacao fiscal real criado em docs/HOMOLOGACAO_FISCAL_REAL.md, cobrindo NF-e, NFC-e, NFS-e, pre-requisitos, arquitetura sugerida e checklist de homologacao.
 
@@ -262,6 +265,8 @@ Ultimas entregas concluidas nesta rodada
 - Controle interno de status fiscal implementado para acompanhar pendente, autorizado, rejeitado e cancelado antes da integracao real.
 - Historico fiscal interno registra usuario, data, filial e observacao das mudancas de status.
 - Exportacao CSV/PDF do checklist e dos controles internos disponivel nas telas relacionadas.
+- Base backend para configuracao fiscal por empresa/filial/modelo implementada em /configuracoes-fiscais.
+- Configuracao fiscal aceita NFE, NFCE e NFSE, ambiente de homologacao/producao, serie, proximo numero, provedor, endpoints e referencias seguras para segredos fora do Git.
 
 
 2. AINDA FALTA
@@ -274,7 +279,7 @@ Ultimas entregas concluidas nesta rodada
 - DANFE.
 - Autorizacao, rejeicao, cancelamento e inutilizacao fiscais reais.
 - Impressao fiscal real.
-- Homologacao fiscal por certificado, ambiente e dados da empresa/filial.
+- Homologacao fiscal por certificado real, ambiente, serie, numeracao e dados da empresa/filial.
 
 Observacao: este e o maior bloco ainda nao implementado.
 
@@ -307,11 +312,11 @@ Observacao: este e o maior bloco ainda nao implementado.
 
 3. PROXIMO MELHOR CAMINHO
 
-1. Homologar Asaas em sandbox com chave real, gerar Pix/boleto e testar webhook ponta a ponta.
-2. Revisar e fechar o commit da rodada atual: conferir o diff final, manter .env apenas local/ignorado e versionar o relatorio.
+1. Criar tela administrativa para cadastrar e revisar /configuracoes-fiscais por empresa/filial/modelo.
+2. Homologar Asaas em sandbox com chave real, gerar Pix/boleto e testar webhook ponta a ponta.
 3. Homologar impressao/leitura de etiquetas Code128 com impressora e leitor reais.
 4. Homologar webhook de notificacoes externas de follow-up, estoque baixo e resumo diario.
-5. Evoluir Fiscal real quando pagamentos e operacional estiverem homologados.
+5. Evoluir Fiscal real a partir da configuracao fiscal: status de servico, certificado, XML/JSON, emissao em homologacao e persistencia de documento fiscal.
 6. Refinar cadastros profissionais e filtros por filial nos modulos operacionais restantes.
 
 

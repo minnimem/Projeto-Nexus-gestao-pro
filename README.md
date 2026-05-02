@@ -71,6 +71,7 @@ Se `DB_URL` e `DB_USERNAME` nao forem informadas, o backend usa os valores locai
 - `/caixas`
 - `/financeiro`
 - `/financeiro/follow-ups`
+- `/configuracoes-fiscais`
 - `/logistica`
 - `/notificacoes/estoque-baixo/enviar`
 - `/notificacoes/follow-ups/enviar`
@@ -117,6 +118,7 @@ O script `scripts/generate-code128-label-calibration.js` gera uma folha HTML de 
 ## Homologacao fiscal real
 
 O roteiro tecnico para evoluir NF-e, NFC-e e NFS-e reais esta em `docs/HOMOLOGACAO_FISCAL_REAL.md`.
+O backend ja possui a base administrativa `GET/POST/PUT /configuracoes-fiscais` para cadastrar configuracoes por empresa/filial/modelo fiscal sem versionar segredos de certificado ou CSC.
 
 ## Validacao rapida
 
