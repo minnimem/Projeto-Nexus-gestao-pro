@@ -77,6 +77,7 @@ Ultimas entregas concluidas nesta rodada
 - Roteiro de homologacao de notificacoes externas criado em docs/HOMOLOGACAO_NOTIFICACOES.md, com receptor local scripts/mock-notification-webhook.js para validar payloads de follow-up, estoque baixo e resumo diario.
 - Testes unitarios dos endpoints administrativos de notificacao externa adicionados, cobrindo retorno de follow-ups, estoque baixo e resumo diario; suite Maven validada com 19 testes sem falhas.
 - Testes unitarios do agendamento de follow-ups externos adicionados, cobrindo notificacoes desligadas e envio com marcacao de notificacao externa; suite Maven validada com 21 testes sem falhas.
+- Testes unitarios dos agendadores de estoque baixo e resumo diario externo adicionados, cobrindo notificacoes desligadas, ausencia de itens e envio/auditoria; suite Maven validada com 26 testes sem falhas.
 
 
 1. JA IMPLEMENTADO OU BEM AVANCADO
