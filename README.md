@@ -99,6 +99,10 @@ No frontend, o mesmo disparo aparece no Financeiro em `Agenda de cobranca` e em 
 Alertas de estoque baixo tambem podem ser enviados automaticamente pelo agendamento, manualmente por `POST /notificacoes/estoque-baixo/enviar`, ou pelo botao `Notificar` na aba Estoque.
 Resumo diario pode ser enviado automaticamente pelo agendamento ou manualmente por `POST /notificacoes/resumo-diario/enviar`.
 
+## Homologacao Asaas
+
+O roteiro de sandbox para Pix, boleto e webhook esta em `docs/HOMOLOGACAO_ASAAS.md`.
+
 ## Validacao rapida
 
 ```bash

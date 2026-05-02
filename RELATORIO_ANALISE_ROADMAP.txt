@@ -70,6 +70,7 @@ Ultimas entregas concluidas nesta rodada
 - Revisao da rodada atual retomada em 02/05/2026: frontend centralizado na raiz confirmado, log temporario dev-server.log removido do versionamento e validacoes npm run build, mvn -DskipTests compile e mvn test executadas com sucesso.
 - Configuracao sensivel do backend revisada: senha fixa do PostgreSQL e segredo JWT fixo removidos do application.yml, datasource/JWT agora usam variaveis de ambiente DB_URL, DB_USERNAME, DB_PASSWORD e JWT_SECRET, com documentacao atualizada no README.
 - Arquivo .env local removido do versionamento e mantido apenas como configuracao local ignorada pelo Git.
+- Roteiro de homologacao Asaas sandbox criado em docs/HOMOLOGACAO_ASAAS.md, cobrindo variaveis, Pix, boleto, webhook, eventos tratados e checklist de producao.
 
 
 1. JA IMPLEMENTADO OU BEM AVANCADO
