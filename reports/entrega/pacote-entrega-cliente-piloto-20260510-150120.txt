@@ -1,0 +1,112 @@
+﻿PACOTE DE ENTREGA DO CLIENTE - NEXUS ONE
+Data: 10/05/2026 15:01:20
+Cliente: Cliente Piloto
+Ambiente: producao controlada
+Responsavel: Nexus One
+
+Este relatorio confere a existencia dos artefatos de entrega. Ele nao copia arquivos e nao deve conter senhas, tokens ou certificados.
+
+============================================================
+COMERCIAL
+============================================================
+- [OK] docs\FICHA_PRONTIDAO_COMERCIAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\MATRIZ_GO_NO_GO_COMERCIAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\TERMO_ACEITE_IMPLANTACAO_NEXUS_ONE.md (obrigatorio)
+
+============================================================
+TECNICO
+============================================================
+- [OK] docs\GUIA_PRODUCAO_TECNICA_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\GUIA_DEPLOY_SERVIDOR_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\GUIA_AMBIENTE_HOMOLOGACAO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\GUIA_PROVISIONAMENTO_BANCO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\ROTINA_MONITORAMENTO_BACKUP_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PROCESSO_RELEASE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\ROTEIRO_SMOKE_TEST_OPERACIONAL_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\verificar-predeploy.ps1 (obrigatorio)
+- [OK] scripts\verificar-producao.ps1 (obrigatorio)
+- [OK] scripts\gerar-manifesto-release.ps1 (obrigatorio)
+- [OK] scripts\smoke-test-operacional.ps1 (obrigatorio)
+
+============================================================
+BACKUP
+============================================================
+- [OK] scripts\backup-postgres.ps1 (obrigatorio)
+- [OK] scripts\restaurar-backup-postgres.ps1 (obrigatorio)
+- [OK] scripts\gerar-evidencia-restauracao.ps1 (obrigatorio)
+
+============================================================
+SEGURANCA
+============================================================
+- [OK] docs\POLITICA_SEGREDOS_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\INVENTARIO_SEGREDOS_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\verificar-segredos.ps1 (obrigatorio)
+- [OK] scripts\auditar-segredos.ps1 (obrigatorio)
+
+============================================================
+LGPD
+============================================================
+- [OK] docs\POLITICA_PRIVACIDADE_LGPD_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-solicitacao-lgpd.ps1 (opcional conforme escopo)
+
+============================================================
+DADOS
+============================================================
+- [OK] docs\ROTEIRO_CARGA_INICIAL_DADOS_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\verificar-carga-inicial.ps1 (obrigatorio)
+- [OK] templates\carga-inicial\clientes.csv (obrigatorio)
+- [OK] templates\carga-inicial\produtos.csv (obrigatorio)
+- [OK] templates\carga-inicial\usuarios.csv (obrigatorio)
+- [OK] templates\carga-inicial\estoque-inicial.csv (obrigatorio)
+
+============================================================
+OPERACAO
+============================================================
+- [OK] docs\PROCESSO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PLANO_PILOTO_ASSISTIDO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\CHECKLIST_CLIENTE_PILOTO_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-diario-piloto.ps1 (obrigatorio)
+
+============================================================
+TREINAMENTO
+============================================================
+- [OK] docs\ROTEIRO_TREINAMENTO_POR_PERFIL_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-evidencia-treinamento.ps1 (obrigatorio)
+
+============================================================
+SUPORTE
+============================================================
+- [OK] docs\ROTEIRO_SUPORTE_OPERACIONAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-incidente-suporte.ps1 (obrigatorio)
+
+============================================================
+INTEGRACOES
+============================================================
+- [OK] docs\MATRIZ_HOMOLOGACAO_INTEGRACOES_EXTERNAS_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\verificar-integracoes-externas.ps1 (obrigatorio)
+- [OK] docs\EVIDENCIA_HOMOLOGACAO_PAGAMENTOS_ASAAS.md (opcional conforme escopo)
+- [OK] docs\EVIDENCIA_HOMOLOGACAO_NOTIFICACOES.md (opcional conforme escopo)
+- [OK] docs\EVIDENCIA_HOMOLOGACAO_FISCAL_REAL.md (opcional conforme escopo)
+
+============================================================
+EVIDENCIAS A ANEXAR POR CLIENTE
+============================================================
+- Proposta/contrato/escopo aprovado.
+- Relatorio de pre-deploy.
+- Manifesto de release.
+- Smoke test operacional.
+- Backup e evidencia de restauracao.
+- Monitoramento/alerta testado.
+- Verificacao de carga inicial, quando houver dados importados.
+- Evidencia de treinamento.
+- Evidencias de integracoes externas contratadas.
+- Matriz Go/No-Go preenchida.
+- Termo de aceite assinado.
+
+============================================================
+DECISAO
+============================================================
+Status: PACOTE BASE COMPLETO.
+Proximo passo: anexar evidencias reais do cliente e assinar Go/No-Go/aceite.

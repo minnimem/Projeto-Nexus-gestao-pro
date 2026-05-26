@@ -1,0 +1,41 @@
+﻿AUTORIZACAO DE REFERENCIA COMERCIAL - NEXUS ONE
+Data: 10/05/2026 15:25:56
+Cliente: Cliente Piloto
+Tipo de uso sugerido: Anonimizado
+Descricao: Uso comercial sem identificar cliente, marca, pessoas ou dados sensiveis.
+Responsavel Nexus One: Nexus One
+
+CONTEUDO AUTORIZADO
+- Segmento:
+- Dor inicial:
+- Modulos implantados:
+- Ganho percebido:
+- Indicadores autorizados:
+- Frase/depoimento autorizado:
+- Restricoes:
+
+CHECKLIST ANTES DE USAR
+- [ ] Cliente classificado como Verde na rotina de sucesso.
+- [ ] Nao ha pendencia bloqueante aberta.
+- [ ] Dados sensiveis foram removidos.
+- [ ] Prints foram mascarados ou substituidos por dados ficticios.
+- [ ] Conteudo foi revisado pelo cliente.
+- [ ] Canal de uso foi aprovado.
+- [ ] Prazo/validade da autorizacao foi definido quando aplicavel.
+
+LIMITES
+- Nao usar dados pessoais, financeiros, fiscais ou operacionais sensiveis.
+- Nao usar logo, nome ou depoimento fora do tipo autorizado.
+- Nao publicar caso real sem aprovacao do cliente.
+
+ASSINATURAS
+Responsavel do cliente:
+Data:
+
+Responsavel Nexus One:
+Data:
+
+REFERENCIAS
+- docs\AUTORIZACAO_REFERENCIA_COMERCIAL_CLIENTE_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\POLITICA_PRIVACIDADE_LGPD_NEXUS_ONE.md

@@ -5,6 +5,7 @@ import br.com.diego.projectoads.config.Enum.ModeloDocumentoFiscal;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -18,8 +19,11 @@ public class ConfiguracaoFiscalRequest {
     private String serie;
     private Long proximoNumero;
     private String provedor;
+    private String provedorTokenEnv;
     private String certificadoAlias;
+    private String certificadoArquivoEnv;
     private String certificadoSenhaEnv;
+    private LocalDate certificadoValidoAte;
     private String cscId;
     private String cscTokenEnv;
     private String endpointHomologacao;

@@ -1,0 +1,88 @@
+﻿PLANO DE LANCAMENTO COMERCIAL CONTROLADO - NEXUS ONE
+Data: 10/05/2026 22:18:57
+Lote: Lote 1
+Responsavel: Nexus One
+
+============================================================
+PORTAO DE ABERTURA DO LOTE
+============================================================
+- [ ] Cliente real usado como referencia interna possui aceite.
+- [ ] Saude do cliente real esta Verde.
+- [ ] Auditoria de evidencias nao possui bloqueio critico.
+- [ ] Capacidade operacional permite pelo menos 1 a 2 implantacoes simultaneas.
+- [ ] Comercial recebeu roteiro de promessa permitida e restricoes.
+- [ ] Implantacao possui agenda disponivel.
+- [ ] Suporte possui responsavel e SLA operacional.
+- [ ] Pagamentos, fiscal e notificacoes reais estao homologados ou fora do escopo.
+
+============================================================
+LIMITES DO LOTE
+============================================================
+- Meta de oportunidades qualificadas: 5
+- Maximo de implantacoes simultaneas: 2
+- Perfil ideal: Comercio ou servico com venda, caixa, estoque, clientes e financeiro gerencial; baixa ou media complexidade fiscal.
+- Canais: Indicacao, prospeccao consultiva, clientes conhecidos e demonstracao guiada.
+
+============================================================
+RESTRICOES COMERCIAIS
+============================================================
+Nao prometer fiscal real, pagamentos reais, notificacoes externas, SLA especial ou customizacao sem contrato, homologacao e evidencia.
+
+============================================================
+MENSAGEM PERMITIDA
+============================================================
+- Vendas, caixa, estoque, clientes, financeiro gerencial, relatorios e suporte operacional.
+- Implantacao acompanhada com escopo, treinamento, Go/No-Go e aceite.
+- Integracoes reais dependem de homologacao, provedor/canal, contrato e evidencia.
+- Resultado financeiro deve ser tratado como estimativa baseada em premissas.
+
+============================================================
+GOVERNANCA DO LOTE
+============================================================
+- Semanal: oportunidades, propostas, fechamentos e gargalos comerciais.
+- A cada implantacao: handoff, cronograma, riscos, Go/No-Go e aceite.
+- D7/D15/D30 do cliente: saude, NPS, suporte e pendencias.
+- Fechamento do lote: resultado comercial, capacidade e decisao de expansao.
+
+============================================================
+CRITERIOS PARA PAUSAR
+============================================================
+- Incidente P0/P1 recorrente.
+- Cliente Vermelho na rotina de sucesso.
+- Mais clientes em implantacao do que a capacidade definida.
+- Promessa comercial fora do escopo documentado.
+- Pendencia bloqueante repetida em mais de um cliente.
+
+============================================================
+INDICADORES DO LOTE
+============================================================
+- [ ] Oportunidades qualificadas.
+- [ ] Propostas enviadas.
+- [ ] Fechamentos.
+- [ ] Tempo medio de implantacao.
+- [ ] Incidentes P0/P1.
+- [ ] Clientes Verde/Amarelo/Vermelho.
+- [ ] Pendencias bloqueantes por cliente.
+- [ ] Capacidade de suporte.
+
+============================================================
+DECISAO POS-LOTE
+============================================================
+- [ ] Aumentar escala.
+- [ ] Manter volume atual.
+- [ ] Reduzir volume.
+- [ ] Pausar campanha.
+- [ ] Reposicionar oferta ou perfil ideal.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md
+- docs\AUDITORIA_EVIDENCIAS_CLIENTE_REAL_NEXUS_ONE.md
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md

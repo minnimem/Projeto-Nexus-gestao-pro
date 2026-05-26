@@ -1,0 +1,46 @@
+﻿DECISAO DE EXPANSAO COMERCIAL POS-LOTE - NEXUS ONE
+Data: 10/05/2026 20:53:57
+Lote avaliado: Lote 1
+Responsavel: Nexus One
+Prazo de revisao: 24/05/2026
+
+============================================================
+DECISAO
+============================================================
+- Decisao: Aumentar escala
+- Acao: Abrir proximo lote com limites definidos e revisao obrigatoria.
+- Limite do proximo lote: 8 oportunidade(s)
+- Maximo de implantacoes simultaneas: 2
+
+============================================================
+JUSTIFICATIVA
+============================================================
+Decisao baseada no resultado do lote comercial e na capacidade de implantacao/suporte.
+
+============================================================
+RISCOS E CONDICOES
+============================================================
+Revisar incidentes, clientes Amarelo/Vermelho, pendencias bloqueantes, suporte e promessas comerciais antes de ampliar.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Resultado do lote comercial foi revisado.
+- [ ] Suporte confirmou capacidade para o proximo ciclo.
+- [ ] Implantacao confirmou capacidade para o proximo ciclo.
+- [ ] Promessas comerciais foram revisadas.
+- [ ] Pacote de entrega sera mantido por cliente.
+- [ ] Revisao na data definida foi agendada.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\DECISAO_EXPANSAO_COMERCIAL_POS_LOTE_NEXUS_ONE.md
+- docs\RELATORIO_RESULTADO_LOTE_COMERCIAL_NEXUS_ONE.md
+- docs\PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md

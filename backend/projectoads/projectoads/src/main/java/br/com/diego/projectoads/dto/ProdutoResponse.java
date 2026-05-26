@@ -9,7 +9,23 @@ public class ProdutoResponse {
 
     public UUID id;
     public String nome;
+    public String sku;
+    public String descricao;
     public String codigoBarras;
+    public String ncm;
+    public String cfop;
+    public String cest;
+    public String origemFiscal;
+    public String unidadeComercial;
+    public String cstIcms;
+    public String csosn;
+    public BigDecimal aliquotaIcms;
+    public BigDecimal aliquotaPis;
+    public BigDecimal aliquotaCofins;
+    public BigDecimal aliquotaIpi;
+    public String codigoServicoMunicipal;
+    public String codigoServicoNacional;
+    public BigDecimal aliquotaIss;
     public BigDecimal precoVenda;
     public BigDecimal precoComDesconto;
     public BigDecimal lucro;
@@ -27,7 +43,23 @@ public class ProdutoResponse {
     public ProdutoResponse(Produto p) {
         this.id = p.getIdProduto();
         this.nome = p.getNomeProduto();
+        this.sku = p.getSku();
+        this.descricao = p.getDescricao();
         this.codigoBarras = p.getCodBarras();
+        this.ncm = p.getNcm();
+        this.cfop = p.getCfop();
+        this.cest = p.getCest();
+        this.origemFiscal = p.getOrigemFiscal();
+        this.unidadeComercial = p.getUnidadeComercial();
+        this.cstIcms = p.getCstIcms();
+        this.csosn = p.getCsosn();
+        this.aliquotaIcms = p.getAliquotaIcms();
+        this.aliquotaPis = p.getAliquotaPis();
+        this.aliquotaCofins = p.getAliquotaCofins();
+        this.aliquotaIpi = p.getAliquotaIpi();
+        this.codigoServicoMunicipal = p.getCodigoServicoMunicipal();
+        this.codigoServicoNacional = p.getCodigoServicoNacional();
+        this.aliquotaIss = p.getAliquotaIss();
         this.precoVenda = p.getPrecoVenda();
         this.precoComDesconto = p.calcularPrecoComDesconto();
         this.lucro = p.getLucroPercentual();

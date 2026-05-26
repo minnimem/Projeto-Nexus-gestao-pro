@@ -21,32 +21,43 @@ public class UsuarioPermissionService {
 
     public UsuarioPermissionService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
-        registerModule("overview", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR, Perfil.ESTOQUISTA, Perfil.FINANCEIRO);
+        registerModule("overview", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR, Perfil.OPERADOR_CAIXA, Perfil.ESTOQUISTA, Perfil.FINANCEIRO);
         registerModule("pedidos", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR);
-        registerModule("caixa", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR, Perfil.OPERADOR_CAIXA, Perfil.FINANCEIRO);
+        registerModule("caixa", Perfil.ADMIN, Perfil.GERENTE, Perfil.OPERADOR_CAIXA);
         registerModule("clientes", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR);
         registerModule("produtos", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR, Perfil.ESTOQUISTA);
         registerModule("financeiro", Perfil.ADMIN, Perfil.GERENTE, Perfil.FINANCEIRO);
-        registerModule("logistica", Perfil.ADMIN, Perfil.GERENTE);
+        registerModule("logistica", Perfil.ADMIN, Perfil.GERENTE, Perfil.ESTOQUISTA);
         registerModule("colaboradores", Perfil.ADMIN, Perfil.GERENTE);
         registerModule("relatorios", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR, Perfil.ESTOQUISTA, Perfil.FINANCEIRO);
         registerModule("usuarios", Perfil.ADMIN);
 
         registerAction("manageCollaborators", Perfil.ADMIN);
-        registerAction("editRoute", Perfil.ADMIN, Perfil.GERENTE);
-        registerAction("printRoute", Perfil.ADMIN, Perfil.GERENTE);
+        registerAction("editRoute", Perfil.ADMIN, Perfil.GERENTE, Perfil.ESTOQUISTA);
+        registerAction("printRoute", Perfil.ADMIN, Perfil.GERENTE, Perfil.ESTOQUISTA);
         registerAction("mutateFinance", Perfil.ADMIN, Perfil.GERENTE, Perfil.FINANCEIRO);
         registerAction("reverseFinance", Perfil.ADMIN);
         registerAction("seeProfit", Perfil.ADMIN, Perfil.GERENTE, Perfil.FINANCEIRO);
-        registerAction("operateCash", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR, Perfil.OPERADOR_CAIXA);
+        registerAction("operateCash", Perfil.ADMIN, Perfil.GERENTE, Perfil.OPERADOR_CAIXA);
+        registerAction("manageCommercialFollowUp", Perfil.ADMIN, Perfil.GERENTE, Perfil.VENDEDOR);
     }
 
     public boolean canAccessModule(Authentication authentication, String module) {
-        return hasPermission(authentication, "module:" + normalizeKey(module), moduleAccess);
+        String normalizedModule = normalizeKey(module);
+        if ("caixa".equals(normalizedModule)) {
+            return hasCashPermission(authentication, "module:" + normalizedModule);
+        }
+
+        return hasPermission(authentication, "module:" + normalizedModule, moduleAccess);
     }
 
     public boolean canPerform(Authentication authentication, String action) {
-        return hasPermission(authentication, "action:" + normalizeKey(action), actionAccess);
+        String normalizedAction = normalizeKey(action);
+        if ("operateCash".equals(normalizedAction)) {
+            return hasCashPermission(authentication, "action:" + normalizedAction);
+        }
+
+        return hasPermission(authentication, "action:" + normalizedAction, actionAccess);
     }
 
     public Set<String> normalizePermissions(Collection<String> permissions) {
@@ -78,6 +89,14 @@ public class UsuarioPermissionService {
             return false;
         }
 
+        if ("action:managePlans".equals(permissionKey)) {
+            return Perfil.MASTER.equals(usuario.getPerfil());
+        }
+
+        if (Perfil.MASTER.equals(usuario.getPerfil())) {
+            return false;
+        }
+
         Set<String> extras = normalizePermissions(usuario.getPermissoesExtras());
         if (extras.contains(permissionKey)) {
             return true;
@@ -85,6 +104,20 @@ public class UsuarioPermissionService {
 
         String normalizedKey = permissionKey.substring(permissionKey.indexOf(':') + 1);
         return accessMap.getOrDefault(normalizedKey, Set.of()).contains(usuario.getPerfil());
+    }
+
+    private boolean hasCashPermission(Authentication authentication, String permissionKey) {
+        Usuario usuario = resolveUsuario(authentication);
+        if (usuario == null || usuario.getPerfil() == null) {
+            return false;
+        }
+
+        Set<String> blocked = normalizePermissions(usuario.getPermissoesBloqueadas());
+        if (blocked.contains(permissionKey)) {
+            return false;
+        }
+
+        return Set.of(Perfil.ADMIN, Perfil.GERENTE, Perfil.OPERADOR_CAIXA).contains(usuario.getPerfil());
     }
 
     private Usuario resolveUsuario(Authentication authentication) {

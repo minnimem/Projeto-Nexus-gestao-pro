@@ -14,5 +14,11 @@ public class EmpresaRequest {
     private String endereco;
     private String cidade;
     private String uf;
+    private String cep;
+    private String codigoMunicipio;
+    private String inscricaoEstadual;
+    private String inscricaoMunicipal;
+    private String regimeTributario;
+    private String crt;
     private Integer estoqueMinimoPadrao;
 }

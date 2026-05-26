@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +32,10 @@ public class PedidoRequest {
     private String enderecoEntrega;
 
     private String observacaoEntrega;
+
+    private LocalDate validadeProposta;
+
+    private String condicoesComerciais;
 
     private Boolean orcamento = false;
 

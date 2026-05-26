@@ -1,0 +1,251 @@
+RELATORIO DE PLANOS COMERCIAIS - NEXUS ONE
+Data: 05/05/2026
+
+OBJETIVO
+
+Este relatorio organiza uma sugestao de planos comerciais para o sistema Nexus One, considerando o projeto completo com PDV, caixa, vendas, estoque, financeiro, logistica, usuarios, dashboard e nota fiscal.
+
+A estrategia recomendada e separar os recursos em tres planos:
+
+1. Plano Basico
+2. Plano Medio
+3. Plano Avancado
+
+O Plano Avancado deve conter todos os recursos do software. O Plano Medio deve ser o principal plano de venda, com melhor custo-beneficio. O Plano Basico deve ser uma entrada mais acessivel para lojas pequenas.
+
+
+1. PLANO BASICO
+
+Publico indicado:
+
+Lojas pequenas, negocios iniciando a organizacao digital ou empresas que precisam apenas vender, controlar caixa e acompanhar estoque de forma simples.
+
+Valor mensal sugerido:
+
+R$ 149,00 a R$ 199,00 por mes
+
+Valor recomendado para lancamento:
+
+R$ 179,00 por mes
+
+Recursos incluidos:
+
+- 1 empresa
+- 1 filial
+- 1 caixa/PDV
+- Ate 3 usuarios
+- Cadastro de clientes
+- Cadastro de produtos
+- Vendas e pedidos
+- Caixa com abertura, recebimento e fechamento
+- Recebimento no caixa
+- Controle de estoque simples
+- Financeiro basico
+- Contas a receber
+- Contas a pagar
+- Dashboard simples
+- Relatorios basicos
+- Controle simples de perfis de acesso
+
+Recursos que nao devem entrar no Basico:
+
+- Multiplas filiais
+- Multiplos caixas
+- Logistica completa
+- Rotas e entregadores
+- Comissoes avancadas
+- Auditoria detalhada
+- Relatorios avancados
+- Multiempresa
+- Integracoes externas
+- Nota fiscal completa ilimitada
+
+Observacao comercial:
+
+O Plano Basico deve ser suficiente para a loja operar, mas nao deve entregar todos os recursos de gestao. A ideia e permitir entrada com preco acessivel e incentivar upgrade para o Plano Medio.
+
+
+2. PLANO MEDIO
+
+Publico indicado:
+
+Empresas em crescimento, lojas com mais de um usuario, operacao com estoque mais organizado, controle financeiro mais serio e necessidade de fiscal/logistica simples.
+
+Valor mensal sugerido:
+
+R$ 299,00 a R$ 399,00 por mes
+
+Valor recomendado para lancamento:
+
+R$ 349,00 por mes
+
+Recursos incluidos:
+
+- Todos os recursos do Plano Basico
+- Ate 3 filiais
+- Ate 8 usuarios
+- Ate 2 ou 3 caixas
+- PDV completo
+- Vendas, pedidos e orcamentos
+- Caixa com recebimento por dinheiro, Pix, credito, debito, boleto e misto
+- Controle de estoque mais completo
+- Movimentacoes de estoque
+- Compras e fornecedores
+- Financeiro completo
+- Contas a receber e contas a pagar
+- Controle de recebimentos
+- Comissoes de vendedores
+- Logistica simples
+- Retirada na loja
+- Separacao de produto no estoque
+- Entrega basica
+- Dashboard executivo
+- Relatorios por periodo
+- Relatorios por vendedor
+- Relatorios por filial
+- Relatorios de caixa
+- Permissoes por perfil
+- Nota fiscal, quando o modulo fiscal estiver concluido e homologado
+- Suporte prioritario em horario comercial
+
+Recursos que podem ficar fora do Medio:
+
+- Multiempresa completa
+- Relatorios personalizados sob demanda
+- Automacoes avancadas
+- Integracoes externas avancadas
+- Suporte fora do horario comercial
+- Grandes volumes de usuarios
+- Grandes volumes de filiais
+- Auditoria completa detalhada
+
+Observacao comercial:
+
+O Plano Medio deve ser o principal plano a ser vendido. Ele deve parecer o melhor custo-beneficio, oferecendo quase tudo que uma empresa comum precisa, mas deixando recursos mais robustos para o Plano Avancado.
+
+
+3. PLANO AVANCADO
+
+Publico indicado:
+
+Empresas maiores, redes com varias filiais, negocios com varios operadores, controle fiscal mais exigente, logistica ativa e necessidade de gestao completa.
+
+Valor mensal sugerido:
+
+R$ 599,00 a R$ 899,00 por mes
+
+Valor recomendado para lancamento:
+
+R$ 699,00 por mes
+
+Recursos incluidos:
+
+- Todos os recursos do Plano Basico
+- Todos os recursos do Plano Medio
+- Multiempresa
+- Multiplas filiais
+- Usuarios ampliados, a partir de 15 usuarios ou conforme contrato
+- Multiplos caixas
+- PDV completo
+- Vendas, pedidos e orcamentos
+- Controle completo de clientes
+- Controle completo de produtos
+- Controle completo de estoque
+- Compras e fornecedores
+- Financeiro completo
+- Caixa completo
+- Logistica completa
+- Rotas
+- Entregadores
+- Controle de retirada na loja
+- Separacao de estoque
+- Entrega
+- Modulo de servicos, se estiver ativo no produto final
+- Nota fiscal completa
+- Emissao fiscal em homologacao e producao, apos validacao real
+- Dashboard executivo completo
+- Relatorios avancados
+- Relatorios gerenciais
+- Auditoria
+- Controle detalhado de permissoes
+- Comissoes
+- Exportacoes
+- Suporte prioritario
+- Implantacao acompanhada
+
+Observacao comercial:
+
+O Plano Avancado deve representar o sistema completo. Ele deve ser vendido para empresas que precisam de controle operacional de ponta a ponta.
+
+
+4. TAXA DE IMPLANTACAO SUGERIDA
+
+A mensalidade nao deve incluir todo o trabalho inicial de configuracao, treinamento e carga de dados. Recomenda-se cobrar uma taxa de implantacao separada.
+
+Plano Basico:
+
+R$ 300,00 a R$ 600,00
+
+Plano Medio:
+
+R$ 800,00 a R$ 1.500,00
+
+Plano Avancado:
+
+R$ 2.000,00 a R$ 5.000,00
+
+
+5. RESUMO DE PRECOS RECOMENDADOS
+
+Plano Basico:
+
+R$ 179,00 por mes
+
+Plano Medio:
+
+R$ 349,00 por mes
+
+Plano Avancado:
+
+R$ 699,00 por mes
+
+
+6. ESTRATEGIA RECOMENDADA
+
+A melhor estrategia comercial e posicionar o Plano Medio como o plano principal.
+
+O Plano Basico deve atrair clientes menores, mas com limites claros.
+
+O Plano Avancado deve ser apresentado como a solucao completa para empresas com operacao maior.
+
+Sugestao:
+
+- Basico: entrada acessivel
+- Medio: melhor custo-beneficio
+- Avancado: sistema completo
+
+
+7. RECOMENDACAO SOBRE NOTA FISCAL
+
+A nota fiscal completa deve ficar no Plano Medio e no Plano Avancado.
+
+No Plano Basico, a nota fiscal pode ser:
+
+- nao incluida;
+- incluida com limite mensal;
+- ou vendida como adicional.
+
+Essa separacao aumenta o valor percebido do Plano Medio e ajuda na conversao de clientes que precisam de fiscal.
+
+
+8. CONCLUSAO
+
+Com o sistema completo, o Nexus One pode ser posicionado acima de PDVs simples, pois inclui caixa, estoque, financeiro, logistica, dashboard, usuarios/permissoes e modulo fiscal.
+
+A faixa recomendada para entrada no mercado e:
+
+- Basico: R$ 179,00 por mes
+- Medio: R$ 349,00 por mes
+- Avancado: R$ 699,00 por mes
+
+Essa estrutura permite vender para pequenos negocios sem desvalorizar o sistema completo.

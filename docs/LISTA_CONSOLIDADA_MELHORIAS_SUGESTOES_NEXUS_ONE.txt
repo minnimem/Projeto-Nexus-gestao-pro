@@ -1,0 +1,645 @@
+LISTA CONSOLIDADA DE MELHORIAS - NEXUS ONE
+Fonte: C:\Users\LENOVO\Desktop\SUJESTOES
+Data da consolidacao: 07/05/2026
+
+OBJETIVO
+Consolidar as sugestoes dos relatorios em uma lista unica de melhorias para evoluir o Nexus One como ERP SaaS premium, com foco em valor comercial, usabilidade, operacao real e experiencia visual.
+
+ATUALIZACAO DE ANDAMENTO - 07/05/2026
+- Analise retomada a partir da aba Vendas, que ja estava em evolucao.
+- A melhoria 6 (Vendas como central comercial modular) esta EM ANDAMENTO.
+- Status executivo da melhoria 6: aproximadamente 85% concluida no produto, restando homologacao externa real e pequenos refinamentos visuais/finais.
+- Ja implementado em Vendas: navegacao modular com Resumo, Pedidos, CRM, Separacao, Analytics, Ranking e Nota fiscal; hub operacional; gargalos comerciais; kanban CRM; agenda e timeline de follow-up; acoes fiscais agrupadas; analytics com tooltip, media e tendencia; cards premium de navegacao; refinamento inicial de dark mode; KPIs complementares com conversao, ticket medio, valor aberto no funil e atingimento de meta; regras de automacao comercial configuraveis com persistencia local e backend por empresa/filial; envio externo de follow-up comercial passa a respeitar regra ativa e canal configurado; roteiro e mock local de homologacao passaram a evidenciar canal/regra do follow-up comercial; orcamento/proposta agora salva validade e condicoes comerciais no pedido.
+- Proximo foco recomendado em Vendas: executar homologacao ponta a ponta com o canal externo real do cliente.
+- Proximo foco de produto apos Vendas: iniciar melhoria 7, Caixa/PDV mais limpo e seguro, priorizando reducao de poluicao visual, status do caixa, pagamento misto e comprovante profissional.
+- As demais melhorias permanecem como backlog, exceto pontos ja cobertos no roadmap tecnico do projeto.
+
+ATUALIZACAO COMPLEMENTAR - 08/05/2026
+- Rodada de polimento premium aplicada no frontend, cobrindo shell visual, cards, KPIs, tabelas, botoes, filtros, modais, mensagens, empty states, badges/status e dark mode.
+- Central de alertas da topbar ajustada para uso operacional: dropdown responsivo com rolagem interna, prioridade visual, filtros por criticidade, icones por tipo, resumo textual, acao Visto, Restaurar vistos e persistencia local.
+- Central de alertas tambem recebeu faixa executiva com alertas abertos/vistos e acao Marcar todos, reduzindo manutencao manual alerta por alerta.
+- Alertas atuais consolidados: erro de sincronizacao, estoque baixo, pedidos pendentes, financeiro critico e sincronizacao ativa/sucesso, com reexibicao automatica quando a assinatura do alerta muda.
+- Central agora tambem alerta follow-ups comerciais atrasados/para hoje e follow-ups de cobranca atrasados quando esses dados estao carregados no modulo.
+- Central tambem alerta rotas logisticas atrasadas quando uma rota ativa tem data anterior a hoje.
+- Central tambem alerta certificado fiscal vencido ou vencendo em ate 30 dias a partir das configuracoes fiscais ativas.
+- Exportacao premium evoluiu para acoes agrupadas com CSV/PDF/Excel e JSON tecnico restrito a ADMIN onde aplicavel.
+- Status visuais foram ampliados para pedidos, fiscal, OS, financeiro, logistica, estoque e sincronizacao.
+- Validacao frontend mais recente: npm run build aprovado em 08/05/2026. Permanece apenas o aviso conhecido de bundle acima de 500 kB por concentracao de muitos modulos em App.jsx.
+
+ATUALIZACAO MULTIEMPRESA - 13/05/2026
+- Endurecimento iniciado no backend para respeitar separacao por id_empresa em pontos sensiveis.
+- Pedidos: listagem e busca detalhada agora usam a empresa do usuario autenticado.
+- Financeiro: listagem, resumo, busca, atualizacao, baixa, cancelamento, estorno e vinculos com pedido/usuario passam a validar a empresa do usuario autenticado.
+- Fiscal: preparacao de documento fiscal passou a buscar o pedido pela empresa da configuracao fiscal, evitando emissao com pedido de outra empresa.
+- Validacao tecnica: mvn -DskipTests compile aprovado; testes DocumentoFiscalServiceTest e FinanceiroServiceAsaasWebhookTest aprovados com 55 testes sem falhas.
+- Complemento aplicado na sequencia: dashboard geral de pedidos e dashboard por usuario passaram a calcular totais, receita, vendas por dia, ranking e ultimos pedidos por empresa autenticada; dashboard por usuario tambem valida se o usuario consultado pertence a empresa atual.
+- Validacao tecnica adicional: mvn -DskipTests compile aprovado apos filtros multiempresa nos dashboards de pedidos.
+- Proximo foco recomendado: varrer dashboards, produtos, clientes, fornecedores, schedulers e relatorios para eliminar consultas globais restantes antes de considerar multiempresa pronto para producao ampla.
+
+ATUALIZACAO DE PRONTIDAO COMERCIAL - 10/05/2026
+- Producao tecnica/comercial recebeu pacote documental completo para demonstracao, piloto assistido, producao controlada e entrega por cliente.
+- Percentual executivo atual: demonstracao comercial em 92% a 96%, piloto controlado em 90% a 94%, producao comercial completa em 90% a 96%, faltando 4% a 10% para producao ampla com risco baixo.
+- Ja foram criados os artefatos de deploy, homologacao, backup, restauracao, monitoramento, segredos, release, smoke test, Go/No-Go, suporte, SLA, carga inicial, LGPD, treinamento, piloto assistido, pacote de entrega e planos comerciais.
+- Criado `docs/PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md` para consolidar documentos, evidencias obrigatorias, LGPD, suporte, treinamento, integracoes, Go/No-Go e aceite antes de liberar cliente.
+- Criado `scripts/gerar-pacote-entrega.ps1` para gerar relatorio TXT do pacote por cliente, sem copiar segredos ou valores sensiveis.
+- Criado `docs/ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md` para conduzir demo, diagnostico, prova de valor, objecoes e proximos passos por perfil de cliente.
+- Criado `scripts/gerar-plano-demo-comercial.ps1` para gerar plano de demonstracao comercial por cliente/segmento.
+- Criado `docs/MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md` com planos Basico, Medio e Avancado, limites, valores sugeridos, implantacao, adicionais e regras de venda segura.
+- Criado `scripts/gerar-escopo-plano-comercial.ps1` para gerar anexo de escopo do plano contratado e evitar venda com limites indefinidos.
+- Criado `docs/REGISTRO_RISCOS_PENDENCIAS_CLIENTE_NEXUS_ONE.md` para controlar bloqueios, riscos altos, responsaveis, prazos e evidencias por cliente.
+- Criado `scripts/gerar-registro-riscos-pendencias.ps1` para gerar registro TXT de riscos/pendencias por cliente antes do Go/No-Go.
+- Criado `docs/FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md` para qualificar cliente antes da proposta/piloto e coletar operacao, escopo, dados, fiscal, pagamentos, infraestrutura e responsaveis.
+- Criado `scripts/gerar-ficha-diagnostico-cliente.ps1` para gerar ficha TXT de diagnostico/coleta por cliente.
+- Criado `docs/CHECKLIST_HANDOFF_COMERCIAL_IMPLANTACAO_SUPORTE_NEXUS_ONE.md` para formalizar a passagem de escopo, riscos, promessas e SLA entre comercial, implantacao e suporte.
+- Criado `scripts/gerar-handoff-comercial-implantacao-suporte.ps1` para gerar o handoff em TXT por cliente.
+- Criado `docs/CRONOGRAMA_IMPLANTACAO_CLIENTE_NEXUS_ONE.md` para organizar marcos, datas, responsaveis e evidencias antes e durante a operacao assistida.
+- Criado `scripts/gerar-cronograma-implantacao-cliente.ps1` para gerar cronograma TXT por cliente com dias uteis.
+- Criado `docs/MODELOS_COMUNICACAO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md` com mensagens padronizadas de inicio, dados, cronograma, treinamento, pendencias, Go/No-Go e aceite.
+- Criado `scripts/gerar-comunicacao-implantacao.ps1` para gerar comunicacoes TXT por cliente e tipo.
+- Criado `docs/ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md` para medir adocao, suporte, pendencias, valor percebido e risco apos implantacao.
+- Criado `scripts/gerar-saude-cliente-pos-implantacao.ps1` para gerar relatorio de saude do cliente com classificacao Verde/Amarelo/Vermelho.
+- Criado `docs/AUTORIZACAO_REFERENCIA_COMERCIAL_CLIENTE_NEXUS_ONE.md` para controlar uso de nome, logo, depoimento, caso e resultados de cliente.
+- Criado `scripts/gerar-autorizacao-referencia-comercial.ps1` para gerar autorizacao TXT de referencia comercial por cliente.
+- Criado `docs/PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md` para decidir quando sair de venda controlada para comercializacao ampla.
+- Criado `scripts/gerar-decisao-liberacao-comercial.ps1` para gerar decisao TXT de liberacao comercial.
+- Criado `docs/MATRIZ_SELECAO_CLIENTE_PILOTO_REAL_NEXUS_ONE.md` para escolher o primeiro cliente real com menor risco de escopo, integracao, fiscal, suporte e customizacao.
+- Criado `scripts/gerar-selecao-cliente-piloto-real.ps1` para gerar score TXT do cliente piloto real com alertas e decisao.
+- Criado `docs/PLANO_EXECUCAO_PRIMEIRO_CLIENTE_REAL_NEXUS_ONE.md` para transformar deploy, homologacao, operacao assistida, Go/No-Go, aceite e saude do cliente em uma sequencia unica.
+- Criado `scripts/gerar-plano-primeiro-cliente-real.ps1` para gerar TXT com marcos, checklist, bloqueios e decisao do primeiro cliente real.
+- Criado `docs/AUDITORIA_EVIDENCIAS_CLIENTE_REAL_NEXUS_ONE.md` para separar artefato criado de evidencia executada e decidir se um cliente real pode sustentar escala comercial.
+- Criado `scripts/gerar-auditoria-evidencias-cliente-real.ps1` para gerar auditoria TXT com percentual, bloqueios e decisao sobre producao ampla.
+- Criado `docs/PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md` para controlar o primeiro lote de vendas com perfil ideal, limites, canais, mensagem permitida e criterios de pausa.
+- Criado `scripts/gerar-plano-lancamento-comercial.ps1` para gerar TXT do lote comercial com metas, restricoes, indicadores e alertas.
+- Criado `docs/RELATORIO_RESULTADO_LOTE_COMERCIAL_NEXUS_ONE.md` para decidir se o lote comercial deve aumentar escala, manter, pausar, corrigir processo ou reposicionar oferta.
+- Criado `scripts/gerar-resultado-lote-comercial.ps1` para gerar TXT com conversao, saude dos clientes, incidentes, pendencias e decisao do lote.
+- Criado `docs/DECISAO_EXPANSAO_COMERCIAL_POS_LOTE_NEXUS_ONE.md` para formalizar aumento, manutencao, pausa, correcao ou reposicionamento apos resultado do lote.
+- Criado `scripts/gerar-decisao-expansao-comercial.ps1` para gerar TXT com limite do proximo lote, capacidade simultanea, riscos, responsavel e prazo de revisao.
+- Criado `docs/MATRIZ_CAPACIDADE_OPERACIONAL_ESCALA_NEXUS_ONE.md` para validar se comercial, implantacao, suporte, produto, infra e sucesso conseguem absorver novo lote.
+- Criado `scripts/gerar-capacidade-operacional-escala.ps1` para gerar TXT com capacidade, alertas, decisao e checklist antes de assumir mais vendas.
+- Criado `docs/MATRIZ_VIABILIDADE_FINANCEIRA_ESCALA_NEXUS_ONE.md` para validar margem, custos, descontos, implantacao, suporte e infraestrutura antes de escalar.
+- Criado `scripts/gerar-viabilidade-financeira-escala.ps1` para gerar TXT com receita, custos, margem, alertas e decisao financeira do lote.
+- Criado `docs/PLAYBOOK_COMERCIAL_QUALIFICACAO_NEXUS_ONE.md` para padronizar funil, score, criterios de avanco, red flags e limites de promessa antes de demo/proposta.
+- Criado `scripts/gerar-qualificacao-oportunidade.ps1` para gerar score TXT da oportunidade e decidir entre pausar, diagnosticar, demonstrar/propor ou seguir para piloto assistido.
+- Criado `docs/PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md` para controlar mensalidade, implantacao, vencimento, forma de pagamento, recorrencia, descontos e evidencias financeiras do cliente.
+- Criado `scripts/gerar-faturamento-cliente.ps1` para gerar relatorio TXT de faturamento por cliente antes de liberar piloto pago ou producao controlada paga.
+- Criado `docs/PROCESSO_RENOVACAO_RETENCAO_CLIENTE_NEXUS_ONE.md` para controlar renovacao, reajuste, upgrade, downgrade, pausa, retencao e cancelamento.
+- Criado `scripts/gerar-renovacao-retencao-cliente.ps1` para gerar registro TXT de decisao comercial pos-venda por cliente.
+- Criado `docs/PROCESSO_OFFBOARDING_ENCERRAMENTO_CLIENTE_NEXUS_ONE.md` para controlar cancelamento, fim de piloto, exportacao/retencao de dados, bloqueio de acessos e encerramento de integracoes.
+- Criado `scripts/gerar-offboarding-cliente.ps1` para gerar relatorio TXT de encerramento seguro do cliente.
+- Criado `docs/PLAYBOOK_COMUNICACAO_INCIDENTE_STATUS_NEXUS_ONE.md` para padronizar comunicacao externa de incidente, indisponibilidade, manutencao, contorno, encerramento e pos-incidente.
+- Criado `scripts/gerar-comunicado-incidente-status.ps1` para gerar comunicado TXT ao cliente com impacto, status, contorno, proxima atualizacao e controle interno.
+- Criado `docs/BASE_CONHECIMENTO_SUPORTE_CLIENTE_NEXUS_ONE.md` para padronizar FAQ, respostas recorrentes, artigos de suporte e orientacoes por modulo.
+- Criado `scripts/gerar-artigo-base-conhecimento.ps1` para gerar artigo TXT de base de conhecimento a partir de duvidas, treinamento, contornos e erros conhecidos.
+- Criado `docs/PROCESSO_NOTAS_VERSAO_CLIENTE_NEXUS_ONE.md` para comunicar mudancas de versao em linguagem de cliente, separando melhorias, correcoes, impacto, acao necessaria e riscos conhecidos.
+- Criado `scripts/gerar-nota-versao-cliente.ps1` para gerar nota TXT de versao por cliente/ambiente e vincular manifesto, smoke test, Go/No-Go e base de conhecimento.
+- Criado `docs/PROCESSO_FEEDBACK_NPS_CLIENTE_NEXUS_ONE.md` para coletar NPS, satisfacao, risco de cancelamento, oportunidades comerciais e feedback de produto.
+- Criado `scripts/gerar-feedback-nps-cliente.ps1` para gerar relatorio TXT de feedback/NPS com classificacao detrator/neutro/promotor, alertas e proxima acao.
+- Criado `docs/PROCESSO_PRIORIZACAO_ROADMAP_CLIENTE_NEXUS_ONE.md` para transformar feedback, incidentes, suporte e pedidos comerciais em decisao de roadmap por score.
+- Criado `scripts/gerar-priorizacao-roadmap.ps1` para gerar relatorio TXT de prioridade com impacto comercial, impacto operacional, recorrencia, risco, alinhamento e esforco.
+- Criado `docs/CHECKLIST_CONTRATO_TERMOS_COMERCIAIS_NEXUS_ONE.md` para revisar clausulas minimas de contrato, proposta ou aceite antes de cliente pago.
+- Criado `scripts/gerar-checklist-contrato-comercial.ps1` para gerar relatorio TXT de revisao contratual com alertas para integracoes, fiscal real, SLA especial e plano personalizado.
+- Criado `docs/MATRIZ_POSICIONAMENTO_COMPETITIVO_NEXUS_ONE.md` para orientar comparacao com planilhas, PDV simples, ERP local, ERP grande, sistema fiscal isolado e sistema barato.
+- Criado `scripts/gerar-posicionamento-competitivo.ps1` para gerar relatorio TXT de posicionamento por cliente, alternativa comparada, dor principal, diferencial e proximo passo.
+- Criado `docs/ONE_PAGE_COMERCIAL_DECISOR_NEXUS_ONE.md` para resumir dor, valor, escopo, evidencias, limites e proximo passo para dono, diretoria ou aprovador financeiro.
+- Criado `scripts/gerar-onepage-comercial-decisor.ps1` para gerar TXT executivo de uma pagina com alertas e checklist antes de enviar ao decisor.
+- Criado `docs/ATA_FECHAMENTO_COMERCIAL_NEXUS_ONE.md` para registrar decisao, objecoes, riscos, limites, valores e proximo passo antes de implantacao ou faturamento.
+- Criado `scripts/gerar-ata-fechamento-comercial.ps1` para gerar TXT de fechamento comercial com alertas e checklist.
+- Criado `docs/FICHA_ROI_VALOR_PERCEBIDO_NEXUS_ONE.md` para estimar valor percebido, ganho potencial, economia de horas, reducao de divergencias e payback conservador.
+- Criado `scripts/gerar-roi-valor-percebido.ps1` para gerar relatorio TXT de ROI/valor percebido com premissas, alertas e leitura comercial.
+- `docs/MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md`, `docs/GUIA_PRODUCAO_TECNICA_NEXUS_ONE.md`, `docs/PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md` e `docs/RELATORIO_STATUS_PRODUCAO_COMERCIAL_NEXUS_ONE.txt` foram atualizados para referenciar esses novos materiais.
+- Geradores testados com sucesso: pacote de entrega, selecao do cliente piloto real, plano do primeiro cliente real, auditoria de evidencias do cliente real, plano de lancamento comercial, resultado do lote comercial, decisao de expansao comercial, capacidade operacional para escala, viabilidade financeira para escala, qualificacao de oportunidade, posicionamento competitivo, one-page comercial para decisor, ata de fechamento comercial, ROI/valor percebido, checklist contratual, faturamento do cliente, renovacao/retencao, offboarding, comunicado de incidente/status, artigo de base de conhecimento, nota de versao para cliente, feedback/NPS, priorizacao de roadmap, plano de demo comercial, escopo de plano comercial e verificacao de carga inicial.
+- O que ainda falta nao e criar mais documento base, e sim executar em ambiente/cliente real: deploy definitivo, banco real, backup agendado, restauracao assinada, monitoramento externo, cofre/rotacao real de segredos, homologacoes oficiais e aceite do primeiro cliente.
+
+ARQUIVOS ANALISADOS
+1. NEXUS ONE - RELATORIO DE MELHORIAS PREMIUM SaaS.txt
+2. RELATORIO DE SUGESTOES - ABA DASHBOARD NEXUS ONE.txt
+3. RELATORIO DE SUGESTOES - ABA VENDAS NEXUS ONE.txt
+4. RELATORIO DE SUGESTOES - ABA CAIXA NEXUS ONE.txt
+5. RELATORIO DE SUGESTOES - ABA CLIENTES NEXUS ONE.txt
+6. RELATORIO DE SUGESTOES - MODULO ESTOQUE.txt
+7. RELATORIO DE SUGESTOES - MODULO SERVICOS ORDEM DE SERVICO.txt
+8. RELATORIO DE ANALISE E SUGESTOES - MODULO FINANCEIRO.txt
+9. RELATORIO DE ANALISE E SUGESTOES - MODULO LOGISTICA.txt
+10. RELATORIO DE ANALISE E SUGESTOES - MODULO COLABORADORES.txt
+
+============================================================
+PRIORIDADE 1 - MELHORIAS DE ALTO IMPACTO COMERCIAL
+============================================================
+
+[~] 1. Criar padrao premium final de UI
+Modulo: Sistema geral
+Impacto: Muito alto
+Descricao:
+- [x] Padronizar cards, badges, tabelas, botoes, empty states e dark mode.
+- [x] Remover fundos claros fortes restantes em telas dark nos principais componentes.
+- [x] Melhorar espacamento entre secoes, paineis e blocos de acao.
+- [x] Usar microinteracoes: hover, transicao, glow discreto e estados de foco.
+- [~] Seguir refinando telas especificas conforme novos fluxos forem homologados.
+Motivo:
+Essa melhoria aumenta a sensacao de software pago e melhora demonstracoes para clientes.
+Observacao:
+Rodada de 08/05/2026 aplicada no frontend com acabamento premium nos componentes globais e modulos operacionais principais.
+
+[ ] 2. Evoluir dashboard executivo para BI operacional
+Modulo: Visao geral / Relatorios
+Impacto: Muito alto
+Descricao:
+- Adicionar graficos de vendas por dia, semana, mes e ano.
+- Adicionar comparativo de periodo anterior.
+- Adicionar crescimento mensal, ticket medio, receita liquida e lucro operacional.
+- Criar cards com tendencias e mini graficos.
+- Exibir insights automaticos como: melhor dia de venda, forma de pagamento dominante, filial lider, produto mais vendido.
+Motivo:
+Transforma a tela inicial em central de decisao empresarial.
+
+[~] 3. Criar exportacao premium unificada
+Modulo: Sistema geral / Relatorios / Financeiro / Fiscal / Vendas
+Impacto: Alto
+Descricao:
+- [x] Trocar varios botoes CSV/PDF soltos por grupos de exportacao mais limpos em blocos criticos.
+- [x] Opcoes recomendadas iniciadas: CSV, PDF, Excel e JSON.
+- [x] Restringir JSON tecnico a ADMIN quando aplicavel.
+- [~] Manter a expansao gradual para todas as telas exportaveis conforme prioridade de negocio.
+Motivo:
+Reduz poluicao visual e deixa o sistema mais profissional.
+Observacao:
+Implementacao premium ja aplicada em areas fiscais/comerciais e utilitarios globais de exportacao; falta percorrer todos os relatorios legados.
+
+[x] 4. Padronizar status visuais
+Modulo: Sistema geral
+Impacto: Alto
+Descricao:
+- [x] Criar badges padronizados para pendente, processando, aprovado, cancelado, erro, aberto, concluido, atrasado, estoque critico e estoque baixo.
+- [x] Usar cores consistentes por modulo e por gravidade.
+- [x] Ampliar mapeamento para status fiscais, OS, financeiro, logistica, estoque e pedidos.
+Motivo:
+Melhora leitura operacional e reduz erro do usuario.
+Observacao:
+Concluido no frontend para os status principais conhecidos. Novos status futuros devem entrar no mesmo padrao.
+
+[~] 5. Criar central de notificacoes e alertas
+Modulo: Sistema geral
+Impacto: Alto
+Descricao:
+- [x] Alertas de estoque baixo.
+- [~] Contas vencendo e vencidas / financeiro critico.
+- [x] Pedidos pendentes.
+- [x] Follow-ups atrasados.
+- [x] Rotas atrasadas.
+- [x] Certificado fiscal vencendo.
+- [x] Comunicados internos para colaboradores com cadastro operacional incompleto.
+- [x] Filtros por criticidade, resumo de prioridade, acao Visto, Restaurar vistos e persistencia local.
+- [x] Faixa executiva com abertos/vistos e acao Marcar todos.
+Motivo:
+O sistema passa de cadastro para operacao ativa.
+Observacao:
+Central operacional da topbar foi criada e ajustada em 08/05/2026 e ampliada em 11/05/2026 com comunicado interno para colaboradores ativos sem filial, cargo ou departamento. Ainda faltam canais reais/tempo real e novos tipos de alerta conforme novas homologacoes.
+
+============================================================
+PRIORIDADE 2 - MELHORIAS POR MODULO
+============================================================
+
+[~] 6. Melhorar aba Vendas como central comercial modular
+Modulo: Vendas
+Impacto: Muito alto
+Descricao:
+- [x] Manter subabas: Resumo, Nova venda, Pedidos, CRM, Separacao, Analytics, Ranking e Nota fiscal.
+- [x] Melhorar cards de resumo com indicadores de prioridade.
+- [x] Evoluir graficos de vendas com comparativo, metas e produtos.
+- [x] Separar melhor acoes fiscais da tabela de pedidos.
+- [x] Melhorar CRM/follow-up com funil, agenda e historico do cliente.
+- [x] Criar leitura clara de pedidos pendentes, propostas paradas, fiscal pendente e separacao.
+- [x] Adicionar KPIs complementares de conversao, ticket medio, valor aberto no funil e atingimento de meta.
+- [x] Persistir regras de automacao comercial configuraveis inicialmente no frontend.
+- [x] Persistir regras de automacao comercial no backend por empresa/filial.
+- [x] Fazer as regras de alto valor aberto e sem proxima acao influenciarem o envio real de follow-up comercial no backend.
+- [x] Enriquecer payload externo de follow-up comercial com assunto e mensagem pronta para WhatsApp/e-mail/webhook.
+- [x] Persistir validade e condicoes comerciais do orcamento para impressao posterior da proposta.
+- [~] Homologar canal externo real para follow-up comercial: WhatsApp, e-mail ou webhook do cliente.
+- [x] Criar evidencia formal de homologacao de notificacoes externas por cliente/canal.
+- [x] Criar gerador de evidencia de notificacoes para cliente piloto.
+Observacao:
+Melhoria ja iniciada e parcialmente implementada no frontend/backend; webhook ja usa as regras persistidas, alto valor e sem proxima acao ja participam da selecao de notificacao comercial, e o payload externo ja leva assunto/mensagem pronta. Falta homologacao ponta a ponta com o canal real escolhido pelo cliente.
+Decisao de continuidade:
+- Se houver canal real do cliente disponivel, concluir homologacao externa de follow-up comercial.
+- Se ainda nao houver canal real, seguir para a melhoria 7 (Caixa/PDV) sem bloquear o roadmap.
+
+[~] 7. Melhorar aba Caixa para operacao de PDV premium
+Modulo: Caixa
+Impacto: Muito alto
+Descricao:
+- [x] Reduzir poluicao visual dos botoes.
+- [x] Destacar status do caixa: aberto, fechado, operador, filial, saldo.
+- [x] Melhorar pagamento misto com campos claros por metodo.
+- [x] Criar resumo de recebimentos por forma de pagamento.
+- [x] Melhorar fluxo de abertura, suprimento, sangria, fechamento e conciliacao.
+- [x] Criar comprovante/recibo com visual mais profissional.
+- [x] Reorganizar o recebimento no formato POS: Pedido/itens/produtos/observacao a esquerda e Pagamento/Pix/cartao/dinheiro/resumo a direita.
+- [x] Aplicar base dark premium ao PDV, com total mais dominante e painel de pagamento destacado.
+- [x] Criar identidade visual por forma de pagamento: Pix, dinheiro, credito, debito, boleto e misto.
+- [x] Adicionar cabecalhos operacionais Pedido/Pagamento e status visual para Pix/boleto gerado ou aguardando geracao.
+- [x] Adicionar conferencia final antes de receber/finalizar, bloqueando pagamento misto divergente e dinheiro abaixo do total.
+- [~] Evoluir Pix com QR Code/temporizador/status em tempo real quando houver provedor real.
+Motivo:
+Caixa e uma area sensivel e precisa ser simples, rapida e confiavel.
+Observacao:
+Melhoria operacional concluida no frontend: faixa operacional do caixa, resumo diario por forma de pagamento, totais visiveis no pagamento misto, comprovante de recebimento para o ultimo pedido recebido e conciliacao visual antes do fechamento com saldo esperado, valor contado e divergencia. Rodada visual aplicada em 08/05/2026 reorganizou o recebimento em duas colunas no formato POS recomendado, iniciou o dark premium dedicado ao Caixa, destacou total/pagamento e diferenciou visualmente cada forma de pagamento. Rodada de 13/05/2026 adicionou conferencia final no PDV e no recebimento de pedidos pendentes, mostrando total, cliente, forma de pagamento, troco ou diferenca do misto e bloqueando a acao quando a conferencia nao fecha.
+
+[x] 8. Evoluir Clientes para mini CRM
+Modulo: Clientes
+Impacto: Alto
+Descricao:
+- [x] Adicionar historico de compras por cliente.
+- [x] Adicionar ultima compra, ticket medio, total gasto e frequencia.
+- [x] Criar tags: VIP, inativo, novo, recorrente, inadimplente.
+- [x] Adicionar timeline de relacionamento.
+- [x] Adicionar follow-up por cliente.
+- [x] Melhorar ficha do cliente com indicadores comerciais.
+Motivo:
+Eleva a aba de cadastro para carteira comercial real.
+Observacao:
+Melhoria concluida no frontend: ficha comercial com tags automaticas, indicadores, historico, timeline de compras/follow-ups e criacao de follow-up comercial vinculado a pedidos abertos do cliente.
+
+[x] 9. Evoluir Estoque para inteligencia operacional
+Modulo: Estoque
+Impacto: Muito alto
+Descricao:
+- [x] Melhorar alerta de estoque: critico, baixo e normal.
+- [x] Criar sugestao de reposicao automatica.
+- [x] Adicionar curva ABC, giro de estoque e produtos sem movimento.
+- [x] Melhorar compras com fornecedor, custo medio, previsao de ruptura e compra sugerida.
+- [x] Evoluir etiquetas com QR Code, codigo de barras, preview, impressao em lote e modelo termico.
+- [x] Melhorar inventario/balanco de estoque com contagem, divergencia e exportacao.
+Motivo:
+Estoque e um dos modulos mais fortes e pode virar diferencial comercial.
+Observacao:
+Melhoria concluida no frontend: painel de inteligencia de estoque com severidade critico/baixo/normal, reposicao sugerida, curva ABC, giro, produtos sem movimento, previsao simples de ruptura, exportacao CSV/PDF, fornecedor exibido nas prioridades e custo medio ponderado calculado a partir dos itens reais de compra; etiquetas ganharam ferramenta propria com preview, codigo de barras Code128, QR Code SVG local escaneavel, impressao termica individual e lote filtrado.
+
+[~] 10. Evoluir Servicos / Ordem de Servico
+Modulo: Servicos
+Impacto: Alto
+Descricao:
+- [x] Transformar abertura de OS em fluxo por etapas: cliente, tecnico, servico, checklist, prazo e finalizar.
+- [x] Criar checklist interativo com checkbox e modelos salvos.
+- [x] Adicionar prioridade: critica, alta, media e baixa.
+- [x] Criar Kanban operacional: aberta, em analise, aprovada, em execucao, concluida e faturada.
+- [~] Adicionar SLA, timeline, anexos, fotos, assinatura do cliente e pecas utilizadas.
+- [x] Criar painel de controle para OS recorrentes com vencidas, proximas, faturamento previsto e exportacao CSV.
+Motivo:
+Transforma OS em operacao tecnica real, nao apenas cadastro.
+Observacao:
+Rodada aplicada no frontend: abertura de OS virou fluxo por etapas, checklist ganhou modelos e marcacao interativa, prioridade passou a ser persistida nas observacoes, lista/exportacao exibem SLA e prioridade, e o painel ganhou Kanban operacional por status. Rodada de 11/05/2026 adicionou linha do tempo operacional, painel de evidencias pendentes e campos de pecas, evidencias/anexos e assinatura do cliente salvos em observacao estruturada. Rodada de 13/05/2026 transformou pecas utilizadas, evidencias, anexos e assinatura do cliente em campos formais na API/backend de Ordem de Servico, com DTOs, persistencia, retorno para o frontend e leitura retrocompativel das OS antigas com marcadores na observacao. A mesma rodada integrou faturamento de OS ao financeiro, gerando receita pendente vinculada e botao operacional no frontend, adicionou baixa operacional de pecas no estoque por OS com controle anti-duplicidade, incluiu seletor assistido de produto/quantidade no formulario da OS, criou grade inicial com remocao, totais de custo, venda estimada e margem, passou a persistir os itens de pecas como entidade propria no backend, adicionou relatorio inicial de margem de pecas por OS/produto/tecnico com exportacao CSV/PDF, registrou aceite do cliente com responsavel, documento, observacao e data, implementou upload real de anexos/fotos da OS com armazenamento local configuravel e download pela API, adicionou upload especifico de assinatura digitalizada que marca o aceite do cliente, incluiu assinatura desenhada em tela/canvas gerando PNG para o mesmo fluxo, adicionou relatorio historico por periodo, cliente, tecnico e status com KPIs e exportacao CSV/PDF e formalizou regras de contrato, garantia e recorrencia na OS. Rodada complementar de 13/05/2026 adicionou controle operacional de recorrencias de OS no frontend, classificando vencidas, proximas, sem data e faturamento previsto, com exportacao CSV. Ainda falta automatizar geracao futura de OS recorrente e faturamento recorrente por contrato quando o cliente exigir.
+
+[~] 11. Evoluir Financeiro para controle empresarial completo
+Modulo: Financeiro
+Impacto: Muito alto
+Descricao:
+- [x] Melhorar cards financeiros com tendencias, fluxo mensal e comparativo.
+- [x] Criar contas a pagar/receber com prioridade visual.
+- [x] Criar conciliacao entre venda, caixa e financeiro.
+- [x] Melhorar inadimplencia e follow-up de cobranca.
+- [x] Criar DRE simples: receita, custo, despesa, lucro bruto e lucro operacional.
+- [x] Adicionar previsao de caixa inicial e comparativo mensal.
+- [x] Criar plano de acao financeiro automatico por prioridade.
+- [x] Criar checklist de prontidao contabil/tributaria do DRE com categorias pendentes, taxas/impostos, custos diretos e exportacao CSV.
+Motivo:
+Financeiro e um dos modulos que mais aumenta valor percebido de ERP.
+Observacao:
+Financeiro recebeu DRE gerencial no frontend com receita bruta, deducoes/taxas, receita liquida, custo de mercadorias/estoque, lucro bruto, despesas operacionais, resultado operacional, margens e exportacao CSV/PDF. Tambem recebeu comparativo do mes atual contra mes anterior, previsao de saldo dos proximos 30 dias incluindo recorrencias ativas, plano de acao automatico baseado em cobranca/previsao/DRE/conciliacao, matriz de risco da inadimplencia por cliente com acao sugerida, placar de saude da conciliacao entre vendas/caixa/financeiro e prioridade visual em contas a pagar/receber. Rodada de 13/05/2026 adicionou checklist de prontidao contabil/tributaria ao DRE, apontando lancamentos aprovados sem categoria, deducoes/taxas, custos diretos e score de leitura antes de usar o resultado fora da gestao. Ainda falta aprofundar automacoes contabeis e DRE contabil/tributaria validada por contador.
+
+[~] 12. Evoluir Logistica para central de entregas
+Modulo: Logistica
+Impacto: Alto
+Descricao:
+- [x] Criar painel visual de despacho de rotas e mapa operacional sem provedor externo.
+- [x] Melhorar cards de entregas, rotas, veiculos e entregadores.
+- [x] Adicionar status: pendente, em rota, entregue, atrasado, cancelado.
+- [x] Criar romaneio de rota e comprovante individual de entrega.
+- [x] Permitir ESTOQUISTA operar envio/separacao conforme permissao.
+- [x] Criar indicadores de prazo, custo por entrega, rotas atrasadas e desempenho por motorista.
+- [x] Criar historico operacional logistico com eventos recentes.
+Motivo:
+Logistica conecta vendas, estoque e atendimento ao cliente.
+Observacao:
+Logistica recebeu central de despacho no frontend com rotas atrasadas, entregas sem rota, rotas sem motorista/veiculo, custo por entrega, desempenho por motorista, romaneio de rota, comprovante individual de entrega, historico operacional recente, mapa operacional visual de rotas/paradas, exportacao CSV/PDF e atalhos para planejar rota ou vincular recursos. Rodada de 11/05/2026 adicionou esteira operacional de entregas por status: pendente, em rota, entregue, atrasado e cancelado, com exportacao CSV/PDF. Ainda falta mapa georreferenciado com provedor real, se o cliente exigir.
+
+[~] 13. Evoluir Colaboradores para RH operacional
+Modulo: Colaboradores
+Impacto: Alto
+Descricao:
+- [~] Adicionar avatar/foto de perfil.
+- [~] Criar organograma com setores, lider, supervisor e subordinados.
+- [~] Melhorar permissoes por modulo e por acao.
+- [~] Criar auditoria: ultimo login, historico de acoes, IP e alteracoes.
+- [~] Criar metas por perfil: vendedor, financeiro, entregador, estoquista.
+- [~] Adicionar escala, jornada, turnos, ferias, afastado e desligado.
+- [x] Criar fila de regularizacao RH por colaborador com pendencias de filial, cargo, setor, jornada, acesso, permissao e auditoria.
+- [x] Criar plano de risco RH com colaboradores sem filial, filiais sem gestor, cargos incompletos e acessos bloqueados/inativos.
+- [x] Criar matriz de cobertura por filial com gestor, vendas, caixa, estoque e financeiro.
+- [x] Criar organograma operacional por filial, perfil e cargo, com exportacao CSV/PDF.
+Motivo:
+Transforma usuario/perfil em gestao interna real.
+Observacao:
+Rodada de 11/05/2026 adicionou avatar visual automatico por iniciais e suporte a URL de foto quando o backend retornar campo de imagem/avatar, com estado visual para ativo, inativo e bloqueado. Tambem adicionou painel de metas por perfil no frontend para vendedor, financeiro, entregador e estoquista, com exportacao CSV/PDF e leitura de cobertura ativa. A mesma rodada iniciou escala/jornada com painel de vinculos ativos, ferias, afastados, desligados, inativos e resumo por turno/jornada, preparado para campos futuros do backend. Tambem foi adicionada leitura de permissoes operacionais por modulo e acao sensivel, com ajustes manuais e bloqueios por colaborador. Auditoria RH foi iniciada com ultimos eventos por usuario, IP quando disponivel, acoes sensiveis e usuarios sem rastro recente. Organograma recebeu hierarquia por filial/setor com lider, supervisor e subordinados inferidos por perfil/cargo. Rodada de 13/05/2026 adicionou fila de regularizacao RH por colaborador, consolidando pendencias de filial, cargo, setor, jornada, acesso, permissao manual e auditoria recente com exportacao CSV/PDF. Ainda faltam upload/armazenamento real de foto no backend, metas persistidas por perfil alem da meta comercial ja existente, cadastro completo de escala/ferias/afastamento, refinamento de workflow de aprovacao de permissao, evento explicito de ultimo login no backend e relacionamento formal lider-supervisor-subordinado persistido.
+
+============================================================
+PRIORIDADE 3 - MELHORIAS AVANCADAS
+============================================================
+
+[~] 14. Criar permissoes enterprise
+Modulo: Admin / Sistema geral
+Impacto: Alto
+Descricao:
+- [x] Permissao por modulo.
+- [x] Permissao por acao.
+- [x] Bloqueio de recursos sensiveis por perfil com mapa de endurecimento, limite recomendado e alertas de excesso.
+- [x] Auditoria de permissoes.
+- Exemplo: pode cancelar venda, pode operar caixa, pode exportar JSON, pode editar financeiro, pode emitir fiscal.
+- [x] Criar exportacao CSV/PDF da matriz de permissoes por perfil, modulo e acao.
+- [x] Criar governanca de acesso com permissoes manuais, usuarios sem filial e eventos sensiveis.
+- [x] Criar painel de auditoria por modulo com ranking de eventos e sensibilidade.
+- [x] Criar mapa de permissoes sensiveis com usuarios liberados, risco e ajustes manuais.
+Motivo:
+Necessario para sistema multiusuario e multiempresa.
+Observacao:
+Rodada de 13/05/2026 adicionou painel de endurecimento de acesso sensivel no Admin, comparando usuarios liberados, limite recomendado por risco, excecoes manuais e usuarios inativos em permissoes criticas, com exportacao CSV/PDF. Ainda falta ligar esse fluxo a aprovacao formal de permissao quando o cliente exigir.
+
+[~] 15. Criar auditoria operacional
+Modulo: Sistema geral
+Impacto: Alto
+Descricao:
+- [~] Registrar alteracoes sensiveis: caixa, financeiro, estoque, fiscal, usuarios e pedidos.
+- [x] Exibir historico por entidade.
+- [x] Permitir filtro por usuario, data, modulo e acao.
+- [x] Criar filtros por busca, modulo, acao e periodo na tela administrativa.
+- [x] Criar resumo por modulo e contagem de eventos sensiveis.
+- [x] Criar historico por entidade agrupando modulo, registro, usuarios, ultima acao e eventos sensiveis.
+Motivo:
+Traz rastreabilidade, seguranca e confianca empresarial.
+
+[~] 16. Criar analytics por modulo
+Modulo: Todos
+Impacto: Medio/alto
+Descricao:
+- Vendas: funil, ranking, margem e metas.
+- Caixa: formas de pagamento, diferenca, fechamento e operador.
+- Estoque: giro, ruptura, ABC e reposicao.
+- Financeiro: fluxo, inadimplencia, DRE e previsao.
+- Logistica: entregas, atrasos, rotas e entregadores.
+- Servicos: SLA, tecnico, prioridade e conclusao.
+- Clientes: recorrencia, ticket, inativos e VIP.
+- [x] Criar BI executivo com comparativo de periodo atual contra periodo anterior equivalente.
+- [x] Criar insights automaticos de vendas, ticket medio, financeiro, logistica e clientes.
+- [x] Criar analytics por modulo com exportacao CSV/PDF.
+Motivo:
+Cria percepcao de inteligencia operacional.
+
+[~] 17. Criar relatorios configuraveis
+Modulo: Relatorios
+Impacto: Medio/alto
+Descricao:
+- Relatorios por periodo, filial e modulo.
+- [x] Campos selecionaveis.
+- Exportacao agendada.
+- [x] Layout de impressao mais executivo.
+- [x] Modo fullscreen analytics.
+- [x] Criar filtro consolidado por filial e periodo no modulo Relatorios.
+- [x] Criar relatorios executivos exportaveis por vendas, fiscal, financeiro, colaboradores e analytics.
+- [x] Permitir selecao de campos por relatorio antes da exportacao CSV/PDF.
+- [x] Padronizar impressao executiva com cabecalho, resumo, tabela responsiva e rodape.
+- [x] Criar modo analytics em tela cheia com saida por botao ou tecla Esc.
+Motivo:
+Ajuda o sistema a parecer ERP SaaS completo.
+
+[~] 18. Melhorar responsividade premium
+Modulo: Sistema geral
+Impacto: Medio
+Descricao:
+- Tabelas inteligentes em notebook.
+- Cards adaptaveis em telas menores.
+- Sidebar colapsavel mais refinada.
+- Mobile admin melhorado.
+- [x] Criar ajustes intermediarios para notebook em ate 1280px.
+- [x] Melhorar comportamento de topbar, menus, acoes e modais em telas ate 760px.
+- [x] Proteger tabelas com rolagem horizontal e larguras minimas responsivas.
+- [x] Refinar layout compacto em telas ate 480px.
+Motivo:
+Sistema precisa ser confortavel em qualquer tela de operacao.
+
+[~] 19. Criar widgets configuraveis
+Modulo: Dashboard / Relatorios
+Impacto: Medio
+Descricao:
+- Widgets arrastaveis.
+- Cards favoritos por perfil.
+- Ordem customizavel.
+- Dashboard por perfil: admin, gerente, caixa, vendedor, financeiro, estoquista.
+- [x] Criar configurador de widgets na Visao Geral com persistencia local por perfil.
+- [x] Permitir ocultar/mostrar widgets favoritos.
+- [x] Permitir alterar ordem logica dos widgets com comandos Subir/Descer.
+- [x] Adaptar widgets exibidos ao perfil logado e ao modulo permitido.
+Motivo:
+Melhora personalizacao e sensacao SaaS moderno.
+
+[~] 20. Preparar IA operacional futura
+Modulo: Sistema geral
+Impacto: Futuro
+Descricao:
+- Insights automaticos.
+- Alertas inteligentes.
+- Previsao de demanda.
+- Recomendacao de reposicao.
+- Analise de inadimplencia.
+- Sugestoes de melhoria operacional.
+- [x] Criar Copiloto operacional local na Visao Geral, sem depender de API externa.
+- [x] Criar previsao simples de receita para 30 dias pela media diaria do periodo.
+- [x] Criar recomendacao de reposicao por ruptura de estoque.
+- [x] Criar analise de inadimplencia e agenda de cobranca quando houver vencidos.
+- [x] Criar sugestoes de melhoria para conversao comercial e logistica.
+Motivo:
+Pode virar diferencial forte, mas deve vir depois da base operacional estar madura.
+
+[~] 21. Preparar producao tecnica
+Modulo: Infraestrutura / Operacao
+Impacto: Alto
+Descricao:
+- Deploy definitivo.
+- Banco de producao.
+- Backups.
+- Logs e monitoramento.
+- Segredos/variaveis protegidas.
+- Ambiente de homologacao separado.
+- Plano de rollback.
+- Documentacao operacional para suporte.
+- [x] Criar `.env.example` com variaveis de banco, JWT, fiscal, Asaas e notificacoes.
+- [x] Criar Dockerfile do backend, Dockerfile do frontend, Nginx e `docker-compose.prod.yml`.
+- [x] Criar perfil `prod` para reduzir SQL verboso.
+- [x] Criar scripts iniciais de backup PostgreSQL e rollback por referencia Git.
+- [x] Criar guia tecnico de producao com checklist operacional.
+- [x] Criar checklist de cliente piloto com criterios de entrada, aceite e saida.
+- [x] Criar roteiro de suporte operacional com triagem por prioridade e modulo.
+- [x] Criar healthcheck no Docker Compose para backend e frontend.
+- [x] Criar script de verificacao diaria de producao/homologacao.
+- [x] Criar script de restauracao de backup PostgreSQL.
+- [x] Criar roteiro de monitoramento, backup, restauracao e logs.
+- [x] Criar politica formal de segredos para homologacao/producao.
+- [x] Criar script de validacao de `.env` para bloquear placeholders, JWT fraco e integracoes sem token real.
+- [x] Criar processo formal de implantacao com abertura, preparacao tecnica, carga inicial, treinamento, operacao assistida e aceite.
+- [x] Criar termo de aceite para assinatura do cliente e responsavel Nexus One.
+- [x] Criar `.env.homolog.example` e `docker-compose.homolog.yml` para ambiente de homologacao separado.
+- [x] Criar guia dedicado para subida, validacao e encerramento do ambiente de homologacao.
+- [x] Parametrizar backup PostgreSQL por compose, pasta de saida e servico.
+- [x] Criar script de agendamento diario de backup no Windows.
+- [x] Criar script de monitoramento de disponibilidade com log local e alerta por webhook.
+- [x] Criar script de agendamento recorrente do monitoramento no Windows.
+- [x] Criar guia de deploy em servidor com pre-deploy, subida, pos-deploy, evidencias e rollback.
+- [x] Criar script de pre-deploy para validar arquivos criticos, segredos e compose.
+- [x] Criar inventario de segredos sem valores reais e rotina de registro de rotacao.
+- [x] Criar auditoria de segredos que gera relatorio sem expor valores sensiveis.
+- [x] Criar guia de provisionamento de banco para producao/homologacao.
+- [x] Parametrizar restauracao PostgreSQL por compose, pasta de backup e servico.
+- [x] Criar gerador de evidencia de restauracao de backup.
+- [x] Criar processo formal de release com evidencias, decisao e rollback.
+- [x] Criar gerador de manifesto de release com versao, branch, commit e checklist.
+- [x] Criar smoke test operacional via API para health, login e modulos criticos.
+- [x] Criar roteiro de smoke test pos-deploy com validacao manual complementar.
+- [x] Criar matriz Go/No-Go comercial com criterios bloqueantes e classificacao de entrega.
+- [x] Vincular termo de aceite e implantacao a decisao Go/No-Go.
+- [x] Criar politica de SLA e suporte com prioridades, prazos e escalonamento.
+- [x] Criar gerador de ficha de incidente de suporte.
+- [x] Criar matriz consolidada de homologacao de integracoes externas.
+- [x] Criar verificador de integracoes externas sem expor segredos.
+- [x] Criar ficha de prontidao comercial com liberacoes, condicionantes e bloqueios.
+- [x] Sincronizar resumo executivo do relatorio de producao comercial com os percentuais atuais.
+- [x] Criar modelo de proposta comercial controlada para piloto/producao controlada.
+- [x] Criar gerador de rascunho de proposta comercial controlada por cliente.
+- [x] Criar roteiro de treinamento por perfil operacional.
+- [x] Criar gerador de evidencia de treinamento por perfil.
+- [x] Criar roteiro de carga inicial de dados para implantacao.
+- [x] Criar modelos CSV e verificador de carga inicial.
+- [x] Criar politica de privacidade/LGPD para uso de dados reais.
+- [x] Criar gerador de registro de solicitacao LGPD.
+- [x] Criar plano de piloto assistido em 10 dias uteis.
+- [x] Criar gerador de diario operacional do piloto.
+- [x] Criar pacote consolidado de entrega do cliente com documentos, evidencias, LGPD, suporte, treinamento e integracoes.
+- [x] Criar gerador de relatorio do pacote de entrega por cliente.
+- [x] Criar roteiro de demonstracao comercial e prova de valor por segmento.
+- [x] Criar gerador de plano de demonstracao comercial por cliente.
+- [x] Criar matriz de planos comerciais com limites, adicionais, valores sugeridos e regras de venda segura.
+- [x] Criar gerador de anexo de escopo por plano comercial.
+- [x] Criar registro de riscos e pendencias por cliente.
+- [x] Criar gerador de registro de riscos/pendencias por cliente.
+- [x] Criar ficha de diagnostico e coleta inicial do cliente.
+- [x] Criar gerador de ficha de diagnostico/coleta por cliente.
+- [x] Criar checklist de handoff comercial, implantacao e suporte.
+- [x] Criar gerador de handoff comercial/implantacao/suporte por cliente.
+- [x] Criar cronograma de implantacao por cliente.
+- [x] Criar gerador de cronograma de implantacao por cliente.
+- [x] Criar modelos de comunicacao de implantacao com cliente.
+- [x] Criar gerador de comunicacao de implantacao por cliente/tipo.
+- [x] Criar rotina de sucesso do cliente pos-implantacao.
+- [x] Criar gerador de relatorio de saude do cliente pos-implantacao.
+- [x] Criar autorizacao de referencia comercial do cliente.
+- [x] Criar gerador de autorizacao de referencia comercial.
+- [x] Criar plano de liberacao comercial ampla.
+- [x] Criar gerador de decisao de liberacao comercial.
+Motivo:
+Reduz risco antes de comercializar e facilita homologacao em ambiente separado.
+
+============================================================
+ORDEM RECOMENDADA DE IMPLEMENTACAO
+============================================================
+
+FASE 1 - POLIMENTO PREMIUM E UX
+1. Padronizar UI premium geral.
+2. Melhorar status/badges.
+3. Melhorar exportacao com menu unico.
+4. Melhorar estados vazios e loading.
+5. Refinar dark/light mode.
+
+FASE 2 - MODULOS OPERACIONAIS MAIS IMPORTANTES
+6. Vendas modular completa. Status: em andamento avancado; falta homologacao externa real do follow-up comercial.
+7. Caixa/PDV mais limpo e seguro. Proximo item recomendado se o canal externo real ainda nao estiver disponivel.
+8. Financeiro com conciliacao e DRE simples.
+9. Estoque com alertas, reposicao e inventario.
+10. Fiscal integrado ao fluxo de vendas.
+
+FASE 3 - INTELIGENCIA E RELACIONAMENTO
+11. Clientes como CRM.
+12. Dashboard executivo com insights.
+13. Relatorios premium.
+14. Logistica com rotas e romaneio.
+15. Servicos com Kanban e SLA.
+
+FASE 4 - ADMINISTRACAO ENTERPRISE
+16. Permissoes granulares.
+17. Auditoria operacional.
+18. Colaboradores com metas e organograma.
+19. Notificacoes em tempo real.
+20. Widgets configuraveis.
+
+FASE 5 - PRODUCAO COMERCIAL
+21. Ambiente de homologacao separado. Status: estrutura, guia e compose criados; falta executar com primeiro cliente/canal real.
+22. Backup e restauracao testados. Status: scripts, agendamento e evidencia criados; falta executar no servidor/cliente real.
+23. Monitoramento e logs. Status: roteiro, script e agendamento criados; falta configurar alerta real no servidor escolhido.
+24. Deploy definitivo e rollback documentado. Status: guia, pre-deploy, release, smoke test e rollback criados; falta executar no servidor escolhido.
+25. Pacote de entrega e aceite. Status: pacote, gerador, Go/No-Go, termo de aceite, proposta, demo, planos comerciais, selecao de cliente piloto real e kick-off do cliente real criados; falta aplicar com cliente real e arquivar assinaturas/evidencias.
+
+============================================================
+RESUMO DE IMPACTO
+============================================================
+
+Maiores ganhos visuais:
+- Padronizacao premium.
+- Graficos e cards com tendencias.
+- Badges/status.
+- Dark/light consistente.
+- Tabelas mais limpas.
+
+Maiores ganhos operacionais:
+- Caixa mais seguro.
+- Estoque inteligente.
+- Financeiro com conciliacao.
+- Vendas com CRM/fiscal/separacao.
+- Logistica integrada.
+
+Maiores ganhos comerciais:
+- Dashboard executivo forte.
+- Relatorios exportaveis.
+- Sensacao SaaS premium.
+- Demonstracao mais impactante.
+- Roteiro de demonstracao comercial e prova de valor por segmento.
+- Planos comerciais com limites, adicionais e regras de venda segura.
+- Pacote de entrega por cliente com evidencias, aceite e anexos.
+- Kick-off do cliente real antes de publicar D1 com dados reais.
+- Sistema parecendo ERP real, nao CRUD.
+
+============================================================
+OBSERVACOES
+============================================================
+
+1. Varias sugestoes pedem a mesma coisa com nomes diferentes:
+- "Visual premium"
+- "Remover fundos claros"
+- "Cards melhores"
+- "Badges/status"
+- "Graficos"
+- "Insights"
+- "Exportacao premium"
+
+2. As melhorias mais importantes para agora sao:
+- concluir ou homologar o restante da aba Vendas;
+- iniciar Caixa/PDV mais limpo e seguro se o canal externo real ainda nao estiver disponivel;
+- continuar polimento premium;
+- depois melhorar Financeiro e Estoque;
+- depois evoluir Dashboard, Clientes, Logistica, Servicos e Colaboradores.
+- para comercializar com seguranca, usar proposta controlada, matriz de planos, roteiro de demo, pacote de entrega, Go/No-Go e aceite.
+
+3. A parte fiscal deve continuar como fluxo controlado:
+- homologacao local;
+- checklist;
+- pacote real;
+- validacao externa;
+- emissao real apenas apos certificado, provedor/SEFAZ e contador.
+
+FIM DA LISTA CONSOLIDADA

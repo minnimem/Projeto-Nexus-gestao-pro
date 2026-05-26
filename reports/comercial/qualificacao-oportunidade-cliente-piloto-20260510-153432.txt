@@ -1,0 +1,50 @@
+﻿QUALIFICACAO DE OPORTUNIDADE COMERCIAL - NEXUS ONE
+Data: 10/05/2026 15:34:32
+Cliente: Cliente Piloto
+Segmento: Distribuidora
+Responsavel: Nexus One
+
+============================================================
+SCORE
+============================================================
+- Dor clara e relevante: 18 / 20
+- Decisor identificado: 12 / 15
+- Escopo compativel com produto atual: 14 / 15
+- Dados e responsaveis disponiveis: 12 / 15
+- Integracoes nao bloqueantes: 10 / 15
+- Orcamento e urgencia coerentes: 8 / 10
+- Fit do plano comercial: 9 / 10
+
+Total: 83 / 100
+Decisao: PROPOSTA + PILOTO ASSISTIDO
+Proximo passo: Gerar proposta, escopo do plano e preparar handoff para piloto assistido/producao controlada.
+
+============================================================
+CHECKLIST ANTES DE AVANCAR
+============================================================
+- [ ] Dor principal registrada.
+- [ ] Decisor e usuarios-chave identificados.
+- [ ] Usuarios, filiais, caixas e modulos estimados.
+- [ ] Responsaveis por dados, financeiro, fiscal/contador, TI e LGPD definidos.
+- [ ] Integracoes externas classificadas como obrigatorias, desejaveis ou fora do escopo.
+- [ ] Limites de plano e dependencias externas explicados.
+- [ ] Proximo artefato definido: diagnostico, demo, proposta, handoff ou pausa.
+
+============================================================
+RED FLAGS A REVISAR
+============================================================
+- Fiscal real imediato sem certificado, contador ou credenciamento.
+- Producao ampla solicitada sem piloto assistido.
+- Ausencia de decisor ou responsavel operacional.
+- Integracao obrigatoria nao homologada.
+- Customizacao grande fora do produto base.
+- Falta de dados, prazo ou responsavel para conferencia.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PLAYBOOK_COMERCIAL_QUALIFICACAO_NEXUS_ONE.md
+- docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md
+- docs\ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md

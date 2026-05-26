@@ -1,0 +1,98 @@
+﻿DECISAO DE LIBERACAO COMERCIAL - NEXUS ONE
+Data: 10/05/2026 22:33:34
+Status recomendado: AmplaComRestricoes
+Status sugerido pelas evidencias: Ampla
+Descricao: Liberado para comercializacao ampla com restricoes documentadas.
+Responsavel: Nexus One
+
+SCORE F4
+- Score total: 100/100
+- Cliente real saudavel: 25/25
+- Operacao repetivel: 20/20
+- Estabilidade tecnica: 20/20
+- Capacidade de escala: 20/20
+- Disciplina comercial: 15/15
+
+EVIDENCIAS F4 INFORMADAS
+- Cliente real com aceite: Sim
+- Saude do cliente: Verde
+- Operacao repetivel: Sim
+- Backup restaurado: Sim
+- Monitoramento ativo: Sim
+- Suporte/SLA definido: Sim
+- Capacidade de escala aprovada: Sim
+- Resultado do lote aprovado: Sim
+- Pendencias bloqueantes: 0
+- Incidentes P0/P1: 0
+- Promessas fora do escopo: 0
+
+BLOQUEIOS E ALERTAS
+- Nenhum bloqueio automatico.
+
+PRE-CHECK DA DECISAO
+- [ ] Registro de riscos/pendencias revisado.
+- [ ] Cronograma de implantacao atualizado.
+- [ ] Diario do piloto ou evidencias operacionais revisadas.
+- [ ] Handoff comercial/implantacao/suporte concluido.
+- [ ] Dependencias externas classificadas.
+- [ ] Cliente ciente de pendencias nao bloqueantes.
+- [ ] Suporte, SLA, canal e responsavel definidos.
+- [ ] Termo de aceite preparado quando houver producao controlada.
+
+CRITERIOS BLOQUEANTES A CONFIRMAR
+- [ ] Nao ha pendencia bloqueante aberta.
+- [ ] Backup localizado e restauracao testada quando houver uso real.
+- [ ] Smoke test operacional sem falha critica.
+- [ ] Caixa/venda/estoque/financeiro funcionam no escopo contratado.
+- [ ] Fiscal real nao foi vendido sem homologacao oficial.
+- [ ] Pagamento real nao foi vendido sem homologacao ponta a ponta.
+- [ ] Dados reais possuem responsavel LGPD.
+- [ ] Usuario-chave treinado.
+
+CHECKLIST F4 - COMERCIALIZACAO AMPLA
+- [ ] Pelo menos um cliente real implantado com aceite.
+- [ ] Cliente classificado como Verde na rotina de sucesso.
+- [ ] Deploy definitivo validado.
+- [ ] Banco real provisionado.
+- [ ] Backup agendado e restauracao testada com evidencia.
+- [ ] Monitoramento externo testado.
+- [ ] Segredos auditados e primeira rotacao registrada.
+- [ ] Smoke test operacional aprovado apos deploy.
+- [ ] Go/No-Go sem pendencia bloqueante.
+- [ ] Integracoes reais classificadas como homologadas, sandbox ou fora do escopo.
+- [ ] Suporte/SLA funcionando com canal e responsavel.
+- [ ] Processo comercial/implantacao/sucesso aplicado de ponta a ponta.
+
+RESTRICOES
+- Fiscal real depende de homologacao por cliente/filial/modelo.
+- Pagamento real depende de provedor e conciliacao ponta a ponta.
+- Notificacoes reais dependem de canal/token/webhook do cliente.
+- Producao ampla nao deve ser prometida sem evidencias reais.
+
+EVIDENCIAS REVISADAS
+- [ ] Handoff.
+- [ ] Diagnostico.
+- [ ] Cronograma.
+- [ ] Diario do piloto.
+- [ ] Registro de riscos.
+- [ ] Smoke test.
+- [ ] Backup/restauracao.
+- [ ] Integracoes/homologacoes.
+- [ ] Treinamento.
+- [ ] Termo de aceite.
+
+PROXIMA ACAO
+- Preparar campanha/comercializacao com limites e evidencias aprovadas.
+
+AUTORIZACAO
+- Responsavel tecnico:
+- Responsavel comercial:
+- Responsavel suporte/implantacao:
+- Data da decisao:
+- Condicoes para seguir:
+
+REFERENCIAS
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md
+- docs\FICHA_PRONTIDAO_COMERCIAL_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\MATRIZ_GO_NO_GO_COMERCIAL_NEXUS_ONE.md

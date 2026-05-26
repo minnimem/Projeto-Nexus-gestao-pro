@@ -1,0 +1,64 @@
+services:
+  postgres-homolog:
+    image: postgres:16.3
+    restart: unless-stopped
+    env_file:
+      - path: .env.homolog
+        required: false
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - nexus_postgres_homolog_data:/var/lib/postgresql/data
+      - ./backups/homolog:/backups
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend-homolog:
+    build:
+      context: ./backend/projectoads/projectoads
+    restart: unless-stopped
+    env_file:
+      - path: .env.homolog
+        required: false
+    environment:
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+      SERVER_PORT: 8081
+    depends_on:
+      postgres-homolog:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8081/health | grep -q 'UP'"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    ports:
+      - "${BACKEND_PORT:-8082}:8081"
+
+  frontend-homolog:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      backend-homolog:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost/ >/dev/null 2>&1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "${FRONTEND_PORT:-5174}:80"
+
+volumes:
+  nexus_postgres_homolog_data:

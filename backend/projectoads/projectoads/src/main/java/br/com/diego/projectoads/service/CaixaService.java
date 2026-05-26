@@ -2,6 +2,7 @@ package br.com.diego.projectoads.service;
 
 import br.com.diego.projectoads.config.Enum.Perfil;
 import br.com.diego.projectoads.config.Enum.StatusCaixa;
+import br.com.diego.projectoads.config.Enum.MetodoPagamento;
 import br.com.diego.projectoads.config.Enum.TipoMovimentoCaixa;
 import br.com.diego.projectoads.dto.*;
 import br.com.diego.projectoads.exception.BusinessException;
@@ -33,25 +34,32 @@ public class CaixaService {
     private final MovimentoCaixaRepository movimentoCaixaRepository;
     private final UsuarioRepository usuarioRepository;
     private final AuditoriaService auditoriaService;
+    private final PlanoComercialService planoComercialService;
 
     public CaixaService(CaixaRepository caixaRepository,
                         MovimentoCaixaRepository movimentoCaixaRepository,
                         UsuarioRepository usuarioRepository,
-                        AuditoriaService auditoriaService) {
+                        AuditoriaService auditoriaService,
+                        PlanoComercialService planoComercialService) {
         this.caixaRepository = caixaRepository;
         this.movimentoCaixaRepository = movimentoCaixaRepository;
         this.usuarioRepository = usuarioRepository;
         this.auditoriaService = auditoriaService;
+        this.planoComercialService = planoComercialService;
     }
 
     @Transactional
     public CaixaResponse abrir(CaixaAberturaRequest request) {
         Usuario usuario = usuarioAtual();
         validarOperadorCaixa(usuario);
+        if (usuario.getEmpresa() == null || usuario.getEmpresa().getId() == null) {
+            throw new BusinessException("Usuario sem empresa vinculada.");
+        }
 
         if (caixaRepository.existsByUsuarioAndStatus(usuario, StatusCaixa.ABERTO)) {
             throw new BusinessException("Usuario ja possui caixa aberto.");
         }
+        planoComercialService.validarLimiteCaixasAbertos(usuario.getEmpresa());
 
         Caixa caixa = new Caixa();
         caixa.setUsuario(usuario);
@@ -159,6 +167,7 @@ public class CaixaService {
     @Transactional
     public CaixaResponse pagamentoRecebido(UUID caixaId, CaixaMovimentoRequest request) {
         Caixa caixa = buscarCaixaOperavel(caixaId);
+        MetodoPagamento metodoMovimento = metodoPagamentoParaMovimentoCaixa(request.getMetodoPagamento(), request.getObservacao());
         MovimentoCaixa movimento = registrarMovimento(
                 caixa,
                 TipoMovimentoCaixa.PAGAMENTO_RECEBIDO,
@@ -166,8 +175,8 @@ public class CaixaService {
                 textoOuPadrao(request.getDescricao(), "Pagamento recebido"),
                 request.getObservacao()
         );
-        movimento.setMetodoPagamento(request.getMetodoPagamento());
-        movimento.setParcelas(normalizarParcelas(request.getMetodoPagamento(), request.getParcelas()));
+        movimento.setMetodoPagamento(metodoMovimento);
+        movimento.setParcelas(normalizarParcelas(metodoMovimento, request.getParcelas()));
         movimentoCaixaRepository.save(movimento);
 
         auditoriaService.registrar("Caixa", "PAGAMENTO_RECEBIDO", "Pagamento recebido no caixa", caixa.getId());
@@ -223,11 +232,12 @@ public class CaixaService {
         }
 
         MovimentoCaixa movimento = new MovimentoCaixa();
+        MetodoPagamento metodoMovimento = metodoPagamentoParaMovimentoCaixa(pedido, detalhesPagamento);
         movimento.setCaixa(caixa);
         movimento.setTipo(TipoMovimentoCaixa.VENDA);
         movimento.setValor(nvl(pedido.getValorTotalPedido()));
-        movimento.setMetodoPagamento(pedido.getMetodoPagamento());
-        movimento.setParcelas(normalizarParcelas(pedido.getMetodoPagamento(), pedido.getParcelasPagamento()));
+        movimento.setMetodoPagamento(metodoMovimento);
+        movimento.setParcelas(normalizarParcelas(metodoMovimento, pedido.getParcelasPagamento()));
         movimento.setPedido(pedido);
         movimento.setUsuario(usuario);
         movimento.setDescricao("Venda do pedido " + pedido.getNumero());
@@ -235,6 +245,72 @@ public class CaixaService {
         movimentoCaixaRepository.save(movimento);
 
         auditoriaService.registrar("Caixa", "VENDA", "Venda registrada no caixa", pedido.getId());
+    }
+
+    private MetodoPagamento metodoPagamentoParaMovimentoCaixa(Pedido pedido, String detalhesPagamento) {
+        return metodoPagamentoParaMovimentoCaixa(pedido.getMetodoPagamento(), detalhesPagamento);
+    }
+
+    private MetodoPagamento metodoPagamentoParaMovimentoCaixa(MetodoPagamento metodoPagamento, String detalhesPagamento) {
+        if (metodoPagamento == null) {
+            return MetodoPagamento.PIX;
+        }
+
+        if (!MetodoPagamento.MISTO.equals(metodoPagamento)) {
+            return metodoPagamento;
+        }
+
+        MetodoPagamento metodoDetalhado = metodoPagamentoPeloPrimeiroDetalhe(detalhesPagamento);
+        return metodoDetalhado != null ? metodoDetalhado : MetodoPagamento.PIX;
+    }
+
+    private MetodoPagamento metodoPagamentoPeloPrimeiroDetalhe(String detalhesPagamento) {
+        String detalhes = detalhesPagamento != null ? detalhesPagamento.toLowerCase() : "";
+        MetodoPagamento metodo = null;
+        int menorIndice = Integer.MAX_VALUE;
+
+        int indicePix = detalhes.indexOf("pix:");
+        if (indicePix >= 0) {
+            menorIndice = indicePix;
+            metodo = MetodoPagamento.PIX;
+        }
+
+        int indiceDinheiro = detalhes.indexOf("dinheiro:");
+        if (indiceDinheiro >= 0 && indiceDinheiro < menorIndice) {
+            menorIndice = indiceDinheiro;
+            metodo = MetodoPagamento.DINHEIRO;
+        }
+
+        int indiceCredito = indiceMaisProximo(detalhes, "credito:", "cartao_credito:");
+        if (indiceCredito >= 0 && indiceCredito < menorIndice) {
+            menorIndice = indiceCredito;
+            metodo = MetodoPagamento.CARTAO_CREDITO;
+        }
+
+        int indiceDebito = indiceMaisProximo(detalhes, "debito:", "cartao_debito:");
+        if (indiceDebito >= 0 && indiceDebito < menorIndice) {
+            menorIndice = indiceDebito;
+            metodo = MetodoPagamento.CARTAO_DEBITO;
+        }
+
+        int indiceBoleto = detalhes.indexOf("boleto:");
+        if (indiceBoleto >= 0 && indiceBoleto < menorIndice) {
+            metodo = MetodoPagamento.BOLETO;
+        }
+
+        return metodo;
+    }
+
+    private int indiceMaisProximo(String texto, String primeiroMarcador, String segundoMarcador) {
+        int primeiro = texto.indexOf(primeiroMarcador);
+        int segundo = texto.indexOf(segundoMarcador);
+        if (primeiro < 0) {
+            return segundo;
+        }
+        if (segundo < 0) {
+            return primeiro;
+        }
+        return Math.min(primeiro, segundo);
     }
 
     private String criarObservacaoVenda(String detalhesPagamento) {
@@ -308,13 +384,16 @@ public class CaixaService {
             throw new BusinessException("Usuario precisa estar vinculado a uma empresa para abrir caixa.");
         }
 
-        if (Perfil.ESTOQUISTA.equals(usuario.getPerfil()) || Perfil.FINANCEIRO.equals(usuario.getPerfil())) {
+        if (Perfil.VENDEDOR.equals(usuario.getPerfil())
+                || Perfil.ESTOQUISTA.equals(usuario.getPerfil())
+                || Perfil.FINANCEIRO.equals(usuario.getPerfil())) {
             throw new BusinessException("Perfil sem permissao para abrir caixa.");
         }
     }
 
     private boolean podeVerTodosCaixas(Usuario usuario) {
-        return Perfil.ADMIN.equals(usuario.getPerfil()) || Perfil.GERENTE.equals(usuario.getPerfil());
+        return Perfil.ADMIN.equals(usuario.getPerfil())
+                || Perfil.GERENTE.equals(usuario.getPerfil());
     }
 
     private MovimentoCaixa registrarMovimento(Caixa caixa,
@@ -428,9 +507,9 @@ public class CaixaService {
         return texto != null ? texto : padrao;
     }
 
-    private Integer normalizarParcelas(br.com.diego.projectoads.config.Enum.MetodoPagamento metodoPagamento, Integer parcelas) {
-        if (br.com.diego.projectoads.config.Enum.MetodoPagamento.CARTAO_CREDITO.equals(metodoPagamento) ||
-                br.com.diego.projectoads.config.Enum.MetodoPagamento.BOLETO.equals(metodoPagamento)) {
+    private Integer normalizarParcelas(MetodoPagamento metodoPagamento, Integer parcelas) {
+        if (MetodoPagamento.CARTAO_CREDITO.equals(metodoPagamento) ||
+                MetodoPagamento.BOLETO.equals(metodoPagamento)) {
             int valor = parcelas != null ? parcelas : 1;
             return Math.max(1, Math.min(valor, 12));
         }

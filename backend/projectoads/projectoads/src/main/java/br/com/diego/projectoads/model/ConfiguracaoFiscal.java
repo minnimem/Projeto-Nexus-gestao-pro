@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -49,11 +50,20 @@ public class ConfiguracaoFiscal {
     @Column(length = 80)
     private String provedor;
 
+    @Column(name = "provedor_token_env", length = 120)
+    private String provedorTokenEnv;
+
     @Column(name = "certificado_alias", length = 120)
     private String certificadoAlias;
 
+    @Column(name = "certificado_arquivo_env", length = 120)
+    private String certificadoArquivoEnv;
+
     @Column(name = "certificado_senha_env", length = 120)
     private String certificadoSenhaEnv;
+
+    @Column(name = "certificado_valido_ate")
+    private LocalDate certificadoValidoAte;
 
     @Column(name = "csc_id", length = 30)
     private String cscId;

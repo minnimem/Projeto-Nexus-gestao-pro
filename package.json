@@ -1,19 +1,23 @@
 {
-  "name": "nexus-one-frontend",
+  "name": "nexus-one",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 5173",
-    "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 4173"
-  },
-  "dependencies": {
-    "@vitejs/plugin-react": "^5.0.0",
-    "vite": "^7.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "lucide-react": "^0.468.0"
-  },
-  "devDependencies": {}
+    "dev": "npm --prefix frontend run dev",
+    "dev:backend:local": "powershell -ExecutionPolicy Bypass -File scripts/iniciar-backend-local.ps1",
+    "dev:frontend:local": "powershell -ExecutionPolicy Bypass -File scripts/iniciar-frontend-local.ps1",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "check:local": "powershell -ExecutionPolicy Bypass -File scripts/verificar-local-sem-docker.ps1 -SkipFrontendBuild -SkipBackendTests",
+    "validate:local": "powershell -ExecutionPolicy Bypass -File scripts/verificar-local-sem-docker.ps1",
+    "init:env:local": "powershell -ExecutionPolicy Bypass -File scripts/gerar-env-local.ps1",
+    "check:env": "powershell -ExecutionPolicy Bypass -File scripts/verificar-segredos.ps1 -EnvFile .env",
+    "audit:env": "powershell -ExecutionPolicy Bypass -File scripts/auditar-segredos.ps1 -EnvFile .env",
+    "check:env:local": "powershell -ExecutionPolicy Bypass -File scripts/verificar-segredos.ps1 -EnvFile .env.local",
+    "audit:env:local": "powershell -ExecutionPolicy Bypass -File scripts/auditar-segredos.ps1 -EnvFile .env.local",
+    "mock:fiscal": "npm --prefix frontend run mock:fiscal",
+    "mock:notifications": "npm --prefix frontend run mock:notifications",
+    "test:fiscal-provider": "npm --prefix frontend run test:fiscal-provider",
+    "test:notifications": "npm --prefix frontend run test:notifications"
+  }
 }

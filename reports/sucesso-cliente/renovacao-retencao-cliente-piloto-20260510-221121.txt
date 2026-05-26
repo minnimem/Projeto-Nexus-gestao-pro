@@ -1,0 +1,66 @@
+﻿RENOVACAO, RETENCAO E MUDANCA DE PLANO - NEXUS ONE
+Data: 10/05/2026 22:11:21
+Cliente: Cliente Piloto
+Responsavel: Nexus One
+
+============================================================
+DECISAO
+============================================================
+- Decisao: Retencao
+- Saude do cliente: Vermelho
+- Status financeiro: Atraso pontual
+- Uso do sistema: Baixo
+- Risco de receita: Alto
+- Plano atual: Medio
+- Novo plano: Medio
+- Valor atual: R$ 349,00
+- Novo valor: R$ 349,00
+- Motivo: Baixa adocao e risco de cancelamento
+- Prazo de revisao: 30 dias
+- Acao recomendada: Executar plano de retencao com responsaveis, prazo e criterio de sucesso.
+- Evidencia critica: Causa do risco, plano de acao e nova revisao marcada.
+- Evidencia minima da decisao: Plano de acao, responsaveis, prazo e criterio de sucesso.
+
+============================================================
+MATRIZ DE DECISAO
+============================================================
+- Verde + em dia + uso alto: renovar, avaliar upgrade ou referencia.
+- Amarelo + uso parcial: retencao leve, treinamento ou ajuste de escopo.
+- Vermelho ou inadimplencia recorrente ou baixo uso: retencao critica ou cancelamento/offboarding.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Saude do cliente revisada.
+- [ ] Faturamento e vencimento revisados.
+- [ ] Uso real dos modulos conferido.
+- [ ] Pendencias e incidentes revisados.
+- [ ] Escopo atual comparado com nova decisao.
+- [ ] Decisor do cliente envolvido.
+- [ ] Comunicacao enviada e arquivada.
+- [ ] Aceite ou registro formal anexado.
+- [ ] Faturamento e limites do plano atualizados quando houver mudanca.
+- [ ] Offboarding gerado quando a decisao for cancelamento.
+
+============================================================
+PLANO DE RETENCAO / TRANSICAO
+============================================================
+- Causa principal:
+- Acao proposta:
+- Responsavel Nexus One: Nexus One
+- Responsavel do cliente:
+- Prazo de revisao: 30 dias
+- Criterio de sucesso:
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_RENOVACAO_RETENCAO_CLIENTE_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md

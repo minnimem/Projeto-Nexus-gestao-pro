@@ -1,0 +1,64 @@
+﻿RELATORIO DE SAUDE DO CLIENTE POS-IMPLANTACAO - NEXUS ONE
+Data: 10/05/2026 22:06:35
+Cliente: Cliente Piloto
+Dias desde inicio assistido: 30
+Classificacao: Verde
+Pontuacao de saude: 88 / 100
+Leitura do score: Score compativel com Verde, desde que nao exista bloqueante.
+Responsavel: Nexus One
+
+PONTUACAO DE SAUDE
+Area | Peso | Nota 0-5 | Evidencia
+--- | --- | --- | ---
+Uso do fluxo principal | 20 |  | Diario, log, relato do usuario-chave
+Vendas/caixa | 15 |  | Fechamento, comprovantes, conciliacao
+Estoque/financeiro | 15 |  | Saldos, contas, relatorios
+Suporte e incidentes | 15 |  | Chamados, P0/P1, SLA
+Pendencias e riscos | 15 |  | Registro de riscos atualizado
+Integracoes | 10 |  | Homologadas, sandbox ou fora do escopo
+Satisfacao/NPS | 10 |  | Feedback ou NPS
+
+CHECKLIST
+- [ ] Cliente operou pelo menos um fluxo principal do escopo.
+- [ ] Vendas/pedidos foram registrados sem retrabalho critico.
+- [ ] Caixa/recebimentos foram conferidos.
+- [ ] Estoque/financeiro refletem a operacao principal.
+- [ ] Relatorios/exportacoes foram usados pelo cliente.
+- [ ] Suporte nao possui P0/P1 bloqueante aberto.
+- [ ] Registro de riscos/pendencias foi revisado.
+- [ ] Integracoes reais foram homologadas, adiadas ou marcadas fora do escopo.
+- [ ] Cliente confirma que os usuarios-chave conseguem operar.
+- [ ] Melhorias futuras foram separadas de pendencias de implantacao.
+- [ ] Feedback/NPS coletado quando houver marco D7, D15, D30, release ou incidente relevante.
+
+DECISAO
+Cliente saudavel. Pode reduzir acompanhamento intensivo e avaliar uso como referencia comercial, se houver autorizacao.
+Impacto comercial: Pode avaliar referencia comercial com autorizacao formal e auditoria de evidencias aprovada.
+
+ACOES RECOMENDADAS
+- Registrar caso de sucesso interno.
+- Avaliar upgrade/modulo adicional conforme necessidade real.
+- Manter acompanhamento mensal.
+
+OBSERVACOES
+- Pendencias bloqueantes:
+- Pendencias altas:
+- Modulos com baixa adocao:
+- Oportunidades de evolucao:
+- Risco de renovacao/cancelamento:
+- Ultimo NPS/feedback:
+
+PLANO DE SAUDE
+Problema | Causa provavel | Acao | Responsavel | Prazo | Evidencia de melhora
+--- | --- | --- | --- | --- | ---
+Baixo uso | Treinamento / fit / dados |  |  |  | 
+Pendencia alta | Produto / integracao / cliente |  |  |  | 
+Valor pouco claro | Expectativa / relatorio / processo |  |  |  | 
+
+REFERENCIAS
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\PROCESSO_RENOVACAO_RETENCAO_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_FEEDBACK_NPS_CLIENTE_NEXUS_ONE.md
+- docs\REGISTRO_RISCOS_PENDENCIAS_CLIENTE_NEXUS_ONE.md
+- docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md

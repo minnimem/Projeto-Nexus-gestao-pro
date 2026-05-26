@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +78,12 @@ public class Pedido {
 
     @Column(name = "observacao_entrega", length = 255)
     private String observacaoEntrega;
+
+    @Column(name = "validade_proposta")
+    private LocalDate validadeProposta;
+
+    @Column(name = "condicoes_comerciais", length = 1000)
+    private String condicoesComerciais;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens = new ArrayList<>();

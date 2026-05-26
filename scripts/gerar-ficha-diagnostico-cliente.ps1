@@ -1,0 +1,170 @@
+param(
+    [Parameter(Mandatory = $true)]
+    [string]$Cliente,
+
+    [string]$Segmento = "Comercio varejista",
+
+    [string]$Responsavel = "Nexus One",
+
+    [string]$OutputDir = "reports\comercial"
+)
+
+$ErrorActionPreference = "Stop"
+
+$root = Split-Path -Parent $PSScriptRoot
+$resolvedOutput = if ([System.IO.Path]::IsPathRooted($OutputDir)) {
+    $OutputDir
+} else {
+    Join-Path $root $OutputDir
+}
+
+New-Item -ItemType Directory -Force -Path $resolvedOutput | Out-Null
+
+$slug = ($Cliente -replace '[^a-zA-Z0-9_-]+', '-').Trim('-').ToLowerInvariant()
+if ([string]::IsNullOrWhiteSpace($slug)) {
+    $slug = "cliente"
+}
+
+$timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+$arquivo = Join-Path $resolvedOutput "ficha-diagnostico-cliente-$slug-$timestamp.txt"
+
+$linhas = New-Object System.Collections.Generic.List[string]
+$linhas.Add("FICHA DE DIAGNOSTICO E COLETA INICIAL - NEXUS ONE")
+$linhas.Add("Data: $(Get-Date -Format 'dd/MM/yyyy HH:mm:ss')")
+$linhas.Add("Cliente: $Cliente")
+$linhas.Add("Segmento: $Segmento")
+$linhas.Add("Responsavel Nexus One: $Responsavel")
+$linhas.Add("")
+$linhas.Add("OBJETIVO DA REUNIAO")
+$linhas.Add("- [ ] Confirmar se pode receber proposta controlada")
+$linhas.Add("- [ ] Separar primeiro ciclo de fase 2")
+$linhas.Add("- [ ] Identificar dependencias antes de prometer prazo")
+$linhas.Add("- [ ] Definir demonstracao / piloto assistido / producao controlada")
+$linhas.Add("")
+$linhas.Add("1. RESPONSAVEIS")
+$linhas.Add("- Responsavel comercial:")
+$linhas.Add("- Responsavel operacional:")
+$linhas.Add("- Responsavel tecnico/TI:")
+$linhas.Add("- Responsavel financeiro:")
+$linhas.Add("- Responsavel fiscal/contador:")
+$linhas.Add("- Responsavel privacidade/LGPD:")
+$linhas.Add("")
+$linhas.Add("2. OPERACAO ATUAL")
+$linhas.Add("- Quantidade de filiais:")
+$linhas.Add("- Quantidade de usuarios:")
+$linhas.Add("- Quantidade de caixas/PDV:")
+$linhas.Add("- Media de vendas por dia:")
+$linhas.Add("- Possui estoque fisico: sim / nao")
+$linhas.Add("- Possui entregas/logistica propria: sim / nao")
+$linhas.Add("- Possui ordem de servico/servicos: sim / nao")
+$linhas.Add("- Sistema atual:")
+$linhas.Add("- Principais dores:")
+$linhas.Add("- Dor prioritaria para resolver primeiro:")
+$linhas.Add("- Impacto atual: tempo perdido / perda financeira / risco operacional / falta de controle / outro")
+$linhas.Add("- Urgencia: baixa / media / alta")
+$linhas.Add("- Orcamento estimado ou faixa aceita:")
+$linhas.Add("")
+$linhas.Add("3. ESCOPO DESEJADO")
+$linhas.Add("- [ ] Vendas/pedidos")
+$linhas.Add("- [ ] Orcamentos/propostas")
+$linhas.Add("- [ ] CRM/follow-up")
+$linhas.Add("- [ ] Caixa/PDV")
+$linhas.Add("- [ ] Estoque/compras/inventario")
+$linhas.Add("- [ ] Financeiro/contas/DRE/conciliacao")
+$linhas.Add("- [ ] Fiscal")
+$linhas.Add("- [ ] Logistica/entregas")
+$linhas.Add("- [ ] Servicos/OS")
+$linhas.Add("- [ ] Relatorios/BI")
+$linhas.Add("- [ ] Usuarios/permissoes/auditoria")
+$linhas.Add("- Fase 2 ou fora do primeiro ciclo:")
+$linhas.Add("")
+$linhas.Add("4. DADOS PARA CARGA INICIAL")
+$linhas.Add("- Clientes:")
+$linhas.Add("- Produtos:")
+$linhas.Add("- Estoque inicial:")
+$linhas.Add("- Usuarios/perfis:")
+$linhas.Add("- Fornecedores:")
+$linhas.Add("- Contas a receber:")
+$linhas.Add("- Contas a pagar:")
+$linhas.Add("- Rotas/veiculos/entregadores:")
+$linhas.Add("- Dados fiscais:")
+$linhas.Add("- Origem dos dados:")
+$linhas.Add("- Responsavel pela conferencia:")
+$linhas.Add("- Dados sensiveis/LGPD envolvidos: sim / nao")
+$linhas.Add("- Necessita limpeza/tratamento antes da carga: sim / nao")
+$linhas.Add("")
+$linhas.Add("5. INTEGRACOES E DEPENDENCIAS")
+$linhas.Add("- Fiscal real no escopo: sim / nao")
+$linhas.Add("- Modelos fiscais: NF-e / NFC-e / NFS-e / outros")
+$linhas.Add("- Certificado A1 disponivel: sim / nao")
+$linhas.Add("- Contador definido: sim / nao")
+$linhas.Add("- Pix/boleto real no escopo: sim / nao")
+$linhas.Add("- Provedor de pagamento:")
+$linhas.Add("- WhatsApp/e-mail/webhook no escopo: sim / nao")
+$linhas.Add("- Canal de notificacao:")
+$linhas.Add("- Integracoes obrigatorias para iniciar:")
+$linhas.Add("- Integracoes desejaveis para fase 2:")
+$linhas.Add("- Integracoes fora do escopo inicial:")
+$linhas.Add("")
+$linhas.Add("6. INFRAESTRUTURA")
+$linhas.Add("- Ambiente desejado: homologacao / producao controlada / producao")
+$linhas.Add("- Servidor/hosting definido: sim / nao")
+$linhas.Add("- Dominio/subdominio:")
+$linhas.Add("- Responsavel por DNS:")
+$linhas.Add("- Responsavel por backup:")
+$linhas.Add("- Canal de alerta/monitoramento:")
+$linhas.Add("- Janela preferida de implantacao:")
+$linhas.Add("")
+$linhas.Add("7. RISCOS INICIAIS")
+$linhas.Add("- Dados incompletos: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:")
+$linhas.Add("- Fiscal sem contador/provedor: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:")
+$linhas.Add("- Pagamento sem provedor: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:")
+$linhas.Add("- Notificacao sem canal: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:")
+$linhas.Add("- Usuario-chave indisponivel: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:")
+$linhas.Add("- Servidor indefinido: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:")
+$linhas.Add("- LGPD/responsavel de dados indefinido: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:")
+$linhas.Add("")
+$linhas.Add("8. MINIMO PARA PROPOSTA CONTROLADA")
+$linhas.Add("- [ ] Dor prioritaria registrada")
+$linhas.Add("- [ ] Decisor e responsavel operacional definidos")
+$linhas.Add("- [ ] Plano ou faixa de plano provavel definida")
+$linhas.Add("- [ ] Usuarios, filiais e caixas estimados")
+$linhas.Add("- [ ] Modulos do primeiro ciclo separados de fase 2")
+$linhas.Add("- [ ] Integracoes obrigatorias classificadas")
+$linhas.Add("- [ ] Dependencias do cliente comunicadas")
+$linhas.Add("- [ ] Cliente aceita piloto assistido ou producao controlada")
+$linhas.Add("")
+$linhas.Add("9. MINIMO PARA IMPLANTACAO")
+$linhas.Add("- [ ] Proposta/aceite aprovado")
+$linhas.Add("- [ ] Handoff comercial concluido")
+$linhas.Add("- [ ] Responsaveis do cliente confirmados")
+$linhas.Add("- [ ] Dados minimos recebidos ou plano de carga aprovado")
+$linhas.Add("- [ ] Ambiente definido")
+$linhas.Add("- [ ] Canais de suporte e treinamento definidos")
+$linhas.Add("- [ ] Riscos bloqueantes sem pendencia aberta")
+$linhas.Add("")
+$linhas.Add("10. QUALIFICACAO")
+$linhas.Add("- [ ] Pronto para proposta controlada")
+$linhas.Add("- [ ] Pronto para piloto assistido")
+$linhas.Add("- [ ] Precisa de homologacao tecnica antes da proposta")
+$linhas.Add("- [ ] Precisa completar dados antes de avancar")
+$linhas.Add("- [ ] Nao aderente ao momento atual")
+$linhas.Add("")
+$linhas.Add("11. PROXIMOS PASSOS")
+$linhas.Add("- [ ] Gerar plano de demo/prova de valor")
+$linhas.Add("- [ ] Gerar escopo do plano comercial")
+$linhas.Add("- [ ] Gerar proposta controlada")
+$linhas.Add("- [ ] Solicitar arquivos de carga inicial")
+$linhas.Add("- [ ] Agendar homologacao de integracoes")
+$linhas.Add("- [ ] Agendar treinamento")
+$linhas.Add("- [ ] Abrir registro de riscos/pendencias")
+$linhas.Add("")
+$linhas.Add("REFERENCIAS")
+$linhas.Add("- docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md")
+$linhas.Add("- docs\ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md")
+$linhas.Add("- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md")
+$linhas.Add("- docs\PROCESSO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md")
+
+$linhas | Set-Content -LiteralPath $arquivo -Encoding UTF8
+
+Write-Host "Ficha de diagnostico do cliente gerada: $arquivo"

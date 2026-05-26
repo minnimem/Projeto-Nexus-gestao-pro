@@ -1,0 +1,64 @@
+DIARIO DE PILOTO ASSISTIDO - NEXUS ONE
+Data: 
+10/05/2026 21:42:36
+Cliente: Cliente Piloto
+Dia do piloto: D1
+Responsavel: Nexus One
+
+Objetivo do dia:
+-
+
+Go de entrada do dia:
+- [ ] Responsavel do cliente disponivel.
+- [ ] Ambiente acessivel.
+- [ ] Fluxo do dia definido.
+- [ ] Pendencias bloqueantes do dia anterior revisadas.
+
+Fluxos executados:
+- [ ] Login/acesso.
+- [ ] Venda/pedido/proposta.
+- [ ] Caixa/recebimento/fechamento.
+- [ ] Estoque/entrada/baixa.
+- [ ] Financeiro/conciliacao.
+- [ ] Fiscal/integracao conforme escopo.
+- [ ] Relatorios/exportacoes.
+- [ ] Suporte/incidente.
+
+Indicadores:
+- Pedidos criados:
+- Caixa fechado sem divergencia:
+- Estoque refletiu movimentacoes:
+- Financeiro conciliou com caixa/venda:
+- Backup localizado:
+- Incidentes P0/P1:
+- Pendencias bloqueantes:
+- Pendencias altas:
+- Usuario-chave operou sem suporte direto:
+
+Pendencias bloqueantes:
+-
+
+Pendencias altas:
+-
+
+Pendencias nao bloqueantes:
+-
+
+Riscos e contornos:
+- Risco:
+- Severidade: baixa / media / alta / bloqueante
+- Contorno:
+- Responsavel:
+- Prazo:
+
+Decisoes tomadas:
+-
+
+Decisao do dia:
+- [ ] Continua plano original.
+- [ ] Continua com ajuste.
+- [ ] Prorrogar atividade.
+- [ ] Pausar por pendencia bloqueante.
+
+Proxima acao:
+-

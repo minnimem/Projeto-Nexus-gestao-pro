@@ -1,0 +1,14 @@
+VERIFICACAO DE CARGA INICIAL - NEXUS ONE
+Data: 10/05/2026 14:52:41
+Diretorio: templates\carga-inicial
+
+OK | estoque-inicial.csv | linhas=; faltando=; extras=
+OK | clientes.csv | linhas=; faltando=; extras=
+OK | produtos.csv | linhas=; faltando=; extras=
+OK | usuarios.csv | linhas=; faltando=; extras=
+
+Regras:
+- Conferir dados em homologacao antes de usar em producao.
+- Nao importar dados fiscais sem validacao do contador.
+- Gerar backup antes de qualquer carga em producao.
+- Arquivar esta verificacao junto ao aceite de implantacao.

@@ -1,0 +1,109 @@
+﻿HANDOFF COMERCIAL, IMPLANTACAO E SUPORTE - NEXUS ONE
+Data: 10/05/2026 21:37:39
+Cliente: Cliente Piloto
+Plano: Medio
+Ambiente: piloto assistido
+Responsavel comercial: Comercial
+Responsavel implantacao: Implantacao
+Responsavel suporte: Suporte
+
+1. COMERCIAL ENTREGA PARA IMPLANTACAO
+- [ ] Proposta/contrato/aceite comercial
+- [ ] Faturamento, vencimento e forma de pagamento registrados quando aplicavel
+- [ ] Escopo do plano comercial
+- [ ] Limites de usuarios, filiais, caixas e modulos
+- [ ] Adicionais vendidos separadamente
+- [ ] Itens fora do escopo comunicados
+- [ ] Plano de demonstracao/prova de valor
+- [ ] Ficha de diagnostico/coleta inicial
+- [ ] Riscos comerciais e promessas feitas ao cliente
+
+2. MAPA DE PROMESSAS COMERCIAIS
+- Modulos incluidos: incluso / opcional / fase 2 | status: validado / pendente
+- Fiscal real: incluso / condicionado / fora do escopo | status: validado / pendente
+- Pix/boleto real: incluso / condicionado / fora do escopo | status: validado / pendente
+- Notificacoes externas: incluso / condicionado / fora do escopo | status: validado / pendente
+- Carga de dados: incluso / adicional / fase 2 | status: validado / pendente
+- Treinamento: incluso / adicional / fase 2 | status: validado / pendente
+- Suporte/SLA: incluso / especial / fora do padrao | status: validado / pendente
+- Customizacao: incluso / adicional / backlog | status: validado / pendente
+
+3. DEPENDENCIAS DO CLIENTE
+- [ ] Responsavel operacional disponivel
+- [ ] Usuarios-chave indicados
+- [ ] Dados para carga inicial entregues ou prazo definido
+- [ ] Responsavel LGPD definido para dados reais
+- [ ] Contador/fiscal disponivel quando houver fiscal no escopo
+- [ ] Conta/provedor de pagamento definido quando houver Pix/boleto real
+- [ ] Canal/token/webhook definido quando houver notificacao externa
+- [ ] Janela de treinamento e operacao assistida alinhada
+
+4. IMPLANTACAO RECEBE E CONFERE
+- [ ] Modulos contratados conferidos
+- [ ] Responsaveis do cliente definidos
+- [ ] Usuarios-chave identificados
+- [ ] Dados para carga inicial solicitados
+- [ ] Integracoes externas classificadas
+- [ ] Ambiente pretendido definido
+- [ ] Janela de implantacao alinhada
+- [ ] Registro de riscos/pendencias aberto
+
+5. IMPLANTACAO ENTREGA PARA SUPORTE
+- [ ] Plano contratado e SLA aplicavel
+- [ ] Canais de suporte do cliente
+- [ ] Usuarios-chave e contatos de emergencia
+- [ ] Modulos em operacao
+- [ ] Integracoes reais no escopo
+- [ ] Pendencias nao bloqueantes aceitas
+- [ ] Riscos altos ainda abertos
+- [ ] Rotina de backup/monitoramento definida
+- [ ] Data de inicio da operacao assistida
+
+6. SUPORTE CONFERE ANTES DA OPERACAO
+- [ ] Politica de SLA comunicada
+- [ ] Canal de acionamento testado
+- [ ] Responsavel de suporte definido
+- [ ] Ficha de incidente disponivel
+- [ ] Procedimento de escalonamento conhecido
+- [ ] Acesso a evidencias do pacote de entrega
+- [ ] Registro de riscos/pendencias acessivel
+- [ ] Go/No-Go e aceite arquivados quando aplicavel
+
+7. RISCOS ACEITOS PARA INICIAR
+- Risco:
+- Severidade: baixa / media / alta
+- Contorno operacional:
+- Responsavel:
+- Prazo:
+
+8. BLOQUEIOS
+- [ ] Escopo comercial indefinido
+- [ ] Plano sem limites de usuarios, filiais, caixas ou modulos
+- [ ] Integracao real prometida sem homologacao
+- [ ] Dados reais sem responsavel LGPD
+- [ ] Responsavel operacional do cliente indefinido
+- [ ] Suporte/SLA sem canal ou responsavel
+- [ ] Pendencia bloqueante sem plano de acao
+- [ ] Promessa comercial nao documentada
+- [ ] Dependencia critica do cliente sem responsavel ou prazo
+
+9. SAIDAS OBRIGATORIAS
+- [ ] Implantacao sabe exatamente o que entregar primeiro
+- [ ] Suporte sabe plano, SLA, canal, criticidade e contatos
+- [ ] Cliente sabe dependencias, limites e proximos passos
+- [ ] Registro de riscos/pendencias foi aberto ou atualizado
+- [ ] Cronograma de implantacao pode ser gerado
+
+10. DECISAO
+- [ ] Aprovado para homologacao
+- [ ] Aprovado para piloto assistido
+- [ ] Aprovado para producao controlada
+- [ ] Reprovado, retorna para comercial/cliente completar informacoes
+
+REFERENCIAS
+- docs\CHECKLIST_HANDOFF_COMERCIAL_IMPLANTACAO_SUPORTE_NEXUS_ONE.md
+- docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md
+- docs\REGISTRO_RISCOS_PENDENCIAS_CLIENTE_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md
+- docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md

@@ -1,0 +1,40 @@
+﻿RELATORIO DE SAUDE DO CLIENTE POS-IMPLANTACAO - NEXUS ONE
+Data: 10/05/2026 19:51:47
+Cliente: Cliente Piloto
+Dias desde inicio assistido: 30
+Classificacao: Verde
+Responsavel: Nexus One
+
+CHECKLIST
+- [ ] Cliente operou pelo menos um fluxo principal do escopo.
+- [ ] Vendas/pedidos foram registrados sem retrabalho critico.
+- [ ] Caixa/recebimentos foram conferidos.
+- [ ] Estoque/financeiro refletem a operacao principal.
+- [ ] Relatorios/exportacoes foram usados pelo cliente.
+- [ ] Suporte nao possui P0/P1 bloqueante aberto.
+- [ ] Registro de riscos/pendencias foi revisado.
+- [ ] Integracoes reais foram homologadas, adiadas ou marcadas fora do escopo.
+- [ ] Cliente confirma que os usuarios-chave conseguem operar.
+- [ ] Melhorias futuras foram separadas de pendencias de implantacao.
+
+DECISAO
+Cliente saudavel. Pode reduzir acompanhamento intensivo e avaliar uso como referencia comercial, se houver autorizacao.
+
+ACOES RECOMENDADAS
+- Registrar caso de sucesso interno.
+- Avaliar upgrade/modulo adicional conforme necessidade real.
+- Manter acompanhamento mensal.
+
+OBSERVACOES
+- Pendencias bloqueantes:
+- Pendencias altas:
+- Modulos com baixa adocao:
+- Oportunidades de evolucao:
+- Risco de renovacao/cancelamento:
+
+REFERENCIAS
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\PROCESSO_RENOVACAO_RETENCAO_CLIENTE_NEXUS_ONE.md
+- docs\REGISTRO_RISCOS_PENDENCIAS_CLIENTE_NEXUS_ONE.md
+- docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md

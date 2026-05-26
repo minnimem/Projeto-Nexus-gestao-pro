@@ -10,4 +10,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, UUID> {
 
     Optional<Usuario> findByLoginIgnoreCase(String login);
 
+    long countByEmpresaIdAndAtivoTrue(UUID empresaId);
+
 }

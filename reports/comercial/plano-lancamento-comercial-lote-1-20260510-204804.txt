@@ -1,0 +1,59 @@
+﻿PLANO DE LANCAMENTO COMERCIAL CONTROLADO - NEXUS ONE
+Data: 10/05/2026 20:48:04
+Lote: Lote 1
+Responsavel: Nexus One
+
+============================================================
+LIMITES DO LOTE
+============================================================
+- Meta de oportunidades qualificadas: 5
+- Maximo de implantacoes simultaneas: 2
+- Perfil ideal: Comercio ou servico com venda, caixa, estoque, clientes e financeiro gerencial; baixa ou media complexidade fiscal.
+- Canais: Indicacao, prospeccao consultiva, clientes conhecidos e demonstracao guiada.
+
+============================================================
+RESTRICOES COMERCIAIS
+============================================================
+Nao prometer fiscal real, pagamentos reais, notificacoes externas, SLA especial ou customizacao sem contrato, homologacao e evidencia.
+
+============================================================
+MENSAGEM PERMITIDA
+============================================================
+- Vendas, caixa, estoque, clientes, financeiro gerencial, relatorios e suporte operacional.
+- Implantacao acompanhada com escopo, treinamento, Go/No-Go e aceite.
+- Integracoes reais dependem de homologacao, provedor/canal, contrato e evidencia.
+- Resultado financeiro deve ser tratado como estimativa baseada em premissas.
+
+============================================================
+CRITERIOS PARA PAUSAR
+============================================================
+- Incidente P0/P1 recorrente.
+- Cliente Vermelho na rotina de sucesso.
+- Mais clientes em implantacao do que a capacidade definida.
+- Promessa comercial fora do escopo documentado.
+- Pendencia bloqueante repetida em mais de um cliente.
+
+============================================================
+INDICADORES DO LOTE
+============================================================
+- [ ] Oportunidades qualificadas.
+- [ ] Propostas enviadas.
+- [ ] Fechamentos.
+- [ ] Tempo medio de implantacao.
+- [ ] Incidentes P0/P1.
+- [ ] Clientes Verde/Amarelo/Vermelho.
+- [ ] Pendencias bloqueantes por cliente.
+- [ ] Capacidade de suporte.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md
+- docs\AUDITORIA_EVIDENCIAS_CLIENTE_REAL_NEXUS_ONE.md
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md

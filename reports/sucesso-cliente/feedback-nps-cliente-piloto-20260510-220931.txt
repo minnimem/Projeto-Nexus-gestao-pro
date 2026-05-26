@@ -1,0 +1,75 @@
+﻿FEEDBACK E NPS DO CLIENTE - NEXUS ONE
+Data: 10/05/2026 22:09:31
+Cliente: Cliente Piloto
+Momento: D30 piloto
+Responsavel: Nexus One
+
+============================================================
+RESULTADO
+============================================================
+- Nota NPS: 6 / 10
+- Classificacao: Detrator
+- Risco de cancelamento: Alto
+- Oportunidade: Retencao
+- Area responsavel: Suporte
+- Decisao recomendada: Abrir plano de acao e revisar causa do risco antes de pedir referencia ou upgrade.
+- Prazo de retorno sugerido: Ate 24h uteis
+
+============================================================
+FEEDBACK
+============================================================
+- Principal ganho: Controle de caixa mais claro
+- Maior dificuldade: Uso do financeiro ainda confuso
+- Modulo com mais valor: Nao informado
+- Modulo que precisa de atencao: Nao informado
+- Proxima acao: Registrar retorno e acompanhar na proxima revisao.
+
+============================================================
+MATRIZ DE ACAO
+============================================================
+- Classificacao NPS: Detrator
+- Risco de cancelamento: Alto
+- Acao obrigatoria: Abrir plano de acao e revisar causa do risco antes de pedir referencia ou upgrade.
+- Prazo de retorno: Ate 24h uteis
+
+SAIDAS POSSIVEIS
+- [ ] Plano de acao de suporte/implantacao
+- [ ] Atualizacao da saude do cliente
+- [ ] Artigo de base de conhecimento ou reforco de treinamento
+- [ ] Priorizacao de roadmap
+- [ ] Registro de retencao/renovacao
+- [ ] Autorizacao de referencia comercial
+- [ ] Oportunidade de upgrade/modulo adicional
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Separar bug, duvida, melhoria, risco e oportunidade comercial.
+- [ ] Abrir risco/pendencia quando houver bloqueio.
+- [ ] Gerar artigo de base de conhecimento quando for duvida recorrente.
+- [ ] Atualizar saude do cliente quando houver risco.
+- [ ] Pedir autorizacao antes de usar referencia comercial.
+- [ ] Definir responsavel e data de retorno para feedback negativo.
+
+============================================================
+FOLLOW-UP OBRIGATORIO
+============================================================
+- Responsavel pelo retorno: Nexus One
+- Data prometida:
+- Canal do retorno:
+- Acao combinada: Registrar retorno e acompanhar na proxima revisao.
+- Evidencia esperada:
+- Nova coleta agendada: sim / nao
+
+============================================================
+ALERTAS
+============================================================
+- Risco alto de cancelamento: abrir retencao e plano de acao.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_FEEDBACK_NPS_CLIENTE_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\BASE_CONHECIMENTO_SUPORTE_CLIENTE_NEXUS_ONE.md
+- docs\AUTORIZACAO_REFERENCIA_COMERCIAL_CLIENTE_NEXUS_ONE.md

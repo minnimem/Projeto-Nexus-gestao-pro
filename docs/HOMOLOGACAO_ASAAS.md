@@ -17,7 +17,8 @@ Defina no ambiente antes de iniciar o backend:
 $env:DB_URL="jdbc:postgresql://localhost:5432/TB_ADS"
 $env:DB_USERNAME="postgres"
 $env:DB_PASSWORD="sua-senha-local"
-$env:JWT_SECRET="sua-chave-base64"
+$env:JWT_SECRET="trocar_por_uma_chave_local_com_32_ou_mais_caracteres"
+$env:NEXUS_ALLOWED_ORIGINS="http://localhost:5173,http://127.0.0.1:5173"
 $env:ASAAS_ENABLED="true"
 $env:ASAAS_API_KEY="sua-chave-sandbox"
 $env:ASAAS_BASE_URL="https://api-sandbox.asaas.com/v3"
@@ -147,6 +148,21 @@ Eventos desconhecidos sao registrados na observacao e nao alteram o status.
 - Webhook `PAYMENT_REFUNDED` muda financeiro para estornado.
 - Pedido/financeiro nao duplica receita ao receber baixa por webhook.
 - Chaves reais permanecem fora do Git.
+
+Registre a homologacao no arquivo:
+
+- `docs/EVIDENCIA_HOMOLOGACAO_PAGAMENTOS_ASAAS.md`
+
+Ou gere uma copia para o cliente piloto:
+
+```powershell
+.\scripts\gerar-evidencia-asaas.ps1 `
+  -Cliente "Nome do cliente" `
+  -Ambiente "Sandbox" `
+  -BackendUrl "http://localhost:8081" `
+  -FrontendUrl "http://localhost:5173" `
+  -WebhookUrl "https://seu-dominio-publico/webhooks/asaas"
+```
 
 ## 9. Producao
 

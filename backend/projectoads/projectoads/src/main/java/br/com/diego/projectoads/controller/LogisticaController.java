@@ -5,10 +5,12 @@ import br.com.diego.projectoads.service.LogisticaService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/logistica")
+@PreAuthorize("@planoComercialService.canAccessModule(authentication, 'logistica')")
 public class LogisticaController {
 
     private final LogisticaService service;

@@ -1,0 +1,55 @@
+﻿VIABILIDADE FINANCEIRA PARA ESCALA - NEXUS ONE
+Data: 11/05/2026 23:41:05
+Lote/escopo avaliado: Lote 2
+Responsavel: Nexus One
+
+============================================================
+ENTRADAS
+============================================================
+- Receita mensal prevista: R$ 2.792,00
+- Receita de implantacao prevista: R$ 6.400,00
+- Custo mensal de infraestrutura: R$ 400,00
+- Custo mensal de suporte: R$ 900,00
+- Custo de implantacao: R$ 3.200,00
+- Custo comercial: R$ 800,00
+- Descontos/cortesias: R$ 300,00
+- Margem minima definida: 35%
+
+============================================================
+RESULTADO
+============================================================
+- Receita total primeiro ciclo: R$ 8.892,00
+- Custo total primeiro ciclo: R$ 5.300,00
+- Resultado primeiro ciclo: R$ 3.592,00
+- Margem primeiro ciclo: 40.4%
+- Resultado recorrente mensal: R$ 1.492,00
+- Margem recorrente mensal: 53.4%
+- Decisao: VIAVEL COM CONTROLE
+- Proxima acao: Abrir lote pequeno e acompanhar margem real.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Descontos possuem prazo e motivo.
+- [ ] Implantacao cobre configuracao, treinamento e acompanhamento.
+- [ ] Integracoes reais foram cobradas ou ficaram fora do escopo.
+- [ ] Suporte prometido cabe no plano contratado.
+- [ ] Margem foi revisada antes da decisao de expansao.
+
+============================================================
+OBSERVACOES
+============================================================
+Sem observacoes adicionais.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\MATRIZ_VIABILIDADE_FINANCEIRA_ESCALA_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md
+- docs\DECISAO_EXPANSAO_COMERCIAL_POS_LOTE_NEXUS_ONE.md
+- docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md

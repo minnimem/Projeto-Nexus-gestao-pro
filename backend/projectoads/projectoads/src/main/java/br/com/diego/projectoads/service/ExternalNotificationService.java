@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -45,6 +46,31 @@ public class ExternalNotificationService {
         return enabled && webhookUrl != null && !webhookUrl.isBlank();
     }
 
+    public boolean habilitado() {
+        return enabled;
+    }
+
+    public boolean webhookConfigurado() {
+        return webhookUrl != null && !webhookUrl.isBlank();
+    }
+
+    public boolean tokenConfigurado() {
+        return token != null && !token.isBlank();
+    }
+
+    public String destinoMascarado() {
+        if (!webhookConfigurado()) {
+            return null;
+        }
+        try {
+            URI uri = URI.create(webhookUrl);
+            String port = uri.getPort() > 0 ? ":" + uri.getPort() : "";
+            return uri.getScheme() + "://" + uri.getHost() + port + "/...";
+        } catch (Exception ignored) {
+            return "URL configurada";
+        }
+    }
+
     public void enviarFollowUpCobranca(FollowUpCobranca followUp) {
         if (!ativo() || followUp == null) {
             return;
@@ -66,13 +92,21 @@ public class ExternalNotificationService {
     }
 
     public void enviarFollowUpComercial(FollowUpComercial followUp) {
+        enviarFollowUpComercial(followUp, null, null);
+    }
+
+    public void enviarFollowUpComercial(FollowUpComercial followUp, String canalConfigurado, String regraAutomacao) {
         if (!ativo() || followUp == null) {
             return;
         }
 
         BigDecimal valor = followUp.getPedido() != null ? followUp.getPedido().getValorTotalPedido() : null;
         Map<String, Object> payload = payloadBase("COMERCIAL", followUp.getId(), followUp.getClienteNome(),
-                followUp.getCanal(), followUp.getProximaAcao(), followUp.getObservacao());
+                canalConfigurado != null && !canalConfigurado.isBlank() ? canalConfigurado : followUp.getCanal(),
+                followUp.getProximaAcao(), followUp.getObservacao());
+        if (regraAutomacao != null && !regraAutomacao.isBlank()) {
+            payload.put("regraAutomacao", regraAutomacao);
+        }
         if (followUp.getPedido() != null) {
             payload.put("pedidoId", followUp.getPedido().getId());
             payload.put("pedidoNumero", followUp.getPedido().getNumero());
@@ -82,6 +116,8 @@ public class ExternalNotificationService {
         if (followUp.getFilial() != null) {
             payload.put("filial", followUp.getFilial().getNome());
         }
+        payload.put("assunto", assuntoComercial(regraAutomacao));
+        payload.put("mensagem", mensagemComercial(followUp, regraAutomacao, valor));
 
         enviar(payload);
     }
@@ -137,9 +173,48 @@ public class ExternalNotificationService {
         payload.put("id", id);
         payload.put("cliente", cliente);
         payload.put("canal", canal);
-        payload.put("proximaAcao", proximaAcao);
+        payload.put("proximaAcao", proximaAcao != null ? String.valueOf(proximaAcao) : null);
         payload.put("observacao", observacao);
         return payload;
+    }
+
+    private String assuntoComercial(String regraAutomacao) {
+        if ("ALTO_VALOR_ABERTO".equals(regraAutomacao)) {
+            return "Oportunidade de alto valor";
+        }
+        if ("SEM_PROXIMA_ACAO".equals(regraAutomacao)) {
+            return "Oportunidade sem proxima acao";
+        }
+        if ("FOLLOW_UP_VENCIDO".equals(regraAutomacao)) {
+            return "Follow-up comercial vencido";
+        }
+        return "Follow-up comercial de hoje";
+    }
+
+    private String mensagemComercial(FollowUpComercial followUp, String regraAutomacao, BigDecimal valor) {
+        String cliente = textoOuPadrao(followUp.getClienteNome(), "Cliente nao informado");
+        String pedido = followUp.getPedido() != null
+                ? textoOuPadrao(followUp.getPedido().getNumero(), String.valueOf(followUp.getPedido().getId()))
+                : "pedido nao informado";
+        String proximaAcao = followUp.getProximaAcao() != null ? String.valueOf(followUp.getProximaAcao()) : "sem data definida";
+        String observacao = textoOuPadrao(followUp.getObservacao(), "sem observacao");
+        return assuntoComercial(regraAutomacao)
+                + ": cliente " + cliente
+                + ", pedido " + pedido
+                + ", valor " + formatarValor(valor)
+                + ", proxima acao " + proximaAcao
+                + ". Observacao: " + observacao + ".";
+    }
+
+    private String formatarValor(BigDecimal valor) {
+        if (valor == null) {
+            return "nao informado";
+        }
+        return "R$ " + valor.setScale(2, RoundingMode.HALF_UP);
+    }
+
+    private String textoOuPadrao(String valor, String padrao) {
+        return valor == null || valor.isBlank() ? padrao : valor.trim();
     }
 
     private void enviar(Map<String, Object> payload) {

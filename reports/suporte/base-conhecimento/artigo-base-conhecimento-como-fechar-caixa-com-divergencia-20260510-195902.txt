@@ -1,0 +1,44 @@
+﻿ARTIGO DE BASE DE CONHECIMENTO - NEXUS ONE
+Data: 10/05/2026 19:59:02
+Titulo: Como fechar caixa com divergencia
+Modulo: Caixa
+Categoria: FAQ
+Publico: Operador de Caixa
+Responsavel: Nexus Suporte
+Tags: caixa, fechamento, divergencia
+
+============================================================
+PERGUNTA OU SINTOMA
+============================================================
+Operador tenta fechar o caixa, mas o valor contado difere do saldo esperado.
+
+============================================================
+CAUSA PROVAVEL
+============================================================
+Sangria, suprimento, recebimento ou valor contado informado de forma divergente.
+
+============================================================
+SOLUCAO RECOMENDADA
+============================================================
+Conferir resumo por forma de pagamento, revisar sangrias e suprimentos, comparar comprovantes e registrar justificativa antes do fechamento.
+
+============================================================
+QUANDO ACIONAR SUPORTE
+============================================================
+Acionar suporte quando a divergencia impedir fechamento, houver recebimento duplicado ou o saldo esperado parecer incorreto.
+
+============================================================
+CHECKLIST DE PUBLICACAO
+============================================================
+- [ ] Linguagem simples para usuario final.
+- [ ] Sem senhas, tokens, dados pessoais ou logs sensiveis.
+- [ ] Validado por suporte/implantacao.
+- [ ] Vinculado a treinamento, incidente ou FAQ quando aplicavel.
+- [ ] Revisao agendada apos mudanca de tela/regra.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\BASE_CONHECIMENTO_SUPORTE_CLIENTE_NEXUS_ONE.md
+- docs\ROTEIRO_SUPORTE_OPERACIONAL_NEXUS_ONE.md
+- docs\ROTEIRO_TREINAMENTO_POR_PERFIL_NEXUS_ONE.md

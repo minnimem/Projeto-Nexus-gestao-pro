@@ -1,0 +1,75 @@
+﻿OFFBOARDING E ENCERRAMENTO DE CLIENTE - NEXUS ONE
+Data: 10/05/2026 22:15:54
+Cliente: Cliente Piloto
+Responsavel: Nexus One
+
+============================================================
+DECISAO DE ENCERRAMENTO
+============================================================
+- Tipo de saida: Migracao para outro sistema
+- Motivo: Migracao para outro sistema
+- Data efetiva de encerramento: 10/05/2026
+- Exportacao de dados: Pendente
+- Tratamento de dados: Aguardando validacao
+- Bloqueio de acessos: Pendente
+- Baixa financeira: Pendente
+- Concorrente/alternativa: ERP concorrente
+
+============================================================
+GO DE ENCERRAMENTO
+============================================================
+- [ ] Decisor autorizado confirmou o encerramento.
+- [ ] Retencao, exportacao, anonimizacao ou exclusao de dados foi definida.
+- [ ] Obrigacoes fiscais/contabeis foram validadas com cliente/contador quando aplicavel.
+- [ ] Financeiro revisou saldo, credito, multa, inadimplencia ou ultima cobranca.
+- [ ] Acessos, tokens, webhooks, certificados e integracoes possuem data de bloqueio/remocao.
+- [ ] Base de conhecimento, suporte e incidentes foram encerrados ou transferidos.
+- [ ] Aprendizado comercial/produto foi registrado.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Decisor do cliente confirmou o encerramento.
+- [ ] Faturamento final revisado.
+- [ ] Exportacao de dados entregue ou dispensada formalmente.
+- [ ] Retencao, exclusao ou anonimizacao validada.
+- [ ] Usuarios e acessos bloqueados.
+- [ ] Tokens, webhooks, certificados e integracoes desativados quando aplicavel.
+- [ ] Pendencias de suporte encerradas ou documentadas.
+- [ ] Uso de nome/logo/depoimento/caso revisado.
+- [ ] Comunicacao final enviada ao cliente.
+
+============================================================
+PLANO DE DADOS
+============================================================
+Item | Decisao | Responsavel | Prazo | Evidencia
+--- | --- | --- | --- | ---
+Exportacao | Pendente |  |  | 
+Retencao | Aguardando validacao |  |  | 
+Anonimizacao |  |  |  | 
+Exclusao |  |  |  | 
+
+============================================================
+APRENDIZADO DE SAIDA
+============================================================
+- Motivo principal: Migracao para outro sistema
+- Concorrente ou alternativa escolhida: ERP concorrente
+- Aprendizado: Cliente buscou integracao fiscal imediata
+- Deve virar roadmap/base/treinamento/ajuste comercial:
+
+============================================================
+ALERTAS
+============================================================
+- Exportacao de dados pendente: confirmar escopo, responsavel autorizado e prazo.
+- Tratamento de dados aguardando validacao: conferir LGPD, contrato e obrigacoes fiscais/contabeis.
+- Bloqueio de acessos pendente: nao concluir encerramento sem data e responsavel.
+- Baixa financeira pendente: revisar saldo, credito, multa, inadimplencia ou ultima cobranca.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_OFFBOARDING_ENCERRAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_RENOVACAO_RETENCAO_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\POLITICA_PRIVACIDADE_LGPD_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md

@@ -1,0 +1,42 @@
+﻿OFFBOARDING E ENCERRAMENTO DE CLIENTE - NEXUS ONE
+Data: 10/05/2026 19:54:05
+Cliente: Cliente Piloto
+Responsavel: Nexus One
+
+============================================================
+DECISAO DE ENCERRAMENTO
+============================================================
+- Tipo de saida: Nao conversao de piloto
+- Motivo: Fim de piloto sem conversao comercial
+- Data efetiva de encerramento: 31/05/2026
+- Exportacao de dados: Entregue
+- Tratamento de dados: Anonimizar
+- Bloqueio de acessos: Concluido
+- Baixa financeira: Nao aplicavel
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Decisor do cliente confirmou o encerramento.
+- [ ] Faturamento final revisado.
+- [ ] Exportacao de dados entregue ou dispensada formalmente.
+- [ ] Retencao, exclusao ou anonimizacao validada.
+- [ ] Usuarios e acessos bloqueados.
+- [ ] Tokens, webhooks, certificados e integracoes desativados quando aplicavel.
+- [ ] Pendencias de suporte encerradas ou documentadas.
+- [ ] Uso de nome/logo/depoimento/caso revisado.
+- [ ] Comunicacao final enviada ao cliente.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_OFFBOARDING_ENCERRAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_RENOVACAO_RETENCAO_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\POLITICA_PRIVACIDADE_LGPD_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md

@@ -1,0 +1,75 @@
+﻿RESULTADO DO LOTE COMERCIAL - NEXUS ONE
+Data: 10/05/2026 22:22:50
+Lote: Lote 1
+Responsavel: Nexus One
+
+============================================================
+INDICADORES
+============================================================
+- Oportunidades qualificadas: 5
+- Propostas enviadas: 4
+- Fechamentos: 2
+- Taxa oportunidade -> proposta: 80%
+- Taxa proposta -> fechamento: 50%
+- Clientes Verde: 2
+- Clientes Amarelo: 0
+- Clientes Vermelho: 0
+- Percentual de clientes Verde: 100%
+- Incidentes P0/P1: 0
+- Pendencias bloqueantes: 0
+- Pacotes de entrega completos: 2 de 2 (100%)
+- Clientes com aceite registrado: 2 de 2 (100%)
+- Promessas fora do escopo: 0
+- Limite de implantacoes simultaneas: 2
+
+============================================================
+PONTUACAO DO LOTE
+============================================================
+- Pontuacao total: 100/100
+- Conversao comercial: 25/25
+- Qualidade da entrega: 25/25
+- Saude dos clientes: 25/25
+- Estabilidade de suporte: 15/15
+- Disciplina de escopo: 10/10
+
+Leitura:
+- Lote saudavel para aumentar escala com controle.
+
+============================================================
+DECISAO
+============================================================
+- Decisao recomendada: AUMENTAR ESCALA COM CONTROLE
+- Proxima acao: Abrir novo lote mantendo limites e pacote de entrega por cliente.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+OBSERVACOES
+============================================================
+Sem observacoes adicionais.
+
+============================================================
+PLANO DE ACAO POS-LOTE
+============================================================
+- Sem plano corretivo obrigatorio. Manter monitoramento e limite de capacidade.
+
+============================================================
+EVIDENCIAS PARA PROXIMO LOTE
+============================================================
+- Resultado do lote aprovado.
+- Decisao de expansao registrada.
+- Matriz de capacidade atualizada.
+- Pacote de entrega completo por cliente.
+- Saude/NPS dos clientes ativos revisada.
+- Bloqueios repetidos com plano de acao ou removidos.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\RELATORIO_RESULTADO_LOTE_COMERCIAL_NEXUS_ONE.md
+- docs\PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md

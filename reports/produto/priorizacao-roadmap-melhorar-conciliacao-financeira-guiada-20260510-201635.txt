@@ -1,0 +1,50 @@
+﻿PRIORIZACAO DE ROADMAP - NEXUS ONE
+Data: 10/05/2026 20:16:35
+Titulo: Melhorar conciliacao financeira guiada
+Cliente/origem: Cliente Piloto
+Origem: Feedback/NPS
+Modulo: Financeiro
+Tipo: Melhoria
+Responsavel: Nexus Produto
+
+============================================================
+SCORE
+============================================================
+- Impacto comercial/receita: 20 / 25
+- Impacto operacional/retencao: 18 / 20
+- Recorrencia entre clientes: 10 / 15
+- Reducao de risco/suporte: 12 / 15
+- Alinhamento com produto padrao: 14 / 15
+- Baixo esforco relativo: 6 / 10
+
+Total: 80 / 100
+Decisao: PRIORIDADE ALTA
+Proxima acao: Avaliar inclusao no proximo ciclo/release e comunicar partes interessadas.
+
+============================================================
+DESCRICAO E EVIDENCIA
+============================================================
+Feedback D30 indicou que usuarios ainda precisam praticar conciliacao financeira. Melhorar fluxo guiado pode reduzir suporte e aumentar valor percebido.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Evidencia anexada: feedback, incidente, venda, suporte ou implantacao.
+- [ ] Tipo separado corretamente: bug, melhoria, customizacao, treinamento ou pendencia.
+- [ ] Impacto comercial e operacional revisado.
+- [ ] Dependencias externas avaliadas.
+- [ ] Comunicacao ao cliente definida quando houver promessa ou expectativa.
+- [ ] Base de conhecimento atualizada quando for duvida recorrente.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_PRIORIZACAO_ROADMAP_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_FEEDBACK_NPS_CLIENTE_NEXUS_ONE.md
+- docs\BASE_CONHECIMENTO_SUPORTE_CLIENTE_NEXUS_ONE.md
+- docs\LISTA_CONSOLIDADA_MELHORIAS_SUGESTOES_NEXUS_ONE.txt

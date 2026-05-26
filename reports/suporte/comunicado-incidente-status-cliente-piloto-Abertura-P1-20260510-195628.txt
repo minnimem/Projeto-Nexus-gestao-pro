@@ -1,0 +1,36 @@
+﻿COMUNICADO DE INCIDENTE E STATUS - NEXUS ONE
+Data: 10/05/2026 19:56:28
+Cliente: Cliente Piloto
+Tipo: Abertura
+Prioridade: P1
+Modulo/servico: Caixa
+Responsavel: Nexus Suporte
+
+============================================================
+MENSAGEM AO CLIENTE
+============================================================
+Assunto: Incidente em acompanhamento - Nexus One
+
+Identificamos uma situacao em Caixa com impacto em: Fechamento de caixa indisponivel para operador principal.
+Status atual: Em investigacao.
+Acao em andamento: Suporte validando logs, caixa aberto e ultimo recebimento.
+Contorno temporario: Usar recebimento manual temporario autorizado pelo gestor.
+Proxima atualizacao: Em ate 2 horas uteis.
+
+============================================================
+CONTROLE INTERNO
+============================================================
+- Cadencia sugerida: Atualizacoes conforme SLA ou quando houver mudanca relevante.
+- [ ] Ficha de incidente vinculada.
+- [ ] Cliente comunicado pelo canal combinado.
+- [ ] Evidencias tecnicas anexadas.
+- [ ] Normalizacao validada por smoke test ou confirmacao do cliente.
+- [ ] Causa raiz e prevencao registradas quando P0/P1.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PLAYBOOK_COMUNICACAO_INCIDENTE_STATUS_NEXUS_ONE.md
+- docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md
+- docs\ROTEIRO_SUPORTE_OPERACIONAL_NEXUS_ONE.md
+- scripts\gerar-incidente-suporte.ps1

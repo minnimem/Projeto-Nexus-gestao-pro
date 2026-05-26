@@ -1,0 +1,58 @@
+﻿QUALIFICACAO DE OPORTUNIDADE COMERCIAL - NEXUS ONE
+Data: 10/05/2026 21:25:25
+Cliente: Cliente Piloto
+Segmento: Comercio varejista
+Responsavel: Nexus One
+
+============================================================
+SCORE
+============================================================
+- Dor clara e relevante: 15 / 20
+- Decisor identificado: 10 / 15
+- Escopo compativel com produto atual: 10 / 15
+- Dados e responsaveis disponiveis: 10 / 15
+- Integracoes nao bloqueantes: 10 / 15
+- Orcamento e urgencia coerentes: 5 / 10
+- Fit do plano comercial: 5 / 10
+
+Total: 65 / 100
+Decisao: DEMO + PROPOSTA CONTROLADA
+Fit comercial: Fit bom com risco controlavel
+Risco comercial: Medio
+Proximo passo: Conduzir demo focada na dor principal e preparar proposta controlada com limites e dependencias.
+
+============================================================
+ACOES ANTES DA PROPOSTA
+============================================================
+- Validar orcamento, urgencia e janela real de decisao.
+- Revisar plano sugerido, limites e adicionais.
+
+============================================================
+CHECKLIST ANTES DE AVANCAR
+============================================================
+- [ ] Dor principal registrada.
+- [ ] Decisor e usuarios-chave identificados.
+- [ ] Usuarios, filiais, caixas e modulos estimados.
+- [ ] Responsaveis por dados, financeiro, fiscal/contador, TI e LGPD definidos.
+- [ ] Integracoes externas classificadas como obrigatorias, desejaveis ou fora do escopo.
+- [ ] Limites de plano e dependencias externas explicados.
+- [ ] Proximo artefato definido: diagnostico, demo, proposta, handoff ou pausa.
+
+============================================================
+RED FLAGS A REVISAR
+============================================================
+- Fiscal real imediato sem certificado, contador ou credenciamento.
+- Producao ampla solicitada sem piloto assistido.
+- Ausencia de decisor ou responsavel operacional.
+- Integracao obrigatoria nao homologada.
+- Customizacao grande fora do produto base.
+- Falta de dados, prazo ou responsavel para conferencia.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PLAYBOOK_COMERCIAL_QUALIFICACAO_NEXUS_ONE.md
+- docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md
+- docs\ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md

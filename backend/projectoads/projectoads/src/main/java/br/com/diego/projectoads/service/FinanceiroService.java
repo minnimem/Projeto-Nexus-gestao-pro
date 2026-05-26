@@ -63,9 +63,10 @@ public class FinanceiroService {
     @Transactional(readOnly = true)
     public List<FinanceiroResponse> listar(LocalDate inicio, LocalDate fim) {
         Periodo periodo = montarPeriodo(inicio, fim);
+        UUID empresaId = empresaAtualId();
 
         return financeiroRepository
-                .findByDataLancamentoBetweenOrderByDataLancamentoDesc(periodo.inicio(), periodo.fim())
+                .findByEmpresaIdAndDataLancamentoBetweenOrderByDataLancamentoDesc(empresaId, periodo.inicio(), periodo.fim())
                 .stream()
                 .map(this::toResponse)
                 .toList();
@@ -80,15 +81,18 @@ public class FinanceiroService {
     @Transactional(readOnly = true)
     public FinanceiroResumoResponse resumo(LocalDate inicio, LocalDate fim) {
         Periodo periodo = montarPeriodo(inicio, fim);
+        UUID empresaId = empresaAtualId();
 
-        BigDecimal receita = nvl(financeiroRepository.somarPorTipoEStatusNoPeriodo(
+        BigDecimal receita = nvl(financeiroRepository.somarPorEmpresaTipoEStatusNoPeriodo(
+                empresaId,
                 TipoFinanceiro.RECEITA,
                 StatusPagamento.APROVADO,
                 periodo.inicio(),
                 periodo.fim()
         ));
 
-        BigDecimal despesas = nvl(financeiroRepository.somarPorTipoEStatusNoPeriodo(
+        BigDecimal despesas = nvl(financeiroRepository.somarPorEmpresaTipoEStatusNoPeriodo(
+                empresaId,
                 TipoFinanceiro.DESPESA,
                 StatusPagamento.APROVADO,
                 periodo.inicio(),
@@ -96,7 +100,7 @@ public class FinanceiroService {
         ));
 
         List<FinanceiroResponse> movimentacoes = financeiroRepository
-                .findByDataLancamentoBetweenOrderByDataLancamentoDesc(periodo.inicio(), periodo.fim())
+                .findByEmpresaIdAndDataLancamentoBetweenOrderByDataLancamentoDesc(empresaId, periodo.inicio(), periodo.fim())
                 .stream()
                 .map(this::toResponse)
                 .toList();
@@ -105,12 +109,14 @@ public class FinanceiroService {
                 .receitaTotal(receita)
                 .despesas(despesas)
                 .lucro(receita.subtract(despesas))
-                .pedidosPagos(financeiroRepository.countByStatusAndDataLancamentoBetween(
+                .pedidosPagos(financeiroRepository.countByEmpresaIdAndStatusAndDataLancamentoBetween(
+                        empresaId,
                         StatusPagamento.APROVADO,
                         periodo.inicio(),
                         periodo.fim()
                 ))
-                .lancamentos(financeiroRepository.countByDataLancamentoBetween(
+                .lancamentos(financeiroRepository.countByEmpresaIdAndDataLancamentoBetween(
+                        empresaId,
                         periodo.inicio(),
                         periodo.fim()
                 ))
@@ -448,6 +454,7 @@ public class FinanceiroService {
         if (request.getPedidoId() != null) {
             Pedido pedido = pedidoRepository.findById(request.getPedidoId())
                     .orElseThrow(() -> new BusinessException("Pedido não encontrado"));
+            validarMesmaEmpresaAtual(pedido.getEmpresa() != null ? pedido.getEmpresa().getId() : null);
             financeiro.setPedido(pedido);
         } else {
             financeiro.setPedido(null);
@@ -489,8 +496,10 @@ public class FinanceiroService {
 
     private Usuario resolverUsuarioResponsavel(UUID usuarioId) {
         if (usuarioId != null) {
-            return usuarioRepository.findById(usuarioId)
+            Usuario usuario = usuarioRepository.findById(usuarioId)
                     .orElseThrow(() -> new BusinessException("Usuario nao encontrado"));
+            validarMesmaEmpresaAtual(usuario.getEmpresa() != null ? usuario.getEmpresa().getId() : null);
+            return usuario;
         }
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -500,6 +509,31 @@ public class FinanceiroService {
 
         return usuarioRepository.findByLoginIgnoreCase(authentication.getName())
                 .orElse(null);
+    }
+
+    private Usuario usuarioAtualObrigatorio() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication.getName() == null) {
+            throw new BusinessException("Usuario autenticado nao encontrado.");
+        }
+
+        return usuarioRepository.findByLoginIgnoreCase(authentication.getName())
+                .orElseThrow(() -> new BusinessException("Usuario autenticado nao encontrado."));
+    }
+
+    private UUID empresaAtualId() {
+        Usuario usuario = usuarioAtualObrigatorio();
+        UUID empresaId = usuario.getEmpresa() != null ? usuario.getEmpresa().getId() : null;
+        if (empresaId == null) {
+            throw new BusinessException("Usuario sem empresa vinculada.");
+        }
+        return empresaId;
+    }
+
+    private void validarMesmaEmpresaAtual(UUID empresaEntidadeId) {
+        if (empresaEntidadeId == null || !empresaEntidadeId.equals(empresaAtualId())) {
+            throw new BusinessException("Registro nao pertence a empresa do usuario autenticado.");
+        }
     }
 
     private void validarRequest(FinanceiroRequest request) {
@@ -750,8 +784,11 @@ public class FinanceiroService {
             throw new BusinessException("ID do lançamento financeiro é obrigatório.");
         }
 
-        return financeiroRepository.findById(id)
+        Financeiro financeiro = financeiroRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("Lançamento financeiro não encontrado."));
+        UUID empresaFinanceiroId = financeiro.getEmpresa() != null ? financeiro.getEmpresa().getId() : null;
+        validarMesmaEmpresaAtual(empresaFinanceiroId);
+        return financeiro;
     }
 
     private FinanceiroResponse toResponse(Financeiro f) {

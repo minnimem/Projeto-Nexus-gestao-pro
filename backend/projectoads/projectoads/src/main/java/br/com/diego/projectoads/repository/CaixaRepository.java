@@ -18,5 +18,7 @@ public interface CaixaRepository extends JpaRepository<Caixa, UUID> {
 
     boolean existsByUsuarioAndStatus(Usuario usuario, StatusCaixa status);
 
+    long countByEmpresaAndStatus(Empresa empresa, StatusCaixa status);
+
     List<Caixa> findTop50ByEmpresaOrderByDataAberturaDesc(Empresa empresa);
 }

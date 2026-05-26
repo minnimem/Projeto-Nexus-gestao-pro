@@ -8,4 +8,6 @@ import java.util.UUID;
 
 public interface FilialRepository extends JpaRepository<Filial, UUID> {
     List<Filial> findByEmpresaIdOrderByMatrizDescNomeAsc(UUID empresaId);
+
+    long countByEmpresaId(UUID empresaId);
 }

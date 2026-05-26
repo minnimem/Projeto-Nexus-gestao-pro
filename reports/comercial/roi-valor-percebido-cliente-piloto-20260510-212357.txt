@@ -1,0 +1,57 @@
+﻿ROI E VALOR PERCEBIDO - NEXUS ONE
+Data: 10/05/2026 21:23:57
+Cliente: Cliente Piloto
+Responsavel: Nexus One
+
+============================================================
+PREMISSAS
+============================================================
+- Mensalidade: R$ 349,00
+- Implantacao: R$ 1.200,00
+- Horas economizadas por mes: 12
+- Custo hora operacional: R$ 35,00
+- Reducao mensal de divergencia de caixa: R$ 0,00
+- Reducao mensal de perda de estoque: R$ 0,00
+- Recuperacao mensal de recebimentos: R$ 0,00
+- Observacao: Estimativa conservadora baseada em informacoes do cliente; nao representa garantia de resultado.
+
+============================================================
+ESTIMATIVA
+============================================================
+- Economia estimada por horas: R$ 420,00
+- Ganho mensal estimado bruto: R$ 420,00
+- Ganho mensal estimado apos mensalidade: R$ 71,00
+- Payback estimado da implantacao: 16.9 mes(es)
+- Classificacao: Payback longo
+- Leitura comercial: Retorno estimado mais longo. Reforcar ganhos de controle, risco e gestao.
+
+============================================================
+GANHOS QUALITATIVOS PARA DEFESA DE VALOR
+============================================================
+- Menos dependencia de planilhas ou controles paralelos.
+- Caixa, estoque e financeiro mais auditaveis.
+- Melhor acompanhamento de recebimentos, inadimplencia e divergencias.
+- Implantacao, treinamento, suporte, backup, LGPD e aceite documentados.
+- Evolucao segura por piloto assistido, Go/No-Go e producao controlada.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Cliente validou as premissas usadas.
+- [ ] ROI foi apresentado como estimativa, nao garantia.
+- [ ] Ganhos qualitativos foram registrados.
+- [ ] Proposta e plano seguem limites documentados.
+- [ ] Feedback/NPS futuro sera usado para comparar expectativa e valor percebido.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\FICHA_ROI_VALOR_PERCEBIDO_NEXUS_ONE.md
+- docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_POSICIONAMENTO_COMPETITIVO_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md

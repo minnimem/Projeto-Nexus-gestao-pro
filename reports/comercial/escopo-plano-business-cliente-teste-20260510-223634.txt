@@ -1,0 +1,78 @@
+﻿ESCOPO DE PLANO COMERCIAL - NEXUS ONE
+Data: 10/05/2026 22:36:34
+Cliente: Cliente Teste
+Plano comercial: Business
+Plano tecnico: Medio
+Codigo de liberacao sugerido: BUSINESS
+Responsavel: Nexus One
+
+VALORES SUGERIDOS
+- Mensalidade: R$ 349,00
+- Implantacao: R$ 800,00 a R$ 1.500,00
+
+LIMITES DO PLANO
+- 1 empresa
+- Ate 3 filiais
+- Ate 3 caixas/PDV
+- Ate 8 usuarios
+- Ate 5.000 produtos sugeridos
+- Fiscal real conforme homologacao e limite contratado
+
+COMO A LIBERACAO DEVE FUNCIONAR
+- O plano contratado libera direito comercial de uso.
+- Recursos reais como fiscal, Pix, boleto, notificacoes e integracoes dependem de homologacao.
+- Upgrade libera novos limites apos aceite comercial e revisao de implantacao.
+- Downgrade mantem historico, mas bloqueia novos cadastros acima do limite contratado.
+- Dados existentes nao devem ser apagados sem aceite formal do cliente.
+
+RECURSOS INCLUIDOS
+- Todos os recursos do Basico
+- PDV completo
+- Orcamentos/propostas
+- CRM/follow-up
+- Estoque com compras e fornecedores
+- Financeiro gerencial
+- DRE/fluxo/conciliacao
+- Separacao
+- Entrega basica
+- Relatorios gerenciais
+- Suporte prioritario em horario comercial
+
+FORA DO ESCOPO INICIAL
+- Multiempresa completa
+- Logistica avancada ilimitada
+- Relatorios customizados sob demanda
+- Suporte fora do horario comercial
+- Integracoes reais sem homologacao
+
+ADICIONAIS POSSIVEIS
+- Usuario extra
+- Caixa extra
+- Filial extra
+- Integracao WhatsApp/API
+- Pacote fiscal adicional
+- Relatorio customizado
+- Treinamento extra
+
+ADICIONAIS QUE DEVEM SER CONTRATADOS OU HOMOLOGADOS
+- Homologacao fiscal real por cliente/filial/modelo.
+- Pix/boleto real com provedor do cliente.
+- Notificacoes externas em canal real.
+- Carga de dados complexa.
+- Relatorios customizados.
+- Suporte fora do horario comercial.
+
+CONDICOES PARA PRODUCAO CONTROLADA
+- Deploy definitivo validado.
+- Banco provisionado.
+- Backup e restauracao testados.
+- Monitoramento ativo.
+- Smoke test aprovado.
+- Go/No-Go sem pendencia bloqueante.
+- Termo de aceite assinado.
+
+REFERENCIAS
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\MATRIZ_GO_NO_GO_COMERCIAL_NEXUS_ONE.md
+- docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md

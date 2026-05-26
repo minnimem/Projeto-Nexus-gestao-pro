@@ -1,0 +1,554 @@
+RELATORIO DE STATUS PARA PRODUCAO COMERCIAL - NEXUS ONE
+Data: 09/05/2026
+
+Atualizacao executiva: 10/05/2026
+
+Atualizacao de status: 11/05/2026
+
+Levantamento apos continuidade das melhorias comerciais, operacionais e de evidencias:
+
+- Funil comercial consultivo: ATUALIZADO E ESTRUTURADO.
+- Diagnostico, proposta, ROI, one-page e qualificacao: PRONTOS PARA USO CONTROLADO.
+- Handoff comercial, implantacao e suporte: PRONTO COM MAPA DE PROMESSAS, DEPENDENCIAS E BLOQUEIOS.
+- Cronograma de implantacao e piloto assistido: PRONTOS COM PRE-REQUISITOS, D5, D10 E CRITERIOS DE SAIDA.
+- Registro de riscos, Go/No-Go e termo de aceite: PRONTOS PARA DECISAO CLIENTE A CLIENTE.
+- Pacote de entrega e auditoria de evidencias: PRONTOS PARA VALIDAR CLIENTE REAL E DECISAO DE ESCALA.
+- Saude do cliente, NPS, retencao, faturamento e offboarding: PRONTOS COMO ROTINA POS-IMPLANTACAO.
+- Geradores PowerShell dos principais documentos: CRIADOS/ATUALIZADOS E VALIDADOS COM RELATORIOS DE TESTE.
+
+Classificacao atual recomendada:
+- Demonstracao comercial: LIBERADA.
+- Piloto assistido: LIBERADO.
+- Venda comercial controlada: LIBERADA COM CHECKLIST, GO/NO-GO E ACEITE POR CLIENTE.
+- Producao controlada: LIBERAR CLIENTE A CLIENTE, somente com evidencias reais.
+- Comercializacao ampla: AINDA NAO LIBERAR SEM PRIMEIRO CLIENTE REAL SAUDAVEL, AUDITORIA APROVADA E DECISAO DE EXPANSAO.
+
+Percentual estimado apos melhorias:
+- Pronto para demonstracao comercial: 96% a 98%.
+- Pronto para piloto assistido: 94% a 97%.
+- Pronto para venda controlada: 92% a 96%.
+- Pronto para producao controlada por cliente: 88% a 94%, dependendo de deploy, dados, backup, suporte e homologacoes do cliente.
+- Pronto para comercializacao ampla: 72% a 82%, dependendo de cliente real com aceite, saude Verde e evidencias auditadas.
+
+Principais pendencias para conclusao ate comercializar em escala:
+- Executar primeiro cliente real ou piloto pago com dados reais.
+- Validar deploy definitivo, banco, backup, restauracao, monitoramento e smoke test em ambiente real.
+- Homologar Pix/boleto real quando vendido.
+- Homologar fiscal real por empresa/filial/modelo quando vendido.
+- Rodar D1 a D10 do piloto assistido com diarios, riscos, Go/No-Go e termo de aceite.
+- Classificar saude do cliente como Verde apos uso real.
+- Gerar auditoria de evidencias do cliente real e decisao de expansao comercial.
+
+Decisao executiva atual:
+O Nexus One esta pronto para vender de forma controlada, com escopo bem definido, implantacao assistida e promessa comercial protegida. O produto ainda nao deve ser vendido como escala ampla sem passar pelo ciclo completo de cliente real, aceite, saude Verde e auditoria de evidencias.
+
+Proximo marco recomendado:
+Selecionar um cliente piloto real, gerar pacote comercial completo, executar implantacao assistida D1-D10, obter Go/No-Go e aceite, medir saude D7/D15/D30 e so entao decidir abertura de lote comercial.
+
+Levantamento apos analise dos relatorios de sugestoes por modulo, planos comerciais e status tecnico:
+
+- Demonstracao comercial: LIBERADA.
+- Piloto assistido com cliente real: LIBERADO COM ESCOPO CONTROLADO.
+- Venda comercial controlada: RECOMENDADA APOS Go/No-Go por cliente.
+- Venda ampla em escala: AINDA NAO RECOMENDADA.
+
+Classificacao atual recomendada:
+- Go demonstracao.
+- Go piloto assistido.
+- Go producao controlada apenas se deploy, backup, suporte, aceite, pagamentos/fiscal contratados e homologacoes externas estiverem evidenciados.
+- No-go para prometer fiscal real, Pix/boleto real, WhatsApp/e-mail real ou qualquer integracao externa sem homologacao oficial do cliente/provedor.
+
+Resumo pratico:
+O Nexus One ja pode ser comercializado como ERP + PDV em implantacao assistida. A promessa comercial deve ser controlada: vender o nucleo operacional forte (vendas, caixa, estoque, clientes, financeiro gerencial, relatorios e suporte de implantacao) e tratar fiscal/pagamentos/integracoes reais como ativacoes homologadas por etapa.
+
+Proximo marco para conclusao comercial:
+Fechar um cliente piloto, executar roteiro operacional completo, gerar evidencias, obter aceite e somente depois abrir lote comercial controlado de 3 a 5 oportunidades.
+
+OBJETIVO
+Avaliar quanto ainda falta para o Nexus One sair do estagio atual e chegar a um nivel seguro para comercializacao em producao, considerando produto, operacao, homologacoes reais e infraestrutura.
+
+============================================================
+RESUMO EXECUTIVO
+============================================================
+
+Estimativa atual:
+- Pronto para demonstracao comercial forte: 92% a 96%
+- Pronto para piloto controlado com cliente: 90% a 94%
+- Pronto para producao comercial completa: 90% a 96%
+
+Conclusao direta:
+Faltam aproximadamente 4% a 10% para vender como ERP em producao comercial completa com risco baixo.
+
+Leitura pratica:
+O sistema ja esta forte para demonstracao comercial e piloto assistido. A maior parte do que faltava em producao tecnica virou processo, script e evidencia: deploy, homologacao, backup, monitoramento, segredos, release, smoke test, Go/No-Go e suporte. O que ainda falta depende principalmente de execucao em servidor/cliente real e homologacoes externas oficiais.
+
+============================================================
+STATUS POR AREA
+============================================================
+
+1. Visual premium geral
+Status estimado: 85%
+
+Ja existe:
+- Shell visual premium.
+- Cards, tabelas, botoes, badges e empty states padronizados.
+- Dark mode e ajustes visuais nos principais modulos.
+- Central de alertas na topbar.
+
+Ainda falta:
+- Polimento fino por telas especificas.
+- Revisao responsiva completa.
+- Ajustes finais apos homologar fluxos reais.
+
+2. Vendas / CRM / Propostas
+Status estimado: 90%
+
+Ja existe:
+- Vendas modular com Resumo, Nova venda, Pedidos, CRM, Separacao, Analytics, Ranking e Nota fiscal.
+- Follow-up comercial com agenda, funil, historico e regras de automacao.
+- Regras comerciais persistidas no backend por empresa/filial.
+- Envio externo de follow-up preparado com canal, regra, assunto e mensagem.
+- Orcamento/proposta com validade e condicoes comerciais persistidas.
+
+Ainda falta:
+- Homologar canal externo real: WhatsApp, e-mail ou webhook do cliente.
+- Pequenos ajustes de demonstracao e textos finais.
+
+3. Caixa / PDV
+Status estimado: 90%
+
+Ja existe:
+- Fluxo visual premium para recebimento.
+- Status de caixa, operador, filial e saldo.
+- Pagamento misto.
+- Pix, boleto, dinheiro, credito, debito e misto com identidade visual.
+- Abertura, suprimento, sangria, fechamento e conciliacao.
+- Recibo/comprovante mais profissional.
+
+Ainda falta:
+- QR Code/status Pix em tempo real com provedor real.
+- Homologacao ponta a ponta do pagamento real.
+- Teste operacional com caixa real e cenarios de erro.
+
+4. Clientes / Mini CRM
+Status estimado: 100%
+
+Ja existe:
+- Historico de compras por cliente.
+- Ultima compra, ticket medio, total gasto e frequencia.
+- Tags comerciais como VIP, novo, recorrente, inativo e inadimplente.
+- Timeline de relacionamento.
+- Follow-up vinculado ao cliente.
+
+Ainda falta:
+- Apenas refinamentos futuros conforme uso real.
+
+5. Estoque Inteligente
+Status estimado: 100%
+
+Ja existe:
+- Alerta critico, baixo e normal.
+- Sugestao de reposicao.
+- Curva ABC, giro e produtos sem movimento.
+- Compras com fornecedor, custo medio e previsao de ruptura.
+- Etiquetas com codigo de barras, QR Code, preview e impressao.
+- Inventario/balanco com contagem, divergencia e exportacao.
+
+Ainda falta:
+- Apenas refinamentos futuros conforme operacao real.
+
+6. Fiscal
+Status tecnico estimado: 98% para homologacao controlada
+Status para producao fiscal real: depende de homologacao externa
+
+Ja existe:
+- Configuracao fiscal.
+- Prontidao por empresa/filial/modelo.
+- Documento fiscal persistido.
+- Payload JSON e XML de homologacao.
+- Validacao interna.
+- Consulta, dossie, checklist e pacote de emissao real.
+- Mock fiscal local e transmissao controlada.
+- DANFE/DANFCE/DANFSe de conferencia.
+- Contingencia, cancelamento, inutilizacao e carta de correcao controlados.
+
+Ainda falta:
+- Certificado real A1.
+- Credenciamento da empresa/filial.
+- Provedor fiscal/SEFAZ/municipio em ambiente oficial.
+- QR Code oficial NFC-e.
+- Validacao tributaria por contador.
+- Emissao oficial em homologacao e depois producao.
+
+7. Servicos / Ordem de Servico
+Status estimado: 99%
+
+Ja existe:
+- Abertura de OS em etapas.
+- Checklist interativo.
+- Prioridade.
+- Kanban operacional.
+- SLA inicial.
+- Timeline operacional e painel de evidencias pendentes no frontend.
+- Pecas utilizadas, evidencias, anexos e assinatura do cliente como campos formais na API/backend.
+- Faturamento de OS integrado ao financeiro, gerando receita pendente vinculada e evitando refaturamento duplicado.
+- Baixa operacional de pecas utilizadas no estoque por OS, com controle anti-duplicidade e movimentacao/auditoria de saida.
+- Seletor assistido de produto/quantidade no formulario da OS para montar a lista de pecas no padrao aceito pela baixa de estoque.
+- Grade editavel inicial de pecas no formulario da OS, com remocao, totais de custo, venda estimada e margem.
+- Persistencia estruturada de itens de pecas da OS no backend, com produto, quantidade, custo unitario, valor unitario, totais e margem no response.
+- Relatorio inicial de margem de pecas por OS, produto e tecnico no frontend, com exportacao CSV/PDF dos itens estruturados.
+- Aceite/assinatura do cliente identificado por responsavel, documento, observacao e data de registro no backend/API e no frontend.
+- Upload real de anexos/fotos da OS via multipart, com armazenamento local configuravel, link no campo de anexos e download protegido pela API.
+- Registro de assinatura digitalizada da OS por upload especifico, marcando aceite do cliente e vinculando responsavel/documento/data.
+- Captura desenhada de assinatura em tela/canvas no frontend, gerando PNG e registrando no mesmo fluxo de aceite da OS.
+- Relatorio historico de OS por periodo, cliente, tecnico e status, com KPIs de valor, conclusao, ciclo medio, SLA, evidencias e exportacao CSV/PDF.
+- Regras formais de servico avulso, contrato, garantia e recorrencia na OS, com contrato vinculado, cobertura de garantia, intervalo/proxima recorrencia e paineis operacionais.
+
+Ainda falta:
+- Automatizar geracao futura de OS recorrente e faturamento recorrente integrado por contrato quando o cliente exigir operacao totalmente automatica.
+
+8. Alertas / Notificacoes
+Status estimado: 75%
+
+Ja existe:
+- Central de alertas operacional.
+- Alertas de estoque, pedidos, financeiro critico, follow-ups, rotas e certificado fiscal.
+- Filtros por criticidade.
+- Acoes de visto/restaurar.
+- Mock de notificacao externa com validacao de payload.
+
+Ainda falta:
+- Canal real em producao.
+- Tempo real/websocket ou agendamento mais robusto.
+- Comunicados internos para colaboradores.
+
+9. Financeiro Empresarial
+Status estimado: 60%
+
+Ja existe:
+- Base de contas, cobrancas, recorrencias e fluxo inicial.
+- Agenda de cobranca.
+- Integracao com pedido/caixa em pontos importantes.
+- DRE gerencial simples com receita bruta, deducoes/taxas, receita liquida, custo de mercadorias/estoque, lucro bruto, despesas operacionais, resultado operacional e margens.
+- Comparativo do mes atual contra mes anterior.
+- Previsao de saldo dos proximos 30 dias usando entradas e saidas aprovadas/pendentes e recorrencias ativas previstas no periodo.
+- Plano de acao financeiro automatico priorizando saldo previsto negativo, cobrancas vencidas, inconsistencias, resultado negativo, contas vencidas e follow-ups.
+- Matriz de risco da inadimplencia por cliente, com classificacao Critico/Alto/Medio/Baixo, acao sugerida e observacao automatica ao agendar follow-up.
+- Placar de saude da conciliacao entre vendas, caixa e financeiro, com diferencas destacadas e atalhos para corrigir inconsistencias.
+- Contas a pagar e receber com prioridade visual automatica por vencimento e valor, separando Critica, Alta, Media e Baixa.
+
+Ainda falta:
+- Inadimplencia com automacao completa.
+- Comparativos, tendencias e previsao.
+
+10. Logistica
+Status estimado: 60%
+
+Ja existe:
+- Base de rotas, entregas, veiculos e entregadores.
+- Alertas de rotas atrasadas.
+- Relacao com pedidos/entregas.
+- Central de despacho com rotas atrasadas, entregas sem rota, rotas sem motorista/veiculo e custo por entrega.
+- Romaneio de rota para impressao.
+- Comprovante individual de entrega para impressao com cliente, pedido, destino, rota, assinatura e recebimento.
+- Permissao operacional para ESTOQUISTA conforme modulo.
+- Indicadores por motorista com rotas, entregas, atrasos, eficiencia e custo por entrega.
+- Historico operacional recente com rotas planejadas/finalizadas/atrasadas e entregas vinculadas/pendentes.
+- Mapa operacional visual de rotas ativas com paradas, motorista, veiculo, filial e risco de atraso, sem depender de provedor externo.
+
+Ainda falta:
+- Mapa georreferenciado com provedor real, se virar requisito comercial.
+
+11. Colaboradores / RH Operacional
+Status estimado: 45%
+
+Ja existe:
+- Base de usuarios/perfis/colaboradores.
+- Algumas metas e permissoes iniciais.
+- Plano de risco RH com usuarios sem filial, filial sem gestor, cargo incompleto e acesso bloqueado/inativo.
+- Matriz de cobertura por filial para gestor, vendas, caixa, estoque e financeiro.
+- Organograma operacional por filial, perfil e cargo, com exportacao CSV/PDF.
+
+Ainda falta:
+- Organograma hierarquico completo com lider, supervisor e subordinados.
+- Avatar/foto.
+- Escala, jornada, turnos, ferias e afastamentos.
+- Metas por perfil.
+- Auditoria de ultimo login e acoes.
+
+12. Permissoes Enterprise / Auditoria
+Status estimado: 55%
+
+Ja existe:
+- Perfis principais.
+- Algumas permissoes por modulo/acao.
+- Auditoria em fluxos sensiveis.
+- Matriz de permissoes exportavel por perfil, modulo e acao.
+- Governanca de acesso com permissoes manuais, usuarios sem filial e eventos sensiveis.
+- Auditoria por modulo com ranking de eventos e criticidade.
+
+Ainda falta:
+- Permissoes granulares completas para todas as acoes sensiveis.
+- Auditoria operacional visivel por entidade especifica.
+- Filtros avancados por usuario normalizado, entidade e IP.
+- Bloqueios sensiveis mais completos.
+
+13. BI Executivo / Relatorios
+Status estimado: 58%
+
+Ja existe:
+- Dashboard e relatorios iniciais.
+- Exportacoes CSV/PDF/Excel/JSON em varios pontos.
+- Indicadores por modulo em areas importantes.
+- BI executivo com comparativo de periodo atual contra periodo anterior equivalente.
+- Insights automaticos de vendas, ticket medio, financeiro, logistica e clientes.
+- Analytics por modulo com exportacao CSV/PDF.
+
+Ainda falta:
+- Graficos visuais mais completos por dia, semana, mes e ano.
+- Relatorios configuraveis.
+- Exportacao agendada.
+
+14. Producao Tecnica
+Status estimado: 81% a 85%
+
+Ja existe:
+- Frontend e backend compilando.
+- Testes importantes ja cobriram areas fiscais/notificacoes em rodadas anteriores.
+- Estrutura de mock para homologacoes locais.
+- Base Docker/Compose para frontend, backend e PostgreSQL.
+- `.env.example` com variaveis de banco, JWT, fiscal, Asaas e notificacoes.
+- Perfil `prod` para reduzir SQL verboso em producao.
+- Scripts iniciais de backup PostgreSQL e rollback por referencia Git.
+- Guia tecnico de producao com checklist, backup, rollback, segredos e monitoramento.
+- Checklist de cliente piloto com criterios de entrada, roteiro funcional, aceite e saida.
+- Roteiro de suporte operacional com prioridades, coleta inicial e verificacoes por modulo.
+- Healthcheck no Docker Compose para backend e frontend.
+- Script de verificacao diaria de producao/homologacao.
+- Script de restauracao de backup PostgreSQL.
+- Roteiro de monitoramento, backup, restauracao e logs.
+- Politica formal de segredos para homologacao/producao.
+- Script de validacao de `.env`, bloqueando placeholders, JWT fraco e integracoes ligadas sem token real.
+- Processo formal de implantacao de cliente com abertura, preparacao tecnica, carga inicial, treinamento, operacao assistida e aceite.
+- Termo de aceite de implantacao para assinatura do cliente e responsavel Nexus One.
+- Ambiente de homologacao separado com `.env.homolog.example`, `docker-compose.homolog.yml`, portas e volume PostgreSQL separados.
+- Guia dedicado de homologacao tecnica para subir, validar e encerrar massa de teste.
+- Script de backup PostgreSQL parametrizado por compose, pasta de saida e servico.
+- Script de agendamento diario de backup no Windows via Agendador de Tarefas.
+- Script de monitoramento de disponibilidade para frontend/backend com log local e alerta por webhook.
+- Script de agendamento recorrente do monitoramento de disponibilidade no Windows.
+- Guia de deploy em servidor com requisitos, pre-deploy, deploy, pos-deploy, evidencias e rollback.
+- Script de pre-deploy para validar arquivos criticos, segredos e Docker Compose antes de subir producao.
+- Inventario de segredos sem valores reais, com origem, rotacao sugerida e registro de troca.
+- Script de auditoria de segredos que gera relatorio sem exibir valores sensiveis.
+- Guia de provisionamento do banco PostgreSQL para producao/homologacao.
+- Restauracao parametrizada por compose, servico e pasta de backup.
+- Gerador de evidencia de restauracao de backup.
+- Processo formal de release com manifesto, evidencias, decisao de publicacao e rollback.
+- Gerador de manifesto de release com versao, branch, commit, status Git e checklist operacional.
+- Smoke test operacional via API para health, login, produtos, pedidos, caixa, financeiro e admin.
+- Roteiro de smoke test pos-deploy com validacao manual complementar.
+- Matriz Go/No-Go comercial com criterios bloqueantes para demonstracao, piloto, producao controlada e producao ampla.
+- Termo de aceite vinculado a decisao Go/No-Go e ausencia de pendencias bloqueantes.
+- Politica de SLA e suporte com prioridade P0/P1/P2/P3, prazos e escalonamento.
+- Gerador de ficha de incidente de suporte com impacto, evidencias, causa raiz e encerramento.
+- Matriz consolidada de homologacao de integracoes externas para Asaas, notificacoes, monitoramento e fiscal.
+- Script de verificacao de integracoes externas sem expor tokens/segredos.
+- Modelo de proposta comercial controlada para vender piloto/producao controlada sem prometer integracoes nao homologadas.
+- Gerador de rascunho de proposta comercial controlada por cliente.
+- Matriz de planos comerciais com limites, adicionais, valores sugeridos e regras de venda segura.
+- Gerador de anexo de escopo por plano comercial.
+- Roteiro de demonstracao comercial e prova de valor por segmento.
+- Gerador de plano de demonstracao comercial por cliente.
+- Roteiro de treinamento por perfil para admin, vendedor, caixa, estoque, financeiro e logistica.
+- Gerador de evidencia de treinamento com participantes, topicos, validacao pratica e aceite.
+- Roteiro de carga inicial de dados com modelos CSV para clientes, produtos, usuarios e estoque inicial.
+- Verificador de carga inicial para conferir arquivos e cabecalhos antes de usar dados em homologacao/producao.
+- Politica de privacidade/LGPD para dados pessoais, exportacoes, backup, retencao e direitos do titular.
+- Gerador de registro de solicitacao LGPD para acesso, correcao, exclusao, anonimizacao, portabilidade e informacao.
+- Plano de piloto assistido em 10 dias uteis com evidencias por etapa.
+- Gerador de diario operacional do piloto para registrar fluxos, indicadores, pendencias e decisoes.
+- Pacote consolidado de entrega do cliente com documentos, evidencias, LGPD, suporte, treinamento e integracoes.
+- Gerador de relatorio do pacote de entrega por cliente, sem copiar segredos ou valores sensiveis.
+- Registro de riscos e pendencias por cliente para controlar bloqueios, responsaveis, prazos e evidencias antes do Go/No-Go.
+- Gerador de registro de riscos/pendencias por cliente.
+- Ficha de diagnostico e coleta inicial do cliente para qualificar proposta/piloto antes da implantacao.
+- Gerador de ficha de diagnostico/coleta por cliente.
+- Checklist de handoff comercial, implantacao e suporte para formalizar escopo, riscos, promessas, SLA e responsaveis.
+- Gerador de handoff comercial/implantacao/suporte por cliente.
+- Cronograma de implantacao por cliente com marcos, datas, responsaveis e evidencias antes/durante operacao assistida.
+- Gerador de cronograma de implantacao por cliente com dias uteis.
+- Modelos de comunicacao de implantacao para inicio, dados, cronograma, treinamento, pendencias, Go/No-Go e aceite.
+- Gerador de comunicacao de implantacao por cliente/tipo.
+- Rotina de sucesso do cliente pos-implantacao para medir adocao, suporte, pendencias, valor percebido e risco.
+- Gerador de relatorio de saude do cliente com classificacao Verde/Amarelo/Vermelho.
+- Autorizacao de referencia comercial para uso seguro de nome, logo, depoimento, caso e resultados de cliente.
+- Gerador de autorizacao de referencia comercial por cliente.
+- Plano de liberacao comercial ampla para decidir quando sair de venda controlada para escala comercial.
+- Gerador de decisao de liberacao comercial.
+- Matriz de selecao do cliente piloto real para escolher primeiro caso com menor risco de escopo, integracao, fiscal, suporte e customizacao.
+- Gerador de selecao do cliente piloto real com score, alertas e decisao.
+- Plano de execucao do primeiro cliente real para conectar fechamento, deploy, dados, operacao assistida, Go/No-Go, aceite, saude e liberacao comercial.
+- Gerador de plano do primeiro cliente real com marcos, checklist, bloqueios e proxima decisao.
+- Auditoria de evidencias do cliente real para separar artefato criado de evidencia executada antes de liberar producao ampla.
+- Gerador de auditoria de evidencias com percentual, bloqueios e decisao comercial.
+- Plano de lancamento comercial controlado para definir primeiro lote, perfil ideal, limites, canais, mensagem permitida e criterios de pausa.
+- Gerador de plano de lancamento comercial com metas, restricoes, indicadores e alertas.
+- Relatorio de resultado do lote comercial para decidir aumentar escala, manter, pausar, corrigir processo ou reposicionar oferta.
+- Gerador de resultado do lote comercial com conversao, saude dos clientes, incidentes, pendencias e decisao.
+- Decisao de expansao comercial pos-lote para formalizar aumento, manutencao, pausa, correcao ou reposicionamento.
+- Gerador de decisao de expansao comercial com limite do proximo lote, capacidade simultanea, riscos, responsavel e prazo de revisao.
+- Matriz de capacidade operacional para escala antes de assumir novo lote ou mais implantacoes simultaneas.
+- Gerador de capacidade operacional com alertas, decisao e checklist de comercial, implantacao, suporte, produto, infra e sucesso.
+- Matriz de viabilidade financeira para escala antes de ampliar lote, desconto, suporte ou implantacoes.
+- Gerador de viabilidade financeira com receita, custos, margem, alertas e decisao do lote.
+- Playbook comercial e qualificacao de oportunidade com funil, criterios de score, decisoes por faixa, red flags e limites de promessa.
+- Gerador de qualificacao de oportunidade por cliente para decidir entre pausar, diagnosticar, demonstrar/propor ou seguir para piloto assistido.
+- Processo de faturamento do cliente para registrar mensalidade, implantacao, vencimento, forma de pagamento, recorrencia, descontos e evidencias financeiras.
+- Gerador de faturamento do cliente para arquivar plano, cobranca inicial, status financeiro e alertas comerciais antes de piloto pago/producao controlada paga.
+- Processo de renovacao, retencao e mudanca de plano para controlar reajuste, upgrade, downgrade, pausa e cancelamento.
+- Gerador de renovacao/retencao para registrar decisao pos-venda, novo plano, novo valor, motivo, alertas e evidencias.
+- Processo de offboarding e encerramento de cliente para controlar cancelamento, fim de piloto, exportacao/retencao de dados, bloqueio de acessos e desativacao de integracoes.
+- Gerador de offboarding para registrar motivo, data efetiva, tratamento de dados, baixa financeira, bloqueio de acessos e alertas de encerramento.
+- Playbook de comunicacao de incidente/status para abertura, atualizacao, contorno, manutencao, encerramento e pos-incidente.
+- Gerador de comunicado de incidente/status para clientes, com impacto, status atual, acao em andamento, contorno, proxima atualizacao e controle interno.
+- Base de conhecimento e FAQ de suporte para respostas recorrentes por modulo, treinamento, incidentes e orientacoes operacionais.
+- Gerador de artigo de base de conhecimento para registrar duvidas, contornos, erros conhecidos e boas praticas sem expor dados sensiveis.
+- Processo de notas de versao para cliente, complementando manifesto tecnico com resumo, melhorias, correcoes, impacto, acao necessaria e riscos conhecidos.
+- Gerador de nota de versao para cliente, vinculando manifesto, smoke test, Go/No-Go, suporte e base de conhecimento.
+- Processo de feedback/NPS do cliente para classificar detratores, neutros e promotores, separar bug/duvida/melhoria/risco/oportunidade e orientar a proxima acao.
+- Gerador de feedback/NPS para registrar nota, ganho percebido, dificuldade, modulo de valor, risco de cancelamento, oportunidade comercial e alertas.
+- Processo de priorizacao de roadmap por feedback para separar bug, pendencia, duvida, melhoria, customizacao e bloqueio comercial.
+- Gerador de priorizacao de roadmap com score por impacto comercial, impacto operacional, recorrencia, reducao de risco, alinhamento de produto e esforco.
+- Checklist de contrato e termos comerciais para revisar escopo, limites, SLA, LGPD, integracoes, fiscal, cancelamento, renovacao e aceite antes de cliente pago.
+- Gerador de checklist contratual com alertas para plano personalizado, integracoes externas, fiscal real, SLA especial e bloqueio de assinatura/faturamento.
+- Matriz de posicionamento competitivo para comparar Nexus One com planilhas, PDV simples, ERP local, ERP grande, sistema fiscal isolado e sistema barato.
+- Gerador de posicionamento competitivo por cliente, com alternativa comparada, dor principal, diferencial, cuidado comercial e proximo passo.
+- One-page comercial para decisor com dor, valor, escopo, evidencias, limites e proximo passo.
+- Gerador de one-page comercial executivo para dono, diretoria ou aprovador financeiro.
+- Ata de fechamento comercial para registrar decisao, objecoes, riscos, limites, valores e proximo passo antes de implantacao ou faturamento.
+- Gerador de ata de fechamento comercial com alertas e checklist.
+- Ficha de ROI e valor percebido para estimar ganho potencial, economia de horas, reducao de divergencias, controle de estoque, recebimentos e payback conservador.
+- Gerador de ROI/valor percebido com premissas, alertas e leitura comercial sem prometer resultado garantido.
+
+Ainda falta:
+- Executar deploy definitivo no servidor/hosting escolhido.
+- Banco de producao real provisionado no servidor escolhido e restauracao executada com evidencia assinada.
+- Executar e validar agendamento automatico de backup no servidor escolhido.
+- Configurar webhook/servico externo real de alerta no servidor escolhido e testar incidente controlado.
+- Configurar cofre/secret manager no servidor escolhido e executar primeira rotacao real registrada.
+- Executar homologacao separada com o primeiro cliente/canal real.
+- Executar o processo formal com o primeiro cliente real e arquivar o aceite assinado.
+
+15. Responsividade Premium / UX Operacional
+Status estimado: 60%
+
+Ja existe:
+- Sidebar colapsavel e menu alternativo por abas em telas menores.
+- Ajustes responsivos para notebook ate 1280px.
+- Topbar, acoes, menus e modais ajustados para telas ate 760px.
+- Tabelas protegidas com rolagem horizontal e larguras minimas.
+- Layout compacto refinado para telas ate 480px.
+
+Ainda falta:
+- Validacao visual completa em dispositivos reais.
+- Ajustes finos por modulo em fluxos muito densos, como Caixa, Fiscal e Admin.
+- Teste de acessibilidade e navegacao por teclado.
+
+16. Widgets Configuraveis / Personalizacao
+Status estimado: 45%
+
+Ja existe:
+- Configurador de widgets na Visao Geral.
+- Persistencia local por perfil.
+- Controle para ocultar/mostrar widgets favoritos.
+- Controle Subir/Descer para definir ordem preferida.
+- Widgets adaptados ao perfil logado e permissao de modulo.
+
+Ainda falta:
+- Arrastar e soltar real.
+- Sincronizacao da preferencia no backend por usuario.
+- Presets administraveis por empresa/perfil.
+
+17. IA Operacional / Copiloto
+Status estimado: 35%
+
+Ja existe:
+- Copiloto operacional local na Visao Geral, sem depender de API externa.
+- Previsao simples de receita para 30 dias pela media diaria do periodo.
+- Recomendacao de reposicao por itens abaixo do minimo.
+- Analise de inadimplencia com foco em vencidos e titulos a vencer.
+- Sugestoes de melhoria para conversao comercial e logistica.
+- Exportacao CSV/PDF das recomendacoes.
+
+Ainda falta:
+- IA generativa real conectada a base do cliente.
+- Historico de recomendacoes aceitas/ignoradas.
+- Modelos preditivos mais fortes para demanda, reposicao e inadimplencia.
+- Automacao segura para executar recomendacoes com aprovacao humana.
+
+============================================================
+PERCENTUAL GERAL
+============================================================
+
+Produto para demonstracao:
+92% a 96% pronto.
+
+Produto para piloto controlado:
+90% a 94% pronto.
+
+Produto para producao comercial completa:
+90% a 96% pronto.
+
+Falta para producao comercial completa:
+4% a 10%.
+
+============================================================
+MAIORES RISCOS ANTES DE COMERCIALIZAR
+============================================================
+
+1. Fiscal real ja possui roteiro/evidencia formal, mas ainda depende de certificado, credenciamento, contador, provedor/SEFAZ/municipio e execucao oficial por cliente/filial/modelo.
+2. Pagamentos e notificacoes ja possuem roteiros/evidencias de homologacao, mas ainda precisam ser executados ponta a ponta com provedor/canal real do cliente.
+3. Financeiro precisa ficar mais empresarial para sustentar ERP pago.
+4. Permissoes/auditoria precisam ficar mais robustas para empresas com equipe.
+5. Producao tecnica precisa de deploy, backup, monitoramento e seguranca.
+6. Cliente real precisa de kick-off aprovado antes de publicar D1 com dados reais.
+7. Relatorios executivos ainda precisam evoluir para tomada de decisao.
+
+============================================================
+ORDEM RECOMENDADA PARA FECHAR OS 35% A 40%
+============================================================
+
+FASE 1 - COMERCIALIZACAO CONTROLADA
+1. Executar deploy definitivo no servidor/hosting escolhido.
+2. Provisionar banco de producao e testar restauracao com evidencia.
+3. Configurar backup, monitoramento, webhook de alerta e segredos reais.
+4. Rodar pre-deploy, smoke test, manifesto de release e matriz Go/No-Go.
+
+FASE 2 - CONFIANCA OPERACIONAL
+5. Executar piloto assistido com cliente real.
+6. Gerar kick-off do cliente real e confirmar decisor, responsavel operacional, dados, acessos, ambiente, suporte e treinamento antes do D1.
+7. Arquivar aceite, evidencias de integracoes e incidentes.
+8. Homologar Pix/boleto, notificacoes e fiscal conforme escopo contratado.
+9. Rodar ciclos reais de venda, caixa, estoque, financeiro, fiscal e entrega.
+
+FASE 3 - PRODUTO MADURO
+9. Fortalecer permissoes granulares e auditoria por entidade.
+10. Evoluir BI executivo, relatorios configuraveis e exportacao agendada.
+11. Fechar Servicos com anexos, assinatura e pecas.
+12. Validar responsividade em dispositivos reais.
+13. Avaliar IA generativa e automacoes com aprovacao humana.
+
+============================================================
+CONCLUSAO
+============================================================
+
+O Nexus One ja esta em nivel forte para apresentacao comercial e piloto assistido. Para vender como ERP SaaS maduro em producao ampla, a estimativa honesta e que ainda faltem cerca de 4% a 10%, concentrados em execucao real de infraestrutura, homologacoes externas, aceite e ciclos reais de uso.
+
+O caminho mais inteligente nao e esperar 100% para mostrar. O ideal e:
+1. vender/demonstrar como piloto assistido;
+2. executar deploy e homologacoes reais com um cliente;
+3. usar Go/No-Go, smoke test, release e aceite para controlar risco;
+4. liberar comercializacao mais ampla apos evidencias reais de operacao.
+
+FIM DO RELATORIO

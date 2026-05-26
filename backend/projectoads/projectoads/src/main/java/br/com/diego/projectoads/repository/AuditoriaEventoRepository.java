@@ -8,4 +8,6 @@ import java.util.UUID;
 
 public interface AuditoriaEventoRepository extends JpaRepository<AuditoriaEvento, UUID> {
     List<AuditoriaEvento> findTop50ByOrderByDataEventoDesc();
+
+    List<AuditoriaEvento> findTop20ByReferenciaIdOrderByDataEventoDesc(String referenciaId);
 }

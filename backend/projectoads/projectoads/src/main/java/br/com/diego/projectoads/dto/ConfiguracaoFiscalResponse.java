@@ -5,6 +5,7 @@ import br.com.diego.projectoads.config.Enum.ModeloDocumentoFiscal;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -22,8 +23,11 @@ public class ConfiguracaoFiscalResponse {
     private String serie;
     private Long proximoNumero;
     private String provedor;
+    private String provedorTokenEnv;
     private String certificadoAlias;
+    private String certificadoArquivoEnv;
     private String certificadoSenhaEnv;
+    private LocalDate certificadoValidoAte;
     private String cscId;
     private String cscTokenEnv;
     private String endpointHomologacao;

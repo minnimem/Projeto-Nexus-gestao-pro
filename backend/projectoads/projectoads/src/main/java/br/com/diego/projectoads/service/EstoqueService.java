@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,12 +57,43 @@ public class EstoqueService {
     public void retirar(UUID produtoId, int quantidade) {
         validarQuantidade(quantidade);
 
-        Estoque estoque = buscarOuCriarEstoquePorProduto(produtoId);
+        Estoque estoque = buscarEstoqueDisponivelParaRetirada(produtoId, quantidade);
         estoque.retirarEstoque(quantidade);
         estoqueRepository.save(estoque);
 
         registrarMovimentacao(estoque, quantidade, TipoMovimentacao.SAIDA, "VENDA");
         auditoriaService.registrar("Estoque", "SAIDA", "Saida de " + quantidade + " un. do produto " + estoque.getProduto().getNomeProduto(), produtoId);
+    }
+
+    @Transactional
+    public int consumirPecasOrdemServico(String pecasUtilizadas, String referenciaOs) {
+        List<PecaConsumida> pecas = parsePecasUtilizadas(pecasUtilizadas);
+        if (pecas.isEmpty()) {
+            throw new BusinessException("Informe pecas utilizadas para baixar no estoque.");
+        }
+
+        int total = 0;
+        for (PecaConsumida peca : pecas) {
+            Produto produto = buscarProdutoPeca(peca.identificador());
+            Estoque estoque = buscarEstoqueDisponivelParaRetirada(produto.getIdProduto(), peca.quantidade());
+            estoque.retirarEstoque(peca.quantidade());
+            estoqueRepository.save(estoque);
+
+            registrarMovimentacao(estoque, peca.quantidade(), TipoMovimentacao.SAIDA, "ORDEM_SERVICO - " + referenciaOs);
+            auditoriaService.registrar(
+                    "Estoque",
+                    "SAIDA_OS",
+                    "Baixa de " + peca.quantidade() + " un. do produto " + produto.getNomeProduto() + " pela OS " + referenciaOs,
+                    produto.getIdProduto()
+            );
+            total += peca.quantidade();
+        }
+        return total;
+    }
+
+    public void validarDisponibilidade(UUID produtoId, int quantidade) {
+        validarQuantidade(quantidade);
+        buscarEstoqueDisponivelParaRetirada(produtoId, quantidade);
     }
 
     @Transactional
@@ -219,8 +251,31 @@ public class EstoqueService {
                 .orElseThrow(() -> new BusinessException("Estoque não encontrado para o produto informado"));
     }
 
+    private Produto buscarProdutoPeca(String identificador) {
+        return produtoRepository.findByCodBarras(identificador)
+                .or(() -> produtoRepository.findBySkuIgnoreCase(identificador))
+                .or(() -> produtoRepository.findByNomeProdutoIgnoreCase(identificador))
+                .orElseThrow(() -> new BusinessException("Produto da peca nao encontrado no estoque: " + identificador));
+    }
+
     private Estoque buscarOuCriarEstoquePorProduto(UUID produtoId) {
         return buscarOuCriarEstoquePorProdutoELocal(produtoId, "GERAL");
+    }
+
+    private Estoque buscarEstoqueDisponivelParaRetirada(UUID produtoId, int quantidade) {
+        if (produtoId == null) {
+            throw new BusinessException("Produto obrigatorio");
+        }
+
+        List<Estoque> saldos = estoqueRepository.findByProdutoIdProdutoOrderByLocalizacaoAsc(produtoId);
+        if (saldos.isEmpty()) {
+            throw new BusinessException("Estoque nao encontrado para o produto informado");
+        }
+
+        return saldos.stream()
+                .filter(estoque -> estoque.getQuantidade() != null && estoque.getQuantidade() >= quantidade)
+                .findFirst()
+                .orElseThrow(() -> new BusinessException("Estoque insuficiente para o produto informado"));
     }
 
     private Estoque buscarOuCriarEstoquePorProdutoELocal(UUID produtoId, String localizacao) {
@@ -268,6 +323,42 @@ public class EstoqueService {
         }
     }
 
+    private List<PecaConsumida> parsePecasUtilizadas(String pecasUtilizadas) {
+        if (pecasUtilizadas == null || pecasUtilizadas.isBlank()) {
+            return List.of();
+        }
+        return Arrays.stream(pecasUtilizadas.split("[;\\n,]+"))
+                .map(String::trim)
+                .filter(item -> !item.isBlank())
+                .map(this::parsePeca)
+                .toList();
+    }
+
+    private PecaConsumida parsePeca(String item) {
+        String texto = item.trim();
+        int quantidade = 1;
+
+        java.util.regex.Matcher prefixo = java.util.regex.Pattern.compile("^(\\d+)\\s*x\\s+(.+)$", java.util.regex.Pattern.CASE_INSENSITIVE).matcher(texto);
+        java.util.regex.Matcher sufixo = java.util.regex.Pattern.compile("^(.+?)\\s*x\\s*(\\d+)$", java.util.regex.Pattern.CASE_INSENSITIVE).matcher(texto);
+        java.util.regex.Matcher doisPontos = java.util.regex.Pattern.compile("^(.+?)\\s*:\\s*(\\d+)$").matcher(texto);
+        if (prefixo.matches()) {
+            quantidade = Integer.parseInt(prefixo.group(1));
+            texto = prefixo.group(2).trim();
+        } else if (sufixo.matches()) {
+            texto = sufixo.group(1).trim();
+            quantidade = Integer.parseInt(sufixo.group(2));
+        } else if (doisPontos.matches()) {
+            texto = doisPontos.group(1).trim();
+            quantidade = Integer.parseInt(doisPontos.group(2));
+        }
+
+        validarQuantidade(quantidade);
+        if (texto.isBlank()) {
+            throw new BusinessException("Peca utilizada sem produto informado.");
+        }
+        return new PecaConsumida(texto, quantidade);
+    }
+
     private String montarObservacaoCompra(Fornecedor fornecedor, String documento, String observacao) {
         String texto = "Fornecedor: " + fornecedor.getNome();
         if (documento != null) {
@@ -283,5 +374,8 @@ public class EstoqueService {
 
     private String normalizarLocalizacao(String valor) {
         return valor == null || valor.trim().isEmpty() ? "GERAL" : valor.trim().toUpperCase();
+    }
+
+    private record PecaConsumida(String identificador, int quantidade) {
     }
 }

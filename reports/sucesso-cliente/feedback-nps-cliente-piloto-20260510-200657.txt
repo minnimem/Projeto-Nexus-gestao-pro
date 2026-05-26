@@ -1,0 +1,47 @@
+﻿FEEDBACK E NPS DO CLIENTE - NEXUS ONE
+Data: 10/05/2026 20:06:57
+Cliente: Cliente Piloto
+Momento: D30 piloto assistido
+Responsavel: Nexus One
+
+============================================================
+RESULTADO
+============================================================
+- Nota NPS: 9 / 10
+- Classificacao: Promotor
+- Risco de cancelamento: Baixo
+- Oportunidade: Referencia comercial
+- Area responsavel: Suporte
+- Decisao recomendada: Avaliar referencia comercial, caso de sucesso ou expansao, se houver autorizacao.
+
+============================================================
+FEEDBACK
+============================================================
+- Principal ganho: Fechamento de caixa ficou mais claro e auditavel
+- Maior dificuldade: Usuarios ainda precisam praticar conciliacao financeira
+- Modulo com mais valor: Caixa/PDV
+- Modulo que precisa de atencao: Financeiro
+- Proxima acao: Solicitar autorizacao de referencia comercial e agendar revisao mensal
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Separar bug, duvida, melhoria, risco e oportunidade comercial.
+- [ ] Abrir risco/pendencia quando houver bloqueio.
+- [ ] Gerar artigo de base de conhecimento quando for duvida recorrente.
+- [ ] Atualizar saude do cliente quando houver risco.
+- [ ] Pedir autorizacao antes de usar referencia comercial.
+- [ ] Definir responsavel e data de retorno para feedback negativo.
+
+============================================================
+ALERTAS
+============================================================
+- Referencia comercial exige autorizacao formal do cliente.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_FEEDBACK_NPS_CLIENTE_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\BASE_CONHECIMENTO_SUPORTE_CLIENTE_NEXUS_ONE.md
+- docs\AUTORIZACAO_REFERENCIA_COMERCIAL_CLIENTE_NEXUS_ONE.md

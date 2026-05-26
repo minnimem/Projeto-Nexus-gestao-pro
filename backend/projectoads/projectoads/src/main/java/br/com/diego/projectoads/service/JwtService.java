@@ -6,9 +6,11 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.UUID;
@@ -16,13 +18,19 @@ import java.util.UUID;
 @Service
 public class JwtService {
 
-    private static final String SECRET =
-            "chave-super-secreta-com-mais-de-256-bits-para-assinar-jwt-123456789";
-
     private static final long EXPIRATION = 1000L * 60 * 60; // 1 hora
 
+    private final String secret;
+
+    public JwtService(@Value("${jwt.secret}") String secret) {
+        if (secret == null || secret.isBlank() || secret.length() < 32) {
+            throw new IllegalStateException("JWT_SECRET deve ter pelo menos 32 caracteres.");
+        }
+        this.secret = secret;
+    }
+
     private Key getKey() {
-        return Keys.hmacShaKeyFor(SECRET.getBytes());
+        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
     // =====================================================

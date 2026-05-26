@@ -1,0 +1,34 @@
+﻿DECISAO DE LIBERACAO COMERCIAL - NEXUS ONE
+Data: 10/05/2026 15:28:04
+Status recomendado: ProducaoControlada
+Descricao: Liberado para producao controlada por cliente, apos Go/No-Go e aceite.
+Responsavel: Nexus One
+
+CHECKLIST F4 - COMERCIALIZACAO AMPLA
+- [ ] Pelo menos um cliente real implantado com aceite.
+- [ ] Cliente classificado como Verde na rotina de sucesso.
+- [ ] Deploy definitivo validado.
+- [ ] Banco real provisionado.
+- [ ] Backup agendado e restauracao testada com evidencia.
+- [ ] Monitoramento externo testado.
+- [ ] Segredos auditados e primeira rotacao registrada.
+- [ ] Smoke test operacional aprovado apos deploy.
+- [ ] Go/No-Go sem pendencia bloqueante.
+- [ ] Integracoes reais classificadas como homologadas, sandbox ou fora do escopo.
+- [ ] Suporte/SLA funcionando com canal e responsavel.
+- [ ] Processo comercial/implantacao/sucesso aplicado de ponta a ponta.
+
+RESTRICOES
+- Fiscal real depende de homologacao por cliente/filial/modelo.
+- Pagamento real depende de provedor e conciliacao ponta a ponta.
+- Notificacoes reais dependem de canal/token/webhook do cliente.
+- Producao ampla nao deve ser prometida sem evidencias reais.
+
+PROXIMA ACAO
+- Executar primeiro cliente real, coletar aceite e relatorio de saude Verde.
+
+REFERENCIAS
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md
+- docs\FICHA_PRONTIDAO_COMERCIAL_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\MATRIZ_GO_NO_GO_COMERCIAL_NEXUS_ONE.md

@@ -1,0 +1,80 @@
+﻿PLANO DE DEMONSTRACAO COMERCIAL - NEXUS ONE
+Data: 10/05/2026 21:35:58
+Cliente: Cliente Piloto
+Segmento: comercio varejista
+Responsavel: Nexus One
+
+DOR PRINCIPAL
+Controle de caixa e estoque
+
+OBJETIVO DA DEMO
+- Demonstrar valor pratico sem prometer producao ampla antes das homologacoes reais.
+- Validar aderencia para piloto assistido ou proposta controlada.
+- Registrar dependencias externas e proximos passos.
+
+MODULOS PRIORITARIOS
+- Caixa/PDV
+- Vendas
+- Estoque e reposicao
+- Financeiro/conciliacao
+- Relatorios e alertas
+
+FLUXO PRINCIPAL A DEMONSTRAR
+venda -> recebimento no caixa -> baixa de estoque -> financeiro -> relatorio
+
+AGENDA SUGERIDA
+0-5 min: abertura, dor principal, decisor e objetivo da reuniao.
+5-12 min: diagnostico rapido do processo atual.
+12-30 min: fluxo principal do segmento.
+30-40 min: indicadores, alertas, relatorios e exportacoes.
+40-45 min: dependencias de fiscal, pagamento, notificacoes, dados e infraestrutura.
+45-50 min: definicao do proximo passo.
+
+PERGUNTAS DE QUALIFICACAO
+- Como o cliente faz esse fluxo hoje?
+- Onde ha retrabalho, perda financeira ou falta de visibilidade?
+- Quais usuarios precisam operar no primeiro piloto?
+- Quais integracoes sao obrigatorias para fechar negocio?
+- Quais relatorios o dono/gerente precisa enxergar toda semana?
+
+SINAIS DE COMPRA A OBSERVAR
+- Pergunta preco, prazo ou implantacao.
+- Pede para envolver socio, gerente, financeiro ou contador.
+- Compara com sistema atual ou concorrente.
+- Pergunta como importar dados reais.
+- Pede proposta, piloto ou ambiente para testar.
+
+RISCOS A REGISTRAR
+- Fiscal real ou integracao real imediata sem homologacao.
+- Nao aceita piloto assistido/producao controlada.
+- Decisor ausente.
+- Foco exclusivo em menor preco.
+- Customizacao grande antes de validar o produto base.
+
+RESTRICOES A COMUNICAR
+- Fiscal real depende de certificado, contador, credenciamento e homologacao oficial.
+- Pix, boleto e notificacoes reais dependem do provedor/canal do cliente.
+- Producao controlada exige deploy, backup, monitoramento, smoke test, Go/No-Go e aceite.
+- Dados reais exigem politica LGPD e carga inicial validada.
+
+CRITERIOS DE SUCESSO
+- Cliente reconheceu a dor principal no fluxo demonstrado.
+- Escopo do piloto ficou claro.
+- Dependencias externas foram registradas.
+- Proximo passo foi decidido.
+
+PERGUNTA DE FECHAMENTO
+- Pelo que vimos, faz sentido avancar para proposta controlada, diagnostico ou piloto assistido?
+
+PROXIMO PASSO
+- [ ] Gerar proposta controlada.
+- [ ] Agendar piloto assistido.
+- [ ] Agendar homologacao tecnica.
+- [ ] Solicitar dados para carga inicial.
+- [ ] Encerrar oportunidade por falta de aderencia.
+
+REFERENCIAS
+- docs\ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md
+- docs\FICHA_PRONTIDAO_COMERCIAL_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\CHECKLIST_CLIENTE_PILOTO_NEXUS_ONE.md

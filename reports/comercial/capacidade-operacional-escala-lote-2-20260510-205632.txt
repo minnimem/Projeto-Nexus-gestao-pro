@@ -1,0 +1,50 @@
+﻿MATRIZ DE CAPACIDADE OPERACIONAL PARA ESCALA - NEXUS ONE
+Data: 10/05/2026 20:56:32
+Lote/escopo avaliado: Lote 2
+Responsavel: Nexus One
+
+============================================================
+CAPACIDADE INFORMADA
+============================================================
+- Oportunidades planejadas: 8
+- Implantacoes simultaneas planejadas: 2
+- Capacidade declarada de implantacao simultanea: 2
+- Chamados criticos abertos: 0
+- Clientes Amarelo: 0
+- Clientes Vermelho: 0
+- Pendencias bloqueantes: 0
+- Promessas fora do escopo: 0
+
+============================================================
+DECISAO
+============================================================
+- Resultado: CAPACIDADE PRESSIONADA
+- Proxima acao: Manter escala atual e revisar em 7 a 14 dias.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Comercial revisou mensagem e limites.
+- [ ] Implantacao confirmou capacidade.
+- [ ] Suporte confirmou SLA e fila.
+- [ ] Sucesso revisou saude dos clientes ativos.
+- [ ] Produto revisou incidentes e pendencias.
+- [ ] Decisao de expansao sera atualizada com este resultado.
+
+============================================================
+OBSERVACOES
+============================================================
+Sem observacoes adicionais.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\MATRIZ_CAPACIDADE_OPERACIONAL_ESCALA_NEXUS_ONE.md
+- docs\DECISAO_EXPANSAO_COMERCIAL_POS_LOTE_NEXUS_ONE.md
+- docs\PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md
+- docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md

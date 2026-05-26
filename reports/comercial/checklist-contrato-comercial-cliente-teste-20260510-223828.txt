@@ -1,0 +1,65 @@
+﻿CHECKLIST DE CONTRATO E TERMOS COMERCIAIS - NEXUS ONE
+Data: 10/05/2026 22:38:29
+Cliente: Cliente Teste
+CNPJ/identificacao: Nao informado
+Responsavel: Nexus One
+
+============================================================
+RESUMO COMERCIAL
+============================================================
+- Plano comercial: Business
+- Plano tecnico: Medio
+- Codigo de liberacao sugerido: BUSINESS
+- Mensalidade: R$ 349,00
+- Implantacao: R$ 1.200,00
+- Usuarios contratados: 8
+- Filiais contratadas: 3
+- Caixas/PDV contratados: 3
+- Produtos contratados/limite: 5000
+- Notas fiscais contratadas/limite: 500
+- Adicionais: Nenhum adicional informado.
+- Integracoes externas: Nao
+- Fiscal real: Sim
+- SLA especial: Nao
+- Decisao: Aprovado com ressalvas
+- Ressalvas: Revisar anexos de escopo, integracoes externas e LGPD antes da assinatura final.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Cliente, CNPJ e decisor registrados.
+- [ ] Plano, mensalidade, implantacao e vencimento definidos.
+- [ ] Codigo tecnico do plano foi registrado: STARTER, BUSINESS, ENTERPRISE ou CUSTOM.
+- [ ] Limites de usuarios, filiais, caixas, empresas e modulos documentados.
+- [ ] Limites de produtos, notas fiscais e adicionais documentados.
+- [ ] Adicionais, opcionais e fora do escopo separados.
+- [ ] Reajuste, desconto ou cortesia com prazo e responsavel.
+- [ ] SLA coerente com a politica de suporte.
+- [ ] LGPD, backup, retencao e exportacao descritos.
+- [ ] Integracoes condicionadas a homologacao quando aplicavel.
+- [ ] Fiscal real condicionado a requisitos oficiais quando aplicavel.
+- [ ] Renovacao, cancelamento, pausa e offboarding definidos.
+- [ ] Uso de nome/logo/depoimento/caso exige autorizacao separada.
+- [ ] Upgrade/downgrade tem impacto de limites descrito.
+- [ ] Recursos contratados e condicionados foram marcados como condicionados.
+
+============================================================
+RECURSOS CONTRATADOS E CONDICIONADOS
+============================================================
+- Fiscal real: contratado e condicionado a certificado, contador, credenciamento e homologacao oficial.
+- Integracoes externas: nao contratadas ou fora do escopo inicial.
+- SLA especial: nao contratado.
+
+============================================================
+ALERTAS
+============================================================
+- Fiscal real exige certificado, contador, credenciamento, provedor/SEFAZ/municipio e homologacao oficial.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\CHECKLIST_CONTRATO_TERMOS_COMERCIAIS_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md
+- docs\POLITICA_PRIVACIDADE_LGPD_NEXUS_ONE.md

@@ -64,6 +64,7 @@ public class ProdutoService {
         p.setCodBarras(resolverCodigoBarras(req.codBarras));
         p.setNomeProduto(req.nomeProduto);
         p.setDescricao(req.descricao);
+        aplicarCamposFiscais(p, req);
 
         p.setPrecoCompra(req.precoCompra);
         p.setPrecoVenda(req.precoVenda);
@@ -98,6 +99,7 @@ public class ProdutoService {
         }
         p.setNomeProduto(req.nomeProduto);
         p.setDescricao(req.descricao);
+        aplicarCamposFiscais(p, req);
 
         p.setPrecoCompra(req.precoCompra);
         p.setPrecoVenda(req.precoVenda);
@@ -203,6 +205,54 @@ public class ProdutoService {
 
     private Integer resolverEstoqueMaximo(Integer qtaMaximo) {
         return qtaMaximo == null || qtaMaximo == 0 ? null : qtaMaximo;
+    }
+
+    private void aplicarCamposFiscais(Produto produto, ProdutoRequest req) {
+        produto.setNcm(normalizarNumerico(req.ncm, 8));
+        produto.setCfop(normalizarNumerico(req.cfop, 4));
+        produto.setCest(normalizarNumerico(req.cest, 7));
+        produto.setOrigemFiscal(normalizarNumerico(req.origemFiscal, 1));
+        produto.setUnidadeComercial(req.unidadeComercial == null || req.unidadeComercial.isBlank()
+                ? "UN"
+                : req.unidadeComercial.trim().toUpperCase());
+        produto.setCstIcms(normalizarNumerico(req.cstIcms, 3));
+        produto.setCsosn(normalizarNumerico(req.csosn, 3));
+        produto.setAliquotaIcms(normalizarPercentual(req.aliquotaIcms, "Aliquota ICMS"));
+        produto.setAliquotaPis(normalizarPercentual(req.aliquotaPis, "Aliquota PIS"));
+        produto.setAliquotaCofins(normalizarPercentual(req.aliquotaCofins, "Aliquota COFINS"));
+        produto.setAliquotaIpi(normalizarPercentual(req.aliquotaIpi, "Aliquota IPI"));
+        produto.setCodigoServicoMunicipal(normalizarTexto(req.codigoServicoMunicipal, 20));
+        produto.setCodigoServicoNacional(normalizarTexto(req.codigoServicoNacional, 20));
+        produto.setAliquotaIss(normalizarPercentual(req.aliquotaIss, "Aliquota ISS"));
+    }
+
+    private String normalizarNumerico(String value, int maxLength) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        String normalized = value.replaceAll("\\D", "");
+        if (normalized.isBlank()) {
+            return null;
+        }
+        return normalized.length() > maxLength ? normalized.substring(0, maxLength) : normalized;
+    }
+
+    private BigDecimal normalizarPercentual(BigDecimal value, String campo) {
+        if (value == null) {
+            return null;
+        }
+        if (value.compareTo(BigDecimal.ZERO) < 0 || value.compareTo(BigDecimal.valueOf(100)) > 0) {
+            throw new BusinessException(campo + " deve ser entre 0 e 100");
+        }
+        return value;
+    }
+
+    private String normalizarTexto(String value, int maxLength) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        String normalized = value.trim().toUpperCase();
+        return normalized.length() > maxLength ? normalized.substring(0, maxLength) : normalized;
     }
 
     private String resolverCodigoBarras(String codigoBarras) {

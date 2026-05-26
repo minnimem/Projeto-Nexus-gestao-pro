@@ -37,6 +37,48 @@ public class Produto {
     @Column(name = "descricao", length = 255)
     private String descricao;
 
+    @Column(name = "ncm", length = 8)
+    private String ncm;
+
+    @Column(name = "cfop", length = 4)
+    private String cfop;
+
+    @Column(name = "cest", length = 7)
+    private String cest;
+
+    @Column(name = "origem_fiscal", length = 1)
+    private String origemFiscal;
+
+    @Column(name = "unidade_comercial", length = 6)
+    private String unidadeComercial = "UN";
+
+    @Column(name = "cst_icms", length = 3)
+    private String cstIcms;
+
+    @Column(name = "csosn", length = 3)
+    private String csosn;
+
+    @Column(name = "aliquota_icms", precision = 5, scale = 2)
+    private BigDecimal aliquotaIcms;
+
+    @Column(name = "aliquota_pis", precision = 5, scale = 2)
+    private BigDecimal aliquotaPis;
+
+    @Column(name = "aliquota_cofins", precision = 5, scale = 2)
+    private BigDecimal aliquotaCofins;
+
+    @Column(name = "aliquota_ipi", precision = 5, scale = 2)
+    private BigDecimal aliquotaIpi;
+
+    @Column(name = "codigo_servico_municipal", length = 20)
+    private String codigoServicoMunicipal;
+
+    @Column(name = "codigo_servico_nacional", length = 20)
+    private String codigoServicoNacional;
+
+    @Column(name = "aliquota_iss", precision = 5, scale = 2)
+    private BigDecimal aliquotaIss;
+
     @Column(name = "preco_compra", nullable = false, precision = 18, scale = 2)
     private BigDecimal precoCompra;
 

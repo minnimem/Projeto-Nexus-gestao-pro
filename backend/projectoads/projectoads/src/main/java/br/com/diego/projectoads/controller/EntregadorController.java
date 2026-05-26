@@ -3,6 +3,7 @@ package br.com.diego.projectoads.controller;
 import br.com.diego.projectoads.model.Entregador;
 import br.com.diego.projectoads.repository.EntregadorRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/entregadores")
+@PreAuthorize("@planoComercialService.canAccessModule(authentication, 'logistica')")
 public class EntregadorController {
 
     private final EntregadorRepository entregadorRepository;

@@ -1,0 +1,48 @@
+﻿CRONOGRAMA DE IMPLANTACAO - NEXUS ONE
+Gerado em: 10/05/2026 15:18:23
+Cliente: Cliente Piloto
+Plano: Medio
+Ambiente: piloto assistido
+Responsavel: Nexus One
+Data prevista de inicio assistido: 20/05/2026
+
+CRONOGRAMA
+Marco | Data | Atividade | Entregavel | Status
+--- | --- | --- | --- | ---
+D-5 | 13/05/2026 | Handoff comercial, diagnostico e plano contratado | Handoff + ficha de diagnostico | Pendente
+D-4 | 14/05/2026 | Conferencia de dados, usuarios, filiais e modulos | Lista de dados/usuarios | Pendente
+D-3 | 15/05/2026 | Preparacao de ambiente, segredos e banco | Pre-deploy e verificacao | Pendente
+D-2 | 18/05/2026 | Backup, restauracao, monitoramento e smoke test | Evidencias tecnicas | Pendente
+D-1 | 19/05/2026 | Carga inicial, treinamento e checklist de entrada | Verificacao de carga + treinamento | Pendente
+D1 | 20/05/2026 | Inicio da operacao assistida | Diario D1 | Pendente
+D2 | 21/05/2026 | Vendas, caixa e estoque acompanhados | Diario D2 | Pendente
+D3 | 22/05/2026 | Financeiro, fiscal/integracoes conforme escopo | Diario D3 | Pendente
+D4 | 25/05/2026 | Relatorios, suporte e ajustes nao bloqueantes | Diario D4 | Pendente
+D5 | 26/05/2026 | Revisao intermediaria de riscos e pendencias | Registro de riscos atualizado | Pendente
+D9 | 01/06/2026 | Simulacao de suporte/incidente e consolidacao | Ficha de incidente + riscos | Pendente
+D10 | 02/06/2026 | Go/No-Go, aceite ou prorrogacao | Matriz + termo de aceite | Pendente
+
+REGRAS DE CONTROLE
+- Nao iniciar D1 sem handoff, diagnostico, escopo do plano, dados minimos e responsaveis definidos.
+- Nao iniciar producao controlada sem backup/restauracao, smoke test e monitoramento.
+- Nao encerrar operacao assistida com pendencia bloqueante aberta.
+- Mudanca de escopo deve voltar para proposta/plano comercial.
+
+EVIDENCIAS
+- Handoff comercial/implantacao/suporte.
+- Ficha de diagnostico/coleta inicial.
+- Escopo do plano comercial.
+- Registro de riscos/pendencias.
+- Pre-deploy e verificacao de producao/homologacao.
+- Verificacao de carga inicial.
+- Evidencia de treinamento.
+- Diario operacional do piloto.
+- Matriz Go/No-Go.
+- Termo de aceite.
+- Pacote de entrega.
+
+REFERENCIAS
+- docs\CRONOGRAMA_IMPLANTACAO_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md
+- docs\PLANO_PILOTO_ASSISTIDO_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md

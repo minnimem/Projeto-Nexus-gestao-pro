@@ -5,6 +5,7 @@ import br.com.diego.projectoads.model.Pedido;
 import org.hibernate.Hibernate;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -32,6 +33,8 @@ public class PedidoResponse {
     public String tipoEntregaDescricao;
     public String enderecoEntrega;
     public String observacaoEntrega;
+    public LocalDate validadeProposta;
+    public String condicoesComerciais;
     public List<ItemResponse> itens;
 
     public PedidoResponse(Pedido pedido) {
@@ -56,6 +59,8 @@ public class PedidoResponse {
         this.tipoEntregaDescricao = pedido.getTipoEntrega() != null ? pedido.getTipoEntrega().getDescricao() : null;
         this.enderecoEntrega = pedido.getEnderecoEntrega();
         this.observacaoEntrega = pedido.getObservacaoEntrega();
+        this.validadeProposta = pedido.getValidadeProposta();
+        this.condicoesComerciais = pedido.getCondicoesComerciais();
         this.itens = pedido.getItens() != null && Hibernate.isInitialized(pedido.getItens())
                 ? pedido.getItens()
                         .stream()

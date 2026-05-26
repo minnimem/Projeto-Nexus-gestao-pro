@@ -1,0 +1,43 @@
+﻿RESULTADO DO LOTE COMERCIAL - NEXUS ONE
+Data: 10/05/2026 20:51:33
+Lote: Lote 1
+Responsavel: Nexus One
+
+============================================================
+INDICADORES
+============================================================
+- Oportunidades qualificadas: 5
+- Propostas enviadas: 4
+- Fechamentos: 2
+- Taxa oportunidade -> proposta: 80%
+- Taxa proposta -> fechamento: 50%
+- Clientes Verde: 2
+- Clientes Amarelo: 0
+- Clientes Vermelho: 0
+- Incidentes P0/P1: 0
+- Pendencias bloqueantes: 0
+- Limite de implantacoes simultaneas: 2
+
+============================================================
+DECISAO
+============================================================
+- Decisao recomendada: AUMENTAR ESCALA COM CONTROLE
+- Proxima acao: Abrir novo lote mantendo limites e pacote de entrega por cliente.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+OBSERVACOES
+============================================================
+Sem observacoes adicionais.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\RELATORIO_RESULTADO_LOTE_COMERCIAL_NEXUS_ONE.md
+- docs\PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md

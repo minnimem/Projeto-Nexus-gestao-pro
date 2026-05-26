@@ -1,0 +1,135 @@
+﻿FICHA DE DIAGNOSTICO E COLETA INICIAL - NEXUS ONE
+Data: 10/05/2026 21:27:11
+Cliente: Cliente Piloto
+Segmento: Comercio varejista
+Responsavel Nexus One: Nexus One
+
+OBJETIVO DA REUNIAO
+- [ ] Confirmar se pode receber proposta controlada
+- [ ] Separar primeiro ciclo de fase 2
+- [ ] Identificar dependencias antes de prometer prazo
+- [ ] Definir demonstracao / piloto assistido / producao controlada
+
+1. RESPONSAVEIS
+- Responsavel comercial:
+- Responsavel operacional:
+- Responsavel tecnico/TI:
+- Responsavel financeiro:
+- Responsavel fiscal/contador:
+- Responsavel privacidade/LGPD:
+
+2. OPERACAO ATUAL
+- Quantidade de filiais:
+- Quantidade de usuarios:
+- Quantidade de caixas/PDV:
+- Media de vendas por dia:
+- Possui estoque fisico: sim / nao
+- Possui entregas/logistica propria: sim / nao
+- Possui ordem de servico/servicos: sim / nao
+- Sistema atual:
+- Principais dores:
+- Dor prioritaria para resolver primeiro:
+- Impacto atual: tempo perdido / perda financeira / risco operacional / falta de controle / outro
+- Urgencia: baixa / media / alta
+- Orcamento estimado ou faixa aceita:
+
+3. ESCOPO DESEJADO
+- [ ] Vendas/pedidos
+- [ ] Orcamentos/propostas
+- [ ] CRM/follow-up
+- [ ] Caixa/PDV
+- [ ] Estoque/compras/inventario
+- [ ] Financeiro/contas/DRE/conciliacao
+- [ ] Fiscal
+- [ ] Logistica/entregas
+- [ ] Servicos/OS
+- [ ] Relatorios/BI
+- [ ] Usuarios/permissoes/auditoria
+- Fase 2 ou fora do primeiro ciclo:
+
+4. DADOS PARA CARGA INICIAL
+- Clientes:
+- Produtos:
+- Estoque inicial:
+- Usuarios/perfis:
+- Fornecedores:
+- Contas a receber:
+- Contas a pagar:
+- Rotas/veiculos/entregadores:
+- Dados fiscais:
+- Origem dos dados:
+- Responsavel pela conferencia:
+- Dados sensiveis/LGPD envolvidos: sim / nao
+- Necessita limpeza/tratamento antes da carga: sim / nao
+
+5. INTEGRACOES E DEPENDENCIAS
+- Fiscal real no escopo: sim / nao
+- Modelos fiscais: NF-e / NFC-e / NFS-e / outros
+- Certificado A1 disponivel: sim / nao
+- Contador definido: sim / nao
+- Pix/boleto real no escopo: sim / nao
+- Provedor de pagamento:
+- WhatsApp/e-mail/webhook no escopo: sim / nao
+- Canal de notificacao:
+- Integracoes obrigatorias para iniciar:
+- Integracoes desejaveis para fase 2:
+- Integracoes fora do escopo inicial:
+
+6. INFRAESTRUTURA
+- Ambiente desejado: homologacao / producao controlada / producao
+- Servidor/hosting definido: sim / nao
+- Dominio/subdominio:
+- Responsavel por DNS:
+- Responsavel por backup:
+- Canal de alerta/monitoramento:
+- Janela preferida de implantacao:
+
+7. RISCOS INICIAIS
+- Dados incompletos: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:
+- Fiscal sem contador/provedor: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:
+- Pagamento sem provedor: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:
+- Notificacao sem canal: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:
+- Usuario-chave indisponivel: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:
+- Servidor indefinido: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:
+- LGPD/responsavel de dados indefinido: aberto / controlado / resolvido | impacto: baixo / medio / alto | responsavel:
+
+8. MINIMO PARA PROPOSTA CONTROLADA
+- [ ] Dor prioritaria registrada
+- [ ] Decisor e responsavel operacional definidos
+- [ ] Plano ou faixa de plano provavel definida
+- [ ] Usuarios, filiais e caixas estimados
+- [ ] Modulos do primeiro ciclo separados de fase 2
+- [ ] Integracoes obrigatorias classificadas
+- [ ] Dependencias do cliente comunicadas
+- [ ] Cliente aceita piloto assistido ou producao controlada
+
+9. MINIMO PARA IMPLANTACAO
+- [ ] Proposta/aceite aprovado
+- [ ] Handoff comercial concluido
+- [ ] Responsaveis do cliente confirmados
+- [ ] Dados minimos recebidos ou plano de carga aprovado
+- [ ] Ambiente definido
+- [ ] Canais de suporte e treinamento definidos
+- [ ] Riscos bloqueantes sem pendencia aberta
+
+10. QUALIFICACAO
+- [ ] Pronto para proposta controlada
+- [ ] Pronto para piloto assistido
+- [ ] Precisa de homologacao tecnica antes da proposta
+- [ ] Precisa completar dados antes de avancar
+- [ ] Nao aderente ao momento atual
+
+11. PROXIMOS PASSOS
+- [ ] Gerar plano de demo/prova de valor
+- [ ] Gerar escopo do plano comercial
+- [ ] Gerar proposta controlada
+- [ ] Solicitar arquivos de carga inicial
+- [ ] Agendar homologacao de integracoes
+- [ ] Agendar treinamento
+- [ ] Abrir registro de riscos/pendencias
+
+REFERENCIAS
+- docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md
+- docs\ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\PROCESSO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md

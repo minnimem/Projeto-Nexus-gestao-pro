@@ -1,0 +1,205 @@
+﻿PACOTE DE ENTREGA DO CLIENTE - NEXUS ONE
+Data: 11/05/2026 23:41:13
+Cliente: Cliente Piloto
+Ambiente: producao controlada
+Responsavel: Nexus One
+
+Este relatorio confere a existencia dos artefatos de entrega. Ele nao copia arquivos e nao deve conter senhas, tokens ou certificados.
+
+NIVEIS DE EVIDENCIA
+- Artefato criado: modelo, roteiro, checklist ou relatorio gerado.
+- Evidencia executada: prova de procedimento realizado, como smoke test, diario, backup ou treinamento.
+- Evidencia aceita: cliente ou responsavel confirmou validacao, como termo de aceite e Go/No-Go.
+- Evidencia de escala: cliente real saudavel sustenta ampliacao comercial.
+
+============================================================
+COMERCIAL
+============================================================
+- [OK] docs\FICHA_PRONTIDAO_COMERCIAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PLAYBOOK_COMERCIAL_QUALIFICACAO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PLANO_EXECUCAO_PRIMEIRO_CLIENTE_REAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\AUDITORIA_EVIDENCIAS_CLIENTE_REAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\RELATORIO_RESULTADO_LOTE_COMERCIAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\DECISAO_EXPANSAO_COMERCIAL_POS_LOTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\MATRIZ_CAPACIDADE_OPERACIONAL_ESCALA_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\MATRIZ_VIABILIDADE_FINANCEIRA_ESCALA_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\MATRIZ_POSICIONAMENTO_COMPETITIVO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\ONE_PAGE_COMERCIAL_DECISOR_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\FICHA_ROI_VALOR_PERCEBIDO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\ATA_FECHAMENTO_COMERCIAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\CHECKLIST_CONTRATO_TERMOS_COMERCIAIS_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PROCESSO_RENOVACAO_RETENCAO_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PROCESSO_OFFBOARDING_ENCERRAMENTO_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\AUTORIZACAO_REFERENCIA_COMERCIAL_CLIENTE_NEXUS_ONE.md (opcional conforme escopo)
+- [OK] scripts\gerar-plano-primeiro-cliente-real.ps1 (obrigatorio)
+- [OK] scripts\gerar-auditoria-evidencias-cliente-real.ps1 (obrigatorio)
+- [OK] scripts\gerar-plano-lancamento-comercial.ps1 (obrigatorio)
+- [OK] scripts\gerar-resultado-lote-comercial.ps1 (obrigatorio)
+- [OK] scripts\gerar-decisao-expansao-comercial.ps1 (obrigatorio)
+- [OK] scripts\gerar-capacidade-operacional-escala.ps1 (obrigatorio)
+- [OK] scripts\gerar-viabilidade-financeira-escala.ps1 (obrigatorio)
+- [OK] scripts\gerar-escopo-plano-comercial.ps1 (obrigatorio)
+- [OK] scripts\gerar-qualificacao-oportunidade.ps1 (obrigatorio)
+- [OK] scripts\gerar-posicionamento-competitivo.ps1 (obrigatorio)
+- [OK] scripts\gerar-onepage-comercial-decisor.ps1 (obrigatorio)
+- [OK] scripts\gerar-roi-valor-percebido.ps1 (obrigatorio)
+- [OK] scripts\gerar-ata-fechamento-comercial.ps1 (obrigatorio)
+- [OK] scripts\gerar-checklist-contrato-comercial.ps1 (obrigatorio)
+- [OK] scripts\gerar-faturamento-cliente.ps1 (obrigatorio)
+- [OK] scripts\gerar-renovacao-retencao-cliente.ps1 (obrigatorio)
+- [OK] scripts\gerar-offboarding-cliente.ps1 (obrigatorio)
+- [OK] scripts\gerar-ficha-diagnostico-cliente.ps1 (obrigatorio)
+- [OK] scripts\gerar-autorizacao-referencia-comercial.ps1 (opcional conforme escopo)
+- [OK] scripts\gerar-decisao-liberacao-comercial.ps1 (obrigatorio)
+- [OK] docs\MATRIZ_GO_NO_GO_COMERCIAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\REGISTRO_RISCOS_PENDENCIAS_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\TERMO_ACEITE_IMPLANTACAO_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-termo-aceite-implantacao.ps1 (obrigatorio)
+
+============================================================
+TECNICO
+============================================================
+- [OK] docs\GUIA_PRODUCAO_TECNICA_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\GUIA_DEPLOY_SERVIDOR_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\GUIA_AMBIENTE_HOMOLOGACAO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\GUIA_PROVISIONAMENTO_BANCO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\ROTINA_MONITORAMENTO_BACKUP_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PROCESSO_RELEASE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PROCESSO_NOTAS_VERSAO_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\ROTEIRO_SMOKE_TEST_OPERACIONAL_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\verificar-predeploy.ps1 (obrigatorio)
+- [OK] scripts\verificar-producao.ps1 (obrigatorio)
+- [OK] scripts\gerar-manifesto-release.ps1 (obrigatorio)
+- [OK] scripts\gerar-nota-versao-cliente.ps1 (obrigatorio)
+- [OK] scripts\smoke-test-operacional.ps1 (obrigatorio)
+
+============================================================
+BACKUP
+============================================================
+- [OK] scripts\backup-postgres.ps1 (obrigatorio)
+- [OK] scripts\restaurar-backup-postgres.ps1 (obrigatorio)
+- [OK] scripts\gerar-evidencia-restauracao.ps1 (obrigatorio)
+
+============================================================
+SEGURANCA
+============================================================
+- [OK] docs\POLITICA_SEGREDOS_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\INVENTARIO_SEGREDOS_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\verificar-segredos.ps1 (obrigatorio)
+- [OK] scripts\auditar-segredos.ps1 (obrigatorio)
+
+============================================================
+LGPD
+============================================================
+- [OK] docs\POLITICA_PRIVACIDADE_LGPD_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-solicitacao-lgpd.ps1 (opcional conforme escopo)
+
+============================================================
+DADOS
+============================================================
+- [OK] docs\ROTEIRO_CARGA_INICIAL_DADOS_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\verificar-carga-inicial.ps1 (obrigatorio)
+- [OK] templates\carga-inicial\clientes.csv (obrigatorio)
+- [OK] templates\carga-inicial\produtos.csv (obrigatorio)
+- [OK] templates\carga-inicial\usuarios.csv (obrigatorio)
+- [OK] templates\carga-inicial\estoque-inicial.csv (obrigatorio)
+
+============================================================
+OPERACAO
+============================================================
+- [OK] docs\PROCESSO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\CHECKLIST_HANDOFF_COMERCIAL_IMPLANTACAO_SUPORTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\CRONOGRAMA_IMPLANTACAO_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\MODELOS_COMUNICACAO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PLANO_PILOTO_ASSISTIDO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\CHECKLIST_CLIENTE_PILOTO_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-registro-riscos-pendencias.ps1 (obrigatorio)
+- [OK] scripts\gerar-handoff-comercial-implantacao-suporte.ps1 (obrigatorio)
+- [OK] scripts\gerar-cronograma-implantacao-cliente.ps1 (obrigatorio)
+- [OK] scripts\gerar-comunicacao-implantacao.ps1 (obrigatorio)
+- [OK] scripts\gerar-diario-piloto.ps1 (obrigatorio)
+
+============================================================
+TREINAMENTO
+============================================================
+- [OK] docs\ROTEIRO_TREINAMENTO_POR_PERFIL_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-evidencia-treinamento.ps1 (obrigatorio)
+
+============================================================
+SUPORTE
+============================================================
+- [OK] docs\ROTEIRO_SUPORTE_OPERACIONAL_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\BASE_CONHECIMENTO_SUPORTE_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\POLITICA_SLA_SUPORTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PLAYBOOK_COMUNICACAO_INCIDENTE_STATUS_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PROCESSO_FEEDBACK_NPS_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] docs\PROCESSO_PRIORIZACAO_ROADMAP_CLIENTE_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\gerar-incidente-suporte.ps1 (obrigatorio)
+- [OK] scripts\gerar-comunicado-incidente-status.ps1 (obrigatorio)
+- [OK] scripts\gerar-artigo-base-conhecimento.ps1 (obrigatorio)
+- [OK] scripts\gerar-saude-cliente-pos-implantacao.ps1 (obrigatorio)
+- [OK] scripts\gerar-feedback-nps-cliente.ps1 (obrigatorio)
+- [OK] scripts\gerar-priorizacao-roadmap.ps1 (obrigatorio)
+
+============================================================
+INTEGRACOES
+============================================================
+- [OK] docs\MATRIZ_HOMOLOGACAO_INTEGRACOES_EXTERNAS_NEXUS_ONE.md (obrigatorio)
+- [OK] scripts\verificar-integracoes-externas.ps1 (obrigatorio)
+- [OK] docs\EVIDENCIA_HOMOLOGACAO_PAGAMENTOS_ASAAS.md (opcional conforme escopo)
+- [OK] docs\EVIDENCIA_HOMOLOGACAO_NOTIFICACOES.md (opcional conforme escopo)
+- [OK] docs\EVIDENCIA_HOMOLOGACAO_FISCAL_REAL.md (opcional conforme escopo)
+
+============================================================
+EVIDENCIAS A ANEXAR POR CLIENTE
+============================================================
+- Proposta/contrato/escopo aprovado.
+- Plano do primeiro cliente real, quando a entrega for usada para validar producao controlada ou comercializacao ampla.
+- Auditoria de evidencias do cliente real, antes de liberar comercializacao ampla.
+- Plano de lancamento comercial controlado, quando houver abertura de novo lote de vendas.
+- Resultado do lote comercial, antes de aumentar escala.
+- Decisao de expansao comercial pos-lote, antes de mudar volume de vendas.
+- Capacidade operacional para escala, antes de assumir novo lote ou mais implantacoes.
+- Viabilidade financeira para escala, antes de ampliar lote, desconto ou suporte.
+- Qualificacao comercial da oportunidade, quando a entrega vier de venda consultiva.
+- Posicionamento competitivo, quando a venda envolver comparacao com alternativa ou concorrente.
+- One-page comercial para decisor, quando a proposta depender de dono, diretoria ou aprovador financeiro.
+- ROI/valor percebido, quando usado na proposta, renovacao ou defesa de preco.
+- Ata de fechamento comercial, antes de implantacao, faturamento, piloto pago ou producao controlada.
+- Checklist contratual, quando houver contrato pago, SLA especial, plano personalizado ou integracao externa.
+- Faturamento do cliente, quando houver contrato pago, piloto pago ou producao controlada paga.
+- Renovacao/retencao, quando houver mudanca de plano, reajuste, pausa ou cancelamento.
+- Offboarding, quando houver cancelamento, fim de piloto nao convertido ou encerramento de ambiente com dados reais.
+- Relatorio de pre-deploy.
+- Manifesto de release.
+- Nota de versao para cliente, quando houver mudanca visivel, impacto ou acao necessaria.
+- Smoke test operacional.
+- Backup e evidencia de restauracao.
+- Monitoramento/alerta testado.
+- Verificacao de carga inicial, quando houver dados importados.
+- Evidencia de treinamento.
+- Evidencias de integracoes externas contratadas.
+- Matriz Go/No-Go preenchida.
+- Termo de aceite assinado.
+- Pendencias nao bloqueantes aceitas e com plano de acao, quando existirem.
+
+============================================================
+DECISAO
+============================================================
+Status: PACOTE BASE COMPLETO.
+Proximo passo: anexar evidencias reais do cliente, revisar riscos, preencher Go/No-Go e assinar termo de aceite.
+
+BLOQUEIOS DE ENTREGA A REVISAR
+- Backup sem restauracao testada.
+- Smoke test com falha em login, venda, caixa, financeiro ou cadastro base.
+- Integracao prometida comercialmente sem homologacao ou restricao documentada.
+- Go/No-Go com pendencia bloqueante aberta.
+- Termo de aceite ausente ou com pendencia bloqueante aberta.
+- Evidencia real prometida sem arquivo, log, relatorio, aceite ou comprovacao equivalente.

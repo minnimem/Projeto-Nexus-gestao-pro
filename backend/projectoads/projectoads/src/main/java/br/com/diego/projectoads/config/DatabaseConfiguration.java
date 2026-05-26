@@ -10,6 +10,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
@@ -47,7 +48,6 @@ public class DatabaseConfiguration {
 
         HikariConfig config = new HikariConfig();
         config.setUsername(username);
-        config.setUsername(username);
         config.setPassword(password);
         config.setJdbcUrl(url);
 
@@ -62,6 +62,7 @@ public class DatabaseConfiguration {
     }
 
     @Bean
+    @Order(1)
     public ApplicationRunner atualizarRestricoesDoCaixa(DataSource dataSource) {
         return args -> {
             try (var connection = dataSource.getConnection();
@@ -72,7 +73,7 @@ public class DatabaseConfiguration {
                 statement.execute("""
                         alter table if exists public.caixa
                         add constraint caixa_perfil_check
-                        check (perfil in ('ADMIN', 'GERENTE', 'VENDEDOR', 'OPERADOR_CAIXA', 'ESTOQUISTA', 'FINANCEIRO'))
+                        check (perfil in ('ADMIN', 'GERENTE', 'OPERADOR_CAIXA'))
                         """);
             } catch (Exception ex) {
                 log.warn("Nao foi possivel atualizar a restricao caixa_perfil_check.", ex);

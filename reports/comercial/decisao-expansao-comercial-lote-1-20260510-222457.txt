@@ -1,0 +1,59 @@
+﻿DECISAO DE EXPANSAO COMERCIAL POS-LOTE - NEXUS ONE
+Data: 10/05/2026 22:24:57
+Lote avaliado: Lote 1
+Responsavel: Nexus One
+Autorizador: Direcao
+Prazo de revisao: 24/05/2026
+
+============================================================
+DECISAO
+============================================================
+- Decisao: Aumentar escala
+- Nivel de liberacao: LIBERADO COM CONTROLE
+- Acao: Abrir proximo lote com limites definidos e revisao obrigatoria.
+- Pontuacao do lote: 92/100
+- Limite do proximo lote: 8 oportunidade(s)
+- Maximo de implantacoes simultaneas: 2
+- Capacidade operacional confirmada: Sim
+- Pacote de entrega completo: Sim
+- Aceites registrados: Sim
+
+Leitura da pontuacao:
+- Pontuacao compativel com aumento gradual de escala.
+
+============================================================
+JUSTIFICATIVA
+============================================================
+Decisao baseada no resultado do lote comercial e na capacidade de implantacao/suporte.
+
+============================================================
+RISCOS E CONDICOES
+============================================================
+Revisar incidentes, clientes Amarelo/Vermelho, pendencias bloqueantes, suporte e promessas comerciais antes de ampliar.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Resultado do lote comercial foi revisado.
+- [ ] Pontuacao do lote foi conferida.
+- [ ] Suporte confirmou capacidade para o proximo ciclo.
+- [ ] Implantacao confirmou capacidade para o proximo ciclo.
+- [ ] Promessas comerciais foram revisadas.
+- [ ] Pacote de entrega sera mantido por cliente.
+- [ ] Aceites dos clientes fechados foram arquivados.
+- [ ] Limite do proximo lote foi comunicado ao comercial.
+- [ ] Revisao na data definida foi agendada.
+- [ ] Autorizador validou a decisao.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\DECISAO_EXPANSAO_COMERCIAL_POS_LOTE_NEXUS_ONE.md
+- docs\RELATORIO_RESULTADO_LOTE_COMERCIAL_NEXUS_ONE.md
+- docs\PLANO_LANCAMENTO_COMERCIAL_CONTROLADO_NEXUS_ONE.md
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md

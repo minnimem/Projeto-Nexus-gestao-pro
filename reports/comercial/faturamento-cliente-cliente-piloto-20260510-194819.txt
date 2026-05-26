@@ -1,0 +1,42 @@
+﻿FATURAMENTO DO CLIENTE - NEXUS ONE
+Data: 10/05/2026 19:48:19
+Cliente: Cliente Piloto
+CNPJ/identificacao: 00.000.000/0001-00
+Responsavel: Nexus One
+
+============================================================
+PLANO E COBRANCA
+============================================================
+- Plano contratado: Medio
+- Mensalidade: R$ 349,00
+- Implantacao: R$ 1.200,00
+- Dia de vencimento: 10
+- Forma de pagamento: Pix
+- Periodicidade: Mensal
+- Inicio da cobranca: 10/05/2026
+- Status: Aguardando primeira cobranca
+- Adicionais: Pix real condicionado a homologacao Asaas
+- Condicoes especiais: Sem desconto ou cortesia registrada
+
+============================================================
+EVIDENCIAS A ANEXAR
+============================================================
+- [ ] Proposta/contrato/aceite comercial aprovado.
+- [ ] Escopo do plano anexado.
+- [ ] Qualificacao comercial anexada quando aplicavel.
+- [ ] Primeira cobranca emitida ou registrada.
+- [ ] Condicoes especiais aprovadas por responsavel.
+- [ ] Cliente comunicado sobre vencimento, forma de pagamento e inicio da recorrencia.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md

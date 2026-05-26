@@ -40,13 +40,13 @@ public class UsuarioController {
     // =========================
     // 🔒 VERIFICA SE É ADMIN
     // =========================
-    private boolean isAdmin() {
+    private boolean isAdminOrMaster() {
         return org.springframework.security.core.context.SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getAuthorities()
                 .stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN") || a.getAuthority().equals("ROLE_MASTER"));
     }
 
     private Usuario usuarioAutenticado() {
@@ -78,15 +78,15 @@ public class UsuarioController {
         preencherDadosColaborador(usuario, req);
 
         // 🔐 regra: só admin cria admin
-        if (req.getPerfil() == Perfil.ADMIN && !isAdmin()) {
-            throw new AccessDeniedException("Somente ADMIN pode criar ADMIN");
+        if ((req.getPerfil() == Perfil.ADMIN || req.getPerfil() == Perfil.MASTER) && !isAdminOrMaster()) {
+            throw new AccessDeniedException("Somente ADMIN ou MASTER pode criar perfil privilegiado");
         }
 
         // 🎯 perfil padrão
         Perfil perfil = req.getPerfil() != null ? req.getPerfil() : Perfil.VENDEDOR;
 
-        if (perfil == Perfil.ADMIN) {
-            throw new BusinessException("Criacao de ADMIN deve ser feita diretamente pelo responsavel tecnico");
+        if (perfil == Perfil.ADMIN || perfil == Perfil.MASTER) {
+            throw new BusinessException("Criacao de ADMIN ou MASTER deve ser feita diretamente pelo responsavel tecnico");
         }
 
         usuario.setPerfil(perfil);
@@ -183,8 +183,8 @@ public class UsuarioController {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         // 🔒 REGRA: só ADMIN pode definir ADMIN
-        if (novoPerfil == Perfil.ADMIN && !isAdmin()) {
-            throw new AccessDeniedException("Somente ADMIN pode definir ADMIN");
+        if ((novoPerfil == Perfil.ADMIN || novoPerfil == Perfil.MASTER) && !isAdminOrMaster()) {
+            throw new AccessDeniedException("Somente ADMIN ou MASTER pode definir perfil privilegiado");
         }
 
         usuario.setPerfil(novoPerfil);

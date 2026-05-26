@@ -2,6 +2,8 @@ package br.com.diego.projectoads.controller;
 
 import br.com.diego.projectoads.dto.ConfiguracaoFiscalRequest;
 import br.com.diego.projectoads.dto.ConfiguracaoFiscalResponse;
+import br.com.diego.projectoads.dto.ConfiguracaoFiscalStatusResponse;
+import br.com.diego.projectoads.dto.StatusServicoFiscalResponse;
 import br.com.diego.projectoads.service.ConfiguracaoFiscalService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,7 +15,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/configuracoes-fiscais")
-@PreAuthorize("hasAnyRole('ADMIN','GERENTE')")
+@PreAuthorize("hasAnyRole('ADMIN','GERENTE') and @planoComercialService.canAccessModule(authentication, 'fiscal')")
 public class ConfiguracaoFiscalController {
 
     private final ConfiguracaoFiscalService configuracaoFiscalService;
@@ -25,6 +27,16 @@ public class ConfiguracaoFiscalController {
     @GetMapping
     public ResponseEntity<List<ConfiguracaoFiscalResponse>> listar() {
         return ResponseEntity.ok(configuracaoFiscalService.listar());
+    }
+
+    @GetMapping("/{id}/status")
+    public ResponseEntity<ConfiguracaoFiscalStatusResponse> status(@PathVariable UUID id) {
+        return ResponseEntity.ok(configuracaoFiscalService.status(id));
+    }
+
+    @GetMapping("/{id}/status-servico")
+    public ResponseEntity<StatusServicoFiscalResponse> statusServico(@PathVariable UUID id) {
+        return ResponseEntity.ok(configuracaoFiscalService.statusServico(id));
     }
 
     @PostMapping

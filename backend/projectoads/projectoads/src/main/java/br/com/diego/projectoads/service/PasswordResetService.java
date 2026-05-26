@@ -4,6 +4,8 @@ import br.com.diego.projectoads.model.PasswordResetToken;
 import br.com.diego.projectoads.model.Usuario;
 import br.com.diego.projectoads.repository.PasswordResetTokenRepository;
 import br.com.diego.projectoads.repository.UsuarioRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.UUID;
 
 @Service
 public class PasswordResetService {
+
+    private static final Logger log = LoggerFactory.getLogger(PasswordResetService.class);
 
     private final PasswordResetTokenRepository tokenRepository;
     private final UsuarioRepository usuarioRepository;
@@ -45,10 +49,7 @@ public class PasswordResetService {
 
         tokenRepository.save(reset);
 
-        // Simula envio. Em producao, enviar por e-mail/WhatsApp.
-        System.out.println("LINK RESET:");
-        System.out.println("http://localhost:5173/login?token=" + token);
-        System.out.println("TOKEN RESET: " + token);
+        log.info("Token de reset de senha gerado para usuario {}. Configure um canal de envio para entregar o link com seguranca.", usuario.getLogin());
     }
 
     public void resetarSenha(String token, String novaSenha) {

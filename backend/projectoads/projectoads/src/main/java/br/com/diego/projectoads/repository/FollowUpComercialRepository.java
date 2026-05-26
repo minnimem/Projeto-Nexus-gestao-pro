@@ -21,4 +21,8 @@ public interface FollowUpComercialRepository extends JpaRepository<FollowUpComer
             StatusFollowUpCobranca status,
             LocalDate proximaAcao
     );
+
+    List<FollowUpComercial> findByStatusAndNotificacaoExternaEmIsNullOrderByProximaAcaoAscCriadoEmDesc(
+            StatusFollowUpCobranca status
+    );
 }

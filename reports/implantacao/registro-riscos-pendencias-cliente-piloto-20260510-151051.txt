@@ -1,0 +1,40 @@
+﻿REGISTRO DE RISCOS E PENDENCIAS - NEXUS ONE
+Data: 10/05/2026 15:10:51
+Cliente: Cliente Piloto
+Ambiente: producao controlada
+Plano: Medio
+Responsavel: Nexus One
+
+CRITERIO
+- Bloqueante: impede producao controlada/ampla ate correcao ou reclassificacao formal.
+- Alta: exige responsavel, prazo, contorno e ciencia do cliente.
+- Media/Baixa: pode seguir se registrada no plano de acao.
+
+RISCOS/PENDENCIAS PADRAO PARA REVISAO
+ID | Area | Severidade | Status | Descricao | Responsavel | Prazo | Evidencia/observacao
+--- | --- | --- | --- | --- | --- | --- | ---
+R001 | Deploy | Bloqueante | Aberto | Servidor definitivo ainda nao validado |  |  | 
+R002 | Backup | Bloqueante | Aberto | Restauracao de backup ainda nao testada com evidencia |  |  | 
+R003 | Monitoramento | Alta | Aberto | Alerta externo ainda nao testado no ambiente do cliente |  |  | 
+R004 | Seguranca | Alta | Aberto | Primeira rotacao/cofre de segredos ainda nao registrada |  |  | 
+R005 | Integracoes | Alta | Aberto | Fiscal, pagamento ou notificacao real dependem de homologacao do cliente/provedor |  |  | 
+R006 | Treinamento | Media | Aberto | Usuario-chave precisa concluir validacao pratica do fluxo contratado |  |  | 
+R007 | LGPD | Media | Aberto | Responsavel de privacidade e aceite de uso de dados reais precisam estar registrados |  |  | 
+
+RESUMO INICIAL
+- Pendencias bloqueantes abertas: 2
+- Pendencias altas abertas: 3
+- Decisao inicial sugerida: No-go para producao controlada ate revisar/corrigir bloqueantes.
+
+CHECKLIST ANTES DO GO/NO-GO
+- [ ] Nao ha pendencia bloqueante aberta.
+- [ ] Pendencias altas possuem responsavel e prazo.
+- [ ] Dependencias externas foram classificadas como homologadas, sandbox ou fora do escopo.
+- [ ] Cliente aceitou formalmente pendencias nao bloqueantes.
+- [ ] Evidencias obrigatorias foram anexadas ao pacote de entrega.
+
+REFERENCIAS
+- docs\REGISTRO_RISCOS_PENDENCIAS_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_GO_NO_GO_COMERCIAL_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md

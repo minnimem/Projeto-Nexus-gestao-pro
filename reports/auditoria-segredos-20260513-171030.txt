@@ -1,0 +1,22 @@
+AUDITORIA DE SEGREDOS - NEXUS ONE
+Data: 13/05/2026 17:10:30
+Arquivo auditado: .env
+
+IMPORTANTE: este relatorio nao exibe valores sensiveis.
+
+POSTGRES_PASSWORD | obrigatorio=True | preenchido=False | tamanho=0 | status=FALHA
+DB_PASSWORD | obrigatorio=True | preenchido=False | tamanho=0 | status=FALHA
+JWT_SECRET | obrigatorio=True | preenchido=False | tamanho=0 | status=FALHA
+NEXUS_ALLOWED_ORIGINS | obrigatorio=True | preenchido=False | tamanho=0 | status=FALHA
+ASAAS_API_KEY | obrigatorio=False | preenchido=False | tamanho=0 | status=NAO CONFIGURADO
+ASAAS_WEBHOOK_TOKEN | obrigatorio=False | preenchido=False | tamanho=0 | status=NAO CONFIGURADO
+NOTIFICATIONS_WEBHOOK_URL | obrigatorio=False | preenchido=False | tamanho=0 | status=NAO CONFIGURADO
+NOTIFICATIONS_TOKEN | obrigatorio=False | preenchido=False | tamanho=0 | status=NAO CONFIGURADO
+NEXUS_MONITOR_WEBHOOK_URL | obrigatorio=False | preenchido=False | tamanho=0 | status=NAO CONFIGURADO
+NEXUS_FISCAL_CERT_PASSWORD | obrigatorio=False | preenchido=False | tamanho=0 | status=NAO CONFIGURADO
+NEXUS_FISCAL_CSC_TOKEN | obrigatorio=False | preenchido=False | tamanho=0 | status=NAO CONFIGURADO
+
+Proximas acoes recomendadas:
+- Conferir este relatorio junto com docs/INVENTARIO_SEGREDOS_NEXUS_ONE.md.
+- Rodar scripts/verificar-segredos.ps1 antes de qualquer deploy.
+- Registrar rotacoes sem expor valores reais.

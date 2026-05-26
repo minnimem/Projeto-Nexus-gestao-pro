@@ -49,6 +49,27 @@ public class Cliente {
     @Column(name = "endereco", length = 200)
     private String endereco;
 
+    @Column(name = "numero", length = 20)
+    private String numero;
+
+    @Column(name = "bairro", length = 80)
+    private String bairro;
+
+    @Column(name = "cidade", length = 80)
+    private String cidade;
+
+    @Column(name = "uf", length = 2)
+    private String uf;
+
+    @Column(name = "cep", length = 10)
+    private String cep;
+
+    @Column(name = "codigo_municipio", length = 7)
+    private String codigoMunicipio;
+
+    @Column(name = "inscricao_estadual", length = 30)
+    private String inscricaoEstadual;
+
     @Column(name = "asaas_customer_id", length = 80)
     private String asaasCustomerId;
 

@@ -1,0 +1,25 @@
+﻿COMUNICACAO DE IMPLANTACAO - NEXUS ONE
+Data: 10/05/2026 15:20:42
+Cliente: Cliente Piloto
+Tipo: Inicio
+Responsavel Nexus One: Nexus One
+Responsavel cliente: Responsavel Cliente
+
+Assunto: Inicio da implantacao Nexus One - Cliente Piloto
+
+Ola.
+
+Vamos iniciar a implantacao do Nexus One conforme escopo aprovado. Nesta etapa vamos confirmar dados, responsaveis, modulos contratados, ambiente, cronograma e criterios de aceite.
+
+Proximos passos:
+- confirmar ficha de diagnostico/coleta;
+- validar cronograma de implantacao;
+- alinhar usuarios-chave e treinamento;
+- revisar integracoes e dependencias externas;
+- iniciar preparacao tecnica.
+
+Referencias:
+- docs\MODELOS_COMUNICACAO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md
+- docs\CRONOGRAMA_IMPLANTACAO_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md
+- docs\REGISTRO_RISCOS_PENDENCIAS_CLIENTE_NEXUS_ONE.md

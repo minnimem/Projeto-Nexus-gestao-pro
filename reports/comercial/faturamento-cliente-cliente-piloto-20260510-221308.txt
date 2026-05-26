@@ -1,0 +1,79 @@
+﻿FATURAMENTO DO CLIENTE - NEXUS ONE
+Data: 10/05/2026 22:13:08
+Cliente: Cliente Piloto
+CNPJ/identificacao: Nao informado
+Responsavel: Nexus One
+
+============================================================
+PLANO E COBRANCA
+============================================================
+- Plano contratado: Medio
+- Mensalidade: R$ 0,00
+- Implantacao: R$ 0,00
+- Dia de vencimento: 10
+- Forma de pagamento: Pix
+- Periodicidade: Mensal
+- Inicio da cobranca: 10/05/2026
+- Fim do piloto gratuito: 
+- Status: Piloto gratuito
+- Risco financeiro: Medio
+- Adicionais: Nenhum adicional informado
+- Condicoes especiais: Cortesia comercial de piloto
+- Responsavel pela condicao especial: 
+
+============================================================
+CONTROLE DE VENCIMENTO
+============================================================
+- [ ] D-7: cobranca emitida ou programada.
+- [ ] D-3: lembrete enviado quando aplicavel.
+- [ ] D0: pagamento ou baixa conferidos.
+- [ ] D+3: atraso pontual registrado e financeiro acionado.
+- [ ] D+7: risco financeiro revisado e comercial comunicado.
+- [ ] D+15: suspensao/renegociacao avaliada conforme contrato.
+
+============================================================
+DESCONTO, CORTESIA OU CONDICAO ESPECIAL
+============================================================
+- Motivo:
+- Responsavel que aprovou: 
+- Prazo final:
+- Valor cheio: R$ 0,00
+- Valor com desconto/cortesia:
+- Regra de retorno ao valor normal:
+- Afeta: implantacao / mensalidade / adicional / suporte
+
+============================================================
+EVIDENCIAS A ANEXAR
+============================================================
+- [ ] Proposta/contrato/aceite comercial aprovado.
+- [ ] Escopo do plano anexado.
+- [ ] Qualificacao comercial anexada quando aplicavel.
+- [ ] Primeira cobranca emitida ou registrada.
+- [ ] Condicoes especiais aprovadas por responsavel.
+- [ ] Cliente comunicado sobre vencimento, forma de pagamento e inicio da recorrencia.
+- [ ] Registro de atraso, renegociacao, suspensao ou baixa quando houver.
+
+============================================================
+BLOQUEIOS FINANCEIROS
+============================================================
+- [ ] Plano sem valor, vencimento ou forma de pagamento.
+- [ ] Desconto/cortesia sem responsavel e prazo.
+- [ ] Piloto gratuito sem data de fim.
+- [ ] Status financeiro desconhecido.
+- [ ] Integracao de Pix/boleto real prometida sem homologacao.
+- [ ] Faturamento divergente do escopo contratado.
+
+============================================================
+ALERTAS
+============================================================
+- Taxa de implantacao zerada: confirmar se houve cortesia aprovada.
+- Piloto gratuito sem data final: registrar criterio de conversao ou encerramento.
+- Condicao especial sem responsavel aprovador.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md

@@ -1,0 +1,89 @@
+﻿FICHA DE DIAGNOSTICO E COLETA INICIAL - NEXUS ONE
+Data: 10/05/2026 15:14:04
+Cliente: Cliente Piloto
+Segmento: Distribuidora
+Responsavel Nexus One: Nexus One
+
+1. RESPONSAVEIS
+- Responsavel comercial:
+- Responsavel operacional:
+- Responsavel tecnico/TI:
+- Responsavel financeiro:
+- Responsavel fiscal/contador:
+- Responsavel privacidade/LGPD:
+
+2. OPERACAO ATUAL
+- Quantidade de filiais:
+- Quantidade de usuarios:
+- Quantidade de caixas/PDV:
+- Media de vendas por dia:
+- Possui estoque fisico: sim / nao
+- Possui entregas/logistica propria: sim / nao
+- Possui ordem de servico/servicos: sim / nao
+- Sistema atual:
+- Principais dores:
+
+3. ESCOPO DESEJADO
+- [ ] Vendas/pedidos
+- [ ] Orcamentos/propostas
+- [ ] CRM/follow-up
+- [ ] Caixa/PDV
+- [ ] Estoque/compras/inventario
+- [ ] Financeiro/contas/DRE/conciliacao
+- [ ] Fiscal
+- [ ] Logistica/entregas
+- [ ] Servicos/OS
+- [ ] Relatorios/BI
+- [ ] Usuarios/permissoes/auditoria
+
+4. DADOS PARA CARGA INICIAL
+- Clientes:
+- Produtos:
+- Estoque inicial:
+- Usuarios/perfis:
+- Fornecedores:
+- Contas a receber:
+- Contas a pagar:
+- Rotas/veiculos/entregadores:
+- Dados fiscais:
+
+5. INTEGRACOES E DEPENDENCIAS
+- Fiscal real no escopo: sim / nao
+- Modelos fiscais: NF-e / NFC-e / NFS-e / outros
+- Certificado A1 disponivel: sim / nao
+- Contador definido: sim / nao
+- Pix/boleto real no escopo: sim / nao
+- Provedor de pagamento:
+- WhatsApp/e-mail/webhook no escopo: sim / nao
+- Canal de notificacao:
+
+6. INFRAESTRUTURA
+- Ambiente desejado: homologacao / producao controlada / producao
+- Servidor/hosting definido: sim / nao
+- Dominio/subdominio:
+- Responsavel por DNS:
+- Responsavel por backup:
+- Canal de alerta/monitoramento:
+- Janela preferida de implantacao:
+
+7. QUALIFICACAO
+- [ ] Pronto para proposta controlada
+- [ ] Pronto para piloto assistido
+- [ ] Precisa de homologacao tecnica antes da proposta
+- [ ] Precisa completar dados antes de avancar
+- [ ] Nao aderente ao momento atual
+
+8. PROXIMOS PASSOS
+- [ ] Gerar plano de demo/prova de valor
+- [ ] Gerar escopo do plano comercial
+- [ ] Gerar proposta controlada
+- [ ] Solicitar arquivos de carga inicial
+- [ ] Agendar homologacao de integracoes
+- [ ] Agendar treinamento
+- [ ] Abrir registro de riscos/pendencias
+
+REFERENCIAS
+- docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md
+- docs\ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\PROCESSO_IMPLANTACAO_CLIENTE_NEXUS_ONE.md

@@ -1,0 +1,47 @@
+﻿ROI E VALOR PERCEBIDO - NEXUS ONE
+Data: 10/05/2026 20:25:27
+Cliente: Cliente Piloto
+Responsavel: Nexus Comercial
+
+============================================================
+PREMISSAS
+============================================================
+- Mensalidade: R$ 349,00
+- Implantacao: R$ 1.200,00
+- Horas economizadas por mes: 14
+- Custo hora operacional: R$ 35,00
+- Reducao mensal de divergencia de caixa: R$ 180,00
+- Reducao mensal de perda de estoque: R$ 220,00
+- Recuperacao mensal de recebimentos: R$ 150,00
+- Observacao: Estimativa conservadora validada em diagnostico; resultados dependem da operacao real e uso pelos usuarios.
+
+============================================================
+ESTIMATIVA
+============================================================
+- Economia estimada por horas: R$ 490,00
+- Ganho mensal estimado bruto: R$ 1.040,00
+- Ganho mensal estimado apos mensalidade: R$ 691,00
+- Payback estimado da implantacao: 1.7 mes(es)
+- Leitura comercial: Retorno estimado forte, desde que as premissas sejam validadas pelo cliente.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Cliente validou as premissas usadas.
+- [ ] ROI foi apresentado como estimativa, nao garantia.
+- [ ] Ganhos qualitativos foram registrados.
+- [ ] Proposta e plano seguem limites documentados.
+- [ ] Feedback/NPS futuro sera usado para comparar expectativa e valor percebido.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\FICHA_ROI_VALOR_PERCEBIDO_NEXUS_ONE.md
+- docs\FICHA_DIAGNOSTICO_COLETA_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_POSICIONAMENTO_COMPETITIVO_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md

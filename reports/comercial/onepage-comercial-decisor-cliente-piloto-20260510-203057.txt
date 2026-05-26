@@ -1,0 +1,57 @@
+﻿ONE-PAGE COMERCIAL PARA DECISOR - NEXUS ONE
+Data: 10/05/2026 20:30:57
+Cliente: Cliente Piloto
+Decisor: Diretoria
+Responsavel: Nexus Comercial
+
+============================================================
+RESUMO EXECUTIVO
+============================================================
+- Plano/etapa sugerida: Producao controlada
+- Dor principal: Reduzir divergencias de caixa, retrabalho em estoque e falta de visao financeira diaria.
+- Valor proposto: Implantacao acompanhada do Nexus One com escopo controlado, indicadores operacionais e criterios de aceite.
+
+============================================================
+ESCOPO INICIAL
+============================================================
+Vendas, caixa/PDV, clientes, estoque, financeiro gerencial, relatorios, usuarios e suporte operacional.
+
+============================================================
+EVIDENCIAS E ANEXOS RECOMENDADOS
+============================================================
+Qualificacao comercial, demonstracao, proposta controlada e ROI/valor percebido quando aplicavel.
+
+============================================================
+PROXIMO PASSO
+============================================================
+Validar escopo, aprovar proposta e agendar implantacao assistida.
+
+============================================================
+LIMITES COMERCIAIS
+============================================================
+- Este documento nao substitui proposta, contrato, termo de aceite ou Go/No-Go.
+- ROI, economia ou ganho citado deve estar ligado a premissas validadas pelo cliente.
+- Integracoes externas, fiscal real, Pix/boleto real e SLA especial dependem de homologacao, contrato e evidencia.
+- Escopo fora do plano precisa de aprovacao comercial antes de implantacao.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Dor principal validada pelo cliente.
+- [ ] Decisor e responsavel operacional identificados.
+- [ ] Escopo inicial confere com plano/proposta.
+- [ ] Limites comerciais e dependencias foram comunicados.
+- [ ] Proximo passo tem data e responsavel.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\ONE_PAGE_COMERCIAL_DECISOR_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\FICHA_ROI_VALOR_PERCEBIDO_NEXUS_ONE.md
+- docs\PLAYBOOK_COMERCIAL_QUALIFICACAO_NEXUS_ONE.md

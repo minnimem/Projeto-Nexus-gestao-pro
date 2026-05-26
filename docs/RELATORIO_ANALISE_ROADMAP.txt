@@ -1,0 +1,601 @@
+RELATORIO DE ANALISE - ROADMAP NEXUS ONE 10.0
+Atualizado em 08/05/2026
+
+Resumo geral
+Com base no roadmap, o projeto evoluiu bastante nas areas de PDV/Caixa,
+Financeiro premium, Estoque avancado, Relatorios, Proposta comercial e base
+fiscal de homologacao. Ainda faltam principalmente a transmissao fiscal real
+por provedor/SEFAZ, cartao/maquininha real, notificacoes externas em canal real,
+homologacao ponta a ponta de pagamentos, cadastros profissionais completos e
+automacoes reais.
+Em 08/05/2026 foi aplicada uma rodada complementar de acabamento premium no
+frontend, com foco em leitura executiva, central de alertas, exportacao
+profissional, status visuais e consistencia dos componentes globais.
+
+Status atual da Nota Fiscal
+- Nota fiscal esta aproximadamente 98% concluida dentro da etapa de homologacao controlada e preparacao para emissao real.
+- Fluxo atual ja cobre configuracao fiscal, prontidao por empresa/filial/modelo, documento fiscal persistido, payload JSON, XML de homologacao por modelo, validacao interna, consulta de situacao, dossie fiscal em TXT com resumo executivo, checklist/status/pacote de emissao real com totalizadores, manifesto de integridade, validacao de hashes com pendencias normalizadas, transmissao controlada/HTTP, retorno SEFAZ/provedor em JSON/XML, pendencias em TXT, revalidacao apos correcao cadastral, reprocessamento de rejeicao, DANFE/DANFCE/DANFSe de conferencia, CC-e controlada, contingencia, regularizacao, cancelamento e inutilizacao controlados.
+- Tela de Nota fiscal agora exibe um bloco de conclusao fiscal real com contadores de pacote real pronto, pendencias cadastrais e pedidos que ainda precisam homologar, alem de uma proxima acao recomendada por fila.
+- Cada pedido fiscal recebeu marcador operacional de conclusao: Aguardando homologacao, Corrigir cadastro, Gerar pacote base, Concluir homologacao ou Pacote real pronto.
+- O pacote real ja pode ser baixado em JSON com XML, payload, metadados, aliases de certificado/provedor, totalizadores de prontidao, proxima acao e hashes SHA-256 para conferencia com contador ou provedor fiscal.
+- O que representa os 98%: o ERP esta pronto para preparar, validar, auditar, consultar, exportar e simular/transmitir por provedor HTTP em homologacao controlada; falta apenas a homologacao oficial em ambiente real com credenciais, certificado e regras tributarias definitivas.
+- Principal pendencia restante para fechar os 2% finais: homologar a emissao fiscal real com certificado/assinatura oficial, layout final SEFAZ/NFS-e, QR Code oficial da NFC-e, calculo tributario real validado por contador, credenciamento fiscal da empresa/filial e provedor/SEFAZ/municipio em ambiente real.
+- Recomendacao antes de vender como "emissao fiscal real": rodar uma filial piloto, um modelo por vez (NF-e, depois NFC-e e NFS-e), emitir notas em homologacao oficial, validar XML/DANFE com contador e somente depois liberar producao.
+- Validacao tecnica em 21/05/2026: frontend aprovado com npm run build, backend aprovado com mvn test com 122 testes sem falhas, teste DocumentoFiscalServiceTest mantendo 50 testes sem falhas, suite Spring/repository em H2 em memoria, cobertura de permissoes, Caixa, follow-up comercial, prontidao fiscal real, pacote real, pendencias e artefatos fiscais; mock fiscal local ja validado com HEAD/POST nos cenarios AUTORIZADO e REJEITADO, incluindo retornos json, sefaz-json e XML direto.
+- Verificacoes complementares em 21/05/2026: estrutura do projeto aprovada com `scripts/verificar-estrutura-projeto.ps1 -SkipBuild` e checagem local sem Docker aprovada com `scripts/verificar-local-sem-docker.ps1 -SkipFrontendBuild -SkipBackendTests`; validacao de `.env` ficou fora desta rodada rapida por depender de segredos locais.
+- Validacao frontend complementar em 08/05/2026: npm run build aprovado apos polimento premium e ajustes da central de alertas. Permanece apenas o aviso conhecido do Vite sobre bundle acima de 500 kB por concentracao de muitos modulos em App.jsx.
+
+Ultimas entregas concluidas nesta rodada
+- Rodada de polimento premium do frontend aplicada em 08/05/2026: shell, cards, KPIs, tabelas, botoes, filtros, modais, mensagens, empty states, badges/status e dark mode receberam acabamento visual mais consistente.
+- Central de alertas da topbar ganhou dropdown responsivo com rolagem interna, prioridade visual, contadores, filtros por Todos/Criticos/Atencao/Info e estado vazio quando nao ha alerta no filtro selecionado.
+- Central de alertas ganhou icones por tipo, resumo textual da prioridade, acao Visto, Restaurar vistos, persistencia local e reexibicao automatica quando a assinatura do alerta muda.
+- Central de alertas ganhou faixa executiva com alertas abertos/vistos e acao Marcar todos para limpar a fila operacional em um clique.
+- Alertas consolidados na topbar: erro de sincronizacao, estoque baixo, pedidos pendentes, financeiro critico e status de sincronizacao ativa/sucesso.
+- Central de alertas passou a incluir follow-ups comerciais atrasados/para hoje e follow-ups de cobranca atrasados quando os dados do modulo estao carregados.
+- Central de alertas passou a incluir rotas logisticas atrasadas quando uma rota ativa tem data anterior a hoje.
+- Central de alertas passou a incluir certificado fiscal vencido ou vencendo em ate 30 dias a partir das configuracoes fiscais ativas.
+- Caixa/PDV recebeu ajuste visual para o formato recomendado no relatorio: pedido, itens, produtos e observacao a esquerda; pagamento, Pix/cartao/dinheiro/misto, resumo e acao principal a direita.
+- Caixa/PDV iniciou acabamento dark premium dedicado, com total a receber mais dominante, painel de pagamento destacado e responsividade preservada em uma coluna no mobile.
+- Caixa/PDV ganhou cabecalhos operacionais Pedido/Pagamento, identidade visual por forma de pagamento e bloco de status para Pix/boleto aguardando geracao ou ja gerado.
+- Exportacao premium evoluiu para grupos de acao com CSV/PDF/Excel e JSON tecnico restrito a ADMIN nos blocos onde ha dado tecnico sensivel.
+- Status visuais foram padronizados e ampliados para fiscal, pedidos, OS, financeiro, logistica, estoque e sincronizacao.
+- Estados vazios premium foram aplicados em tabelas criticas para reduzir telas em branco e orientar melhor a operacao.
+- Aba Vendas evoluiu para navegacao modular com Resumo em formato de hub operacional, atalhos para Pedidos, CRM, Separacao, Fiscal, Analytics e Ranking, reduzindo a rolagem do painel principal.
+- Aba Vendas ganhou tela propria de Separacao de pedidos, separando a fila operacional de estoque/retirada das telas de CRM, Fiscal e Pedidos.
+- CRM comercial em Vendas ganhou kanban operacional por etapa: Propostas, A receber e Separacao, com cards de cliente, vendedor, status, valor e produto resumido.
+- Analytics de Vendas recebeu mini insights comparativos no grafico: melhor periodo, media por periodo e tendencia entre primeiro e ultimo periodo, com destaque visual automatico do melhor periodo.
+- Controle fiscal dentro de Vendas foi compactado: status principais ficam em cards de leitura rapida e estados secundarios como XML, validado, contingencia e inutilizado ficam em faixa resumida.
+- Fila principal de Nota fiscal recebeu acoes fiscais agrupadas por contexto: Fluxo, Arquivos e Real, reduzindo a sensacao de excesso de botoes por pedido sem remover funcionalidades.
+- Tabela geral de Pedidos passou a reutilizar o mesmo agrupador de acoes fiscais por contexto, reduzindo repeticao visual e de codigo nos status Pendente, Recebido, Separacao, Separado e demais pedidos.
+- Tabela geral de Pedidos ganhou renderizador contextual de acoes: orcamentos mostram grupo Proposta, pedidos operacionais mostram grupo Operacao quando ha separar/retirar/concluir, e os demais controles ficam agrupados em Fiscal.
+- Resumo de Vendas recebeu painel de gargalos comerciais com Propostas paradas, A receber, Separacao, Fiscal pendente e Pacote real, mostrando quantidade, valor impactado e atalho para a etapa correta.
+- CRM comercial recebeu indicadores de prioridade por vendedor e por cliente, destacando maior valor aberto, quantidade de oportunidades, status dominante e ultimo contato para orientar cobranca comercial.
+- CRM comercial recebeu timeline do cliente e painel de lembretes comerciais, destacando follow-ups vencidos/para hoje, proxima acao, canal, vendedor, observacao e ultimos contatos registrados.
+- Grafico de Analytics de Vendas recebeu tooltip visual por barra com periodo, valor, participacao no total e comparativo contra a media, substituindo a leitura simples por title do navegador.
+- Grafico de Analytics de Vendas recebeu linha media comparativa em cada barra, com resumo da media no cabecalho do grafico para leitura rapida de desempenho acima/abaixo da media.
+- Vendas recebeu animacoes finas e leves em cards, kanban, prioridades, timeline e barras de grafico, protegidas por prefers-reduced-motion para nao prejudicar acessibilidade/performance.
+- CRM comercial recebeu Agenda comercial por faixas de lembrete: Vencidos, Hoje e Proximos, com atalho para disparar notificacoes externas quando o perfil tem permissao.
+- CRM comercial recebeu painel de regras de automacao sugeridas/prontas: follow-up vencido, acao de hoje, alto valor aberto e sem proxima acao, preparando a evolucao para regras configuraveis reais.
+- Tabelas comerciais de Vendas receberam celula de cliente mais moderna com avatar/iniciais e leitura mais rapida de pedido.
+- Visual da navegacao modular de Vendas recebeu cards premium com dark mode alinhado, hover e melhor contraste para textos secundarios.
+- Validacao tecnica da evolucao de Vendas: frontend aprovado com npm run build em 06/05/2026.
+- Relatorio externo de sugestoes da aba Vendas foi analisado e incorporado ao roadmap como backlog premium de UX/comercial, sem marcar como implementado.
+- Caixa redesenhado para operacao de PDV simples, removendo dashboard executivo da tela operacional e mantendo indicadores consolidados apenas no Visual Geral.
+- Caixa passou a ocultar saldo calculado no topo da tela por seguranca, exibindo apenas status operacional.
+- Permissao do Caixa alinhada ponta a ponta: modulo, acao de operar caixa e constraint `caixa_perfil_check` agora restringem operacao a ADMIN, GERENTE e OPERADOR_CAIXA, removendo acesso de VENDEDOR.
+- Permissao de follow-up comercial foi separada da permissao de operar caixa no backend e no frontend: ADMIN, GERENTE e VENDEDOR podem criar, concluir e cancelar follow-ups de vendas sem liberar acesso ao Caixa.
+- Admin > Usuarios passou a listar "Gerir follow-up comercial" no editor de permissoes por usuario e na matriz de permissoes criticas, permitindo bloqueio/liberacao granular sem alterar o perfil principal.
+- Testes de permissao passaram a cobrir bloqueio individual de follow-up comercial e protecao para impedir que permissao extra libere Caixa para VENDEDOR.
+- Caixa recebeu modo expandir/diminuir com botao no cabecalho e atalho Alt + Enter para uso em tela cheia operacional.
+- Lista de vendas em aberto para receber foi recolocada em botao de selecao, evitando expor todos os pedidos na tela principal do caixa.
+- Caixa agora recebe somente pedidos de retirada na loja; pedidos de entrega seguem direto para Logistica e nao entram na fila de cobranca do caixa.
+- Fluxo de retirada na loja ajustado: o caixa recebe apenas o valor, o pedido fica como recebido e segue para retirada/separacao no estoque.
+- Baixa de estoque para retirada na loja movida para a conclusao da retirada pelo estoque, evitando baixa antes da separacao fisica do produto.
+- Painel de cobranca do caixa recebeu botao para ver/ocultar detalhes de produto com tabela de codigo, resumo da descricao, quantidade, valor unitario e total.
+- Tipografia da area do caixa ampliada para melhorar leitura por operadores com dificuldade de visao e reduzir esforco visual.
+- Aba Estoque reorganizada com botoes de operacao e formulario unico por acao.
+- Lista Produtos e estoque movida para baixo, com paginacao de 10 itens por pagina.
+- Etiqueta individual ajustada para caber em 60mm x 35mm sem quebrar em duas paginas.
+- Etiquetas individual e em lote agora renderizam codigo de barras Code128 real em SVG.
+- Historico do cliente passou a mostrar os produtos de cada pedido e exportar essa informacao.
+- Pix/boleto cobranca integrado ao Caixa para pedido pendente, com QR Code/copia e cola.
+- Integracao Asaas adicionada para emissao real de Pix/boleto quando ASAAS_ENABLED estiver ativo.
+- Webhook Asaas criado para baixa automatica por eventos de pagamento.
+- Cobranca de pedido cria/reaproveita financeiro pendente vinculado e evita receita duplicada na baixa.
+- Relatorios receberam filtro consolidado por filial, vendas por filial e financeiro por filial.
+- Aba Clientes recebeu filtro por filial e coluna de filial principal na carteira.
+- Agenda persistente de follow-up de cobranca confirmada no Financeiro.
+- Lembretes visuais de follow-up para hoje/vencidos adicionados no Financeiro.
+- Follow-up comercial por vendedor adicionado em Vendas com resumo, detalhes e CSV/PDF.
+- Anotacoes manuais de follow-up comercial persistidas por pedido/cliente.
+- Aba Estoque recebeu filtro por filial nos KPIs, alertas, saldos e lista de produtos.
+- Aba Vendas recebeu filtro por filial nos KPIs, grafico, ranking, follow-up e pedidos.
+- Aba Caixa recebeu filtro por filial para pagamentos pendentes e historico de caixas.
+- Aba Logistica recebeu filtro por filial para rotas, entregas disponiveis e romaneios.
+- Aba Admin/Usuarios recebeu filtro por filial/perfil e destaque de colaboradores sem filial.
+- Aba Colaboradores recebeu filtro por filial/perfil, cards por loja e coluna de filial.
+- Relatorios receberam card/exportacao de colaboradores e consolidado de colaboradores por filial.
+- Overview recebeu painel de operacao por filial com vendas, pendencias, equipe e entregas.
+- Overview recebeu painel de alertas automaticos persistentes para estoque baixo, contas vencidas/vencendo e vendas altas.
+- Overview recebeu relatorio diario automatico com resumo do dia e exportacao CSV/PDF.
+- Admin recebeu checklist de prontidao fiscal por empresa/filial com exportacao CSV/PDF.
+- Vendas recebeu espelho fiscal interno para conferencia de pedido antes de NF-e/NFC-e real.
+- Vendas recebeu controle fiscal interno por pedido com status pendente/autorizado/rejeitado/cancelado e exportacao.
+- Controle fiscal interno passou a registrar historico local de autorizacao, rejeicao e cancelamento por pedido.
+- Romaneio logistico passou a mostrar filial no cabecalho e em cada entrega.
+- Exportacoes CSV/PDF de Logistica passaram a incluir filial e respeitar o filtro operacional.
+- Caixa recebeu exportacao CSV/PDF dos movimentos recentes com filial e forma de pagamento.
+- Financeiro passou a aplicar filtro de filial tambem em recorrencias, agenda de cobranca e exportacoes de inadimplencia/cobranca.
+- Vendas passou a incluir filial nas exportacoes e cards de ranking/follow-up comercial.
+- Clientes/pos-venda passou a incluir filial no historico exportado e na lista de compras do cliente.
+- Estoque/Compras passou a incluir filial nas exportacoes de estoque parado e historico de compras.
+- Admin/Auditoria passou a exibir e exportar filial do usuario do evento quando identificavel.
+- Proposta comercial passou a mostrar filial no PDF e no CSV exportado pelo PDV.
+- Follow-up comercial recebeu funil de oportunidades por etapa: propostas, a receber e separacao.
+- Alertas automaticos de estoque, financeiro e vendas altas foram adicionados ao Overview.
+- Relatorio diario automatico foi adicionado ao Overview com geracao por data e exportacao.
+- Percentual de comissao configuravel por ADMIN/GERENTE.
+- Recorrencia financeira persistida com pausa/ativacao e geracao sob demanda.
+- Categorias, marcas e transportadoras completas no front/backend.
+- Transferencia entre locais/filiais com saldos por local.
+- Ranking por vendedor com meta, atingimento, faltante, periodo customizado e exportacao.
+- Aging de inadimplencia por faixa e cobranca por cliente com exportacao.
+- Lojas/filiais e contratos cadastrados na area administrativa.
+- Vinculo formal de filial em usuarios, pedidos, financeiro, recorrencias e saldos de estoque.
+- Builds e testes validados apos as alteracoes: npm run build, mvn -DskipTests compile e mvn test.
+- Notificacoes externas de follow-up adicionadas via webhook HTTP configuravel, com agendamento e controle para evitar reenvio.
+- Endpoint administrativo para disparar notificacoes de follow-up sob demanda: POST /notificacoes/follow-ups/enviar.
+- Botao de disparo manual das notificacoes externas adicionado no Financeiro, em Agenda de cobranca.
+- Agenda de cobranca e follow-up comercial passaram a exibir/exportar a data de notificacao externa.
+- Vendas recebeu botao de disparo manual das notificacoes externas no bloco Follow-up comercial.
+- Alertas externos de estoque baixo adicionados via webhook HTTP configuravel, com agendamento e endpoint manual.
+- Aba Estoque recebeu botao manual para disparar notificacao externa dos itens abaixo do minimo.
+- Resumo diario externo adicionado via webhook HTTP configuravel, com agendamento e endpoint manual.
+- Revisao da rodada atual retomada em 02/05/2026: frontend centralizado na raiz confirmado, log temporario dev-server.log removido do versionamento e validacoes npm run build, mvn -DskipTests compile e mvn test executadas com sucesso.
+- Configuracao sensivel do backend revisada: senha fixa do PostgreSQL e segredo JWT fixo removidos do application.yml, datasource/JWT agora usam variaveis de ambiente DB_URL, DB_USERNAME, DB_PASSWORD e JWT_SECRET, com documentacao atualizada no README.
+- Arquivo .env local removido do versionamento e mantido apenas como configuracao local ignorada pelo Git.
+- Roteiro de homologacao Asaas sandbox criado em docs/HOMOLOGACAO_ASAAS.md, cobrindo variaveis, Pix, boleto, webhook, eventos tratados e checklist de producao.
+- Modelo .env.backend.example e script scripts/test-asaas-webhook.ps1 adicionados para facilitar teste local do webhook Asaas sem versionar segredos.
+- Testes unitarios do webhook Asaas adicionados, cobrindo token valido, token invalido e operacao sem token configurado; suite Maven validada com 11 testes sem falhas.
+- Testes unitarios do processamento financeiro de webhook Asaas adicionados, cobrindo aprovacao, estorno, cancelamento, evento desconhecido e payload sem paymentId; suite Maven validada com 16 testes sem falhas.
+- Roteiro de homologacao de notificacoes externas criado em docs/HOMOLOGACAO_NOTIFICACOES.md, com receptor local scripts/mock-notification-webhook.js para validar payloads de follow-up, estoque baixo e resumo diario.
+- Testes unitarios dos endpoints administrativos de notificacao externa adicionados, cobrindo retorno de follow-ups, estoque baixo e resumo diario; suite Maven validada com 19 testes sem falhas.
+- Testes unitarios do agendamento de follow-ups externos adicionados, cobrindo notificacoes desligadas e envio com marcacao de notificacao externa; suite Maven validada com 21 testes sem falhas.
+- Testes unitarios dos agendadores de estoque baixo e resumo diario externo adicionados, cobrindo notificacoes desligadas, ausencia de itens e envio/auditoria; suite Maven validada com 26 testes sem falhas.
+- Fundacao de configuracao fiscal real adicionada no backend: entidade, repositorio, DTOs, service, controller protegido para ADMIN/GERENTE e testes unitarios para empresa/filial/modelo/validacoes.
+- Endpoint administrativo fiscal criado: GET/POST/PUT /configuracoes-fiscais, com modelos NFE/NFCE/NFSE, ambientes HOMOLOGACAO/PRODUCAO e armazenamento apenas de aliases/nomes de variaveis para segredos de certificado/CSC.
+- Suite Maven validada apos a base fiscal com 30 testes sem falhas.
+- Tela Admin > Configuracao fiscal adicionada no frontend para cadastrar, editar, listar e exportar configuracoes fiscais por empresa/filial/modelo.
+- Build frontend validado apos a tela fiscal com npm run build.
+- Endpoint GET /configuracoes-fiscais/{id}/status criado para validar prontidao minima de homologacao fiscal e listar pendencias por modelo.
+- Tela fiscal ganhou acao de validacao de prontidao por configuracao, com retorno visual de PRONTA/PENDENTE.
+- Base de documento fiscal criada no backend com entidade DocumentoFiscal, status, repositorio, DTOs, service e controller.
+- Endpoint POST /documentos-fiscais/homologacao prepara documento fiscal por pedido/configuracao pronta, persiste payload JSON e avanca proximo numero fiscal.
+- Endpoint GET /documentos-fiscais/pedido/{pedidoId} lista documentos fiscais vinculados ao pedido.
+- Tela Vendas > Nota fiscal ganhou acao Homologar para preparar documento fiscal do pedido com a configuracao NFE ativa da filial ou da empresa.
+- Endpoints PATCH /documentos-fiscais/{id}/autorizar-homologacao e /rejeitar-homologacao adicionados para registrar retorno fiscal controlado, com chave, protocolo, XML de retorno e mensagem.
+- Tela Vendas > Nota fiscal passou a acionar o retorno fiscal controlado com botoes Autorizar/Rejeitar somente apos XML_VALIDADO.
+- Endpoint PATCH /documentos-fiscais/{id}/gerar-xml-homologacao criado para gerar xmlEnvio interno e mover DocumentoFiscal para EM_PROCESSAMENTO.
+- Tela Vendas > Nota fiscal ganhou acao XML entre Homologar e Autorizar/Rejeitar.
+- Cadastro da empresa recebeu campos fiscais do emitente: inscricao estadual, inscricao municipal, regime tributario, CRT, CEP e codigo IBGE do municipio.
+- Cadastro de clientes recebeu endereco fiscal estruturado do destinatario: numero, bairro, cidade, UF, CEP, codigo IBGE do municipio e inscricao estadual opcional.
+- Endpoint PATCH /documentos-fiscais/{id}/cancelar-homologacao criado para cancelar documento fiscal autorizado em homologacao controlada.
+- Tela Vendas > Nota fiscal ganhou acao Cancelar quando o controle fiscal interno esta AUTORIZADO.
+- Tela Vendas > Nota fiscal passou a carregar documentos fiscais persistidos por pedido e usar o status real mais recente do backend no controle fiscal.
+- Endpoint GET /documentos-fiscais/pedidos?ids=... criado para carregar documentos fiscais em lote e evitar uma chamada por pedido na tela Vendas > Nota fiscal.
+- Resumo fiscal em lote passou a incluir total de arquivos disponiveis e total de pendencias fiscais por documento.
+- Fila fiscal passou a mostrar a quantidade de pendencias diretamente no marcador de cadastro fiscal pendente.
+- Exportacao do controle fiscal em Vendas passou a incluir documento, serie/numero, protocolo e chave quando ha DocumentoFiscal persistido.
+- Tela Vendas > Nota fiscal ganhou acao Baixar XML quando o documento fiscal possui xmlEnvio gerado.
+- Endpoint GET /documentos-fiscais/{id} criado para consulta completa pontual, mantendo a consulta em lote mais leve com resumo sem XML/payload.
+- Download de XML na tela Vendas > Nota fiscal passou a buscar o documento completo apenas no clique.
+- Resumo fiscal em lote passou a informar existencia de payloadJson.
+- Tela Vendas > Nota fiscal ganhou acao JSON para baixar o payload fiscal preparado.
+- Retornos controlados de homologacao passaram a gerar xmlRetorno padrao para autorizacao, rejeicao e cancelamento.
+- Tela Vendas > Nota fiscal ganhou acao Retorno para baixar o XML de retorno fiscal quando existir.
+- Endpoint GET /configuracoes-fiscais/{id}/status-servico criado para consulta controlada de disponibilidade do servico fiscal configurado.
+- Tela Admin > Configuracao fiscal ganhou coluna Servico e acao para consultar disponibilidade/pendencias do endpoint fiscal.
+- Resolvedor de segredos fiscais adicionado para validar existencia das variaveis de ambiente do arquivo/senha do certificado e CSC sem expor valores sensiveis.
+- Status de servico fiscal passou a bloquear disponibilidade quando arquivo/senha do certificado ou token CSC nao existem no ambiente de execucao.
+- Transmissao fiscal controlada passou a validar segredos antes de autorizar homologacao.
+- DocumentoFiscal passou a registrar auditoria no modulo Fiscal ao preparar homologacao, gerar XML, autorizar, rejeitar e cancelar.
+- Geracao de XML de homologacao passou a separar raiz e campos auxiliares por modelo NFE, NFCE e NFSE.
+- Cadastro de produto recebeu campos fiscais opcionais para NCM, CFOP, CEST, origem fiscal e unidade comercial.
+- Payload JSON e XML de homologacao fiscal passaram a incluir blocos de emitente, destinatario, itens fiscais, codigo de barras, NCM, CFOP, CEST, origem, unidade, total por item e pendencias fiscais de CNPJ/IE/CRT/CEP/codigo municipio/CPF/UF/endereco destinatario/CSC para aproximar a conferencia da nota real.
+- DocumentoFiscal passou a persistir pendencias fiscais de cadastro e o resumo da fila fiscal informa quando existe cadastro fiscal pendente.
+- Fila fiscal ganhou acao Pendencias para baixar um TXT com os ajustes cadastrais necessarios antes da emissao real.
+- Configuracao fiscal ganhou campo certificadoArquivoEnv para referenciar com seguranca a variavel do arquivo A1/PFX/P12 fora do banco.
+- Geracao de XML de homologacao passou a incluir bloco AssinaturaHomologacao com digest SHA-256 e referencias ao certificado configurado.
+- Assinador XML PKCS12/A1 real adicionado e protegido por configuracao NEXUS_FISCAL_XML_SIGNER=pkcs12, mantendo o modo controlado como padrao.
+- Loader de certificado PKCS12 criado para carregar chave privada X509 a partir de arquivo/senha definidos por variaveis de ambiente.
+- Endpoint PATCH /documentos-fiscais/{id}/validar-xml-homologacao criado para validar estrutura minima do XML antes da transmissao externa.
+- Tela Vendas > Nota fiscal ganhou acao Validar quando o documento fiscal esta em EM_PROCESSAMENTO.
+- Camada FiscalProvider adicionada no backend para isolar transmissao fiscal e permitir trocar o provedor controlado por SEFAZ/provedor real.
+- Endpoint PATCH /documentos-fiscais/{id}/transmitir-homologacao criado para transmissao de homologacao controlada a partir do XML em processamento.
+- Tela Vendas > Nota fiscal ganhou acao Transmitir quando o documento fiscal esta em EM_PROCESSAMENTO.
+- Provedor fiscal HTTP opcional adicionado e ativavel por NEXUS_FISCAL_PROVIDER=http para enviar XML/metadados ao endpoint fiscal configurado.
+- Provedor controlado ficou como fallback padrao quando nenhum provedor real/HTTP esta habilitado.
+- Configuracao fiscal recebeu provedorTokenEnv para guardar apenas o nome da variavel do token/API key do emissor externo.
+- Provedor fiscal HTTP passou a enviar Authorization Bearer quando provedorTokenEnv esta configurado.
+- Consulta HTTP de status do servico fiscal passou a usar o mesmo token Bearer do provedor quando configurado.
+- Provedor fiscal HTTP ganhou timeouts configuraveis de conexao, leitura de transmissao e leitura de status para evitar travamento operacional.
+- Provedor fiscal HTTP passou a aceitar aliases comuns de retorno real, como chave/chaveAcesso, protocolo/protocoloAutorizacao, nfeProc/xmlRetorno e danfeHtml/documentoAuxiliarHtml.
+- Provedor fiscal HTTP passou a interpretar retornos aninhados em data, result, resultado, documento ou retorno, cobrindo formatos comuns de APIs terceiras.
+- Provedor fiscal HTTP passou a aceitar XML direto no corpo da resposta com parser XML seguro e suporte a namespace fiscal, extraindo cStat, xMotivo, chNFe e nProt de retorno tipo nfeProc.
+- Provedor fiscal HTTP passou a cobrir XML de rejeicao com cStat diferente de 100, preservando xMotivo e xmlRetorno para conferencia operacional.
+- Provedor fiscal HTTP passou a aceitar JSON com campos padrao SEFAZ, usando cStat=100 como autorizacao, xMotivo como mensagem, chNFe como chave e nProt como protocolo.
+- Transmissao fiscal HTTP passou a persistir DANFE/HTML retornado pelo emissor externo quando disponivel.
+- Testes unitarios do provedor fiscal HTTP adicionados cobrindo payload enviado, autorizacao, rejeicao, aliases de retorno, DANFE retornado e bloqueio por segredo ausente.
+- Mock local scripts/mock-fiscal-provider.js criado para homologar transmissao HTTP fiscal, status via HEAD, retorno XML e DANFE sem depender de SEFAZ/provedor real.
+- Mock fiscal local passou a suportar MOCK_FISCAL_RESPONSE_MODE=json, sefaz-json e xml para validar formatos de retorno diferentes.
+- Script scripts/test-fiscal-provider.ps1 criado para validar o mock fiscal local com HEAD e POST, conferindo autorizacao ou rejeicao esperada.
+- Atalhos npm run mock:fiscal e npm run test:fiscal-provider adicionados para subir e validar a homologacao fiscal local sem decorar comandos longos.
+- Guia docs/GUIA_HOMOLOGACAO_FISCAL_LOCAL.md criado com passo a passo operacional para testar configuracao fiscal, mock, backend e fluxo Homologar -> XML -> Validar -> Transmitir.
+- DocumentoFiscalService ganhou teste garantindo que DANFE/HTML retornado pelo provedor fiscal e persistido no documento durante a transmissao autorizada.
+- Status de servico fiscal ganhou checker plugavel: modo controlado como padrao e modo HTTP consultando o endpoint com HEAD quando NEXUS_FISCAL_PROVIDER=http.
+- Testes do checker HTTP adicionados para endpoint disponivel, endpoint sem suporte a HEAD e endpoint indisponivel.
+- Endpoint PATCH /documentos-fiscais/{id}/gerar-danfe-homologacao criado para gerar documento auxiliar HTML em homologacao controlada.
+- Tela Vendas > Nota fiscal ganhou acao DANFE para gerar e baixar o documento auxiliar fiscal quando a nota esta AUTORIZADA.
+- Endpoint PATCH /documentos-fiscais/{id}/inutilizar-homologacao criado para inutilizacao controlada de numeracao apos rejeicao.
+- Tela Vendas > Nota fiscal ganhou acao Inutilizar quando o documento fiscal esta REJEITADO.
+- Endpoint PATCH /documentos-fiscais/{id}/contingencia-homologacao criado para registrar contingencia controlada quando XML esta em processamento e provedor fiscal esta indisponivel.
+- Tela Vendas > Nota fiscal ganhou acao Contingencia em EM_PROCESSAMENTO e DANFE de contingencia para conferencia/regularizacao posterior.
+- Modulo Relatorios ganhou relatorio fiscal proprio com documentos por pedido, status fiscal, protocolo, chave e exportacao CSV/PDF, corrigindo chamada visual fora do escopo da tela de Vendas.
+- Configuracao fiscal passou a registrar validade do certificado A1 e bloquear prontidao quando o certificado estiver vencido ou vencendo em ate 30 dias.
+- Preparacao fiscal de homologacao passou a bloquear configuracao em PRODUCAO para evitar consumo acidental de numeracao real antes da emissao oficial homologada.
+- Pendencias fiscais da nota passaram a validar formatos de CNPJ, CPF, UF, CEP, codigo IBGE, NCM, CFOP, CEST e origem fiscal, apontando dados mal preenchidos antes da transmissao.
+- Cadastro de produto ganhou CST/CSOSN e aliquotas basicas de ICMS, PIS, COFINS e IPI, com envio no payload/XML fiscal e exportacao no estoque.
+- NFC-e de homologacao passou a gerar QR Code interno com hash no XML e no DANFCE para conferencia operacional, mantendo o QR oficial como pendencia da emissao real.
+- NFS-e de homologacao passou a gerar bloco inicial de servico com codigo municipal/nacional, municipio de incidencia, aliquota ISS e discriminacao, e deixou de exigir campos de mercadoria como NCM/CFOP/CST.
+- Validacao interna do XML fiscal passou a exigir item completo com quantidade, valor, total e bloco de tributacao antes da transmissao.
+- Fluxo fiscal ganhou status XML_VALIDADO; transmissao e contingencia agora exigem validacao interna previa do XML.
+- Retorno manual de autorizacao/rejeicao tambem passou a exigir XML_VALIDADO, evitando pular a validacao estrutural.
+- Contingencia fiscal ganhou regularizacao posterior: documento em CONTINGENCIA pode ser retransmitido pelo provedor e retornar para AUTORIZADO ou REJEITADO.
+- Transmissao, regularizacao de contingencia e retorno manual passaram a bloquear documentos com pendencias fiscais persistidas, tornando o TXT de pendencias obrigatorio para correcao antes da emissao.
+- Fila fiscal ganhou revalidacao de pendencias: apos corrigir cadastros, o operador pode recalcular pendencias, payload e XML sem recriar a nota.
+- Endpoint GET /documentos-fiscais/{id}/consulta-homologacao criado para consultar situacao fiscal, chave, protocolo, totalizadores de arquivos/pendencias/acoes, pendencias, arquivos disponiveis e proxima acao operacional do documento.
+- Fila fiscal ganhou botao Consulta para exibir rapidamente o status da homologacao, totais de arquivos/pendencias e orientar a proxima etapa sem baixar XML manualmente.
+- Endpoint PATCH /documentos-fiscais/{id}/carta-correcao-homologacao criado para registrar CC-e controlada em NF-e autorizada, com XML proprio, texto, sequencia e auditoria sem sobrescrever o XML de autorizacao.
+- Fila fiscal ganhou acao CC-e para NF-e autorizada e download XML CC-e quando a carta de correcao ja existe.
+- Endpoint GET /documentos-fiscais/{id}/dossie-homologacao criado para gerar TXT consolidado do documento fiscal com status, chave, protocolo, arquivos, pendencias, CC-e e proxima acao.
+- Dossie fiscal de homologacao passou a exibir resumo executivo com total de arquivos disponiveis, pendencias fiscais e acoes disponiveis.
+- Fila fiscal ganhou acao Dossie para baixar a conferencia completa do documento fiscal em TXT.
+- Endpoint PATCH /documentos-fiscais/{id}/reprocessar-rejeicao-homologacao criado para reprocessar nota rejeitada apos correcao, mantendo numero/documento, regenerando payload/XML e voltando para EM_PROCESSAMENTO.
+- Fila fiscal ganhou acao Reprocessar para documento REJEITADO, antes da inutilizacao definitiva da numeracao.
+- Endpoint GET /documentos-fiscais/{id}/checklist-emissao-real criado para gerar TXT de prontidao real por documento, apontando itens prontos, pendencias e proxima acao de producao/certificado/provedor.
+- Fila fiscal ganhou acao Checklist real para baixar os bloqueios antes de tentar emissao oficial.
+- Endpoint GET /documentos-fiscais/{id}/status-emissao-real criado para retornar prontidao real estruturada com percentual, itens prontos, totalizadores, pendencias e proxima acao.
+- Fila fiscal ganhou acao Status real para consultar rapidamente o percentual, quantidade de pendencias e os primeiros bloqueios de emissao oficial.
+- Checklist/status/pacote de emissao real passaram a bloquear prontidao quando o certificado A1 esta vencido ou vencendo em ate 30 dias, nao apenas quando a validade esta ausente.
+- Checklist de emissao real passou a normalizar itens prontos e pendencias sem duplicidade antes de calcular percentual de prontidao e totalizadores.
+- Checklist real e Manifesto do pacote real em TXT passaram a exibir total de itens prontos e total de pendencias no cabecalho.
+- Endpoint GET /documentos-fiscais/{id}/pacote-emissao-real criado para exportar JSON operacional com metadados, XML, payload, aliases de certificado/provedor e checklist estruturado.
+- Fila fiscal ganhou acao Pacote real para baixar o JSON de entrega ao provedor/contador sem transmitir a nota.
+- Pacote real passou a incluir SHA-256 do payload, SHA-256 do XML e referencia tecnica do pacote para conferencia de integridade entre sistema, contador e provedor.
+- Pacote real passou a expor `proximaAcao` no JSON para orientar o contador/provedor ou operador sobre o primeiro bloqueio da emissao oficial.
+- Status real e Pacote real passaram a expor `totalItensProntos` e `totalPendencias`, evitando contagem manual na tela ou integracao.
+- Status real e Pacote real passaram a expor `pendenciasExternas` e `totalPendenciasExternas` para separar os bloqueios internos do ERP dos 2% oficiais: credenciamento, certificado/assinatura, homologacao SEFAZ/provedor/municipio, QR Code NFC-e oficial e validacao tributaria com contador.
+- Tela Vendas > Nota fiscal passou a avisar quantos itens externos ainda precisam validacao ao consultar Status real ou baixar Pacote real.
+- Endpoint GET /documentos-fiscais/{id}/manifesto-pacote-emissao-real criado para gerar TXT curto com referencia, hashes, status, prontidao, pendencias e proxima acao do pacote real.
+- Fila fiscal ganhou acao Manifesto para baixar a conferencia de integridade do pacote real.
+- Endpoint GET /documentos-fiscais/{id}/validar-integridade-pacote-emissao-real criado para validar hashes, existencia de payload/XML, referencia do pacote, itens prontos, total de pendencias, percentual de prontidao, pendencias e proxima acao em resposta estruturada.
+- Validacao de integridade do pacote real passou a normalizar pendencias sem duplicidade antes de calcular totais e proxima acao.
+- Fila fiscal ganhou acao Validar pacote para conferir rapidamente a integridade antes de enviar ao provedor/contador, mostrando a proxima acao quando houver bloqueio.
+- Validacao de integridade do pacote real agora tambem considera pendencias do checklist de emissao real, impedindo pacote "valido" com configuracao em homologacao, certificado vencendo ou outro bloqueio operacional.
+- Tela Vendas > Nota fiscal passou a mostrar quantidade e resumo das primeiras pendencias quando a acao Validar pacote encontra bloqueios no pacote real.
+- Tela Vendas > Nota fiscal passou a usar `totalPendencias` e `percentualProntidao` da validacao de integridade para mostrar um resumo mais fiel do pacote real.
+- Tela Vendas > Nota fiscal passou a usar `totalPendencias` tambem em Status real e Pacote real quando o backend enviar o total oficial.
+- Tela Vendas > Nota fiscal tambem passou a mostrar quantidade e resumo das primeiras pendencias ao consultar Status real ou baixar Pacote real com prontidao bloqueada.
+- Rodada fiscal validada com DocumentoFiscalServiceTest: 50 testes sem falhas, npm run build aprovado e mvn -DskipTests compile com BUILD SUCCESS.
+- Tela Nota fiscal ganhou bloco "Conclusao fiscal real", consolidando 98% de conclusao do modulo fiscal, com contadores de pacote pronto, pendencias, etapas a homologar e proxima acao operacional.
+- Fila fiscal passou a mostrar marcador de conclusao por pedido, indicando se esta aguardando homologacao, com cadastro fiscal pendente, pacote base incompleto, homologacao a concluir ou pacote real pronto para conferencia tecnica.
+- Base backend de Ordem de Servico criada com entidade, status, DTOs, repository, service, controller e auditoria.
+- Endpoints GET/POST/PUT /ordens-servico e PATCH /ordens-servico/{id}/status adicionados para abrir, listar, editar e mover OS.
+- Testes unitarios de OrdemServicoService adicionados cobrindo criacao, listagem, conclusao, bloqueio sem titulo e bloqueio de filial de outra empresa.
+- Frontend recebeu modulo Servicos no menu com tela operacional de Ordem de Servico: KPIs, abertura de OS, cliente, tecnico, filial, checklist, prazo, valor previsto, filtros, CSV/PDF e mudanca rapida de status.
+- Visual premium iniciado no frontend: shell principal redesenhado com menu lateral mais executivo, topo Command Center, cards de valor operacional e paineis/KPIs com acabamento SaaS.
+- Roteiro de homologacao de etiquetas Code128 criado em docs/HOMOLOGACAO_ETIQUETAS_CODE128.md, com gerador scripts/generate-code128-label-calibration.js para folha de calibracao 60mm x 35mm.
+- Roteiro tecnico de homologacao fiscal real criado em docs/HOMOLOGACAO_FISCAL_REAL.md, cobrindo NF-e, NFC-e, NFS-e, pre-requisitos, arquitetura sugerida e checklist de homologacao.
+
+
+1. JA IMPLEMENTADO OU BEM AVANCADO
+
+1.1 PDV / Caixa
+- Tela rapida de venda/PDV.
+- Leitura por codigo de barras no campo de produto.
+- Atalhos de teclado para produto, cliente, finalizar e limpar.
+- Geracao de Pix/boleto de cobranca para pedidos pendentes no Caixa.
+- QR Code Pix e copia/cola exibidos antes do recebimento.
+- Cobranca vinculada ao financeiro pendente do pedido.
+- Integracao opcional com Asaas para Pix/boleto real, mantendo modo DEMO sem credenciais.
+- Webhook /webhooks/asaas para aprovar, cancelar ou estornar financeiro conforme evento do gateway.
+- Abertura e fechamento de caixa.
+- Sangria e suprimento.
+- Recebimento de pedidos pendentes.
+- Pagamentos pendentes no Caixa podem ser filtrados por filial.
+- Pagamento misto com divisao por Pix, Dinheiro, Credito e Debito.
+- Recibo nao fiscal em modelo 80mm.
+- Historico de caixa com detalhes de pagamento misto.
+- Historico de caixa mostra filial do operador e respeita filtro por filial.
+- Exportacao e relatorio de fechamento de caixa.
+- Movimentos recentes do caixa podem ser exportados em CSV/PDF com filial.
+
+1.2 Financeiro premium
+- Contas a pagar e a receber usando lancamentos pendentes.
+- Campo de vencimento no lancamento financeiro.
+- Baixa manual de pendentes.
+- Baixa em lote de vencidas.
+- Alertas de contas vencidas.
+- Alertas de contas a vencer nos proximos 7 dias.
+- Fluxo de caixa de 14 dias.
+- Inadimplencia baseada em receitas vencidas.
+- Aging de inadimplencia por faixas 1-7, 8-30, 31-60 e 60+ dias.
+- Cobranca por cliente com total vencido, titulos, maior atraso e historico/observacoes.
+- Plano de contas simples por categoria.
+- Categorias financeiras formais no cadastro /categorias.
+- Centro de custo marcado no cadastro de categoria financeira.
+- Filtro por categoria.
+- Lancamento parcelado com geracao automatica de parcelas mensais.
+- Lancamento recorrente com geracao automatica de recorrencias.
+- Regra persistida de recorrencia financeira com pausa/ativacao e geracao sob demanda.
+- Lancamentos gerados por recorrencia ficam vinculados a regra original.
+- Financeiro pendente vinculado a pedido pode ser gerado a partir de cobranca Pix/boleto no Caixa.
+- Baixa de pedido com cobranca pendente reaproveita o lancamento financeiro, evitando duplicidade de receita.
+- Lancamento financeiro guarda provedor, ID externo e URL da cobranca.
+- Retorno/webhook Asaas localiza cobranca pelo ID externo e atualiza o status financeiro.
+- Follow-ups pendentes para hoje/vencidos aparecem em painel de lembretes com acao rapida.
+- Agenda de follow-up de cobranca respeita filtro por filial.
+- Follow-ups de cobranca vencidos/para hoje podem ser enviados para webhook externo configuravel.
+- Lancamentos financeiros podem ficar vinculados a filial.
+- Lancamentos vindos de pedido herdam a filial do pedido/vendedor.
+- Recorrencias financeiras tambem guardam filial e repassam para os lancamentos gerados.
+- Recorrencias financeiras sao filtradas e exportadas por filial.
+- Filtros rapidos: pendentes, vencidas, receber 7 dias, pagar 7 dias, receitas, despesas e aprovadas.
+- Exportacao CSV/PDF do financeiro filtrado.
+- Exportacao CSV/PDF do resumo por categoria.
+
+1.3 Estoque avancado
+- Entrada e saida de estoque.
+- Estoque minimo e maximo no cadastro.
+- Alertas de estoque baixo.
+- Categorias de produto como cadastro formal no front.
+- Marcas como cadastro formal no front.
+- Produto vinculado a categoria, marca e fornecedor.
+- Geracao de codigo de barras.
+- Impressao individual de etiqueta.
+- Impressao em lote de etiquetas.
+- Layout de etiqueta individual ajustado para 60mm x 35mm.
+- Codigo de barras Code128 real gerado em SVG na impressao de etiquetas.
+- Aba de estoque reorganizada por botoes: Produto, Ajuste, Compra, Contagem, Transferir, Compras e Alertas.
+- Tabela Produtos e estoque paginada em 10 itens por pagina.
+- Inventario exportavel em CSV/PDF.
+- Estoque parado com base em produtos com saldo e sem venda encontrada.
+- Estoque parado exportado com filial filtrada.
+- Cadastro de fornecedores integrado ao estoque.
+- Produto pode ser vinculado a fornecedor.
+- Entrada por compra vinculada a fornecedor, com atualizacao de estoque e despesa financeira.
+- Compra de estoque como entidade propria.
+- Compra com multiplos itens vinculados a fornecedor.
+- Historico de compras com exportacao CSV/PDF.
+- Historico de compras informa filial/filtro operacional usado na exportacao.
+- Compra gera uma unica despesa financeira e movimentacao de estoque por item.
+- Inventario com contagem fisica.
+- Ajuste automatico de divergencia entre saldo do sistema e contagem fisica.
+- Auditoria de inventario sem divergencia e de ajuste por divergencia.
+- Transferencia entre locais/filiais com baixa na origem e entrada no destino.
+- Saldos por local exportaveis em CSV/PDF.
+- Saldos de estoque possuem campo formal de filial para evoluir o controle multi-loja.
+- Estoque permite filtrar por filial usando os saldos vinculados a cada local/loja.
+
+1.4 Vendas avancadas
+- Carrinho e nova venda.
+- Pedido pendente para receber no caixa.
+- Proposta comercial imprimivel antes de criar pedido.
+- Exportacao CSV da proposta.
+- Orcamento salvo com status ORCAMENTO.
+- Conversao de orcamento em pedido pendente.
+- Pedido/orcamento pode ficar vinculado a filial do usuario ou a filial informada.
+- Proposta comercial PDF/CSV mostra a filial do vendedor/usuario.
+- Visao geral de vendas pode ser filtrada por filial.
+- Reimpressao de orcamento salvo pela lista de vendas.
+- Separacao de pedidos com status SEPARACAO e SEPARADO.
+- Pedido separado fica pronto para recebimento no caixa.
+- Auditoria de inicio e conclusao da separacao.
+- Comissao estimada por vendedor com exportacao CSV/PDF.
+- Configuracao persistida de percentual de comissao.
+- Tela de vendas usa percentual configuravel para calcular comissoes.
+- Ranking por vendedor com filtro de periodo customizado.
+- Meta de vendas por vendedor persistida no cadastro de usuario.
+- Ranking mostra atingimento de meta, faltante e comissao estimada.
+- Follow-up comercial por vendedor mostra orcamentos, pedidos pendentes/separacao e proxima acao.
+- Follow-up comercial possui funil de oportunidades por etapa, valor aberto, ticket medio e ultima movimentacao.
+- Follow-up comercial possui filtro por vendedor e exportacao CSV/PDF.
+- Follow-up comercial permite registrar anotacao, canal, proxima acao e concluir/cancelar no historico persistido.
+- Follow-ups comerciais vencidos/para hoje podem ser enviados para webhook externo configuravel.
+- Ranking, follow-up e lista de pedidos em Vendas respeitam filtro por filial.
+- Exportacoes de ranking e follow-up comercial mostram filial/filiais vinculadas.
+- Produtos mais vendidos, ticket medio e ranking aparecem em relatorios/dashboard.
+
+1.4.1 Clientes e pos-venda
+- Historico de compras por cliente.
+- Total comprado, ticket medio, pedidos concluidos e ultima compra.
+- Historico de compras por cliente mostra produtos comprados por pedido.
+- Exportacao CSV/PDF do historico do cliente.
+- Exportacao e visualizacao do historico do cliente mostram filial do pedido.
+- Filtro por filial na carteira de clientes com base nos pedidos vinculados.
+- Tabela de clientes mostra a filial principal identificada pelos pedidos.
+
+1.5 Logistica
+- Rotas de entrega.
+- Rotas e entregas podem ser filtradas por filial.
+- Entregador/motorista.
+- Veiculo.
+- Transportadoras como cadastro formal.
+- Status de entrega e rota.
+- Impressao de manifesto de rota.
+- Romaneio de rota respeita as entregas da filial filtrada.
+- Romaneio de rota mostra filial por entrega para facilitar conferencia.
+- Exportacao CSV/PDF da Logistica inclui filial nas entregas e rotas filtradas.
+- Vinculacao de entregas a rota.
+
+1.6 Relatorios
+- CSV/PDF em varias areas.
+- Relatorio de vendas.
+- Relatorio de vendas com filtro consolidado por filial.
+- Consolidado de vendas por filial com CSV/PDF.
+- Consolidado financeiro por filial com CSV/PDF.
+- Consolidado de colaboradores por filial com CSV/PDF.
+- Relatorio financeiro.
+- Relatorio de caixas.
+- Inventario.
+- Estoque parado.
+- Inadimplencia.
+- Aging de inadimplencia.
+- Cobranca por cliente.
+- Ranking por vendedor.
+- Fluxo de caixa.
+- Auditoria administrativa.
+- Auditoria administrativa mostra filial do usuario nos eventos e exportacoes.
+- Relatorio fiscal consolidado mostra documentos fiscais por pedido, status, protocolo e chave, com CSV/PDF e filtro por filial.
+
+1.7 Admin / Seguranca
+- Login com perfis.
+- Permissoes por modulo e acao.
+- Admin/Gerente com acesso ampliado.
+- Cadastro de lojas/filiais vinculado a empresa.
+- Cadastro de contratos vinculado a empresa e opcionalmente a filial.
+- Cadastro de usuario permite atribuir filial.
+- Administracao de usuarios permite filtrar colaboradores por filial e perfil.
+- Painel administrativo destaca colaboradores operacionais sem filial definida.
+- Aba Colaboradores mostra equipe por filial com resumo de ativos por loja.
+- Login retorna filial do usuario para uso operacional.
+- Testes backend corrigidos.
+- Build frontend validado varias vezes.
+- Backend validado com mvn test apos alteracoes estruturais.
+
+1.8 Fiscal interno e prontidao fiscal
+- Checklist de prontidao fiscal cadastral por empresa/filial implementado.
+- Espelho fiscal interno de pedido implementado para conferencia pre-SEFAZ.
+- Controle interno de status fiscal implementado para acompanhar pendente, autorizado, rejeitado e cancelado antes da integracao real.
+- Historico fiscal interno registra usuario, data, filial e observacao das mudancas de status.
+- Exportacao CSV/PDF do checklist e dos controles internos disponivel nas telas relacionadas.
+- Base backend para configuracao fiscal por empresa/filial/modelo implementada em /configuracoes-fiscais.
+- Configuracao fiscal aceita NFE, NFCE e NFSE, ambiente de homologacao/producao, serie, proximo numero, provedor, endpoints e referencias seguras para segredos fora do Git.
+- Tela administrativa para configuracao fiscal implementada com cadastro, edicao, tabela, CSV e PDF.
+- Validacao de prontidao fiscal implementada no backend e exposta no frontend para bloquear avancos antes de certificado, serie, numeracao e endpoints estarem completos.
+- Persistencia inicial de documento fiscal implementada para homologacao, ainda sem transmissao externa para SEFAZ/provedor municipal.
+- Acionamento operacional da preparacao fiscal implementado na lista de pedidos, atualizando o controle interno para PREPARADO_HOMOLOGACAO.
+- Registro de retorno de homologacao implementado para transicionar DocumentoFiscal preparado para AUTORIZADO ou REJEITADO.
+- Acionamento do retorno de homologacao exposto na lista de pedidos, buscando o documento fiscal preparado e chamando os endpoints de autorizar/rejeitar.
+- Geracao e persistencia de XML de homologacao implementada como etapa anterior a transmissao fiscal real.
+- XML de homologacao ja diferencia estrutura base por modelo NFE, NFCE e NFSE, possui assinatura controlada com digest, QR Code interno de NFC-e e bloco inicial de servico NFS-e, mantendo pendente a assinatura A1 oficial, QR Code SEFAZ oficial e integracao municipal real.
+- XML/payload de homologacao ja exibe dados fiscais do emitente, destinatario, itens e pendencias fiscais, usando IE/CRT/CEP/codigo municipio da empresa, endereco fiscal do cliente e NCM/CFOP/CEST/origem/unidade do produto quando preenchidos.
+- Fila fiscal do frontend sinaliza quando o documento possui pendencias fiscais persistidas.
+- Operador pode baixar as pendencias fiscais em TXT diretamente pela fila fiscal, revalidar apos correcao cadastral e liberar o fluxo sem recriar o documento.
+- Consulta de homologacao fiscal implementada para retornar status, chave, protocolo, pendencias, arquivos ja disponiveis e proxima acao operacional do documento.
+- Dossie fiscal de homologacao implementado em TXT para consolidar status, chave, protocolo, pendencias, arquivos gerados, CC-e e proxima acao operacional.
+- Reprocessamento de rejeicao implementado para corrigir dados, regerar payload/XML e voltar a nota rejeitada para validacao interna sem consumir nova numeracao.
+- Checklist de emissao fiscal real implementado em TXT para diferenciar homologacao controlada de pendencias reais de producao, certificado, endpoint, token e CSC.
+- Status estruturado de emissao real implementado para mostrar percentual de prontidao, pendencias e proxima acao sem baixar o TXT.
+- Pacote de emissao real implementado em JSON para consolidar XML, payload, metadados e checklist em uma entrega tecnica para provedor/contador.
+- Integridade do pacote real reforcada com hashes SHA-256 de payload/XML e referencia tecnica rastreavel.
+- Manifesto de integridade do pacote real implementado em TXT para acompanhar o JSON enviado ao provedor/contador.
+- Validacao estruturada de integridade do pacote real implementada para conferir payload, XML, hashes e referencia sem baixar o pacote inteiro.
+- Validacao interna da estrutura minima do XML de homologacao implementada antes da transmissao, cobrindo documento, emitente, destinatario, itens, totais, tributacao, assinatura e campos especificos por modelo, com status intermediario XML_VALIDADO.
+- Transmissao de homologacao controlada implementada por camada plugavel FiscalProvider, preparando a substituicao futura pelo provedor fiscal real.
+- Transmissao fiscal por provedor HTTP externo implementada como ponte para homologar emissores fiscais de terceiros.
+- Autenticacao Bearer por variavel de ambiente adicionada para emissores fiscais HTTP externos.
+- Contrato do provedor HTTP fiscal passou a ter cobertura automatizada de transmissao.
+- Consulta de disponibilidade do provedor HTTP fiscal passou a ter cobertura automatizada.
+- Integracao HTTP fiscal passou a ter limites de timeout configuraveis por ambiente.
+- DANFE/DANFCE/DANFSe de homologacao em HTML implementado para conferencia/impressao apos autorizacao controlada.
+- Cancelamento controlado de documento fiscal autorizado implementado no backend e exposto na lista de pedidos.
+- Inutilizacao controlada de numeracao fiscal rejeitada implementada no backend e exposta na lista de pedidos.
+- Regularizacao de contingencia implementada no backend e exposta na lista de pedidos.
+- Carta de correcao controlada para NF-e autorizada implementada no backend e exposta na fila fiscal, com XML de evento separado.
+- Status fiscal da lista de pedidos deixou de depender apenas do localStorage quando ha DocumentoFiscal persistido no backend.
+- Carregamento fiscal da tela Vendas > Nota fiscal otimizado com consulta em lote por IDs de pedidos.
+- XML de homologacao pode ser baixado diretamente pela operacao de Vendas para conferencia.
+- Consulta em lote de documentos fiscais passou a retornar resumo, reduzindo payload da tela Vendas > Nota fiscal.
+- Payload JSON fiscal preparado pode ser baixado diretamente pela operacao de Vendas para conferencia.
+- XML de retorno fiscal controlado pode ser baixado diretamente pela operacao de Vendas.
+- Consulta controlada de status de servico fiscal implementada como encaixe para futura chamada real ao provedor/SEFAZ.
+- Validacao runtime de segredos fiscais implementada para aproximar a configuracao do uso real de certificado/CSC/token de provedor.
+- Assinatura fiscal controlada implementada como ponto de troca para assinatura XML real com certificado A1.
+- Assinatura XML criptografica com certificado PKCS12/A1 ja possui implementacao opcional por propriedade de ambiente.
+- Configuracao fiscal registra validade do certificado A1 e alerta/bloqueia prontidao para certificado vencido ou com vencimento em ate 30 dias.
+- Fluxo de homologacao bloqueia configuracoes de PRODUCAO para proteger numeracao real enquanto a emissao oficial nao estiver homologada.
+- Trilha de auditoria administrativa adicionada para as transicoes fiscais de homologacao.
+
+
+2. AINDA FALTA
+
+2.1 Fiscal
+- Integracao real com emissor fiscal/SEFAZ/provedor municipal.
+- Homologar assinatura XML PKCS12/A1 com certificado real do contribuinte e ajustar layout oficial SEFAZ/NFS-e.
+- Geracao XML real por modelo: NF-e, NFC-e e NFS-e.
+- Troca do provedor controlado de transmissao por integracao real homologada.
+- DANFE/NFC-e/NFS-e imprimiveis a partir do XML/protocolo autorizado.
+- Cancelamento e inutilizacao fiscais reais.
+- Carta de correcao fiscal real via evento oficial do provedor/SEFAZ.
+- Completar regras tributarias reais por produto/operacao com contador: CST/CSOSN por regime, CFOP por UF, bases, reducoes, substituicao tributaria e calculo oficial de impostos.
+
+Observacao: a fundacao fiscal ja existe; o maior bloco restante e trocar o fluxo
+controlado interno por emissao fiscal real em homologacao/producao.
+
+2.2 Boletos e pagamentos
+- Homologar emissao real de boleto via Asaas com conta/chave API do cliente.
+- Homologar Pix cobranca real com Asaas em sandbox e depois producao.
+- Configurar webhook real no painel Asaas apontando para o dominio publico do sistema.
+- Cartao/maquininha POS real.
+- Baixa automatica por webhook foi implementada; falta teste ponta a ponta com Asaas real.
+
+2.3 Financeiro
+- Homologar notificacoes automaticas de cobranca em canal real: e-mail, WhatsApp ou webhook do cliente.
+
+2.4 Estoque
+- Homologar leitura fisica das etiquetas Code128 em impressora/leitor reais.
+
+2.5 Vendas
+- Homologar notificacoes automaticas comerciais em canal real: e-mail, WhatsApp ou webhook do cliente.
+- Criar tela operacional de Ordem de Servico usando a base /ordens-servico ja adicionada.
+- Modularizacao inicial da aba Vendas ja aplicada com Resumo, Pedidos, CRM, Separacao, Analytics, Ranking e Nota fiscal; ainda falta refinamento visual fino por tela.
+- Evolucao inicial do follow-up para mini CRM ja aplicada com funil, kanban comercial, prioridades por vendedor/cliente, timeline do cliente, lembretes comerciais, agenda por faixas e painel de regras de automacao; ainda falta automacoes configuraveis reais e canal de WhatsApp/webhook quando homologado.
+- Melhorias de graficos em Vendas ja aplicadas com mini analytics, tendencia, destaque de melhor periodo, tooltip visual por barra, linha media comparativa e animacoes finas com reduced-motion.
+- Modernizar tabelas de pedidos/clientes em todas as telas comerciais; a primeira etapa com avatar/iniciais ja foi aplicada em Pedidos e Separacao.
+- Reorganizacao da area fiscal dentro de Vendas ja aplicada com status compactos, status secundarios em faixa resumida, acoes agrupadas por Fluxo/Arquivos/Real e contexto Proposta/Operacao/Fiscal na tabela geral de Pedidos.
+- Evoluir KPIs de Vendas com hierarquia visual mais forte, percentuais comparativos, metas, pequenos indicadores de tendencia e leitura mais rapida.
+- Melhorar contraste dos textos secundarios e padronizar o dark premium da aba Vendas, evitando blocos claros fortes que quebrem a identidade visual.
+
+2.6 Cadastros profissionais
+- Refinar telas analiticas por filial nos modulos operacionais restantes.
+- Completar dados fiscais, comerciais e operacionais exigidos por empresas reais.
+- Revisar obrigatoriedade de campos por perfil de uso: matriz, filial, vendedor, entregador, fornecedor e cliente.
+
+2.7 Automacao
+- Homologar canal externo de notificacao em ambiente real.
+- Evoluir envio externo para relatorios analiticos completos quando houver canal configurado.
+- Definir canal final de envio: e-mail, WhatsApp, webhook ou outro provedor.
+
+2.8 Ideias capturadas de referencia visual para implementar depois
+- Central de extensoes/integracoes: tela para ativar/desativar conectores externos como fiscal, pagamento, entrega, marketplace e notificacoes.
+- Hub de integracoes: painel unico com status, credenciais, webhooks, ultima sincronizacao e erros por provedor.
+- Ordem de servico: modulo para abrir OS por cliente, itens/servicos, tecnico responsavel, prazo, status, checklist e faturamento.
+- Ordem de producao: fluxo simples para produzir/transformar itens, reservar insumos, baixar estoque e gerar produto acabado.
+- Vendas multicanal: preparar estrutura para pedidos vindos de loja fisica, e-commerce, marketplace, WhatsApp e vendedor externo.
+- Integracao POS/maquininha: vincular transacao de cartao real ao caixa, pedido e financeiro, com comprovante e conciliacao.
+- Integracao de envio/frete: calcular frete, gerar etiqueta de transporte, rastrear entrega e integrar com provedores como Melhor Envio ou transportadoras.
+- Certificado digital: tela segura para cadastrar alias, validade, ambiente, teste de leitura e alerta de vencimento sem gravar senha real.
+- DANFE/DANFCE/DANFSe: gerar impressao fiscal a partir do XML/protocolo autorizado quando a emissao real estiver homologada.
+- Meu negocio/inteligencia: painel executivo com indicadores de margem, giro, vendas por canal, ruptura, inadimplencia e sugestoes operacionais.
+- Cadastros avancados: ampliar cadastros fiscais/operacionais de produto, cliente, fornecedor, transportadora, servico e filial.
+- Automacoes configuraveis: regras por evento, como estoque baixo, venda alta, pedido parado, cobranca vencida, certificado vencendo e falha de integracao.
+- Frente de caixa aprimorada: evoluir o PDV atual com modo tela cheia, atalhos visuais, contingencia offline controlada e conciliacao por operador.
+- Refinar identidade premium por modulo: telas de venda, fiscal, caixa e relatorios com mais hierarquia visual, densidade profissional e acabamento comercial.
+
+2.9 Backlog premium capturado da avaliacao da aba Vendas em 06/05/2026
+- Avaliacao visual registrada: visual premium 9.0/10, estrutura 9.2/10, sensacao SaaS 9.3/10 e organizacao 8.4/10.
+- Pontos fortes identificados: identidade dark premium, estrutura comercial robusta, follow-up comercial, controle fiscal, ranking e analytics.
+- Principal risco de UX: excesso de rolagem vertical na aba Vendas, com muitos blocos bons competindo pela mesma tela.
+- Prioridade de evolucao parcialmente aplicada: Vendas virou modulo operacional com navegacao interna, fluxo mais escaneavel e leitura executiva de gargalos por etapa.
+- Arquitetura recomendada: Vendas > Resumo, Pedidos, CRM, Fiscal, Separacao, Analytics e Ranking.
+- Ideias futuras premium: IA comercial, clientes inativos, heatmap de vendas, metas inteligentes, analytics em tempo real, dashboard arrastavel, notificacoes ao vivo, previsao de vendas e comparativo mensal.
+
+
+3. PROXIMO MELHOR CAMINHO
+
+1. Evoluir Fiscal real a partir da configuracao fiscal: status de servico externo, carga real de certificado, XML oficial por modelo e troca do FiscalProvider controlado por transmissao real em homologacao.
+2. Homologar Asaas em sandbox com chave real, gerar Pix/boleto e testar webhook ponta a ponta.
+3. Refinar Vendas modular: integrar canal externo real de follow-up, transformar regras sugeridas em configuracoes persistentes e homologar WhatsApp/e-mail/webhook.
+4. Homologar impressao/leitura de etiquetas Code128 com impressora e leitor reais.
+5. Homologar webhook de notificacoes externas de follow-up, estoque baixo e resumo diario.
+6. Refinar cadastros profissionais e filtros por filial nos modulos operacionais restantes.
+7. Priorizar backlog inspirado na referencia visual: OS, ordem de producao, hub de integracoes, vendas multicanal, POS real e frete integrado.
+
+
+4. CONCLUSAO
+
+O projeto ja esta bem mais perto de um ERP vendavel no operacional.
+O operacional principal ja cobre venda, caixa, estoque, logistica, financeiro,
+relatorios e administracao. O grande salto premium agora e cobranca bancaria/Pix,
+notificacoes externas de follow-up, cartao/maquininha e fiscal real.

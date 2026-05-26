@@ -25,6 +25,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/rotas-entrega")
+@PreAuthorize("@planoComercialService.canAccessModule(authentication, 'logistica')")
 public class RotaEntregaController {
 
     private final RotaEntregaRepository rotaEntregaRepository;

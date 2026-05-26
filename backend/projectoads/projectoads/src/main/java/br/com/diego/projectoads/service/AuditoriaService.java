@@ -48,4 +48,11 @@ public class AuditoriaService {
     public List<AuditoriaEvento> listarUltimos() {
         return repository.findTop50ByOrderByDataEventoDesc();
     }
+
+    public List<AuditoriaEvento> listarUltimosPorReferencia(Object referenciaId) {
+        if (referenciaId == null) {
+            return List.of();
+        }
+        return repository.findTop20ByReferenciaIdOrderByDataEventoDesc(String.valueOf(referenciaId));
+    }
 }

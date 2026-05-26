@@ -1,0 +1,43 @@
+﻿RENOVACAO, RETENCAO E MUDANCA DE PLANO - NEXUS ONE
+Data: 10/05/2026 19:51:35
+Cliente: Cliente Piloto
+Responsavel: Nexus One
+
+============================================================
+DECISAO
+============================================================
+- Decisao: Upgrade
+- Saude do cliente: Verde
+- Plano atual: Medio
+- Novo plano: Avancado
+- Valor atual: R$ 349,00
+- Novo valor: R$ 699,00
+- Motivo: Cliente validou valor e precisa de mais filiais e logistica
+- Prazo de revisao: 30 dias
+- Acao recomendada: Gerar novo escopo/plano, atualizar faturamento e comunicar novos limites.
+- Evidencia critica: Nova proposta, novo faturamento e data de vigencia.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Saude do cliente revisada.
+- [ ] Faturamento e vencimento revisados.
+- [ ] Uso real dos modulos conferido.
+- [ ] Pendencias e incidentes revisados.
+- [ ] Escopo atual comparado com nova decisao.
+- [ ] Decisor do cliente envolvido.
+- [ ] Comunicacao enviada e arquivada.
+- [ ] Aceite ou registro formal anexado.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_RENOVACAO_RETENCAO_CLIENTE_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md
+- docs\PROCESSO_FATURAMENTO_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md

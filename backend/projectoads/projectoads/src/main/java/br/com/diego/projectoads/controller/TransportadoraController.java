@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/transportadoras")
-@PreAuthorize("@usuarioPermissionService.canAccessModule(authentication, 'logistica')")
+@PreAuthorize("@usuarioPermissionService.canAccessModule(authentication, 'logistica') and @planoComercialService.canAccessModule(authentication, 'logistica')")
 public class TransportadoraController {
 
     private final TransportadoraRepository transportadoraRepository;

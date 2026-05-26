@@ -1,0 +1,42 @@
+﻿POSICIONAMENTO COMPETITIVO - NEXUS ONE
+Data: 10/05/2026 20:22:57
+Cliente: Cliente Piloto
+Responsavel: Nexus Comercial
+
+============================================================
+CENARIO
+============================================================
+- Alternativa comparada: ERP local antigo
+- Dor principal: Caixa e estoque sem conciliacao confiavel
+- Plano sugerido: Medio
+- Diferencial principal: Operacao integrada com pacote de entrega, suporte e evidencias
+- Risco da comparacao: Validar migracao de dados antes de prometer transicao completa
+
+============================================================
+POSICIONAMENTO RECOMENDADO
+============================================================
+Destacar visual mais atual, suporte, release, backup, LGPD e implantacao assistida.
+
+Cuidado comercial:
+Validar dados legados e habitos operacionais antes de prometer transicao.
+
+Proximo passo:
+Conduzir demo de caixa, estoque e financeiro antes da proposta
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Concorrente/alternativa foi citado pelo cliente.
+- [ ] Dor principal foi confirmada.
+- [ ] Diferencial foi conectado a um fluxo demonstravel.
+- [ ] Dependencias externas foram comunicadas.
+- [ ] Limites de plano e adicionais foram registrados.
+- [ ] Proxima acao ficou clara: demo, diagnostico, proposta, piloto ou pausa.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\MATRIZ_POSICIONAMENTO_COMPETITIVO_NEXUS_ONE.md
+- docs\PLAYBOOK_COMERCIAL_QUALIFICACAO_NEXUS_ONE.md
+- docs\ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md
+- docs\MATRIZ_PLANOS_COMERCIAIS_NEXUS_ONE.md

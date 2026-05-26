@@ -1,0 +1,55 @@
+﻿NOTA DE VERSAO PARA CLIENTE - NEXUS ONE
+Data: 10/05/2026 20:02:46
+Cliente/grupo: Cliente Piloto
+Versao: 1.0.0
+Ambiente: producao controlada
+Responsavel: Nexus One
+
+============================================================
+MENSAGEM AO CLIENTE
+============================================================
+Assunto: Nova versao Nexus One - 1.0.0
+
+Publicamos uma atualizacao do Nexus One para producao controlada.
+
+Resumo:
+Release de maturidade comercial e suporte operacional.
+
+Melhorias:
+Pacote de entrega, suporte, comunicacao de incidente, base de conhecimento e controles comerciais atualizados.
+
+Correcoes:
+Ajustes documentais e validacoes dos geradores PowerShell.
+
+Mudancas de comportamento:
+Suporte passa a arquivar comunicados e notas de versao quando houver impacto ao cliente.
+
+Impacto operacional:
+Cliente deve consultar a nota antes de validar fluxos em producao controlada.
+
+Acao recomendada ao cliente:
+Revisar principais mudancas e acionar suporte em caso de duvida operacional.
+
+Riscos ou limitacoes conhecidos:
+Nenhum risco relevante informado.
+
+============================================================
+CONTROLE INTERNO
+============================================================
+- [ ] Manifesto de release anexado.
+- [ ] Smoke test operacional anexado.
+- [ ] Go/No-Go aprovado quando aplicavel.
+- [ ] Suporte informado sobre mudancas relevantes.
+- [ ] Cliente comunicado quando houver impacto ou acao necessaria.
+- [ ] Base de conhecimento atualizada quando a mudanca alterar fluxo/treinamento.
+
+Alertas automaticos:
+- Nenhum alerta automatico.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PROCESSO_NOTAS_VERSAO_CLIENTE_NEXUS_ONE.md
+- docs\PROCESSO_RELEASE_NEXUS_ONE.md
+- scripts\gerar-manifesto-release.ps1
+- scripts\smoke-test-operacional.ps1

@@ -1,0 +1,50 @@
+﻿SELECAO DO CLIENTE PILOTO REAL - NEXUS ONE
+Data: 11/05/2026 23:44:36
+Cliente: Cliente Piloto
+Responsavel: Nexus One
+
+============================================================
+PONTUACAO
+============================================================
+- Dor operacional clara: 15/15
+- Decisor presente: 15/15
+- Escopo inicial simples: 15/15
+- Dados e responsaveis disponiveis: 15/15
+- Integracoes nao bloqueantes: 15/15
+- Aceita piloto/aceite formal: 10/10
+- Baixa complexidade fiscal/logistica: 10/10
+- Potencial de referencia: 5/5
+- Score total: 100/100
+
+============================================================
+DECISAO
+============================================================
+- Decisao: CLIENTE IDEAL PARA PRIMEIRO CASO REAL
+- Proxima acao: Gerar pacote comercial completo e plano do primeiro cliente real.
+
+============================================================
+ALERTAS
+============================================================
+- Nenhum alerta automatico.
+
+============================================================
+RISCOS
+============================================================
+Sem riscos adicionais registrados.
+
+============================================================
+CHECKLIST
+============================================================
+- [ ] Decisor confirmou participacao no processo.
+- [ ] Cliente aceita piloto assistido/producao controlada.
+- [ ] Escopo inicial foi reduzido ao essencial.
+- [ ] Integracoes reais estao homologadas, sandbox ou fora do escopo.
+- [ ] Responsaveis por dados, treinamento, fiscal e aceite foram definidos.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\MATRIZ_SELECAO_CLIENTE_PILOTO_REAL_NEXUS_ONE.md
+- docs\PLAYBOOK_COMERCIAL_QUALIFICACAO_NEXUS_ONE.md
+- docs\PLANO_EXECUCAO_PRIMEIRO_CLIENTE_REAL_NEXUS_ONE.md
+- docs\CHECKLIST_CLIENTE_PILOTO_NEXUS_ONE.md

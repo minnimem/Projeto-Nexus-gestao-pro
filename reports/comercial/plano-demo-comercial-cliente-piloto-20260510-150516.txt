@@ -1,0 +1,63 @@
+﻿PLANO DE DEMONSTRACAO COMERCIAL - NEXUS ONE
+Data: 10/05/2026 15:05:16
+Cliente: Cliente Piloto
+Segmento: distribuidora
+Responsavel: Nexus One
+
+DOR PRINCIPAL
+Separacao de pedidos, estoque e entregas sem visibilidade
+
+OBJETIVO DA DEMO
+- Demonstrar valor pratico sem prometer producao ampla antes das homologacoes reais.
+- Validar aderencia para piloto assistido ou proposta controlada.
+- Registrar dependencias externas e proximos passos.
+
+MODULOS PRIORITARIOS
+- Vendas com separacao
+- Estoque e curva ABC
+- Logistica e romaneio
+- Financeiro e inadimplencia
+- Relatorios por vendedor/cliente/produto
+
+FLUXO PRINCIPAL A DEMONSTRAR
+pedido -> separacao -> entrega -> financeiro -> relatorio
+
+AGENDA SUGERIDA
+1. Diagnostico rapido das dores do cliente.
+2. Visao geral executiva e alertas.
+3. Fluxo principal do segmento.
+4. Relatorios/exportacoes.
+5. Dependencias: fiscal, pagamento, notificacoes, dados e infraestrutura.
+6. Definicao do proximo passo.
+
+PERGUNTAS DE QUALIFICACAO
+- Como o cliente faz esse fluxo hoje?
+- Onde ha retrabalho, perda financeira ou falta de visibilidade?
+- Quais usuarios precisam operar no primeiro piloto?
+- Quais integracoes sao obrigatorias para fechar negocio?
+- Quais relatorios o dono/gerente precisa enxergar toda semana?
+
+RESTRICOES A COMUNICAR
+- Fiscal real depende de certificado, contador, credenciamento e homologacao oficial.
+- Pix, boleto e notificacoes reais dependem do provedor/canal do cliente.
+- Producao controlada exige deploy, backup, monitoramento, smoke test, Go/No-Go e aceite.
+- Dados reais exigem politica LGPD e carga inicial validada.
+
+CRITERIOS DE SUCESSO
+- Cliente reconheceu a dor principal no fluxo demonstrado.
+- Escopo do piloto ficou claro.
+- Dependencias externas foram registradas.
+- Proximo passo foi decidido.
+
+PROXIMO PASSO
+- [ ] Gerar proposta controlada.
+- [ ] Agendar piloto assistido.
+- [ ] Agendar homologacao tecnica.
+- [ ] Solicitar dados para carga inicial.
+- [ ] Encerrar oportunidade por falta de aderencia.
+
+REFERENCIAS
+- docs\ROTEIRO_DEMONSTRACAO_COMERCIAL_NEXUS_ONE.md
+- docs\FICHA_PRONTIDAO_COMERCIAL_NEXUS_ONE.md
+- docs\MODELO_PROPOSTA_COMERCIAL_CONTROLADA_NEXUS_ONE.md
+- docs\CHECKLIST_CLIENTE_PILOTO_NEXUS_ONE.md

@@ -1,0 +1,95 @@
+﻿TERMO DE ACEITE DE IMPLANTACAO - NEXUS ONE
+Data: 10/05/2026 21:58:40
+Cliente: Cliente Piloto
+CNPJ: 
+Responsavel do cliente: 
+Responsavel Nexus One: Nexus One
+Ambiente: producao controlada
+Modulos implantados: Vendas, caixa, estoque, financeiro, relatorios e suporte
+Classificacao Go/No-Go: Go producao controlada
+
+ESCOPO APROVADO
+-
+
+CLASSIFICACAO DA ENTREGA
+- [ ] Piloto assistido concluido
+- [ ] Producao controlada liberada
+- [ ] Producao comercial liberada
+- [ ] Operacao assistida prorrogada
+- [ ] Retorno para homologacao
+
+VALIDACOES REALIZADAS
+- [ ] Login e acesso por perfil
+- [ ] Cadastros base
+- [ ] Venda/orcamento/pedido
+- [ ] Caixa, recebimento e fechamento
+- [ ] Estoque, entrada, baixa e alerta
+- [ ] Financeiro, contas, conciliacao e relatorios
+- [ ] Fiscal conforme escopo contratado
+- [ ] Notificacoes conforme canal contratado
+- [ ] Backup gerado e localizado
+- [ ] Restauracao testada
+- [ ] Suporte e rotina operacional apresentados
+- [ ] Treinamento por perfil executado e evidenciado
+
+EVIDENCIAS REVISADAS
+- [ ] Proposta/escopo aprovado
+- [ ] Handoff comercial, implantacao e suporte
+- [ ] Diagnostico/coleta inicial
+- [ ] Cronograma de implantacao
+- [ ] Diario(s) do piloto ou operacao assistida
+- [ ] Matriz Go/No-Go
+- [ ] Registro de riscos e pendencias
+- [ ] Smoke test operacional
+- [ ] Backup/restauracao
+- [ ] Evidencias de integracoes quando aplicavel
+- [ ] Evidencia de treinamento
+
+RESULTADO
+- [ ] Aprovado para producao comercial
+- [ ] Aprovado com pendencias nao bloqueantes
+- [ ] Mantido em operacao assistida
+- [ ] Reprovado para producao, retorna para homologacao
+
+PENDENCIAS
+- Bloqueantes:
+- Nao bloqueantes:
+
+PENDENCIAS ACEITAS PELO CLIENTE
+Pendencia | Impacto | Contorno | Prazo | Responsavel
+--- | --- | --- | --- | ---
+ |  |  |  | 
+
+RESTRICOES E CONDICOES
+- Fiscal real somente conforme homologacao, certificado, contador, credenciamento e provedor/SEFAZ/municipio.
+- Pix/boleto real somente conforme homologacao ponta a ponta com provedor e conciliacao.
+- Notificacoes externas somente conforme canal/token/webhook validado.
+- Mudancas de escopo, customizacoes e integracoes nao previstas devem retornar para proposta, priorizacao ou novo aceite.
+
+PROXIMOS PASSOS
+- [ ] Encaminhar para rotina de sucesso do cliente
+- [ ] Agendar revisao de saude/NPS
+- [ ] Atualizar pacote de entrega
+- [ ] Abrir plano de pendencias nao bloqueantes
+- [ ] Prorrogar operacao assistida
+- [ ] Retornar para homologacao
+
+DECLARACAO
+O cliente declara que os fluxos implantados foram apresentados, testados e validados conforme o escopo contratado ou acordado para o piloto/implantacao.
+Quando a classificacao for producao controlada ou producao ampla, o cliente e o responsavel Nexus One confirmam que nao ha pendencia bloqueante aberta na matriz Go/No-Go.
+Pendencias nao bloqueantes listadas neste termo foram comunicadas, possuem contorno ou plano de acao e nao impedem o uso do escopo aprovado.
+
+ASSINATURAS
+- Responsavel do cliente:
+- Data:
+- Assinatura:
+
+- Responsavel Nexus One:
+- Data:
+- Assinatura:
+
+REFERENCIAS
+- docs\TERMO_ACEITE_IMPLANTACAO_NEXUS_ONE.md
+- docs\MATRIZ_GO_NO_GO_COMERCIAL_NEXUS_ONE.md
+- docs\REGISTRO_RISCOS_PENDENCIAS_CLIENTE_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md

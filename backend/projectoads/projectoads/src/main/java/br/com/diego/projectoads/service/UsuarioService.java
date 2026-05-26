@@ -26,6 +26,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -41,6 +42,7 @@ public class UsuarioService {
     private final LoginAuditoriaRepository loginAuditoriaRepository;
     private final UsuarioPermissionService usuarioPermissionService;
     private final AuditoriaService auditoriaService;
+    private final PlanoComercialService planoComercialService;
 
     public UsuarioService(UsuarioRepository repository,
                            PasswordEncoder passwordEncoder,
@@ -48,7 +50,8 @@ public class UsuarioService {
                            JwtService jwtService,
                            LoginAuditoriaRepository loginAuditoriaRepository,
                            UsuarioPermissionService usuarioPermissionService,
-                           AuditoriaService auditoriaService) {
+                           AuditoriaService auditoriaService,
+                           PlanoComercialService planoComercialService) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
@@ -56,6 +59,7 @@ public class UsuarioService {
         this.loginAuditoriaRepository = loginAuditoriaRepository;
         this.usuarioPermissionService = usuarioPermissionService;
         this.auditoriaService = auditoriaService;
+        this.planoComercialService = planoComercialService;
     }
 
     // =========================
@@ -100,6 +104,7 @@ public class UsuarioService {
             resposta.put("perfil", usuario.getPerfil().name());
             resposta.put("empresaId", usuario.getEmpresa().getId());
             resposta.put("empresa", usuario.getEmpresa().getNome());
+            resposta.put("plano", planoComercialService.resumo(usuario.getEmpresa()));
             resposta.put("filialId", usuario.getFilial() != null ? usuario.getFilial().getId() : null);
             resposta.put("filial", usuario.getFilial() != null ? usuario.getFilial().getNome() : null);
             resposta.put("permissoesExtras", usuario.getPermissoesExtras() != null ? usuario.getPermissoesExtras().stream().sorted().toList() : List.of());
@@ -221,8 +226,8 @@ public class UsuarioService {
     @Transactional
     public Usuario salvar(Usuario usuario) {
 
-        if (Perfil.ADMIN.equals(usuario.getPerfil())) {
-            throw new BusinessException("Não é permitido criar ou alterar usuário para ADMIN");
+        if (Perfil.ADMIN.equals(usuario.getPerfil()) || Perfil.MASTER.equals(usuario.getPerfil())) {
+            throw new BusinessException("Não é permitido criar ou alterar usuário para ADMIN ou MASTER");
         }
 
         if (usuario.getSenhaUsuario() != null &&
@@ -246,6 +251,8 @@ public class UsuarioService {
             throw new BusinessException("Usuário precisa estar vinculado a uma empresa");
         }
 
+        planoComercialService.validarLimiteUsuarios(usuario.getEmpresa(), usuario.getId());
+
         return repository.save(usuario);
     }
 
@@ -258,8 +265,8 @@ public class UsuarioService {
             throw new BusinessException("Voce nao pode revogar o proprio acesso.");
         }
 
-        if (!ativo && Perfil.ADMIN.equals(usuario.getPerfil())) {
-            throw new BusinessException("Nao e permitido revogar acesso de usuario ADMIN por esta tela.");
+        if (!ativo && (Perfil.ADMIN.equals(usuario.getPerfil()) || Perfil.MASTER.equals(usuario.getPerfil()))) {
+            throw new BusinessException("Nao e permitido revogar acesso de usuario ADMIN ou MASTER por esta tela.");
         }
 
         usuario.setAtivo(ativo);
@@ -288,11 +295,17 @@ public class UsuarioService {
         Usuario usuario = repository.findById(id)
                 .orElseThrow(() -> new BusinessException("Usuario nao encontrado"));
 
-        if (Perfil.ADMIN.equals(usuario.getPerfil())) {
-            throw new BusinessException("Permissoes manuais de usuario ADMIN nao podem ser alteradas por esta tela.");
+        if (Perfil.ADMIN.equals(usuario.getPerfil()) || Perfil.MASTER.equals(usuario.getPerfil())) {
+            throw new BusinessException("Permissoes manuais de usuario ADMIN ou MASTER nao podem ser alteradas por esta tela.");
         }
 
-        usuario.setPermissoesExtras(new LinkedHashSet<>(usuarioPermissionService.normalizePermissions(permissoesExtras)));
+        Set<String> extrasNormalizadas = usuarioPermissionService.normalizePermissions(permissoesExtras);
+        if (extrasNormalizadas.contains("action:managePlans")
+                && !usuarioPermissionService.canPerform(SecurityContextHolder.getContext().getAuthentication(), "managePlans")) {
+            throw new BusinessException("Somente um responsavel tecnico com permissao de planos pode delegar gerenciamento de planos.");
+        }
+
+        usuario.setPermissoesExtras(new LinkedHashSet<>(extrasNormalizadas));
         usuario.setPermissoesBloqueadas(new LinkedHashSet<>(usuarioPermissionService.normalizePermissions(permissoesBloqueadas)));
         usuario.getPermissoesExtras().removeAll(usuario.getPermissoesBloqueadas());
 

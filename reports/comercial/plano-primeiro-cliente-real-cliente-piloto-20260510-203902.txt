@@ -1,0 +1,68 @@
+﻿PLANO DE EXECUCAO DO PRIMEIRO CLIENTE REAL - NEXUS ONE
+Data: 10/05/2026 20:39:02
+Cliente: Cliente Piloto
+Ambiente: producao controlada
+Responsavel: Nexus One
+Data de inicio: 10/05/2026
+
+============================================================
+OBJETIVO
+============================================================
+Executar o primeiro cliente real de forma controlada, reunindo evidencias para reduzir risco antes de comercializacao ampla.
+
+============================================================
+MARCOS
+============================================================
+- 10/05/2026 | F0 | Fechamento comercial | Evidencia: Ata, proposta, faturamento
+- 11/05/2026 | F1 | Diagnostico, handoff e cronograma | Evidencia: Diagnostico, handoff, cronograma
+- 12/05/2026 | F2 | Deploy, banco, segredos e pre-deploy | Evidencia: Pre-deploy, auditoria de segredos
+- 13/05/2026 | F3 | Carga inicial, LGPD e smoke test | Evidencia: Carga validada, responsavel LGPD, smoke
+- 14/05/2026 | F4 | Operacao assistida - ciclo 1 | Evidencia: Diario do piloto e incidentes
+- 17/05/2026 | F4 | Operacao assistida - ciclo 2 | Evidencia: Pendencias classificadas
+- 19/05/2026 | F5 | Go/No-Go e aceite | Evidencia: Matriz Go/No-Go e termo de aceite
+- 24/05/2026 | F6 | Saude do cliente e NPS | Evidencia: Relatorio de saude e feedback
+- 25/05/2026 | F7 | Decisao de liberacao comercial | Evidencia: Decisao de liberacao
+
+============================================================
+CHECKLIST CRITICO
+============================================================
+- [ ] Ata de fechamento comercial gerada.
+- [ ] Faturamento/contrato registrado quando aplicavel.
+- [ ] Diagnostico, handoff e cronograma concluidos.
+- [ ] Deploy, banco real, segredos, backup, restauracao e monitoramento validados.
+- [ ] Smoke test operacional aprovado.
+- [ ] Integracoes reais classificadas como homologadas, sandbox ou fora do escopo.
+- [ ] Usuarios-chave treinados.
+- [ ] Diario de piloto/operacao assistida preenchido.
+- [ ] Go/No-Go sem pendencia bloqueante.
+- [ ] Termo de aceite assinado.
+- [ ] Saude do cliente Verde antes de liberar escala ampla.
+
+============================================================
+BLOQUEIOS
+============================================================
+- Pendencia bloqueante aberta.
+- Backup sem restauracao testada.
+- Monitoramento externo sem alerta validado.
+- Integracao real prometida sem homologacao.
+- Cliente sem responsavel operacional.
+- Suporte sem canal e SLA comunicados.
+- Cliente Amarelo ou Vermelho na rotina de sucesso.
+
+============================================================
+PROXIMA DECISAO
+============================================================
+- [ ] Manter producao controlada.
+- [ ] Prorrogar operacao assistida.
+- [ ] Voltar para correcao de pendencias.
+- [ ] Liberar comercializacao ampla com restricoes.
+- [ ] Liberar comercializacao ampla.
+
+============================================================
+REFERENCIAS
+============================================================
+- docs\PLANO_EXECUCAO_PRIMEIRO_CLIENTE_REAL_NEXUS_ONE.md
+- docs\PLANO_LIBERACAO_COMERCIAL_AMPLA_NEXUS_ONE.md
+- docs\PACOTE_ENTREGA_CLIENTE_NEXUS_ONE.md
+- docs\MATRIZ_GO_NO_GO_COMERCIAL_NEXUS_ONE.md
+- docs\ROTINA_SUCESSO_CLIENTE_POS_IMPLANTACAO_NEXUS_ONE.md

@@ -20,6 +20,12 @@ public interface FinanceiroRepository extends JpaRepository<Financeiro, UUID> {
             LocalDateTime fim
     );
 
+    List<Financeiro> findByEmpresaIdAndDataLancamentoBetweenOrderByDataLancamentoDesc(
+            UUID empresaId,
+            LocalDateTime inicio,
+            LocalDateTime fim
+    );
+
     @Query("""
             select coalesce(sum(f.valor), 0)
             from Financeiro f
@@ -34,13 +40,42 @@ public interface FinanceiroRepository extends JpaRepository<Financeiro, UUID> {
             @Param("fim") LocalDateTime fim
     );
 
+    @Query("""
+            select coalesce(sum(f.valor), 0)
+            from Financeiro f
+            where f.empresa.id = :empresaId
+              and f.tipo = :tipo
+              and f.status = :status
+              and f.dataLancamento between :inicio and :fim
+            """)
+    BigDecimal somarPorEmpresaTipoEStatusNoPeriodo(
+            @Param("empresaId") UUID empresaId,
+            @Param("tipo") TipoFinanceiro tipo,
+            @Param("status") StatusPagamento status,
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim
+    );
+
     long countByStatusAndDataLancamentoBetween(
             StatusPagamento status,
             LocalDateTime inicio,
             LocalDateTime fim
     );
 
+    long countByEmpresaIdAndStatusAndDataLancamentoBetween(
+            UUID empresaId,
+            StatusPagamento status,
+            LocalDateTime inicio,
+            LocalDateTime fim
+    );
+
     long countByDataLancamentoBetween(
+            LocalDateTime inicio,
+            LocalDateTime fim
+    );
+
+    long countByEmpresaIdAndDataLancamentoBetween(
+            UUID empresaId,
             LocalDateTime inicio,
             LocalDateTime fim
     );
