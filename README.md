@@ -23,6 +23,15 @@ nexus-gestao-pro/
 
 Guia detalhado: `docs/GUIA_ESTRUTURA_PROJETO_NEXUS_ONE.md`.
 
+## Documentacao principal
+
+- Manual geral do sistema: `docs/MANUAL_GERAL_SISTEMA.txt`
+- Manual do usuario final: `docs/MANUAL_USUARIO_FINAL_NEXUS_ONE.txt`
+- Manual tecnico do desenvolvedor: `docs/MANUAL_TECNICO_DESENVOLVEDOR_NEXUS_ONE.txt`
+- Mapa do banco de dados: `docs/MAPA_BANCO_DADOS_NEXUS_ONE.txt`
+- Guia de instalacao local: `docs/GUIA_INSTALACAO_LOCAL_NEXUS_ONE.txt`
+- Checklist de evolucao 10/10: `CHECKLIST_SISTEMA_10_10.txt`
+
 Validador da estrutura:
 
 ```bash
@@ -235,6 +244,12 @@ Resumo diario pode ser enviado automaticamente pelo agendamento ou manualmente p
 
 O roteiro de sandbox para Pix, boleto e webhook esta em `docs/HOMOLOGACAO_ASAAS.md`.
 O script `scripts/test-asaas-webhook.ps1` simula eventos do Asaas contra o backend local.
+
+## Ambientes de homologacao e producao
+
+A definicao oficial dos ambientes esta em `docs/MATRIZ_AMBIENTES_HOMOLOGACAO_PRODUCAO_NEXUS_ONE.md`.
+Use homologacao para validar release, treinamento, dados de teste e integracoes em sandbox.
+Use producao apenas com `.env` real, backup, monitoramento, smoke test, rollback e Go/No-Go aprovados.
 
 ## Homologacao de notificacoes externas
 

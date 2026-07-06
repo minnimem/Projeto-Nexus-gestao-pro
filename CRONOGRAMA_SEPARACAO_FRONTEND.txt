@@ -1,0 +1,331 @@
+CRONOGRAMA DE SEPARACAO DO FRONTEND
+Projeto: Nexus Gestao Pro
+Base: estrutura.txt
+Objetivo: melhorar manutencao, leitura e evolucao do frontend React
+
+STATUS GERAL
+- A estrutura principal ja foi iniciada: pages, components, layouts, routes, services, constants, utils e styles.
+- As paginas Clientes, Produtos, Pedidos, Usuarios e Dashboard ja possuem boa separacao interna.
+- Financeiro ja foi bastante separado, mas ainda pode ganhar subpastas para organizar melhor.
+- As maiores pendencias sao paginas ainda concentradas em um unico arquivo.
+
+
+1. PRIORIDADE ALTA - SEPARAR PAGINAS GRANDES
+
+1.1 Caixa
+Arquivo atual:
+- frontend/src/pages/Caixa/Caixa.jsx
+- Tamanho aproximado: 1890 linhas
+
+Estrutura sugerida:
+- frontend/src/pages/Caixa/Caixa.jsx
+- frontend/src/pages/Caixa/Caixa.css
+- frontend/src/pages/Caixa/components/
+- frontend/src/pages/Caixa/hooks/
+- frontend/src/pages/Caixa/services/
+- frontend/src/pages/Caixa/viewModels/
+
+Separar em:
+- componentes de abertura e fechamento de caixa
+- componentes de pedidos pendentes
+- componentes de cobranca PIX/boleto
+- componentes de movimentacoes
+- hooks de acoes do caixa
+- viewModels de resumo, filtros e exportacao
+
+Previsao sugerida:
+- 2 a 3 etapas de trabalho
+
+
+1.2 Logistica
+Arquivo atual:
+- frontend/src/pages/Logistica/Logistica.jsx
+- Tamanho aproximado: 1837 linhas
+
+Estrutura sugerida:
+- frontend/src/pages/Logistica/Logistica.jsx
+- frontend/src/pages/Logistica/Logistica.css
+- frontend/src/pages/Logistica/components/
+- frontend/src/pages/Logistica/hooks/
+- frontend/src/pages/Logistica/services/
+- frontend/src/pages/Logistica/viewModels/
+
+Separar em:
+- rotas logisticas
+- entregas
+- veiculos
+- entregadores
+- transportadoras
+- romaneios e impressao
+- hooks de operacoes logisticas
+- viewModels de indicadores e exportacao
+
+Previsao sugerida:
+- 2 a 3 etapas de trabalho
+
+
+1.3 Servicos
+Arquivo atual:
+- frontend/src/pages/Servicos/Servicos.jsx
+- Tamanho aproximado: 1685 linhas
+
+Estrutura sugerida:
+- frontend/src/pages/Servicos/Servicos.jsx
+- frontend/src/pages/Servicos/Servicos.css
+- frontend/src/pages/Servicos/components/
+- frontend/src/pages/Servicos/hooks/
+- frontend/src/pages/Servicos/services/
+- frontend/src/pages/Servicos/viewModels/
+- frontend/src/pages/Servicos/constants/
+
+Separar em:
+- formulario de ordem de servico
+- lista de ordens
+- agenda tecnica
+- recorrencias
+- garantias
+- indicadores
+- hooks de criacao, atualizacao e fechamento
+- constantes de prioridade, status e SLA
+
+Previsao sugerida:
+- 2 etapas de trabalho
+
+
+1.4 Relatorios
+Arquivo atual:
+- frontend/src/pages/Relatorios/Relatorios.jsx
+- Tamanho aproximado: 1672 linhas
+
+Estrutura sugerida:
+- frontend/src/pages/Relatorios/Relatorios.jsx
+- frontend/src/pages/Relatorios/Relatorios.css
+- frontend/src/pages/Relatorios/components/
+- frontend/src/pages/Relatorios/hooks/
+- frontend/src/pages/Relatorios/services/
+- frontend/src/pages/Relatorios/viewModels/
+
+Separar em:
+- filtros de relatorio
+- cards e KPIs
+- tabelas
+- exportacao CSV/PDF
+- relatorios por modulo
+- viewModels de montagem das linhas
+
+Previsao sugerida:
+- 2 etapas de trabalho
+
+
+2. PRIORIDADE MEDIA - REFINAR PAGINAS JA FUNCIONAIS
+
+2.1 Visao Geral
+Arquivo atual:
+- frontend/src/pages/VisaoGeral/VisaoGeral.jsx
+- Tamanho aproximado: 1176 linhas
+
+Separar em:
+- componentes de BI operacional
+- componentes de copiloto/recomendacoes
+- componentes de saude operacional
+- componentes de alertas
+- componentes de relatorio diario
+- viewModels para indicadores e widgets
+- hooks para preferencias de widgets
+
+Previsao sugerida:
+- 1 a 2 etapas de trabalho
+
+
+2.2 Colaboradores
+Arquivo atual:
+- frontend/src/pages/Colaboradores/Colaboradores.jsx
+- Tamanho aproximado: 1050 linhas
+
+Separar em:
+- lista de colaboradores
+- permissao e modulos
+- auditoria de eventos
+- formularios
+- filtros
+- viewModels de resumo
+
+Previsao sugerida:
+- 1 a 2 etapas de trabalho
+
+
+2.3 AdminEmpresas
+Arquivo atual:
+- frontend/src/pages/AdminEmpresas/AdminEmpresas.jsx
+- Tamanho aproximado: 938 linhas
+
+Separar em:
+- cadastro de empresa
+- plano e cobranca
+- modulos liberados
+- dados fiscais
+- cards de contrato/homologacao/producao
+- viewModels de status e sinais
+
+Previsao sugerida:
+- 1 a 2 etapas de trabalho
+
+
+3. PRIORIDADE MEDIA - REORGANIZAR FINANCEIRO
+
+Estado atual:
+- Financeiro ja tem varios arquivos separados.
+- Ainda existem muitos arquivos soltos direto em frontend/src/pages/Financeiro.
+
+Estrutura sugerida:
+- frontend/src/pages/Financeiro/Financeiro.jsx
+- frontend/src/pages/Financeiro/Financeiro.css
+- frontend/src/pages/Financeiro/components/
+- frontend/src/pages/Financeiro/hooks/
+- frontend/src/pages/Financeiro/viewModels/
+- frontend/src/pages/Financeiro/constants/
+
+Mover para components:
+- FinanceAccountsSection.jsx
+- FinanceActionPlanSection.jsx
+- FinanceAlertsSection.jsx
+- FinanceCashFlowSection.jsx
+- FinanceCategorySection.jsx
+- FinanceChargePanel.jsx
+- FinanceCollectionAgendaSection.jsx
+- FinanceCustomerCollectionSection.jsx
+- FinanceDelinquencySection.jsx
+- FinanceDreSection.jsx
+- FinanceEntryForm.jsx
+- FinanceForecastSection.jsx
+- FinanceInconsistencyPanel.jsx
+- FinanceKpiSection.jsx
+- FinanceMovementsPanel.jsx
+- FinanceReconciliation*.jsx
+- FinanceRecurrenceSection.jsx
+
+Mover para hooks:
+- useFinanceEntryActions.js
+- useFinanceLifecycleActions.js
+- useFinanceCollectionActions.js
+
+Mover para viewModels:
+- financeViewModel.js
+- financeAccountsViewModel.js
+- financeActionPlanViewModel.js
+- financeCollectionViewModel.js
+- financeDreViewModel.js
+- financeForecastViewModel.js
+- financeReconciliation*.js
+
+Previsao sugerida:
+- 1 etapa de organizacao
+
+
+4. PRIORIDADE BAIXA - ESTRUTURA GLOBAL
+
+4.1 assets/
+Criar somente quando houver imagens, logos e icones proprios.
+
+Estrutura sugerida:
+- frontend/src/assets/images/
+- frontend/src/assets/icons/
+- frontend/src/assets/logos/
+
+Status:
+- Nao urgente.
+
+
+4.2 context/
+Criar somente se o estado global crescer.
+
+Possiveis arquivos:
+- frontend/src/context/AuthContext.jsx
+- frontend/src/context/ThemeContext.jsx
+- frontend/src/context/NotificationContext.jsx
+
+Status:
+- Nao urgente. Hoje a estrutura atual ainda funciona sem isso.
+
+
+4.3 hooks/ global
+Criar para hooks reutilizados por varias paginas.
+
+Possiveis arquivos:
+- frontend/src/hooks/useAuth.js
+- frontend/src/hooks/useApi.js
+- frontend/src/hooks/usePagination.js
+- frontend/src/hooks/useLocalStorage.js
+
+Status:
+- Baixa prioridade. Primeiro terminar a separacao por pagina.
+
+
+5. CRONOGRAMA RECOMENDADO
+
+Etapa 1:
+- Separar Caixa.
+- Validar build.
+
+Etapa 2:
+- Separar Logistica.
+- Validar build.
+
+Etapa 3:
+- Separar Servicos.
+- Validar build.
+
+Etapa 4:
+- Separar Relatorios.
+- Validar build.
+
+Etapa 5:
+- Separar Visao Geral.
+- Validar build.
+
+Etapa 6:
+- Separar Colaboradores.
+- Separar AdminEmpresas.
+- Validar build.
+
+Etapa 7:
+- Reorganizar Financeiro em components, hooks e viewModels.
+- Validar build.
+
+Etapa 8:
+- Revisar imports.
+- Revisar nomes de arquivos.
+- Revisar acentos visiveis do front.
+- Rodar npm run build.
+- Rodar git diff --check -- frontend/src.
+
+
+6. CRITERIO DE CONCLUSAO
+
+A separacao pode ser considerada concluida quando:
+- Nenhuma pagina principal tiver mais de 600 a 700 linhas sem necessidade.
+- Componentes visuais estiverem em components/.
+- Regras de tela e acoes estiverem em hooks/.
+- Montagem de dados estiver em viewModels/.
+- Chamadas de API especificas estiverem em services/.
+- Constantes locais estiverem em constants/.
+- O build passar sem erro.
+- O front abrir sem erros visuais nas abas principais.
+
+
+7. ORDEM MAIS SEGURA PARA EXECUCAO
+
+1. Caixa
+2. Logistica
+3. Servicos
+4. Relatorios
+5. Visao Geral
+6. Colaboradores
+7. AdminEmpresas
+8. Financeiro
+9. Estrutura global opcional
+
+Observacao:
+- Nao criar pastas vazias apenas por padrao.
+- Criar cada pasta quando houver arquivos reais para mover.
+- A cada etapa, rodar build para evitar acumular erro.

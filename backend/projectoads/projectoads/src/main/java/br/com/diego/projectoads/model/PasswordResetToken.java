@@ -10,6 +10,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Table(name = "password_reset_token", schema = "public")
 public class PasswordResetToken {
 
     @Id

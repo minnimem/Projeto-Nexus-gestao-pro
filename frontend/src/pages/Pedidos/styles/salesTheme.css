@@ -1,0 +1,245 @@
+.app-shell.theme-dark .chart-summary div,
+.app-shell.theme-dark .order-filter-summary div,
+.app-shell.theme-dark .sales-insight-card,
+.app-shell.theme-dark .sales-chart {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.72);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .sales-bar-track {
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.9));
+  border-color: rgba(82, 102, 136, 0.42);
+}
+
+.app-shell.theme-dark .sales-bar-track.best {
+  background: linear-gradient(180deg, rgba(20, 184, 166, 0.18), rgba(15, 23, 42, 0.92));
+  border-color: rgba(94, 234, 212, 0.4);
+}
+
+.app-shell.theme-dark .sales-bar-track span {
+  background: linear-gradient(180deg, #5eead4, #2563eb);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.32);
+}
+
+.app-shell.theme-dark .sales-bar-track.best span {
+  background: linear-gradient(180deg, #99f6e4, #14b8a6);
+  box-shadow: 0 12px 26px rgba(20, 184, 166, 0.36);
+}
+
+.app-shell.theme-dark .sales-average-line {
+  border-top-color: rgba(153, 246, 228, 0.58);
+}
+
+.app-shell.theme-dark .sales-average-line::after {
+  color: #ccfbf1;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(94, 234, 212, 0.26);
+}
+
+.app-shell.theme-dark .sales-bar-tooltip {
+  background: rgba(2, 6, 23, 0.96);
+  border-color: rgba(94, 234, 212, 0.24);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.34);
+}
+
+.app-shell.theme-dark .sales-bar-tooltip::after {
+  background: rgba(2, 6, 23, 0.96);
+}
+
+.app-shell.theme-dark .sales-bar strong,
+.app-shell.theme-dark .chart-summary strong,
+.app-shell.theme-dark .order-filter-summary strong,
+.app-shell.theme-dark .sales-insight-card strong,
+.app-shell.theme-dark .product-chart-row strong {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .sales-bar small,
+.app-shell.theme-dark .order-filter-summary span,
+.app-shell.theme-dark .sales-insight-card span,
+.app-shell.theme-dark .sales-insight-card small,
+.app-shell.theme-dark .product-chart-row span {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .sales-insight-card.positive strong {
+  color: #5eead4;
+}
+
+.app-shell.theme-dark .sales-insight-card.negative strong {
+  color: #fca5a5;
+}
+
+.app-shell.theme-dark .product-bar-track {
+  background: rgba(30, 41, 59, 0.88);
+}
+
+.app-shell.theme-dark .product-bar-track span {
+  background: linear-gradient(90deg, #2563eb, #5eead4);
+}
+
+.app-shell.theme-dark .sales-context-strip {
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(15, 23, 42, 0.86)),
+    #111827;
+  border-color: rgba(82, 102, 136, 0.46);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+
+.app-shell.theme-dark .sales-context-copy > span {
+  color: #99f6e4;
+}
+
+.app-shell.theme-dark .sales-context-copy strong,
+.app-shell.theme-dark .sales-context-stats strong {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .sales-context-copy small,
+.app-shell.theme-dark .sales-context-stats span {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .sales-context-stats div {
+  background: rgba(17, 24, 39, 0.76);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .sales-module-card {
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(15, 23, 42, 0.86)),
+    #111827;
+  border-color: rgba(82, 102, 136, 0.46);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+
+.app-shell.theme-dark .sales-module-card:hover {
+  border-color: rgba(94, 234, 212, 0.34);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.36);
+}
+
+.app-shell.theme-dark .sales-module-card-icon {
+  color: #99f6e4;
+  background: rgba(20, 184, 166, 0.16);
+}
+
+.app-shell.theme-dark .sales-module-card > span:not(.sales-module-card-icon),
+.app-shell.theme-dark .sales-module-card small {
+  color: #b7c3d6;
+}
+
+.app-shell.theme-dark .sales-module-card em {
+  color: #99f6e4;
+}
+
+.app-shell.theme-dark .sales-module-card strong {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .sales-bottleneck-panel {
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(15, 23, 42, 0.86)),
+    #111827;
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .sales-overview-insights {
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(15, 23, 42, 0.86)),
+    #111827;
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .sales-bottleneck-card {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.78);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .sales-bottleneck-card:hover {
+  border-color: rgba(94, 234, 212, 0.34);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.app-shell.theme-dark .sales-bottleneck-card span,
+.app-shell.theme-dark .sales-bottleneck-card small {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .sales-bottleneck-card strong {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .sales-bottleneck-card em {
+  color: #99f6e4;
+}
+
+.app-shell.theme-dark .sales-bottleneck-card.warning {
+  background: rgba(120, 53, 15, 0.22);
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.app-shell.theme-dark .sales-bottleneck-card.info {
+  background: rgba(30, 64, 175, 0.2);
+  border-color: rgba(96, 165, 250, 0.32);
+}
+
+.app-shell.theme-dark .sales-bottleneck-card.danger {
+  background: rgba(127, 29, 29, 0.22);
+  border-color: rgba(248, 113, 113, 0.32);
+}
+
+.app-shell.theme-dark .sales-bottleneck-card.success {
+  background: rgba(6, 78, 59, 0.22);
+  border-color: rgba(45, 212, 191, 0.32);
+}
+
+.app-shell.theme-dark .sales-bottleneck-card.muted {
+  opacity: 0.58;
+}
+
+.app-shell.theme-dark .sales-empty-state {
+  color: #aab7cb;
+  background: rgba(17, 24, 39, 0.66);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .sales-empty-state svg {
+  color: #99f6e4;
+}
+
+.app-shell.theme-dark .sales-empty-state strong {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .sales-empty-state small {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .table-empty-state svg {
+  color: #99f6e4;
+}
+
+.app-shell.theme-dark .table-empty-state strong {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .table-empty-state small {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .status-helper {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .customer-avatar {
+  color: #dbeafe;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.22), rgba(37, 99, 235, 0.2));
+  border-color: rgba(94, 234, 212, 0.28);
+}
+

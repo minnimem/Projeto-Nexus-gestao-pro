@@ -1,0 +1,704 @@
+.logistics-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.logistics-view > .kpi-grid {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.logistics-view > .logistics-grid {
+  grid-column: 1;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.65fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.logistics-view > .logistics-grid.status-closed {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.logistics-view > .logistics-grid.status-closed .orders-panel {
+  grid-column: 1 / -1;
+}
+
+.logistics-view .orders-panel {
+  grid-column: 1;
+  grid-row: auto;
+}
+
+.logistics-view > .logistics-workbench {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.logistics-view .side-panel {
+  grid-column: 2;
+  grid-row: auto;
+}
+
+.driver-performance-card.warning {
+  border-color: #fed7aa;
+  background: #fff8ee;
+}
+
+.driver-performance-card.success {
+  border-color: #bdeee6;
+  background: #f0fdfa;
+}
+
+.route-map-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.route-map-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.route-map-card.danger {
+  border-color: #fecaca;
+  background: #fff5f5;
+}
+
+.route-map-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.route-map-head > span,
+.route-map-card > strong {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.route-map-card > small,
+.route-stop small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.route-stop-list {
+  display: grid;
+  gap: 8px;
+}
+
+.route-stop {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  min-height: 42px;
+}
+
+.route-stop em {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 999px;
+  color: #1d4ed8;
+  background: #eef4ff;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.route-stop strong,
+.route-stop small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delivery-status-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.delivery-status-column {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-height: 190px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
+}
+
+.delivery-status-column > div {
+  display: grid;
+  gap: 5px;
+}
+
+.delivery-status-column strong {
+  color: #0f172a;
+  font-size: 1.55rem;
+  font-weight: 950;
+}
+
+.delivery-status-column small,
+.delivery-status-column li {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.delivery-status-column ul {
+  display: grid;
+  gap: 7px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.delivery-status-column li {
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.delivery-status-column li span {
+  color: #0f172a;
+  font-weight: 950;
+}
+
+.delivery-status-column li.empty {
+  color: #94a3b8;
+  text-align: center;
+}
+
+.delivery-status-column.pendente {
+  border-top: 4px solid #f59e0b;
+}
+
+.delivery-status-column.em_rota {
+  border-top: 4px solid #2563eb;
+}
+
+.delivery-status-column.entregue {
+  border-top: 4px solid #10b981;
+}
+
+.delivery-status-column.atrasado,
+.delivery-status-column.cancelado {
+  border-top: 4px solid #ef4444;
+}
+
+.route-filter-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.route-filter-bar button {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 12px;
+  border: 1px solid #dbe3ee;
+  border-radius: 14px;
+  color: #475569;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.route-filter-bar button.active {
+  color: var(--primary);
+  border-color: rgba(18, 70, 160, 0.32);
+  background: #eef4ff;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.route-filter-bar span {
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.route-filter-bar strong {
+  min-width: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: var(--primary);
+  background: #fff;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.delivery-control {
+  grid-column: 1 / -1;
+}
+
+.delivery-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.delivery-options button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #c8d3e1;
+  border-radius: 9px;
+  color: var(--ink);
+  background: #fff;
+  font-size: 11px;
+  font-weight: 950;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.delivery-options button:hover,
+.delivery-options button.active {
+  color: #fff;
+  border-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.16);
+}
+
+.route-filter-bar button,
+.logistics-action-tabs button {
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  box-shadow: 0 8px 18px rgba(15, 27, 51, 0.045);
+  transition: transform 0.14s ease, background 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, color 0.14s ease;
+}
+
+.route-filter-bar button:hover:not(.active),
+.logistics-action-tabs button:hover:not(.active) {
+  color: var(--primary);
+  border-color: rgba(37, 99, 235, 0.24);
+  transform: translateY(-1px);
+}
+
+.route-filter-bar button.active,
+.logistics-action-tabs button.active {
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.16);
+}
+
+.route-list {
+  display: grid;
+  gap: 12px;
+}
+
+.route-section {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #edf2f7;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.route-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.route-section-title strong {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.route-section-title span {
+  min-width: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: var(--primary);
+  background: #eef4ff;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.route-section p {
+  margin: -4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.route-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.route-card > div:first-child,
+.route-card strong,
+.route-card small {
+  display: block;
+}
+
+.route-card strong {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.route-card small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.inline-icon-button {
+  display: inline-grid;
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  place-items: center;
+  border: 1px solid #dbe7ff;
+  border-radius: 6px;
+  color: var(--primary);
+  background: #eef4ff;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.inline-icon-button:hover {
+  border-color: #9fc2ff;
+  background: #e1edff;
+}
+
+.route-meta {
+  display: grid;
+  gap: 7px;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.route-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.route-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.route-pagination {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  padding-top: 2px;
+}
+
+.route-pagination button {
+  min-height: 34px;
+  border: 1px solid #dbe3ee;
+  border-radius: 10px;
+  color: var(--primary);
+  background: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.route-pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.route-pagination span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.fleet-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.fleet-strip div {
+  padding: 14px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+}
+
+.fleet-strip span,
+.fleet-strip strong {
+  display: block;
+}
+
+.fleet-strip span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.fleet-strip strong {
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.logistics-forms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.logistics-workbench {
+  display: grid;
+  gap: 14px;
+}
+
+.logistics-action-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 6px;
+}
+
+.logistics-action-tabs button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #dbe3ee;
+  border-radius: 10px;
+  color: #475569;
+  background: #f8fafc;
+  font-size: 12px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.logistics-action-tabs button.active {
+  color: #fff;
+  border-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  box-shadow: 0 8px 18px rgba(22, 76, 163, 0.16);
+}
+
+.logistics-view .logistics-action-tabs {
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+}
+
+.logistics-form-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 720px);
+}
+
+.logistics-view .logistics-form-shell {
+  grid-template-columns: minmax(0, 920px);
+}
+
+.delivery-picker {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #dbe5f2;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.delivery-picker-title,
+.delivery-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.delivery-picker-title span,
+.delivery-option em {
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.delivery-option {
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.delivery-option input {
+  width: 18px;
+  height: 18px;
+}
+
+.delivery-option span {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+}
+
+.delivery-option small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.app-shell.theme-dark .route-section,
+.app-shell.theme-dark .route-card,
+.app-shell.theme-dark .fleet-strip div,
+.app-shell.theme-dark .inline-form-panel,
+.app-shell.theme-dark .delivery-picker,
+.app-shell.theme-dark .delivery-option,
+.app-shell.theme-dark .inline-icon-button {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.78);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .route-section-title strong,
+.app-shell.theme-dark .route-card strong,
+.app-shell.theme-dark .fleet-strip strong {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .route-meta,
+.app-shell.theme-dark .route-card small,
+.app-shell.theme-dark .route-section p,
+.app-shell.theme-dark .fleet-strip span,
+.app-shell.theme-dark .delivery-option small {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .logistics-action-tabs button {
+  color: #b7c3d6;
+  background: rgba(17, 24, 39, 0.86);
+  border-color: rgba(82, 102, 136, 0.52);
+}
+
+.app-shell.theme-dark .route-filter-bar button {
+  color: #b7c3d6;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.9), rgba(15, 23, 42, 0.86));
+  border-color: rgba(82, 102, 136, 0.5);
+  box-shadow: 0 9px 18px rgba(0, 0, 0, 0.18);
+}
+
+.app-shell.theme-dark .route-pagination button {
+  color: #dbeafe;
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(96, 165, 250, 0.34);
+}
+
+.app-shell.theme-dark .driver-performance-card.success {
+  background: rgba(6, 78, 59, 0.26);
+  border-color: rgba(45, 212, 191, 0.32);
+}
+
+.app-shell.theme-dark .driver-performance-card.warning {
+  background: rgba(120, 53, 15, 0.24);
+  border-color: rgba(251, 191, 36, 0.32);
+}
+
+.app-shell.theme-dark .route-map-card {
+  background: rgba(17, 24, 39, 0.78);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .route-map-card.danger {
+  background: rgba(127, 29, 29, 0.26);
+  border-color: rgba(248, 113, 113, 0.34);
+}
+
+.app-shell.theme-dark .delivery-status-column {
+  border-color: rgba(82, 102, 136, 0.46);
+  background: rgba(17, 24, 39, 0.78);
+}
+
+.app-shell.theme-dark .delivery-status-column li {
+  border-color: rgba(82, 102, 136, 0.38);
+  background: rgba(2, 6, 23, 0.32);
+}
+
+.app-shell.theme-dark .route-map-head > span,
+.app-shell.theme-dark .route-map-card > strong,
+.app-shell.theme-dark .route-stop strong,
+.app-shell.theme-dark .delivery-status-column strong,
+.app-shell.theme-dark .delivery-status-column li span {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .route-map-card > small,
+.app-shell.theme-dark .route-stop small,
+.app-shell.theme-dark .delivery-status-column small,
+.app-shell.theme-dark .delivery-status-column li {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .logistics-action-tabs button.active {
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #164ca3);
+  border-color: rgba(96, 165, 250, 0.42);
+}
+
+@media (max-width: 920px) {
+  .logistics-view,
+  .logistics-view > .logistics-grid,
+  .logistics-view .logistics-action-tabs,
+  .logistics-view .logistics-form-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .logistics-view > .kpi-grid,
+  .logistics-view > .logistics-grid,
+  .logistics-view .orders-panel,
+  .logistics-view > .logistics-workbench,
+  .logistics-view .side-panel {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .logistics-view > .logistics-grid {
+    display: grid;
+  }
+}

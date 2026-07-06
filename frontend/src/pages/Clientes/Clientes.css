@@ -1,0 +1,41 @@
+.customer-modal-panel {
+  width: min(860px, calc(100vw - 48px));
+  max-height: min(760px, calc(100vh - 120px));
+  overscroll-behavior: contain;
+  padding-bottom: 10px;
+}
+
+.customer-modal-panel .panel-title.compact {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: -1px -1px 12px;
+  padding: 2px 0 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+  backdrop-filter: blur(10px);
+}
+
+.customer-modal-panel .compact-form {
+  gap: 10px;
+}
+
+.customer-modal-panel .finance-form-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.customer-modal-panel textarea {
+  min-height: 72px;
+}
+
+.customer-modal-panel .checkout-button {
+  position: sticky;
+  bottom: 0;
+  min-height: 48px;
+  margin-top: 2px;
+  box-shadow: 0 18px 34px rgba(37, 99, 235, 0.26);
+}
+
+.app-shell.theme-dark .customer-modal-panel .panel-title.compact {
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.98), rgba(17, 24, 39, 0.9));
+}

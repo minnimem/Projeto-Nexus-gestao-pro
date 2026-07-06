@@ -1,0 +1,70 @@
+.customer-crm-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.customer-avatar.large {
+  width: 44px;
+  height: 44px;
+  flex-basis: 44px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.customer-crm-head span,
+.customer-crm-head strong,
+.customer-crm-head small {
+  display: block;
+  min-width: 0;
+}
+
+.customer-crm-head span {
+  color: #0f766e;
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.customer-crm-head strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 950;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.customer-crm-head small {
+  overflow: hidden;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+}
+
+.customer-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.customer-tag {
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border: 1px solid #dbe3ee;
+  border-radius: 999px;
+  color: #475569;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.customer-tag.success { color: #047857; border-color: #bbf7d0; background: #f0fdf4; }
+.customer-tag.info { color: #1d4ed8; border-color: #bfdbfe; background: #eff6ff; }
+.customer-tag.warning { color: #9a3412; border-color: #fed7aa; background: #fff7ed; }
+.customer-tag.danger { color: #b91c1c; border-color: #fecaca; background: #fff1f2; }

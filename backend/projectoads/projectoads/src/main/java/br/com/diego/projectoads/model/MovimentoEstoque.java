@@ -11,6 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity (name = "movimento_estoque")
+@Table(name = "movimento_estoque", schema = "public")
 public class MovimentoEstoque {
 
     @Id

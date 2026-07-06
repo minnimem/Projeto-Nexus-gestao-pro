@@ -1,0 +1,23 @@
+HOMOLOGACAO FINAL - NEXUS ONE
+Data: 05/07/2026 07:45:13
+Ambiente: validacao
+EnvFile: C:\Users\LENOVO\AppData\Local\Temp\nexus-homologacao-final-validacao.env
+ComposeFile: docker-compose.prod.yml
+BaseUrl: http://localhost:8081
+FrontendUrl: http://localhost:5173
+
+Resultados:
+- FALHA | Pre-deploy estrutural | Pre-deploy estrutural falhou: Comando retornou exit code 1
+- FALHA | Publicacao front/back | Publicacao front/back falhou: Comando retornou exit code 1
+- FALHA | Observabilidade | Observabilidade falhou: Comando retornou exit code 1
+- FALHA | Usuario master | Usuario master falhou: Comando retornou exit code 1
+- AVISO | Smoke operacional | Informe -Login e -Senha para executar.
+
+Avisos:
+- Smoke operacional via API nao executado porque Login/Senha nao foram informados.
+
+Falhas:
+- Pre-deploy estrutural falhou: Comando retornou exit code 1
+- Publicacao front/back falhou: Comando retornou exit code 1
+- Observabilidade falhou: Comando retornou exit code 1
+- Usuario master falhou: Comando retornou exit code 1

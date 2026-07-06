@@ -1,0 +1,93 @@
+.topbar-export-button,
+.topbar-refresh-button,
+.topbar-logout-button,
+.topbar-theme-button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #e1e9f4;
+  border-radius: 10px;
+  color: #344154;
+  background: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 850;
+  box-shadow: 0 10px 22px rgba(15, 27, 51, 0.04);
+}
+
+.topbar-logout-button {
+  border-color: #fecaca;
+  color: var(--danger);
+  background: #fff7f7;
+}
+
+.topbar-export-button {
+  padding: 0 13px;
+}
+
+.topbar-refresh-button,
+.topbar-theme-button {
+  padding: 0 12px;
+}
+
+.topbar-theme-button {
+  color: #1d4ed8;
+}
+
+.topbar-refresh-button {
+  color: #1d4ed8;
+}
+
+.topbar-export-button:disabled,
+.topbar-refresh-button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.app-shell.theme-dark .topbar-export-button,
+.app-shell.theme-dark .topbar-refresh-button,
+.app-shell.theme-dark .topbar-logout-button,
+.app-shell.theme-dark .topbar-theme-button {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.92);
+  border-color: rgba(82, 102, 136, 0.58);
+}
+
+.app-shell.theme-dark .topbar-logout-button {
+  color: #fca5a5;
+  background: rgba(127, 29, 29, 0.24);
+  border-color: rgba(248, 113, 113, 0.34);
+}
+
+@media (max-width: 760px) {
+  .topbar-theme-button,
+  .topbar-refresh-button,
+  .topbar-export-button,
+  .topbar-logout-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar-export-button,
+  .topbar-refresh-button,
+  .topbar-logout-button,
+  .topbar-theme-button {
+    min-height: 34px;
+    border-radius: 9px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-theme-button,
+  .topbar-refresh-button,
+  .topbar-export-button,
+  .topbar-logout-button {
+    min-width: 0;
+    padding-inline: 8px;
+  }
+}

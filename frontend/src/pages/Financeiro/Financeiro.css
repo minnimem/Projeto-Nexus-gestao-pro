@@ -1,0 +1,662 @@
+.finance-warning-box {
+  margin-bottom: 12px;
+}
+
+.finance-warning-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.finance-warning-copy strong,
+.finance-warning-copy small {
+  display: block;
+}
+
+.finance-warning-copy strong {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.finance-warning-copy small {
+  color: #9a3412;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+
+.finance-form {
+  display: grid;
+  gap: 12px;
+}
+
+.finance-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.finance-reconciliation {
+  display: grid;
+  gap: 16px;
+}
+
+.finance-reconciliation .panel-title {
+  align-items: flex-start;
+}
+
+.recurrence-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.recurrence-summary div {
+  padding: 12px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.recurrence-summary span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.recurrence-summary strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 950;
+}
+
+.recurrence-grid .recurrence-card {
+  gap: 8px;
+}
+
+.recurrence-card .table-actions {
+  margin-top: 2px;
+}
+
+.cash-flow-panel {
+  margin-bottom: 16px;
+}
+
+.cash-flow-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.cash-flow-summary div {
+  padding: 12px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.cash-flow-summary span,
+.cash-flow-summary strong {
+  display: block;
+}
+
+.cash-flow-summary span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.cash-flow-summary strong {
+  margin-top: 5px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 950;
+}
+
+.cash-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.cash-flow-day {
+  min-height: 104px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.cash-flow-day.negative {
+  border-color: #fecaca;
+  background: #fff7f7;
+}
+
+.cash-flow-day span,
+.cash-flow-day strong,
+.cash-flow-day small,
+.cash-flow-day em {
+  display: block;
+  min-width: 0;
+}
+
+.cash-flow-day span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.cash-flow-day strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.cash-flow-day small,
+.cash-flow-day em {
+  color: var(--muted);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.delinquency-panel {
+  margin-bottom: 16px;
+}
+
+.delinquency-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.delinquency-summary div {
+  padding: 12px;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  background: #fff7f7;
+}
+
+.delinquency-summary span,
+.delinquency-summary strong {
+  display: block;
+}
+
+.delinquency-summary span {
+  color: #991b1b;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.delinquency-summary strong {
+  margin-top: 5px;
+  color: #7f1d1d;
+  font-size: 18px;
+  font-weight: 950;
+}
+
+.aging-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.aging-card {
+  min-height: 86px;
+  display: grid;
+  gap: 5px;
+  align-content: center;
+  padding: 12px;
+  border: 1px solid #dbe3ee;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.aging-card.active {
+  border-color: #fecaca;
+  background: #fff7f7;
+}
+
+.aging-card span,
+.aging-card strong,
+.aging-card small {
+  display: block;
+}
+
+.aging-card span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.aging-card strong {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 950;
+}
+
+.aging-card small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.aging-card.danger {
+  border-color: #fecaca;
+  background: #fff5f5;
+}
+
+.aging-card.warning {
+  border-color: #fed7aa;
+  background: #fff8ee;
+}
+
+.aging-card.info {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.aging-card.success {
+  border-color: #bdeee6;
+  background: #f0fdfa;
+}
+
+.reconciliation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.reconciliation-grid div {
+  min-height: 88px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  padding: 13px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.reconciliation-grid span,
+.reconciliation-grid strong,
+.reconciliation-grid small {
+  display: block;
+}
+
+.reconciliation-grid span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.reconciliation-grid strong {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 950;
+}
+
+.reconciliation-grid small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.dre-readiness-panel {
+  display: grid;
+  gap: 12px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 14px;
+}
+
+.dre-readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.dre-readiness-card {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  min-height: 106px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 10px;
+  background: #fff;
+  padding: 12px;
+}
+
+.dre-readiness-card span,
+.dre-readiness-card strong,
+.dre-readiness-card small {
+  display: block;
+  min-width: 0;
+}
+
+.dre-readiness-card span {
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.dre-readiness-card strong {
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.dre-readiness-card small {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.dre-readiness-card.status-ok,
+.dre-readiness-card.status-confiavel {
+  border-color: rgba(16, 185, 129, 0.28);
+  background: #ecfdf5;
+}
+
+.dre-readiness-card.status-ok strong,
+.dre-readiness-card.status-confiavel strong {
+  color: #047857;
+}
+
+.dre-readiness-card.status-revisar,
+.dre-readiness-card.status-validar,
+.dre-readiness-card.status-gerencial {
+  border-color: rgba(245, 158, 11, 0.28);
+  background: #fffbeb;
+}
+
+.dre-readiness-card.status-revisar strong,
+.dre-readiness-card.status-validar strong,
+.dre-readiness-card.status-gerencial strong {
+  color: #b45309;
+}
+
+.dre-readiness-card.status-baixa {
+  border-color: rgba(239, 68, 68, 0.28);
+  background: #fef2f2;
+}
+
+.dre-readiness-card.status-baixa strong {
+  color: #b91c1c;
+}
+
+.due-account-list {
+  display: grid;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.due-account-card {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: minmax(150px, 0.45fr) minmax(180px, 0.8fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.due-account-card strong,
+.due-account-card span,
+.due-account-card small {
+  display: block;
+  min-width: 0;
+}
+
+.due-account-card strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.due-account-date {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.due-account-status {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 900;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.due-account {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.due-account.overdue {
+  border-color: #fecaca;
+  background: #fff7f7;
+}
+
+.due-account.danger {
+  border-color: #fecaca;
+  background: #fff5f5;
+}
+
+.due-account.warning {
+  border-color: #fed7aa;
+  background: #fff8ee;
+}
+
+.due-account.info {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.due-account.success {
+  border-color: #bdeee6;
+  background: #f0fdfa;
+}
+
+.due-account strong,
+.due-account small {
+  display: block;
+  min-width: 0;
+}
+
+.due-account strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 950;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.due-account small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.due-account > span {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.due-account button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #dbe3ee;
+  border-radius: 10px;
+  color: var(--primary);
+  background: #eef4ff;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.due-account button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.reconciliation-detail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.soft-panel {
+  background: #fbfdff;
+}
+
+.app-shell.theme-dark .reconciliation-grid div,
+.app-shell.theme-dark .dre-readiness-panel,
+.app-shell.theme-dark .dre-readiness-card,
+.app-shell.theme-dark .due-account-card,
+.app-shell.theme-dark .due-account,
+.app-shell.theme-dark .soft-panel {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.78);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .due-account.overdue {
+  background: rgba(127, 29, 29, 0.24);
+  border-color: rgba(248, 113, 113, 0.34);
+}
+
+.app-shell.theme-dark .due-account.danger {
+  background: rgba(127, 29, 29, 0.26);
+  border-color: rgba(248, 113, 113, 0.34);
+}
+
+.app-shell.theme-dark .due-account.warning {
+  background: rgba(120, 53, 15, 0.24);
+  border-color: rgba(251, 191, 36, 0.32);
+}
+
+.app-shell.theme-dark .due-account.info {
+  background: rgba(30, 64, 175, 0.22);
+  border-color: rgba(96, 165, 250, 0.34);
+}
+
+.app-shell.theme-dark .due-account.success {
+  background: rgba(6, 78, 59, 0.26);
+  border-color: rgba(45, 212, 191, 0.32);
+}
+
+.app-shell.theme-dark .reconciliation-grid strong,
+.app-shell.theme-dark .dre-readiness-card strong,
+.app-shell.theme-dark .due-account-card strong,
+.app-shell.theme-dark .due-account strong,
+.app-shell.theme-dark .due-account-date {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .dre-readiness-card span,
+.app-shell.theme-dark .dre-readiness-card small {
+  color: rgba(226, 232, 240, 0.68);
+}
+
+.app-shell.theme-dark .dre-readiness-card.status-ok,
+.app-shell.theme-dark .dre-readiness-card.status-confiavel {
+  background: rgba(6, 78, 59, 0.32);
+  border-color: rgba(52, 211, 153, 0.28);
+}
+
+.app-shell.theme-dark .dre-readiness-card.status-revisar,
+.app-shell.theme-dark .dre-readiness-card.status-validar,
+.app-shell.theme-dark .dre-readiness-card.status-gerencial {
+  background: rgba(120, 53, 15, 0.3);
+  border-color: rgba(251, 191, 36, 0.32);
+}
+
+.app-shell.theme-dark .dre-readiness-card.status-baixa {
+  background: rgba(127, 29, 29, 0.34);
+  border-color: rgba(248, 113, 113, 0.34);
+}
+
+.app-shell.theme-dark .due-account button {
+  color: #dbeafe;
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(96, 165, 250, 0.34);
+}
+
+.app-shell.theme-dark .recurrence-summary div {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.82);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .aging-card.danger {
+  background: rgba(127, 29, 29, 0.26);
+  border-color: rgba(248, 113, 113, 0.34);
+}
+
+.app-shell.theme-dark .aging-card.warning {
+  background: rgba(120, 53, 15, 0.24);
+  border-color: rgba(251, 191, 36, 0.32);
+}
+
+.app-shell.theme-dark .aging-card.info {
+  background: rgba(30, 64, 175, 0.22);
+  border-color: rgba(96, 165, 250, 0.34);
+}
+
+.app-shell.theme-dark .aging-card.success {
+  background: rgba(6, 78, 59, 0.26);
+  border-color: rgba(45, 212, 191, 0.32);
+}
+
+@media (max-width: 920px) {
+  .cash-flow-summary,
+  .cash-flow-grid,
+  .delinquency-summary,
+  .aging-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .recurrence-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
+
+

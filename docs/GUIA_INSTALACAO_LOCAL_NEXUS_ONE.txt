@@ -1,0 +1,324 @@
+GUIA DE INSTALACAO LOCAL - NEXUS ONE
+====================================
+
+Objetivo:
+Orientar como preparar, subir e validar o Nexus One em ambiente local de desenvolvimento.
+
+
+1. REQUISITOS
+=============
+
+Instalar/ter disponivel:
+
+- Java 21.
+- Node.js compativel com Vite.
+- PostgreSQL local.
+- IntelliJ IDEA ou VS Code.
+- Navegador Chrome/Edge.
+
+Estrutura principal:
+
+- Front-end: frontend
+- Back-end: backend/projectoads/projectoads
+- Banco padrao local: TB_ADS
+- Porta front: 5173
+- Porta back: 8081
+- Porta PostgreSQL: 5432
+
+
+2. BANCO POSTGRESQL LOCAL
+=========================
+
+Configuracao esperada:
+
+- Host: localhost
+- Port: 5432
+- Database: TB_ADS
+- User: postgres
+- Password: definir no seu ambiente local
+
+No IntelliJ:
+
+1. Abrir aba Database.
+2. Clicar em +.
+3. Escolher Data Source > PostgreSQL.
+4. Preencher:
+   - Host: localhost
+   - Port: 5432
+   - Database: TB_ADS
+   - User: postgres
+   - Password: sua senha local
+5. Clicar em Test Connection.
+6. Se passar, clicar em Apply e OK.
+
+Importante:
+Nao colocar senha real em arquivos versionados.
+Use .env local ou variaveis de ambiente.
+
+
+3. VARIAVEIS DE AMBIENTE
+========================
+
+Arquivos de exemplo:
+
+- .env.example
+- .env.backend.example
+
+Arquivos reais locais:
+
+- .env
+- .env.local
+
+Esses arquivos reais ficam ignorados pelo Git.
+
+Variaveis principais do back:
+
+- DB_URL=jdbc:postgresql://localhost:5432/TB_ADS
+- DB_USERNAME=postgres
+- DB_PASSWORD=sua-senha-local
+- JWT_SECRET=uma-chave-com-32-ou-mais-caracteres
+- NEXUS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+- SERVER_PORT=8081
+
+Em producao:
+
+- JWT_SECRET deve ser obrigatorio.
+- Nao usar fallback fixo.
+- Nao commitar .env real.
+
+
+4. SUBIR O BACK-END
+===================
+
+Pasta:
+
+backend/projectoads/projectoads
+
+Comando:
+
+mvnw.cmd spring-boot:run
+
+Validar:
+
+- O back deve subir em http://localhost:8081
+- Health endpoint: http://localhost:8081/health
+- Banco deve conectar sem erro.
+
+Compilar sem rodar:
+
+mvnw.cmd -DskipTests compile
+
+Rodar testes:
+
+mvnw.cmd test
+
+Resultado esperado atual:
+
+- Build success.
+- Testes passando.
+- Suite atual: 128 testes sem falhas.
+
+
+5. SUBIR O FRONT-END
+====================
+
+Pasta:
+
+frontend
+
+Instalar dependencias, se necessario:
+
+npm install
+
+Subir ambiente:
+
+npm run dev
+
+Abrir:
+
+http://localhost:5173
+
+Build de producao:
+
+npm run build
+
+Resultado esperado:
+
+- Build passando.
+- Modulos carregados por lazy loading.
+- Sem aviso de chunk principal grande.
+
+
+6. FLUXO DE VALIDACAO LOCAL
+===========================
+
+Ordem recomendada:
+
+1. Conferir PostgreSQL ativo.
+2. Testar conexao no IntelliJ.
+3. Subir back-end.
+4. Abrir /health.
+5. Subir front-end.
+6. Acessar http://localhost:5173.
+7. Fazer login.
+8. Abrir painel principal.
+9. Abrir menus principais:
+   - Visao Geral
+   - Vendas
+   - Caixa
+   - Clientes
+   - Estoque
+   - Financeiro
+   - Colaboradores
+   - Relatorios
+   - Painel controle
+10. Conferir console do navegador.
+
+
+7. SMOKE TEST MINIMO
+====================
+
+Login:
+
+- Login com usuario valido.
+- Login com senha errada.
+- Logout.
+- Tentar acessar sem sessao.
+
+Painel:
+
+- Abrir painel.
+- Trocar abas.
+- Atualizar dados.
+
+Clientes:
+
+- Listar clientes.
+- Criar cliente simples.
+- Editar cliente.
+
+Produtos:
+
+- Listar produtos.
+- Criar produto.
+- Validar estoque.
+
+Pedidos:
+
+- Criar pedido.
+- Adicionar item.
+- Finalizar pedido.
+- Conferir financeiro/estoque quando aplicavel.
+
+Caixa:
+
+- Abrir caixa.
+- Registrar movimento.
+- Fechar caixa.
+
+Financeiro:
+
+- Criar lancamento.
+- Baixar conta.
+- Estornar/cancelar quando aplicavel.
+
+Painel controle:
+
+- Abrir usuarios.
+- Abrir permissoes.
+- Abrir empresas/filiais.
+- Abrir cobranca dos planos.
+- Abrir auditoria.
+
+Auditoria:
+
+- Excluir um registro de teste.
+- Conferir registro de auditoria.
+- Confirmar usuario, entidade, ID, rota e horario.
+
+
+8. PROBLEMAS COMUNS
+===================
+
+Erro de banco:
+
+- Verificar se PostgreSQL esta rodando.
+- Verificar host/porta/database.
+- Verificar usuario e senha.
+- Verificar DB_URL, DB_USERNAME e DB_PASSWORD.
+
+Erro JWT_SECRET:
+
+- JWT_SECRET precisa ter pelo menos 32 caracteres.
+- Em producao, JWT_SECRET e obrigatorio.
+
+Erro CORS:
+
+- Conferir NEXUS_ALLOWED_ORIGINS.
+- Para local, incluir http://localhost:5173 e http://127.0.0.1:5173.
+
+Front nao carrega:
+
+- Rodar npm install.
+- Conferir porta 5173.
+- Conferir npm run dev.
+
+Back nao sobe:
+
+- Conferir Java 21.
+- Rodar mvnw.cmd -DskipTests compile.
+- Conferir application.yml.
+- Conferir banco.
+
+Tela com erro visual:
+
+- Abrir console do navegador.
+- Copiar erro.
+- Procurar componente da aba em frontend/src/pages.
+
+
+9. COMANDOS RAPIDOS
+===================
+
+Back compile:
+
+cd backend/projectoads/projectoads
+mvnw.cmd -DskipTests compile
+
+Back testes:
+
+cd backend/projectoads/projectoads
+mvnw.cmd test
+
+Back run:
+
+cd backend/projectoads/projectoads
+mvnw.cmd spring-boot:run
+
+Front run:
+
+cd frontend
+npm run dev
+
+Front build:
+
+cd frontend
+npm run build
+
+
+10. CRITERIO DE AMBIENTE LOCAL OK
+=================================
+
+Ambiente local esta saudavel quando:
+
+- PostgreSQL conecta.
+- Back sobe na porta 8081.
+- /health responde.
+- Front sobe na porta 5173.
+- Login funciona.
+- Painel abre.
+- Abas principais abrem.
+- npm run build passa.
+- mvnw.cmd test passa.
+- Console do navegador nao mostra erro critico.
+

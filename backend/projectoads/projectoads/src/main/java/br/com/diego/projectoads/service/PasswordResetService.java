@@ -49,23 +49,23 @@ public class PasswordResetService {
 
         tokenRepository.save(reset);
 
-        log.info("Token de reset de senha gerado para usuario {}. Configure um canal de envio para entregar o link com seguranca.", usuario.getLogin());
+        log.info("Solicitação de redefinição de credencial registrada para usuário {}.", usuario.getLogin());
     }
 
     public void resetarSenha(String token, String novaSenha) {
         if (token == null || token.isBlank()) {
-            throw new RuntimeException("Token obrigatorio");
+            throw new RuntimeException("Token obrigatório");
         }
 
         if (novaSenha == null || novaSenha.length() < 6) {
-            throw new RuntimeException("Nova senha deve ter no minimo 6 caracteres");
+            throw new RuntimeException("Nova senha deve ter no mínimo 6 caracteres");
         }
 
         PasswordResetToken reset = tokenRepository.findByToken(token)
-                .orElseThrow(() -> new RuntimeException("Token invalido"));
+                .orElseThrow(() -> new RuntimeException("Token inválido"));
 
         if (reset.isUsado()) {
-            throw new RuntimeException("Token ja utilizado");
+            throw new RuntimeException("Token já utilizado");
         }
 
         if (reset.getExpiracao().isBefore(LocalDateTime.now())) {

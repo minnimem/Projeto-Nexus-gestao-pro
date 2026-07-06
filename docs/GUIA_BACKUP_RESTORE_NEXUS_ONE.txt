@@ -1,0 +1,189 @@
+GUIA DE BACKUP E RESTORE - NEXUS ONE
+====================================
+
+Objetivo:
+Definir um procedimento simples e seguro para criar, guardar, testar e restaurar backups do Nexus One.
+
+
+1. ESCOPO DO BACKUP
+===================
+
+Itens que precisam entrar na rotina:
+
+- Banco PostgreSQL da aplicação.
+- Arquivos de configuração fora do Git, como .env local/producao.
+- Arquivos enviados por usuários, quando usados, como uploads/ordens-servico.
+- Documentos fiscais ou evidências geradas localmente, se armazenados em disco.
+- Scripts de migração/carga usados no ambiente.
+
+Nunca salvar senhas em texto aberto dentro de pasta pública ou repositório Git.
+
+
+2. BACKUP DO POSTGRESQL
+=======================
+
+Comando base para backup lógico:
+
+pg_dump -h localhost -p 5432 -U postgres -d TB_ADS -F c -b -v -f backup_TB_ADS_YYYYMMDD_HHMM.dump
+
+Exemplo local:
+
+pg_dump -h localhost -p 5432 -U postgres -d TB_ADS -F c -b -v -f backup_TB_ADS_20260705_0700.dump
+
+Observações:
+
+- Use formato customizado (-F c) para permitir restore flexível.
+- Guarde data e hora no nome do arquivo.
+- Gere o backup fora da pasta do repositório.
+- Confirme o tamanho do arquivo após gerar.
+
+
+3. BACKUP DE UPLOADS
+====================
+
+Pasta padrão local:
+
+uploads/ordens-servico
+
+Procedimento:
+
+1. Parar escrita de novos arquivos, se possível.
+2. Compactar a pasta de uploads.
+3. Nomear com data e hora.
+4. Guardar junto do backup do banco.
+
+Exemplo de nome:
+
+uploads_ordens_servico_20260705_0700.zip
+
+
+4. BACKUP DE CONFIGURAÇÕES
+==========================
+
+Arquivos sensíveis que devem ter cópia segura:
+
+- .env
+- .env.local
+- .env.backend
+- application-prod.yml quando houver versão externa ao Git
+- certificados fiscais, se usados fora de um cofre de segredos
+
+Importante:
+
+- Não enviar esses arquivos para GitHub.
+- Não mandar por WhatsApp sem proteção.
+- Preferir cofre de senhas ou armazenamento criptografado.
+
+
+5. FREQUÊNCIA RECOMENDADA
+=========================
+
+Ambiente local/desenvolvimento:
+
+- Backup manual antes de alterações grandes.
+- Backup manual antes de testar migração de banco.
+
+Homologação:
+
+- Backup diário.
+- Backup antes de qualquer deploy.
+
+Produção:
+
+- Backup diário completo.
+- Backup antes de deploy.
+- Retenção mínima sugerida:
+  - 7 backups diários.
+  - 4 backups semanais.
+  - 3 backups mensais.
+
+
+6. RESTORE DO BANCO
+===================
+
+Antes de restaurar:
+
+1. Confirmar que o backup pertence ao ambiente correto.
+2. Parar o backend para evitar escrita durante restore.
+3. Criar cópia de segurança do estado atual.
+4. Confirmar usuário, database e permissões.
+
+Comando base:
+
+pg_restore -h localhost -p 5432 -U postgres -d TB_ADS -c -v backup_TB_ADS_YYYYMMDD_HHMM.dump
+
+Exemplo:
+
+pg_restore -h localhost -p 5432 -U postgres -d TB_ADS -c -v backup_TB_ADS_20260705_0700.dump
+
+Se for restaurar em banco novo:
+
+1. Criar database vazio.
+2. Rodar pg_restore apontando para o novo database.
+3. Ajustar DB_URL se necessário.
+
+
+7. RESTORE DE UPLOADS
+=====================
+
+Procedimento:
+
+1. Parar o backend.
+2. Renomear a pasta atual de uploads como contingência.
+3. Extrair o ZIP de backup no local esperado.
+4. Conferir permissões de leitura/escrita.
+5. Subir o backend.
+6. Validar anexos/arquivos no sistema.
+
+
+8. VALIDAÇÃO APÓS RESTORE
+=========================
+
+Checklist mínimo:
+
+- Backend sobe sem erro.
+- /health responde.
+- Login funciona.
+- Empresas e usuários aparecem.
+- Clientes/produtos/pedidos aparecem.
+- Financeiro abre.
+- Caixa abre.
+- Documentos/anexos restaurados abrem.
+- Auditoria recente aparece.
+- Nenhum erro crítico no log.
+
+
+9. TESTE PERIÓDICO DE RESTORE
+=============================
+
+Backup só é confiável quando restore foi testado.
+
+Rotina recomendada:
+
+- Uma vez por mês, restaurar o último backup em banco separado.
+- Validar login e telas principais.
+- Registrar data, responsável e resultado do teste.
+
+Modelo de registro:
+
+Data:
+Responsável:
+Backup usado:
+Ambiente de teste:
+Resultado:
+Problemas encontrados:
+Ação corretiva:
+
+
+10. CRITÉRIO DE BACKUP SAUDÁVEL
+===============================
+
+O backup do Nexus One está saudável quando:
+
+- Existe backup recente do banco.
+- Existe backup recente dos uploads.
+- Configurações sensíveis estão guardadas com segurança.
+- O restore foi testado.
+- Há retenção definida.
+- Há responsável definido.
+- O procedimento está documentado para outra pessoa executar.

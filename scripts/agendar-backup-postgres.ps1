@@ -4,7 +4,8 @@ param(
     [string]$ComposeFile = "docker-compose.prod.yml",
     [string]$OutputDir = "backups",
     [string]$ServiceName = "postgres",
-    [string]$Time = "02:00"
+    [string]$Time = "02:00",
+    [int]$RetentionDays = 30
 )
 
 $ErrorActionPreference = "Stop"
@@ -33,7 +34,7 @@ if ($hour -lt 0 -or $hour -gt 23 -or $minute -lt 0 -or $minute -gt 59) {
     exit 1
 }
 
-$argument = "-NoProfile -ExecutionPolicy Bypass -File `"$backupScript`" -ComposeFile `"$ComposeFile`" -OutputDir `"$OutputDir`" -ServiceName `"$ServiceName`""
+$argument = "-NoProfile -ExecutionPolicy Bypass -File `"$backupScript`" -ComposeFile `"$ComposeFile`" -OutputDir `"$OutputDir`" -ServiceName `"$ServiceName`" -RetentionDays $RetentionDays"
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument $argument -WorkingDirectory $ProjectDir
 $trigger = New-ScheduledTaskTrigger -Daily -At ([datetime]::Today.AddHours($hour).AddMinutes($minute))
 $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Hours 2)
@@ -45,3 +46,4 @@ Write-Host "Projeto: $ProjectDir"
 Write-Host "Compose: $ComposeFile"
 Write-Host "Servico PostgreSQL: $ServiceName"
 Write-Host "Saida: $OutputDir"
+Write-Host "Retencao: $RetentionDays dia(s)"

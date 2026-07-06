@@ -14,18 +14,20 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   jpa:
+    open-in-view: false
     hibernate:
-      ddl-auto: update   # cria/atualiza tabelas automaticamente
-    show-sql: true       # mostra SQL no console
+      ddl-auto: ${JPA_DDL_AUTO:update}
+    show-sql: ${JPA_SHOW_SQL:false}
     properties:
       hibernate:
-        format_sql: true
+        format_sql: ${JPA_FORMAT_SQL:false}
 
 server:
   port: 8081
 
 jwt:
-  secret: ${JWT_SECRET:231247}
+  secret: ${JWT_SECRET:nexus-one-dev-jwt-secret-change-before-production-2026}
+  expiration-ms: ${JWT_EXPIRATION_MS:3600000}
 
 asaas:
   enabled: ${ASAAS_ENABLED:false}

@@ -1,0 +1,111 @@
+.status-badge {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid #dbe3ee;
+  border-radius: 999px;
+  color: #475569;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86), 0 7px 16px rgba(15, 27, 51, 0.045);
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.12);
+}
+
+.status-badge-success {
+  color: #ffffff;
+  background: linear-gradient(180deg, #22c55e, #059669);
+  border-color: rgba(220, 252, 231, 0.92);
+  box-shadow: inset 0 1px 0 rgba(240, 253, 244, 0.52), 0 10px 22px rgba(5, 150, 105, 0.24);
+}
+
+.status-badge-success::before {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(220, 252, 231, 0.34);
+}
+
+.status-badge-warning {
+  color: #ffffff;
+  background: linear-gradient(180deg, #fb923c, #ea580c);
+  border-color: rgba(255, 237, 213, 0.92);
+  box-shadow: inset 0 1px 0 rgba(255, 247, 237, 0.5), 0 10px 22px rgba(234, 88, 12, 0.28);
+}
+
+.status-badge-warning::before {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 237, 213, 0.36);
+}
+
+.status-badge-processing {
+  color: #1246a0;
+  background: linear-gradient(180deg, #f5f9ff, #eef4ff);
+  border-color: #dbe7ff;
+}
+
+.status-badge-info {
+  color: #0369a1;
+  background: linear-gradient(180deg, #f0f9ff, #e0f2fe);
+  border-color: #bae6fd;
+}
+
+.status-badge-danger {
+  color: #ffffff;
+  background: linear-gradient(180deg, #ef4444, #b91c1c);
+  border-color: rgba(254, 226, 226, 0.92);
+  box-shadow: inset 0 1px 0 rgba(254, 242, 242, 0.52), 0 10px 22px rgba(185, 28, 28, 0.24);
+}
+
+.status-badge-danger::before {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(254, 226, 226, 0.34);
+}
+
+.app-shell.theme-dark .status-badge {
+  color: #cbd5e1;
+  background: rgba(30, 41, 59, 0.72);
+  border-color: rgba(82, 102, 136, 0.5);
+}
+
+.app-shell.theme-dark .status-badge-success {
+  color: #ffffff;
+  background: linear-gradient(180deg, #22c55e, #047857);
+  border-color: rgba(220, 252, 231, 0.64);
+}
+
+.app-shell.theme-dark .status-badge-warning {
+  color: #ffffff;
+  background: linear-gradient(180deg, #f97316, #c2410c);
+  border-color: rgba(255, 237, 213, 0.72);
+}
+
+.app-shell.theme-dark .status-badge-processing {
+  color: #93c5fd;
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(96, 165, 250, 0.34);
+}
+
+.app-shell.theme-dark .status-badge-info {
+  color: #7dd3fc;
+  background: rgba(14, 116, 144, 0.18);
+  border-color: rgba(125, 211, 252, 0.32);
+}
+
+.app-shell.theme-dark .status-badge-danger {
+  color: #ffffff;
+  background: linear-gradient(180deg, #ef4444, #991b1b);
+  border-color: rgba(254, 226, 226, 0.64);
+}

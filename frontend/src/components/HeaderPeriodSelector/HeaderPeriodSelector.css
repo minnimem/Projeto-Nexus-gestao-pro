@@ -1,0 +1,140 @@
+.topbar-period-wrapper {
+  position: relative;
+}
+
+.topbar-period-chip {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid #e1e9f4;
+  border-radius: 10px;
+  color: #344154;
+  background: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 850;
+  box-shadow: 0 10px 22px rgba(15, 27, 51, 0.04);
+}
+
+.topbar-period-chip span {
+  color: inherit;
+  font-size: 12px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.period-menu {
+  position: absolute;
+  z-index: 44;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 226px;
+  display: grid;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid rgba(197, 210, 230, 0.92);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 20px 44px rgba(15, 27, 51, 0.15);
+  backdrop-filter: blur(12px);
+}
+
+.period-menu button {
+  min-height: 46px;
+  display: grid;
+  gap: 2px;
+  padding: 8px 9px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #344154;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.16s ease, background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+}
+
+.period-menu button:hover,
+.period-menu button.active {
+  color: #1d4ed8;
+  border-color: #dbe7ff;
+  background: #eef4ff;
+  transform: translateX(2px);
+}
+
+.period-menu strong,
+.period-menu small {
+  display: block;
+}
+
+.period-menu strong {
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.period-menu small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.app-shell.theme-dark .topbar-period-chip {
+  color: var(--ink);
+  border-color: rgba(82, 102, 136, 0.58);
+  background: rgba(17, 24, 39, 0.92);
+}
+
+.app-shell.theme-dark .period-menu {
+  color: var(--ink);
+  border-color: rgba(82, 102, 136, 0.58);
+  background: rgba(15, 23, 42, 0.96);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.46);
+}
+
+.app-shell.theme-dark .period-menu button {
+  color: #b7c3d6;
+}
+
+.app-shell.theme-dark .period-menu button:hover,
+.app-shell.theme-dark .period-menu button.active {
+  color: #dbeafe;
+  border-color: rgba(96, 165, 250, 0.36);
+  background: rgba(37, 99, 235, 0.2);
+}
+
+@media (max-width: 920px) {
+  .period-menu {
+    right: auto;
+    left: 0;
+    max-width: calc(100vw - 48px);
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar-period-wrapper {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+
+  .topbar-period-chip {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar-period-chip {
+    min-height: 34px;
+    border-radius: 9px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-period-chip {
+    min-width: 0;
+    padding-inline: 8px;
+  }
+}

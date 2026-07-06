@@ -1,0 +1,279 @@
+GUIA DE PERMISSAO POR PERFIL - NEXUS ONE
+========================================
+
+Objetivo:
+Explicar quais perfis existem no Nexus One, quais módulos cada perfil acessa e quais ações sensíveis precisam de permissão específica.
+
+
+1. PERFIS EXISTENTES
+====================
+
+Perfis do sistema:
+
+- MASTER
+- ADMIN
+- GERENTE
+- VENDEDOR
+- OPERADOR_CAIXA
+- ESTOQUISTA
+- FINANCEIRO
+
+Resumo:
+
+- MASTER: administra empresas, planos e liberações comerciais.
+- ADMIN: administra a operação da empresa.
+- GERENTE: gerencia operação diária e equipes.
+- VENDEDOR: atua em vendas, clientes e pedidos.
+- OPERADOR_CAIXA: opera caixa.
+- ESTOQUISTA: atua em produtos, estoque e logística.
+- FINANCEIRO: atua em contas, cobranças e relatórios financeiros.
+
+
+2. MATRIZ DE ACESSO POR MODULO
+==============================
+
+Modulo: Visao geral
+
+- ADMIN
+- GERENTE
+- VENDEDOR
+- OPERADOR_CAIXA
+- ESTOQUISTA
+- FINANCEIRO
+
+Modulo: Pedidos / Vendas
+
+- ADMIN
+- GERENTE
+- VENDEDOR
+
+Modulo: Caixa
+
+- ADMIN
+- GERENTE
+- OPERADOR_CAIXA
+
+Modulo: Clientes
+
+- ADMIN
+- GERENTE
+- VENDEDOR
+
+Modulo: Serviços
+
+- ADMIN
+- GERENTE
+- VENDEDOR
+
+Modulo: Produtos / Estoque
+
+- ADMIN
+- GERENTE
+- VENDEDOR
+- ESTOQUISTA
+
+Modulo: Financeiro
+
+- ADMIN
+- GERENTE
+- FINANCEIRO
+
+Modulo: Logística
+
+- ADMIN
+- GERENTE
+- ESTOQUISTA
+
+Modulo: Colaboradores
+
+- ADMIN
+- GERENTE
+
+Modulo: Relatórios
+
+- ADMIN
+- GERENTE
+- VENDEDOR
+- ESTOQUISTA
+- FINANCEIRO
+
+Modulo: Usuários
+
+- ADMIN
+- MASTER no front para funções administrativas específicas.
+
+Modulo: Empresas / Painel Master
+
+- MASTER
+
+
+3. ACOES SENSIVEIS
+==================
+
+Gerenciar colaboradores:
+
+- ADMIN
+
+Editar rotas:
+
+- ADMIN
+- GERENTE
+- ESTOQUISTA
+
+Imprimir rotas:
+
+- ADMIN
+- GERENTE
+- ESTOQUISTA
+
+Criar/alterar financeiro:
+
+- ADMIN
+- GERENTE
+- FINANCEIRO
+
+Estornar/reverter financeiro:
+
+- ADMIN
+
+Ver lucro/margem:
+
+- ADMIN
+- GERENTE
+- FINANCEIRO
+
+Operar caixa:
+
+- ADMIN
+- GERENTE
+- OPERADOR_CAIXA
+
+Gerenciar follow-up comercial:
+
+- ADMIN
+- GERENTE
+- VENDEDOR
+
+Gerenciar planos:
+
+- MASTER
+
+Exportar JSON:
+
+- ADMIN
+
+
+4. REGRAS DO PERFIL MASTER
+==========================
+
+O MASTER tem função diferente do ADMIN.
+
+Ele deve ser usado para:
+
+- Criar empresas.
+- Editar empresas.
+- Ativar/inativar empresas.
+- Atualizar plano comercial.
+- Liberar ou bloquear módulos de uma empresa.
+- Consultar visão master.
+
+O MASTER não deve operar rotinas comuns da empresa, como:
+
+- Criar venda do dia.
+- Abrir caixa.
+- Editar estoque operacional.
+- Dar baixa financeira comum.
+
+Essa separação evita misturar administração SaaS com operação da empresa cliente.
+
+
+5. PERMISSOES EXTRAS E BLOQUEADAS
+=================================
+
+O sistema suporta ajustes manuais por usuário.
+
+Permissão extra:
+
+- Libera uma ação ou módulo que o perfil normalmente não teria.
+- Exemplo: module:financeiro para um usuário específico.
+
+Permissão bloqueada:
+
+- Bloqueia uma ação ou módulo mesmo que o perfil normalmente tenha acesso.
+- Exemplo: action:seeProfit para impedir visão de lucro.
+
+Formato esperado:
+
+- module:nomeDoModulo
+- action:nomeDaAcao
+
+Exemplos:
+
+- module:financeiro
+- module:logistica
+- action:mutateFinance
+- action:operateCash
+- action:editRoute
+
+
+6. RELACAO COM PLANO COMERCIAL
+==============================
+
+Além do perfil, o plano da empresa também pode bloquear módulos.
+
+Exemplo:
+
+- Um usuário ADMIN pode ter permissão de perfil para fiscal.
+- Mas se o módulo fiscal não estiver liberado no plano da empresa, a tela deve ficar bloqueada.
+
+Validação correta:
+
+1. Verificar se o usuário tem perfil/permissão.
+2. Verificar se o plano da empresa libera o módulo.
+3. Verificar se não existe permissão bloqueada manual.
+
+
+7. BOAS PRATICAS OPERACIONAIS
+=============================
+
+- Usar ADMIN apenas para responsáveis reais.
+- Não usar MASTER no dia a dia da empresa.
+- Criar usuários individuais, sem login compartilhado.
+- Bloquear usuário inativo em vez de excluir imediatamente.
+- Revisar permissões extras periodicamente.
+- Evitar dar acesso financeiro para perfil sem necessidade.
+- Evitar liberar ação de estorno para muitos usuários.
+- Manter auditoria ativa para ações sensíveis.
+
+
+8. VALIDACAO RECOMENDADA
+========================
+
+Para homologar permissões:
+
+1. Criar usuário ADMIN.
+2. Criar usuário GERENTE.
+3. Criar usuário VENDEDOR.
+4. Criar usuário OPERADOR_CAIXA.
+5. Criar usuário ESTOQUISTA.
+6. Criar usuário FINANCEIRO.
+7. Testar login com cada perfil.
+8. Conferir menus visíveis.
+9. Conferir botões sensíveis.
+10. Conferir tentativa de acesso direto por URL.
+11. Conferir registro de auditoria em ações críticas.
+
+
+9. CRITERIO DE PERMISSAO OK
+===========================
+
+A política de permissões está saudável quando:
+
+- Cada perfil vê apenas os menus esperados.
+- Acesso direto a rota protegida é bloqueado.
+- Botões sensíveis aparecem apenas para perfis corretos.
+- Plano comercial bloqueia módulos não contratados.
+- Permissões extras funcionam.
+- Permissões bloqueadas prevalecem sobre permissões padrão.
+- MASTER gerencia empresas/planos sem operar rotina da empresa.
+- Auditoria registra alterações críticas.

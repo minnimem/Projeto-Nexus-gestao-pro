@@ -1,0 +1,35 @@
+.module-preview {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.module-preview .preview-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--primary);
+  background: #eef4ff;
+}
+
+.module-preview h2,
+.module-preview p {
+  margin: 0;
+}
+
+.module-preview h2 {
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.module-preview p {
+  max-width: 420px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-weight: 700;
+}

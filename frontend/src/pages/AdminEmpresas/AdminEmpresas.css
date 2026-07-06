@@ -1,0 +1,46 @@
+.risk-signal-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-width: 140px;
+}
+
+.risk-signal {
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 7px;
+  border-radius: 999px;
+  border: 1px solid #dbe3ee;
+  color: #475569;
+  background: #f8fafc;
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.risk-signal.success {
+  color: #047857;
+  background: #ecfdf5;
+  border-color: #bbf7d0;
+}
+
+.risk-signal.info {
+  color: #1d4ed8;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.risk-signal.warning {
+  color: #9a3412;
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.risk-signal.danger {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-color: #fecaca;
+}

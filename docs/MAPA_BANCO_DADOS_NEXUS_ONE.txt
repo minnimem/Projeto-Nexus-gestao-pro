@@ -1,0 +1,431 @@
+MAPA DO BANCO DE DADOS - NEXUS ONE
+==================================
+
+Arquivo: docs/MAPA_BANCO_DADOS_NEXUS_ONE.txt
+Projeto: Nexus One / Gestao Pro
+Fonte: entidades JPA em backend/projectoads/projectoads/src/main/java/br/com/diego/projectoads/model
+Objetivo: documentar a visao geral das tabelas, dominios e relacionamentos para facilitar manutencao e estudo.
+
+
+1. VISAO GERAL
+==============
+
+O banco local padrao e PostgreSQL, database TB_ADS. As tabelas principais sao mapeadas por entidades JPA no pacote model.
+
+Dominios principais:
+
+- Empresa, filiais, contratos e liberacao de modulos.
+- Usuarios, permissoes, login e seguranca.
+- Clientes.
+- Produtos, categorias, marcas, fornecedores e estoque.
+- Pedidos, itens, pagamentos e fiscal.
+- Caixa e movimentos.
+- Financeiro, recorrencias e cobrancas.
+- Comercial, follow-ups e comissao.
+- Logistica, entregas, rotas, entregadores, veiculos e transportadoras.
+- Servicos / ordens de servico.
+- Auditoria.
+
+
+2. EMPRESA E CONTROLE ADMINISTRATIVO
+====================================
+
+Tabelas/entidades:
+
+- Empresa
+- Filial
+- ContratoEmpresa
+- LiberacaoModuloEmpresa
+- ConfiguracaoFiscal
+- ConfiguracaoAutomacaoComercial
+
+Funcao:
+
+- Empresa representa o tenant/unidade principal de gestao.
+- Filial representa unidades vinculadas a uma empresa.
+- ContratoEmpresa controla plano, ciclo, valor e status comercial.
+- LiberacaoModuloEmpresa controla quais modulos estao liberados.
+- ConfiguracaoFiscal guarda parametros fiscais por empresa/filial/modelo.
+- ConfiguracaoAutomacaoComercial define automacoes comerciais por empresa/filial.
+
+Relacionamentos principais:
+
+- Filial pertence a Empresa.
+- Usuario pertence a Empresa e pode pertencer a Filial.
+- ContratoEmpresa pertence ao contexto comercial da Empresa.
+- LiberacaoModuloEmpresa referencia Empresa.
+- ConfiguracaoFiscal referencia Empresa e opcionalmente Filial.
+
+
+3. USUARIOS, ACESSO E PERMISSOES
+================================
+
+Tabelas/entidades:
+
+- Usuario
+- Permissao
+- LoginAuditoria
+- PasswordResetToken
+
+Funcao:
+
+- Usuario armazena login, senha, perfil, status e dados do colaborador.
+- Permissao representa chaves de permissao quando usadas pelo controle de acesso.
+- LoginAuditoria registra eventos de login.
+- PasswordResetToken controla recuperacao de senha.
+
+Relacionamentos principais:
+
+- Usuario referencia Empresa.
+- Usuario pode referenciar Filial.
+- PasswordResetToken referencia usuario/token de recuperacao.
+
+Campos importantes de Usuario:
+
+- login
+- senha_usuario
+- perfil
+- ativo
+- bloqueado
+- permissoes_extras
+- permissoes_bloqueadas
+
+
+4. CLIENTES
+===========
+
+Tabelas/entidades:
+
+- Cliente
+
+Funcao:
+
+- Guarda dados comerciais, contato, documento, endereco e dados fiscais do cliente.
+
+Relacionamentos principais:
+
+- Pedido referencia Cliente.
+- FollowUpComercial pode referenciar Cliente/Pedido conforme fluxo.
+- FollowUpCobranca pode referenciar Cliente/Financeiro conforme fluxo.
+
+Campos importantes:
+
+- nome
+- cpf/documento
+- email
+- telefone
+- endereco, numero, bairro, cidade, uf, cep
+- codigo_municipio
+- inscricao_estadual
+- asaas_customer_id
+
+
+5. PRODUTOS, FORNECEDORES E ESTOQUE
+===================================
+
+Tabelas/entidades:
+
+- Produto
+- Categoria
+- Marca
+- Fornecedor
+- Estoque
+- MovimentoEstoque
+- EstoqueMovimentacao
+- CompraEstoque
+- ItemCompraEstoque
+
+Funcao:
+
+- Produto guarda cadastro comercial, precos e dados fiscais.
+- Categoria organiza produtos e lancamentos.
+- Marca identifica fabricante/marca.
+- Fornecedor identifica origem de compra.
+- Estoque guarda saldo.
+- MovimentoEstoque e EstoqueMovimentacao registram entradas/saidas.
+- CompraEstoque e ItemCompraEstoque registram compras de mercadoria.
+
+Relacionamentos principais:
+
+- Produto pode referenciar Categoria.
+- Produto pode referenciar Marca.
+- Produto pode referenciar Fornecedor.
+- Estoque referencia Produto.
+- ItemPedido referencia Produto.
+- CompraEstoque referencia Fornecedor.
+- ItemCompraEstoque referencia CompraEstoque e Produto.
+
+Campos fiscais importantes de Produto:
+
+- ncm
+- cfop
+- cest
+- origem_fiscal
+- unidade_comercial
+- cst_icms
+- csosn
+- aliquotas de ICMS, PIS, COFINS, IPI e ISS
+
+
+6. PEDIDOS, ITENS E PAGAMENTOS
+==============================
+
+Tabelas/entidades:
+
+- Pedido
+- ItemPedido
+- Pagamento
+- DocumentoFiscal
+
+Funcao:
+
+- Pedido representa venda, orcamento ou fluxo comercial.
+- ItemPedido guarda produtos e quantidades do pedido.
+- Pagamento registra pagamentos vinculados.
+- DocumentoFiscal registra homologacao/emissao fiscal vinculada ao pedido.
+
+Relacionamentos principais:
+
+- Pedido referencia Cliente.
+- Pedido possui varios ItemPedido.
+- ItemPedido referencia Pedido.
+- ItemPedido referencia Produto.
+- Pagamento pode referenciar Pedido.
+- DocumentoFiscal referencia Pedido e configuracao fiscal.
+
+Fluxo principal:
+
+Cliente -> Pedido -> ItemPedido -> Produto
+Pedido -> Pagamento
+Pedido -> DocumentoFiscal
+
+
+7. CAIXA
+========
+
+Tabelas/entidades:
+
+- Caixa
+- MovimentoCaixa
+
+Funcao:
+
+- Caixa representa abertura, operacao e fechamento de caixa.
+- MovimentoCaixa registra venda, recebimento, suprimento, sangria e ajustes.
+
+Relacionamentos principais:
+
+- Caixa referencia Usuario.
+- Caixa referencia Empresa.
+- MovimentoCaixa referencia Caixa.
+- MovimentoCaixa pode referenciar Pedido/Pagamento conforme fluxo.
+
+Campos importantes:
+
+- data_abertura
+- data_fechamento
+- valor_inicial
+- valor_fechamento
+- saldo_calculado
+- divergencia
+- status
+
+
+8. FINANCEIRO E COBRANCAS
+=========================
+
+Tabelas/entidades:
+
+- Financeiro
+- RecorrenciaFinanceira
+- FollowUpCobranca
+
+Funcao:
+
+- Financeiro registra contas a pagar/receber e lancamentos.
+- RecorrenciaFinanceira gera lancamentos recorrentes.
+- FollowUpCobranca acompanha cobrancas e contatos financeiros.
+
+Relacionamentos principais:
+
+- Financeiro pode referenciar Pedido, Cliente, Empresa, Filial e Usuario conforme regra.
+- RecorrenciaFinanceira referencia Empresa, Filial e Usuario.
+- FollowUpCobranca acompanha lancamentos/cliente.
+
+
+9. COMERCIAL
+============
+
+Tabelas/entidades:
+
+- FollowUpComercial
+- ConfiguracaoComissao
+- ConfiguracaoAutomacaoComercial
+
+Funcao:
+
+- FollowUpComercial registra proximas acoes e contato com cliente.
+- ConfiguracaoComissao guarda percentual padrao de comissao.
+- ConfiguracaoAutomacaoComercial ativa alertas e recomendacoes comerciais.
+
+Relacionamentos principais:
+
+- FollowUpComercial pode referenciar Cliente, Pedido, Usuario, Empresa e Filial.
+- ConfiguracaoAutomacaoComercial referencia Empresa e opcionalmente Filial.
+
+
+10. LOGISTICA
+=============
+
+Tabelas/entidades:
+
+- Entrega
+- Entregador
+- RotaEntrega
+- Veiculo
+- Transportadora
+
+Funcao:
+
+- Entrega acompanha envio de pedido.
+- Entregador identifica responsavel pela entrega.
+- RotaEntrega organiza rotas, veiculos e entregadores.
+- Veiculo cadastra frota.
+- Transportadora cadastra parceiros de transporte.
+
+Relacionamentos principais:
+
+- Entrega pode referenciar Pedido.
+- RotaEntrega referencia Entregador.
+- RotaEntrega referencia Veiculo.
+
+
+11. SERVICOS / ORDEM DE SERVICO
+===============================
+
+Tabelas/entidades:
+
+- OrdemServico
+- OrdemServicoPeca
+
+Funcao:
+
+- OrdemServico controla atendimentos, servicos, status, prazos e faturamento.
+- OrdemServicoPeca registra pecas usadas na OS.
+
+Relacionamentos principais:
+
+- OrdemServico pode referenciar Cliente, Empresa, Filial e Tecnico/Usuario.
+- OrdemServicoPeca referencia OrdemServico.
+- OrdemServicoPeca pode referenciar Produto.
+
+
+12. FISCAL
+==========
+
+Tabelas/entidades:
+
+- ConfiguracaoFiscal
+- DocumentoFiscal
+
+Funcao:
+
+- ConfiguracaoFiscal define modelo, ambiente, serie, numeracao, certificado, CSC e endpoints.
+- DocumentoFiscal guarda payload, XML, status, protocolo, chave, pendencias, DANFE e pacote de conferencia.
+
+Relacionamentos principais:
+
+- ConfiguracaoFiscal referencia Empresa e Filial.
+- DocumentoFiscal referencia Pedido.
+- DocumentoFiscal referencia ConfiguracaoFiscal.
+
+
+13. AUDITORIA
+=============
+
+Tabelas/entidades:
+
+- AuditoriaEvento
+- LoginAuditoria
+
+Funcao:
+
+- AuditoriaEvento registra eventos administrativos, incluindo exclusoes.
+- LoginAuditoria registra eventos de autenticacao.
+
+Campos importantes de AuditoriaEvento:
+
+- data_evento
+- usuario_login
+- usuario_id
+- usuario_nome
+- perfil
+- modulo
+- acao
+- descricao
+- referencia_id
+- entidade
+- registro_id
+- registro_nome
+- metodo_http
+- rota
+
+
+14. RELACIONAMENTOS PRINCIPAIS EM TEXTO
+=======================================
+
+Empresa
+-> Filial
+-> Usuario
+-> ContratoEmpresa
+-> LiberacaoModuloEmpresa
+-> ConfiguracaoFiscal
+-> Financeiro
+-> Caixa
+
+Cliente
+-> Pedido
+-> FollowUpComercial
+-> FollowUpCobranca
+
+Pedido
+-> ItemPedido
+-> Pagamento
+-> DocumentoFiscal
+-> Entrega
+
+Produto
+-> ItemPedido
+-> Estoque
+-> MovimentoEstoque
+-> ItemCompraEstoque
+-> OrdemServicoPeca
+
+Caixa
+-> MovimentoCaixa
+
+Financeiro
+-> FollowUpCobranca
+-> RecorrenciaFinanceira
+
+OrdemServico
+-> OrdemServicoPeca
+
+
+15. CUIDADOS DE MANUTENCAO
+==========================
+
+- Nao alterar nome de tabela ou coluna sem migracao planejada.
+- Conferir impacto no front antes de remover campo de DTO/API.
+- Usar BigDecimal para valores monetarios.
+- Usar LocalDate/LocalDateTime para datas conforme contexto.
+- Evitar carregar relacionamentos LAZY fora da camada de service.
+- Manter open-in-view false.
+- Criar teste quando alterar regra financeira, fiscal, caixa, pedido ou auditoria.
+- Documentar nova entidade neste mapa quando criada.
+
+
+16. STATUS DO MAPA
+==================
+
+Este mapa e uma visao inicial de manutencao baseada nas entidades JPA existentes. Ele nao substitui uma modelagem ER completa extraida do banco real, mas ja organiza os dominios e os principais relacionamentos para estudo e evolucao.

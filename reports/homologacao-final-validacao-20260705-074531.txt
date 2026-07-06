@@ -1,0 +1,20 @@
+HOMOLOGACAO FINAL - NEXUS ONE
+Data: 05/07/2026 07:45:32
+Ambiente: validacao
+EnvFile: C:\Users\LENOVO\AppData\Local\Temp\nexus-homologacao-final-validacao.env
+ComposeFile: docker-compose.prod.yml
+BaseUrl: http://localhost:8081
+FrontendUrl: http://localhost:5173
+
+Resultados:
+- OK | Pre-deploy estrutural | Validado
+- OK | Publicacao front/back | Validado
+- OK | Observabilidade | Validado
+- OK | Usuario master | Validado
+- AVISO | Smoke operacional | Informe -Login e -Senha para executar.
+
+Avisos:
+- Smoke operacional via API nao executado porque Login/Senha nao foram informados.
+
+Falhas:
+- Nenhuma falha critica.

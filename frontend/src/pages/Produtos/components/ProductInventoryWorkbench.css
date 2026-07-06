@@ -1,0 +1,27 @@
+.inventory-workbench-panel {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.inventory-workbench-panel > .inline-form-panel,
+.inventory-workbench-panel > .inventory-tool-card {
+  min-width: 0;
+}
+
+.inventory-tool-card {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #edf2f7;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.inventory-tool-card > .panel-title {
+  min-height: 58px;
+  align-items: flex-start;
+  margin: 0;
+}

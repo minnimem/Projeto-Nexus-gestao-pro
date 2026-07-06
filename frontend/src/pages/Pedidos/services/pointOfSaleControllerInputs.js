@@ -1,0 +1,31 @@
+export function getPointOfSaleViewInput({
+  cashMode,
+  cartActions,
+  clientes,
+  produtos,
+  session,
+  state,
+}) {
+  return {
+    cashMode,
+    cart: cartActions.cart,
+    clientes,
+    clientSearch: state.clientSearch,
+    deliveryAddress: state.deliveryAddress,
+    deliveryNote: state.deliveryNote,
+    deliveryType: state.deliveryType,
+    discount: state.discount,
+    discountAmount: state.discountAmount,
+    discountMode: state.discountMode,
+    mixedPayments: state.mixedPayments,
+    paymentInstallments: state.paymentInstallments,
+    paymentMethod: state.paymentMethod,
+    productSearch: state.productSearch,
+    produtos,
+    quoteConditions: state.quoteConditions,
+    quoteValidity: state.quoteValidity,
+    receivedAmount: state.receivedAmount,
+    selectedClienteId: state.selectedClienteId,
+    session,
+  };
+}

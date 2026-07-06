@@ -1,0 +1,163 @@
+.stock-form {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+}
+
+.stock-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.stock-product-search {
+  position: relative;
+}
+
+.stock-form label span {
+  color: #334155;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.stock-form input,
+.stock-form select,
+.stock-form textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 11px;
+  border: 1px solid #c8d3e1;
+  border-radius: 10px;
+  color: var(--ink);
+  background: #fff;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78), 0 6px 14px rgba(15, 27, 51, 0.035);
+}
+
+.stock-form textarea {
+  min-height: 76px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.stock-form input:focus,
+.stock-form select:focus,
+.stock-form textarea:focus {
+  border-color: rgba(37, 99, 235, 0.52);
+  background: #fff;
+  box-shadow: var(--premium-ring);
+  outline: none;
+}
+
+.stock-form .client-search-box input,
+.stock-form .client-search-box input:focus {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.stock-search-results {
+  top: calc(100% + 6px);
+}
+
+.inline-clear-button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 8px;
+  color: #991b1b;
+  background: #fef2f2;
+  cursor: pointer;
+}
+
+.stock-current {
+  margin: -2px 0 0;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.stock-current strong {
+  color: var(--ink);
+  font-weight: 950;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #e8eef7;
+}
+
+.segmented button,
+.stock-form > button {
+  min-height: 38px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.segmented button {
+  color: #64748b;
+  background: transparent;
+}
+
+.segmented button.active {
+  color: var(--primary);
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.stock-form > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.stock-form > button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.app-shell.theme-dark .stock-form,
+.app-shell.theme-dark .stock-form input,
+.app-shell.theme-dark .stock-form select,
+.app-shell.theme-dark .stock-form textarea {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.86);
+  border-color: rgba(82, 102, 136, 0.52);
+}
+
+.app-shell.theme-dark .stock-form label span {
+  color: #b7c3d6;
+}
+
+.app-shell.theme-dark .stock-form input,
+.app-shell.theme-dark .stock-form select,
+.app-shell.theme-dark .stock-form textarea {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.form-message {
+  margin: 0;
+  padding: 9px 11px;
+  border-radius: 10px;
+  color: #475569;
+  background: #fff;
+  border: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 800;
+}

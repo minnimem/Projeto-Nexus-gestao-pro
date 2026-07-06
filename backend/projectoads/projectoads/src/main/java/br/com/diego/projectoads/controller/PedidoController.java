@@ -1,17 +1,25 @@
 package br.com.diego.projectoads.controller;
 
-import br.com.diego.projectoads.dto.PedidoFinalizacaoRequest;
 import br.com.diego.projectoads.dto.FinanceiroResponse;
 import br.com.diego.projectoads.dto.PedidoCancelamentoLoteRequest;
+import br.com.diego.projectoads.dto.PedidoFinalizacaoRequest;
 import br.com.diego.projectoads.dto.PedidoRequest;
 import br.com.diego.projectoads.dto.PedidoResponse;
 import br.com.diego.projectoads.model.Pedido;
 import br.com.diego.projectoads.service.PedidoService;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -55,12 +63,6 @@ public class PedidoController {
 
     @PostMapping
     public ResponseEntity<PedidoResponse> criar(@RequestBody PedidoRequest req) {
-
-        // 🔥
-        var prioridade = req.getPrioridade();
-
-        System.out.println("Prioridade recebida: " + prioridade);
-
         Pedido salvo = pedidoService.criarPedido(req);
         return ResponseEntity.status(201).body(new PedidoResponse(salvo));
     }

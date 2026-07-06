@@ -1,0 +1,38 @@
+.ui-button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ui-button-primary {
+  color: #fff;
+  background: var(--primary);
+}
+
+.ui-button-secondary {
+  color: var(--text);
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.ui-button-danger {
+  color: #fff;
+  background: #b91c1c;
+}
+
+.ui-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.ui-button[title]:disabled {
+  cursor: help;
+}

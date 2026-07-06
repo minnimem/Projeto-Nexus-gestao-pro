@@ -1,0 +1,77 @@
+.app-shell {
+  min-height: 100vh;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 244px minmax(0, 1fr);
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 78% 0%, rgba(37, 99, 235, 0.07), transparent 28vw),
+    #f6f8fc;
+}
+
+.app-shell.theme-dark {
+  --bg: #070b14;
+  --surface: #0f172a;
+  --ink: #eef5ff;
+  --muted: #9aa8bd;
+  --border: #223047;
+  --sidebar: #0b1220;
+  --sidebar-soft: #111827;
+  --shadow: 0 24px 54px rgba(0, 0, 0, 0.34);
+  --shadow-soft: 0 14px 32px rgba(0, 0, 0, 0.24);
+  --shadow-hover: 0 22px 46px rgba(0, 0, 0, 0.34);
+  --panel-gradient: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.9));
+  --premium-ring: 0 0 0 4px rgba(96, 165, 250, 0.18);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.13), transparent 30%),
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.18), transparent 30%),
+    linear-gradient(180deg, #07101f 0%, #090d16 100%);
+}
+
+.app-shell.theme-dark .workspace {
+  background: transparent;
+}
+
+.app-shell.sidebar-collapsed {
+  grid-template-columns: 86px minmax(0, 1fr);
+}
+
+.workspace {
+  min-width: 0;
+  max-width: 100%;
+  padding: 22px 28px 32px;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1280px) {
+  .app-shell {
+    grid-template-columns: 216px minmax(0, 1fr);
+  }
+
+  .app-shell.sidebar-collapsed {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+
+  .workspace {
+    padding: 18px 20px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .workspace {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 920px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .workspace {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,277 @@
+MANUAL DO USUARIO FINAL - NEXUS ONE
+===================================
+
+Arquivo: docs/MANUAL_USUARIO_FINAL_NEXUS_ONE.txt
+Projeto: Nexus One / Gestao Pro
+Objetivo: orientar o uso diario do sistema por administradores, gestores, vendedores, operadores de caixa, financeiro e equipe operacional.
+
+
+1. ACESSO AO SISTEMA
+====================
+
+1. Abrir o navegador.
+2. Acessar o endereco informado pela empresa.
+3. Digitar usuario/login e senha.
+4. Clicar em Entrar.
+
+Se o acesso falhar:
+
+- Conferir se o usuario foi digitado corretamente.
+- Conferir a senha.
+- Verificar com o administrador se o usuario esta ativo.
+- Verificar com o administrador se o perfil possui permissao para acessar o modulo desejado.
+
+
+2. VISAO GERAL
+==============
+
+A Visao Geral apresenta um resumo da operacao:
+
+- Indicadores de vendas.
+- Status operacional.
+- Alertas.
+- Pedidos recentes.
+- Informacoes financeiras resumidas.
+- Estoque e movimentacoes importantes.
+
+Use esta tela para acompanhar a saude do negocio antes de entrar nos modulos especificos.
+
+
+3. CLIENTES
+===========
+
+O modulo Clientes permite:
+
+- Cadastrar clientes.
+- Editar dados cadastrais.
+- Buscar e filtrar clientes.
+- Consultar historico comercial.
+- Acompanhar follow-ups.
+- Ver dados fiscais e de endereco quando preenchidos.
+
+Boas praticas:
+
+- Preencher nome, documento, telefone e email sempre que possivel.
+- Manter endereco fiscal correto para evitar problemas em pedido e emissao fiscal.
+- Registrar observacoes importantes para atendimento futuro.
+
+
+4. PRODUTOS E ESTOQUE
+=====================
+
+O modulo de Produtos/Estoque permite:
+
+- Cadastrar produtos.
+- Editar preco, custo e dados fiscais.
+- Acompanhar saldo.
+- Ver alertas de estoque baixo.
+- Controlar categorias, marcas e fornecedores, quando habilitado.
+
+Boas praticas:
+
+- Conferir preco e custo antes de liberar venda.
+- Manter codigo de barras e dados fiscais quando o produto for vendido com documento fiscal.
+- Revisar estoque baixo diariamente.
+
+
+5. VENDAS, PEDIDOS E PDV
+========================
+
+O modulo de Vendas/Pedidos permite:
+
+- Criar orcamentos.
+- Criar pedidos.
+- Adicionar produtos.
+- Aplicar descontos permitidos.
+- Acompanhar separacao.
+- Enviar pedido para pagamento.
+- Consultar pedido por status.
+
+Fluxo comum:
+
+1. Selecionar cliente.
+2. Adicionar itens.
+3. Conferir quantidade, preco e desconto.
+4. Salvar pedido ou finalizar venda.
+5. Encaminhar para caixa/financeiro quando necessario.
+
+
+6. CAIXA
+========
+
+O modulo Caixa permite:
+
+- Abrir caixa.
+- Registrar recebimentos.
+- Conferir formas de pagamento.
+- Registrar suprimento e sangria.
+- Fechar caixa.
+- Consultar movimentacoes do dia.
+
+Cuidados:
+
+- Abrir caixa antes de operar recebimentos.
+- Conferir valores antes de finalizar.
+- Fechar caixa no fim do turno.
+- Apenas perfis autorizados devem operar caixa.
+
+
+7. FINANCEIRO
+=============
+
+O modulo Financeiro permite:
+
+- Acompanhar contas a receber.
+- Acompanhar contas a pagar.
+- Controlar cobrancas.
+- Ver recorrencias.
+- Consultar conciliacao.
+- Acompanhar follow-ups financeiros.
+
+Boas praticas:
+
+- Revisar vencimentos diariamente.
+- Atualizar status de pagamentos recebidos.
+- Registrar follow-up quando houver cobranca pendente.
+- Conferir caixa e financeiro no fechamento do dia.
+
+
+8. FISCAL
+=========
+
+Quando habilitado, o fluxo fiscal permite:
+
+- Configurar dados fiscais da empresa.
+- Preparar documento fiscal de homologacao.
+- Validar XML.
+- Transmitir para provedor configurado.
+- Consultar pendencias fiscais.
+- Baixar XML, JSON, DANFE ou dossie de conferencia.
+
+Cuidados:
+
+- Dados de empresa, cliente e produto precisam estar corretos.
+- Certificado, CSC, token e endpoint real devem ser configurados fora do Git.
+- Antes de emissao real, validar com contador/provedor fiscal.
+
+
+9. COLABORADORES E PERMISSOES
+=============================
+
+O modulo Colaboradores permite:
+
+- Cadastrar usuarios.
+- Definir perfil.
+- Ativar ou desativar acesso.
+- Controlar permissoes por modulo.
+
+Perfis comuns:
+
+- ADMIN: acesso administrativo amplo.
+- GERENTE: gestao operacional e acompanhamento.
+- VENDEDOR: vendas e clientes.
+- OPERADOR_CAIXA: operacao de caixa.
+- FINANCEIRO: acompanhamento financeiro.
+
+Cada empresa pode ajustar permissao conforme necessidade.
+
+
+10. RELATORIOS
+==============
+
+O modulo Relatorios permite consultar informacoes consolidadas:
+
+- Vendas.
+- Clientes.
+- Produtos.
+- Estoque.
+- Caixa.
+- Financeiro.
+- Fiscal.
+- Operacao.
+
+Use filtros de periodo, status e modulo para obter resultados mais precisos.
+
+
+11. PAINEL DE CONTROLE
+======================
+
+O Painel de Controle concentra configuracoes administrativas:
+
+- Dados da empresa.
+- Filiais.
+- Planos comerciais.
+- Modulos liberados.
+- Configuracoes fiscais.
+- Auditoria.
+- Parametros de funcionamento.
+
+Somente usuarios autorizados devem alterar essas configuracoes.
+
+
+12. AUDITORIA E EXCLUSOES
+=========================
+
+O sistema pode registrar operacoes sensiveis, especialmente exclusoes.
+
+O registro interno ajuda a identificar:
+
+- Quem excluiu.
+- O que foi excluido.
+- Qual ID foi afetado.
+- Quando a acao aconteceu.
+
+Esse historico deve ser usado para conferencia administrativa e investigacao interna.
+
+
+13. ROTINA DIARIA RECOMENDADA
+=============================
+
+Inicio do dia:
+
+- Verificar alertas na Visao Geral.
+- Conferir estoque baixo.
+- Abrir caixa, se houver operacao de venda.
+- Conferir pedidos pendentes.
+
+Durante o dia:
+
+- Registrar vendas corretamente.
+- Atualizar clientes e produtos quando necessario.
+- Acompanhar cobrancas e follow-ups.
+- Conferir mensagens de erro antes de repetir operacoes.
+
+Fim do dia:
+
+- Fechar caixa.
+- Conferir financeiro.
+- Consultar pedidos pendentes.
+- Verificar relatorios principais.
+- Comunicar inconsistencias ao administrador.
+
+
+14. BOAS PRATICAS
+=================
+
+- Nao compartilhar senha.
+- Sair do sistema ao terminar o uso.
+- Conferir dados antes de salvar.
+- Evitar excluir registros sem necessidade.
+- Usar filtros antes de exportar relatorios grandes.
+- Manter cadastro de cliente, produto e empresa sempre atualizado.
+- Avisar o suporte quando aparecer erro visual ou mensagem inesperada.
+
+
+15. SUPORTE
+===========
+
+Ao pedir suporte, informar:
+
+- Tela onde ocorreu o problema.
+- Horario aproximado.
+- Usuario logado.
+- Acao realizada.
+- Mensagem de erro exibida.
+- Print da tela, se possivel.
+
+Essas informacoes reduzem o tempo de diagnostico e ajudam a corrigir o problema com mais precisao.

@@ -1,0 +1,175 @@
+
+
+@media (max-width: 1280px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reports-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .report-card {
+    border-radius: 10px;
+  }
+
+  .report-card-head {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .report-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .report-actions button {
+    flex: 1 1 140px;
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 480px) {
+  body {
+    background: #f6f8fc;
+  }
+
+  .kpi-grid,
+  .reports-grid,
+  .reports-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compact-metrics-grid,
+  .executive-bi-grid,
+  .report-schedule-grid,
+  .report-schedule-summary,
+  .payment-method-grid,
+  .customer-revenue-grid,
+  .reconciliation-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 920px) {
+  .sales-context-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .sales-context-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kpi-grid,
+  .overview-grid,
+  .executive-snapshot,
+  .overview-command-grid,
+  .overview-activity-grid,
+  .overview-side-stack,
+  .service-evidence-panel,
+  .sales-kpi-pulse,
+  .sales-insight-grid,
+  .reports-grid,
+  .sales-period-summary,
+  .report-schedule-grid,
+  .report-schedule-summary,
+  .payment-method-grid,
+  .customer-revenue-grid,
+  .automation-alert-grid,
+  .cash-status-grid,
+  .cash-receipts-strip,
+  .cash-receipts-methods,
+  .cash-close-conciliation-grid,
+  .executive-bi-grid,
+  .route-map-grid,
+  .delivery-status-board,
+  .role-goal-grid,
+  .work-status-grid,
+  .shift-summary-grid,
+  .permission-coverage-grid,
+  .permission-profile-list,
+  .audit-coverage-grid,
+  .audit-event-list,
+  .hierarchy-grid,
+  .sensitive-permission-grid,
+  .audit-entity-grid,
+  .stock-severity-grid,
+  .inventory-intelligence-grid,
+  .label-action-grid,
+  .purchase-cost-preview,
+  .finance-form-row,
+  .logistics-forms-grid,
+  .order-filter-grid,
+  .reconciliation-detail-grid,
+  .reconciliation-grid,
+  .customer-filter-row,
+  .customer-create-topbar,
+  .due-account-card {
+    grid-template-columns: 1fr;
+  }
+
+  .due-account-status {
+    text-align: left;
+    white-space: normal;
+  }
+
+  .cash-action-buttons,
+  .cash-history-summary,
+  .closing-report-grid,
+  .critical-permissions,
+  .payment-report-row {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-report-row strong,
+  .payment-report-head em {
+    text-align: left;
+  }
+
+  .customer-mobile-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .customer-table-wrap {
+    display: none;
+  }
+
+  .followup-reminder-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 560px) {
+  .customer-mobile-head,
+  .customer-mobile-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-mobile-head .customer-avatar {
+    display: none;
+  }
+
+  .sales-context-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .sales-context-copy strong {
+    font-size: 19px;
+  }
+
+  .health-list {
+    grid-template-columns: 1fr;
+  }
+
+  .delivery-options {
+    grid-template-columns: 1fr;
+  }
+}
+

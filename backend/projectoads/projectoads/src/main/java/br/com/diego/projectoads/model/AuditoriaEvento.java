@@ -24,6 +24,12 @@ public class AuditoriaEvento {
     @Column(name = "usuario_login", length = 80)
     private String usuarioLogin;
 
+    @Column(name = "usuario_id", length = 80)
+    private String usuarioId;
+
+    @Column(name = "usuario_nome", length = 120)
+    private String usuarioNome;
+
     @Column(name = "perfil", length = 30)
     private String perfil;
 
@@ -38,6 +44,21 @@ public class AuditoriaEvento {
 
     @Column(name = "referencia_id", length = 80)
     private String referenciaId;
+
+    @Column(name = "entidade", length = 120)
+    private String entidade;
+
+    @Column(name = "registro_id", length = 120)
+    private String registroId;
+
+    @Column(name = "registro_nome", length = 255)
+    private String registroNome;
+
+    @Column(name = "metodo_http", length = 12)
+    private String metodoHttp;
+
+    @Column(name = "rota", length = 255)
+    private String rota;
 
     @PrePersist
     public void prePersist() {

@@ -1,0 +1,255 @@
+RELATORIO DE COMPONENTES GRANDES DO FRONT-END
+=============================================
+
+Arquivo: docs/RELATORIO_COMPONENTES_GRANDES_FRONTEND.txt
+Projeto: Nexus One / Gestao Pro
+Objetivo: registrar os maiores arquivos do front-end apos a separacao, para orientar proximas refatoracoes sem mexer em comportamento desnecessariamente.
+
+
+1. RESULTADO DA MEDICAO
+=======================
+
+Arquivos com maior quantidade de linhas em frontend/src:
+
+- frontend/src/pages/Financeiro/Financeiro.jsx - 348 linhas apos refinamento inicial
+- frontend/src/pages/Servicos/Servicos.jsx - 324 linhas apos refinamento inicial
+- frontend/src/pages/Caixa/Caixa.jsx - 341 linhas apos refinamento inicial
+- frontend/src/pages/Logistica/Logistica.jsx - 338 linhas apos refinamento inicial
+- frontend/src/pages/Colaboradores/Colaboradores.jsx - 150 linhas apos refinamento inicial
+- frontend/src/pages/VisaoGeral/VisaoGeral.jsx - 346 linhas apos refinamento inicial
+- frontend/src/pages/Logistica/viewModels/logisticsViewModel.js - 345 linhas apos refinamento inicial
+- frontend/src/pages/AdminEmpresas/AdminEmpresas.jsx - 324 linhas apos refinamento inicial
+- frontend/src/utils/productLabels.js - 174 linhas apos refinamento inicial
+- frontend/src/pages/VisaoGeral/viewModels/overviewInsightsViewModel.js - 335 linhas
+- frontend/src/pages/Colaboradores/hooks/useCollaboratorsDashboardData.js - 334 linhas apos refinamento inicial
+- frontend/src/utils/salesDocuments.js - 331 linhas
+- frontend/src/pages/Relatorios/Relatorios.jsx - 328 linhas
+- frontend/src/pages/Servicos/components/ServiceOrderForm.jsx - 307 linhas
+- frontend/src/pages/Servicos/viewModels/serviceViewModel.js - 303 linhas
+- frontend/src/pages/Clientes/viewModels/createCustomerPageViewModel.js - 281 linhas
+
+
+2. PRIORIZACAO DE REFATORACAO
+=============================
+
+Prioridade alta:
+
+- Financeiro.jsx
+  Separar hooks de carregamento, acoes de lancamento/cobranca e componentes de secoes.
+
+- Servicos.jsx
+  Separar operacoes de ordem de servico, assinatura, pecas e historico em hooks/servicos.
+
+- Caixa.jsx
+  Separar fluxo de abertura/fechamento, pagamento, movimentos e indicadores.
+
+- Logistica.jsx
+  Separar entregas, rotas, filtros e viewModel em arquivos menores.
+
+- Colaboradores.jsx
+  Separar formulario, filtros, permissoes e acoes de usuario.
+
+Prioridade media:
+
+- VisaoGeral.jsx
+- AdminEmpresas.jsx
+- Relatorios.jsx
+- ServiceOrderForm.jsx
+
+Prioridade baixa, mas importante:
+
+- utils/productLabels.js
+- utils/salesDocuments.js
+- viewModels grandes com muitas regras derivadas.
+
+
+3. PADRAO RECOMENDADO PARA QUEBRAR ARQUIVOS
+===========================================
+
+Quando uma tela passar de 400 linhas, avaliar separacao em:
+
+- components/
+  Partes visuais reutilizaveis ou secoes da pagina.
+
+- hooks/
+  Estado, carregamento e acoes assincornas.
+
+- services/
+  Regras de chamada ou transformacao especificas do modulo.
+
+- viewModels/
+  Preparacao de dados para exibicao.
+
+- constants/
+  Listas fixas, opcoes de filtro e mapas de status.
+
+
+4. CRITERIO PARA MARCAR COMO CONCLUIDO
+======================================
+
+Uma refatoracao pode ser considerada concluida quando:
+
+- O arquivo principal da pagina ficar preferencialmente abaixo de 350 linhas.
+- O comportamento visual continuar igual.
+- O build do front passar.
+- Nenhuma chamada HTTP for duplicada desnecessariamente.
+- O estado da tela continuar previsivel.
+
+
+5. COMANDO USADO PARA MEDICAO
+=============================
+
+PowerShell:
+
+```text
+Get-ChildItem -Path frontend/src -Recurse -Include *.jsx,*.js |
+  ForEach-Object {
+    $count = (Get-Content -LiteralPath $_.FullName | Measure-Object -Line).Lines
+  }
+```
+
+
+6. STATUS
+=========
+
+Revisao concluida nesta rodada. Proxima melhoria recomendada: iniciar pela separacao de Financeiro.jsx, Caixa.jsx ou Servicos.jsx, pois sao arquivos grandes e de alto impacto operacional.
+
+
+7. ANDAMENTO DE REFATORACAO
+===========================
+
+Financeiro.jsx:
+
+- Criado hook frontend/src/pages/Financeiro/hooks/useFinancePageState.js.
+- Estado inicial da tela, filtros, mensagens, formulario financeiro, formulario de categoria, cobranca selecionada e controles de historico orfao foram movidos para o hook.
+- Criado hook frontend/src/pages/Financeiro/hooks/useFinanceDashboardData.js.
+- Contexto financeiro, viewModels de movimento, DRE, previsao, contas, cobranca, reconciliacao, plano de acao e resumo de reconciliacao foram movidos para o hook.
+- Criado componente frontend/src/pages/Financeiro/components/FinanceReconciliationOperationsSection.jsx.
+- Blocos finais de reconciliacao e operacoes financeiras foram movidos para um componente de orquestracao.
+- Criado componente frontend/src/pages/Financeiro/components/FinanceCashCollectionAccountsSection.jsx.
+- Blocos de fluxo de caixa, cobranca e contas foram movidos para um componente de orquestracao.
+- Financeiro.jsx reduziu para 348 linhas apos as extracoes e atingiu a meta de ficar abaixo de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para Financeiro.jsx:
+
+- Manter monitoramento de tamanho, mas priorizar agora Servicos.jsx, Caixa.jsx, Logistica.jsx e Colaboradores.jsx.
+
+
+Servicos.jsx:
+
+- Removido BOM do arquivo Servicos.jsx para manter UTF-8 sem BOM.
+- Criado hook frontend/src/pages/Servicos/hooks/useServicePageState.js.
+- Criado hook frontend/src/pages/Servicos/hooks/useServiceDashboardData.js.
+- Criado hook frontend/src/pages/Servicos/hooks/useServiceOrderOperations.js.
+- Criado hook frontend/src/pages/Servicos/hooks/useServiceSignatureCanvas.js.
+- Estados, refs, filtros, dados base, KPIs, historico, recorrencias, listas filtradas e linhas de exportacao foram movidos para hooks.
+- Operacoes de criacao, status, faturamento, baixa de pecas, anexos, assinatura digitalizada e checklist foram movidas para hook.
+- Assinatura desenhada, canvas e envio da assinatura por desenho foram movidos para hook.
+- Servicos.jsx reduziu de 594 para 324 linhas e atingiu a meta de ficar abaixo de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para Servicos.jsx:
+
+- Manter monitoramento de tamanho, mas priorizar agora Caixa.jsx, Logistica.jsx e Colaboradores.jsx.
+
+
+Caixa.jsx:
+
+- Removido BOM do arquivo Caixa.jsx para manter UTF-8 sem BOM.
+- Criado hook frontend/src/pages/Caixa/hooks/useCashRegisterOperations.js.
+- Criado hook frontend/src/pages/Caixa/hooks/useCashRegisterState.js.
+- Criado hook frontend/src/pages/Caixa/hooks/useCashRegisterDashboardData.js.
+- Operacoes de abrir caixa, movimentar, fechar, ver relatorio, receber pedido, gerar cobranca e copiar dados de cobranca foram movidas para hook.
+- Estado da tela de caixa, formularios, filtros, mensagens, selecoes, carregamentos e recibo foram movidos para hook.
+- Dados base, filtros derivados, fechamento, resumo por pagamento, historico e pedido selecionado foram movidos para hook.
+- Caixa.jsx reduziu de 591 para 341 linhas e atingiu a meta de ficar abaixo de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para Caixa.jsx:
+
+- Manter monitoramento de tamanho, mas priorizar agora Logistica.jsx, Colaboradores.jsx e VisaoGeral.jsx.
+
+
+Logistica.jsx:
+
+- Criado hook frontend/src/pages/Logistica/hooks/useLogisticsPageState.js.
+- Criado hook frontend/src/pages/Logistica/hooks/useLogisticsOperations.js.
+- Estados da tela, formularios, filtros, paineis e selecoes foram movidos para hook dedicado.
+- Operacoes de atualizar status, cadastrar veiculo, entregador, transportadora, rota, editar rota e vincular ativos foram movidas para hook dedicado.
+- Logistica.jsx reduziu de 555 para 338 linhas e atingiu a meta de ficar abaixo de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para Logistica.jsx:
+
+- Manter monitoramento de tamanho, mas priorizar agora Colaboradores.jsx, VisaoGeral.jsx e AdminEmpresas.jsx.
+
+
+Colaboradores.jsx:
+
+- Criado hook frontend/src/pages/Colaboradores/hooks/useCollaboratorsDashboardData.js.
+- Filtros derivados, KPIs, cobertura por filial, estrutura organizacional, hierarquia, metas por perfil, jornada, permissao, auditoria RH e pendencias foram movidos para hook dedicado.
+- Criado viewModel frontend/src/pages/Colaboradores/viewModels/collaboratorGovernanceViewModel.js.
+- Governanca de permissoes, cobertura por perfil, auditoria RH e pendencias criticas foram movidas para viewModel dedicado.
+- Colaboradores.jsx reduziu de 535 para 150 linhas e atingiu a meta de ficar abaixo de 350 linhas.
+- useCollaboratorsDashboardData.js ficou com 334 linhas apos a segunda separacao e tambem ficou abaixo da meta de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para Colaboradores.jsx:
+
+- Manter monitoramento de tamanho, mas priorizar agora VisaoGeral.jsx, AdminEmpresas.jsx e utils/viewModels acima de 350 linhas.
+
+
+VisaoGeral.jsx:
+
+- Criado hook frontend/src/pages/VisaoGeral/hooks/useOverviewWidgetLayout.js.
+- Criado hook frontend/src/pages/VisaoGeral/hooks/useOverviewActivityData.js.
+- Estado persistido de widgets, alertas dispensados, relatorio diario, ordenacao e exibicao de widgets foram movidos para hook dedicado.
+- Tendencias de vendas/caixa, atividades recentes e catalogo de widgets foram movidos para hook dedicado.
+- Corrigido risco de erro visual em atividades recentes ao definir movimentacoes financeiras e filtro de periodo dentro do hook.
+- VisaoGeral.jsx reduziu de 481 para 346 linhas e atingiu a meta de ficar abaixo de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para VisaoGeral.jsx:
+
+- Manter monitoramento de tamanho, mas priorizar agora AdminEmpresas.jsx e utilitarios/viewModels acima de 350 linhas.
+
+
+AdminEmpresas.jsx:
+
+- Criado hook frontend/src/pages/AdminEmpresas/hooks/useAdminCompaniesState.js.
+- Criado hook frontend/src/pages/AdminEmpresas/hooks/useAdminCompaniesData.js.
+- Estado de formulario, filtros, mensagens, carregamentos, empresa selecionada, plano e liberacoes foram movidos para hook dedicado.
+- Indicadores, empresas filtradas, linhas de exportacao e historico comercial foram movidos para hook dedicado.
+- AdminEmpresas.jsx reduziu de 405 para 324 linhas e atingiu a meta de ficar abaixo de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para AdminEmpresas.jsx:
+
+- Manter monitoramento de tamanho, mas priorizar agora utilitarios/viewModels acima de 350 linhas, principalmente logisticsViewModel.js e productLabels.js.
+
+
+logisticsViewModel.js:
+
+- Criado modulo frontend/src/pages/Logistica/viewModels/logisticsRouteDocuments.js.
+- Helpers de rota/entrega e funcoes de impressao de comprovante/romaneio foram movidos para modulo dedicado.
+- logisticsViewModel.js manteve reexports para preservar imports existentes dos componentes.
+- logisticsViewModel.js reduziu de 472 para 345 linhas e atingiu a meta de ficar abaixo de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para logisticsViewModel.js:
+
+- Manter monitoramento de tamanho, mas priorizar agora frontend/src/utils/productLabels.js.
+
+
+productLabels.js:
+
+- Criado utilitario frontend/src/utils/productLabelCodes.js.
+- Geracao de codigo de barras Code128, QR Code e funcoes auxiliares de codificacao foram movidas para modulo dedicado.
+- productLabels.js manteve reexports de buildCode128Svg e buildQrCodeSvg para preservar imports existentes.
+- productLabels.js reduziu de 361 para 174 linhas e atingiu a meta de ficar abaixo de 350 linhas.
+- Build do front validado apos a extracao.
+
+Proxima etapa recomendada para productLabels.js:
+
+- Manter monitoramento de tamanho, mas priorizar agora validacoes funcionais pendentes do checklist e arquivos entre 300-350 linhas apenas se ficarem dificeis de manter.

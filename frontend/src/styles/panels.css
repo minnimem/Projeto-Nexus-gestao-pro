@@ -1,0 +1,116 @@
+.panel {
+  position: relative;
+  min-width: 0;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--panel-gradient);
+  border: 1px solid #e4ebf5;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.panel:hover {
+  border-color: rgba(37, 99, 235, 0.18);
+  box-shadow: var(--shadow-hover);
+}
+
+.panel-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-title h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 950;
+}
+
+.panel-title p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.panel-title > span {
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: var(--primary);
+  background: linear-gradient(135deg, #eef4ff, #f3f8ff);
+  border: 1px solid #dbe7ff;
+  font-size: 11px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.panel-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panel-actions > span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--primary);
+  background: #eef4ff;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.app-shell.theme-dark .panel {
+  color: var(--ink);
+  background: var(--panel-gradient);
+  border-color: rgba(82, 102, 136, 0.48);
+  box-shadow: var(--shadow-soft);
+}
+
+.app-shell.theme-dark .panel-title h2 {
+  color: #f8fbff;
+}
+
+.app-shell.theme-dark .panel-title p {
+  color: #aab7cb;
+}
+
+.app-shell.theme-dark .panel-title > span {
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(96, 165, 250, 0.32);
+}
+
+@media (max-width: 760px) {
+  .panel {
+    border-radius: 10px;
+  }
+
+  .panel-title,
+  .panel-title.compact {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .panel-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel {
+    padding: 14px;
+  }
+}

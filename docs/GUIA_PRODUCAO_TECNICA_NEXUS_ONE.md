@@ -9,6 +9,7 @@ Este guia organiza o minimo necessario para homologar e operar o Nexus One com m
 - Producao: usar o mesmo compose como base, com banco persistente, backup, segredo forte e monitoramento externo.
 
 Guia dedicado: `docs/GUIA_AMBIENTE_HOMOLOGACAO_NEXUS_ONE.md`.
+Matriz oficial de ambientes: `docs/MATRIZ_AMBIENTES_HOMOLOGACAO_PRODUCAO_NEXUS_ONE.md`.
 Deploy em servidor: `docs/GUIA_DEPLOY_SERVIDOR_NEXUS_ONE.md`.
 Banco e restauracao: `docs/GUIA_PROVISIONAMENTO_BANCO_NEXUS_ONE.md`.
 Processo de release: `docs/PROCESSO_RELEASE_NEXUS_ONE.md`.
@@ -104,6 +105,8 @@ Autorizacao de referencia comercial: `docs/AUTORIZACAO_REFERENCIA_COMERCIAL_CLIE
 - Monitorar espaco em disco do volume PostgreSQL.
 - Monitorar falhas fiscais, notificacoes, caixa, estornos e permissao.
 - Executar `scripts/verificar-producao.ps1` na rotina diaria.
+- Executar `scripts/verificar-usuario-master.ps1` antes de liberar acesso real.
+- Executar `scripts/verificar-observabilidade.ps1` para validar logs, healthchecks e alerta.
 - Testar restauracao com `scripts/restaurar-backup-postgres.ps1` em ambiente separado.
 - Seguir `docs/ROTINA_MONITORAMENTO_BACKUP_NEXUS_ONE.md`.
 
@@ -114,6 +117,7 @@ Autorizacao de referencia comercial: `docs/AUTORIZACAO_REFERENCIA_COMERCIAL_CLIE
 - Pre-deploy aprovado com `scripts/verificar-predeploy.ps1`.
 - Ambiente de homologacao separado validado.
 - Banco PostgreSQL persistente validado.
+- Usuario MASTER ativo/desbloqueado validado.
 - Backup manual, backup agendado, restauracao e evidencia de restauracao testados.
 - `.env` real protegido.
 - Auditoria de segredos gerada sem expor valores reais.
@@ -124,6 +128,7 @@ Autorizacao de referencia comercial: `docs/AUTORIZACAO_REFERENCIA_COMERCIAL_CLIE
 - Manifesto de release gerado com `scripts/gerar-manifesto-release.ps1`.
 - Nota de versao para cliente gerada com `scripts/gerar-nota-versao-cliente.ps1` quando houver mudanca visivel, impacto operacional ou acao necessaria.
 - Smoke test operacional executado com `scripts/smoke-test-operacional.ps1`.
+- Homologacao final consolidada executada com `scripts/verificar-homologacao-final.ps1`.
 - Plano de rollback documentado.
 - Operador treinado em venda, caixa, financeiro, fiscal e relatorios.
 - Evidencia de treinamento por perfil arquivada.

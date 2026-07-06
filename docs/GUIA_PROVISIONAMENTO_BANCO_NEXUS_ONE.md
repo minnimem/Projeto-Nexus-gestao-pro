@@ -20,6 +20,18 @@ Variaveis minimas:
 - `DB_USERNAME`
 - `DB_PASSWORD`
 
+Validacao automatica antes do deploy:
+
+```powershell
+.\scripts\verificar-banco-producao.ps1 -EnvFile .env -ComposeFile docker-compose.prod.yml -ServiceName postgres
+```
+
+Validacao sem exigir container rodando:
+
+```powershell
+.\scripts\verificar-banco-producao.ps1 -EnvFile .env -ComposeFile docker-compose.prod.yml -ServiceName postgres -SkipDockerRuntime
+```
+
 ## Homologacao
 
 - Usar `docker-compose.homolog.yml`.

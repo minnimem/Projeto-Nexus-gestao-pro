@@ -16,3 +16,6 @@ frontend/dist/
 frontend/dev-server.log
 
 backend/projectoads/projectoads/target/
+backend/projectoads/projectoads/uploads/
+uploads/
+*.log

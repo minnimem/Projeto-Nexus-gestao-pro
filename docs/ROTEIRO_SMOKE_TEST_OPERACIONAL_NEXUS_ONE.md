@@ -52,3 +52,19 @@ Respostas `403` em areas restritas viram aviso quando o perfil usado nao tem per
 - Pelo menos um fluxo operacional principal validado.
 - Relatorio salvo em `reports`.
 - Pendencias registradas com responsavel e prazo.
+
+## Homologacao Final Consolidada
+
+Para consolidar pre-deploy, publicacao, observabilidade, usuario master e smoke
+operacional em um unico relatorio:
+
+```powershell
+.\scripts\verificar-homologacao-final.ps1 -EnvFile .env -ComposeFile docker-compose.prod.yml -BaseUrl http://localhost:8081 -FrontendUrl http://localhost:5173 -Login admin -Senha "senha" -EnvironmentName producao
+```
+
+Sem credenciais, o script gera o relatorio estrutural e deixa o smoke operacional
+como aviso:
+
+```powershell
+.\scripts\verificar-homologacao-final.ps1 -EnvFile .env -ComposeFile docker-compose.prod.yml -SkipHttpCheck
+```

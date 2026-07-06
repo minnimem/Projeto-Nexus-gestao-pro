@@ -1,0 +1,40 @@
+.customer-insight-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.customer-insight-title span,
+.customer-insight-title strong,
+.customer-insight-item strong,
+.customer-insight-item small { display: block; min-width: 0; }
+.customer-insight-title span { color: #0f766e; font-size: 10px; font-weight: 950; text-transform: uppercase; }
+.customer-insight-title strong { color: var(--ink); font-size: 13px; font-weight: 950; }
+.customer-insight-list { display: grid; gap: 8px; }
+
+.customer-insight-item,
+.customer-insight-empty {
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  padding: 10px;
+  border: 1px solid #dbe3ee;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.customer-insight-item strong { color: var(--ink); font-size: 13px; font-weight: 950; }
+.customer-insight-item small,
+.customer-insight-empty { color: #64748b; font-size: 11px; font-weight: 850; line-height: 1.35; }
+.customer-insight-item.success { border-color: #bbf7d0; background: linear-gradient(135deg, #f0fdf4, #ffffff); }
+.customer-insight-item.success svg { color: #047857; }
+.customer-insight-item.info { border-color: #bfdbfe; background: linear-gradient(135deg, #eff6ff, #ffffff); }
+.customer-insight-item.info svg { color: #1d4ed8; }
+.customer-insight-item.warning { border-color: #fed7aa; background: linear-gradient(135deg, #fff7ed, #ffffff); }
+.customer-insight-item.warning svg { color: #c2410c; }
+.customer-insight-item.danger { border-color: #fecaca; background: linear-gradient(135deg, #fff1f2, #ffffff); }
+.customer-insight-item.danger svg { color: #b91c1c; }
+.customer-insight-empty { color: #047857; border-color: #bbf7d0; background: #f0fdf4; }

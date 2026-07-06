@@ -1,0 +1,56 @@
+.customer-avatar {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #0f766e;
+  background: linear-gradient(135deg, #ccfbf1, #dbeafe);
+  border: 1px solid rgba(20, 184, 166, 0.24);
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.customer-level-badge {
+  width: fit-content;
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid #dbe3ee;
+  border-radius: 999px;
+  color: #475569;
+  background: #fff;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.customer-level-badge.success {
+  color: #047857;
+  border-color: #bbf7d0;
+  background: linear-gradient(180deg, #f0fdf4, #dcfce7);
+}
+
+.customer-level-badge.info {
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+  background: linear-gradient(180deg, #eff6ff, #dbeafe);
+}
+
+.customer-level-badge.warning {
+  color: #9a3412;
+  border-color: #fed7aa;
+  background: linear-gradient(180deg, #fff7ed, #ffedd5);
+}
+
+.customer-level-badge.danger {
+  color: #b91c1c;
+  border-color: #fecaca;
+  background: linear-gradient(180deg, #fff1f2, #fee2e2);
+}

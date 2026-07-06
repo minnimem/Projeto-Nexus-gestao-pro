@@ -1,0 +1,88 @@
+RELATORIO PERFORMANCE E BUILD FRONTEND - NEXUS ONE
+=================================================
+
+Data da verificacao: 2026-07-06
+Comando executado:
+
+npm run build
+
+Resultado:
+
+BUILD SUCCESS
+Vite: 8.0.14
+Tempo informado pelo Vite: 4.22s
+
+
+RESUMO DO DIST
+==============
+
+Arquivos JS gerados: 23
+Tamanho total JS: 1.142.799 bytes
+
+Arquivos CSS gerados: 16
+Tamanho total CSS: 275.419 bytes
+
+Maiores assets gerados:
+
+1. react-vendor-AkrBTJME.js - 201.610 bytes
+2. Pedidos-C1s01ygv.js - 184.820 bytes
+3. Financeiro-BMvt8Dpf.js - 120.622 bytes
+4. Usuarios-BH2EZqmv.js - 117.838 bytes
+5. index-DakiVeFI.css - 87.254 bytes
+6. Produtos-D5nFE8uN.js - 84.510 bytes
+7. index-clSI2nPK.js - 76.437 bytes
+8. Servicos-BYPbwq75.js - 60.670 bytes
+9. Caixa-DZZin66h.js - 56.347 bytes
+10. Logistica-BXgFbq-o.js - 52.241 bytes
+
+
+CONCLUSAO TECNICA
+=================
+
+O build de producao esta passando.
+Nao houve aviso de chunk acima do limite configurado.
+A separacao de vendors esta ativa no vite.config.js:
+
+- react-vendor para React/React DOM.
+- icons-vendor para lucide-react.
+- vendor para demais dependencias de node_modules.
+
+Os maiores chunks de regra de negocio estao concentrados em Pedidos, Financeiro e Usuarios.
+No momento estao dentro de um tamanho aceitavel para o limite configurado, mas devem continuar monitorados.
+
+
+ITENS AINDA NAO VALIDADOS POR ESTE RELATORIO
+============================================
+
+Este relatorio nao substitui teste real em navegador.
+Ainda precisam de validacao manual ou automatizada com browser:
+
+- Tempo percebido de carregamento inicial em localhost/homologacao.
+- Scroll e interacoes repetidas em navegador real.
+- Responsividade em desktop, notebook e mobile.
+
+
+MEDICAO DE LISTAS GRANDES E FILTROS
+===================================
+
+Comando executado:
+
+npm run test:orders
+
+Resultado:
+
+13 testes passaram.
+
+Cenarios de massa incluidos:
+
+- Busca do PDV em lista com 5.001 produtos.
+- Filtro da fila de separacao em lista com 6.000 pedidos.
+
+Melhorias aplicadas:
+
+- A busca de produto no PDV passou a percorrer a lista uma unica vez para codigo exato, nome exato e correspondencia parcial unica.
+- A fila de separacao deixou de montar o texto pesquisavel de produtos quando nao existe busca digitada, evitando trabalho desnecessario em renderizacoes com filtros simples.
+
+Conclusao:
+
+Os filtros principais de Pedidos/PDV e Separacao possuem cobertura automatizada com massa grande. A validacao de tempo percebido em navegador ainda precisa ser feita em smoke test visual.

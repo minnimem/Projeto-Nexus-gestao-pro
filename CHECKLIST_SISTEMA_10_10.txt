@@ -1,0 +1,592 @@
+CHECKLIST SISTEMA 10/10 - NEXUS ONE
+===================================
+
+Objetivo:
+Organizar o que falta validar, corrigir e polir para o Nexus One ficar pronto em nivel profissional, estavel, seguro e facil de manter.
+
+Legenda:
+[x] feito
+[ ] pendente
+[!] prioridade alta
+
+
+1. ESTRUTURA E ORGANIZACAO DO FRONT-END
+======================================
+
+[x] Separar App.jsx em estrutura modular.
+[x] Criar routes/AppRoutes.jsx.
+[x] Criar routes/PrivateRoute.jsx.
+[x] Criar layouts principais.
+[x] Separar pages por modulo.
+[x] Separar components reutilizaveis.
+[x] Separar services/api/auth/resources.
+[x] Separar utils.
+[x] Separar constants.
+[x] Separar CSS global em styles por responsabilidade.
+[x] Build do front passando.
+[x] [!] Corrigir carregamento pesado dos modulos com lazy loading.
+[x] [!] Revisar imports quebrados ou nao utilizados.
+[x] [!] Rodar varredura final de console/error boundary em todas as abas.
+[x] Rodar varredura tecnica de console/error boundary no frontend/src.
+[x] Revisar se algum componente ainda ficou grande demais.
+[ ] Separar mais componentes caso algum arquivo volte a ficar dificil de manter.
+[x] Iniciar refinamento do Financeiro.jsx separando estado em hook dedicado.
+[x] Separar composicao de dados do Financeiro.jsx em hook dedicado.
+[x] Separar blocos finais de reconciliacao/operacoes do Financeiro.jsx.
+[x] Reduzir Financeiro.jsx para menos de 350 linhas.
+[x] Iniciar refinamento do Servicos.jsx separando estado e dados em hooks.
+[x] Separar operacoes principais do Servicos.jsx em hook dedicado.
+[x] Separar assinatura desenhada do Servicos.jsx em hook dedicado.
+[x] Reduzir Servicos.jsx para menos de 350 linhas.
+[x] Iniciar refinamento do Caixa.jsx separando operacoes em hook dedicado.
+[x] Separar estado do Caixa.jsx em hook dedicado.
+[x] Separar dados calculados do Caixa.jsx em hook dedicado.
+[x] Reduzir Caixa.jsx para menos de 350 linhas.
+[x] Iniciar refinamento do Logistica.jsx separando estado em hook dedicado.
+[x] Separar operacoes do Logistica.jsx em hook dedicado.
+[x] Reduzir Logistica.jsx para menos de 350 linhas.
+[x] Separar dados calculados do Colaboradores.jsx em hook dedicado.
+[x] Reduzir Colaboradores.jsx para menos de 350 linhas.
+[x] Separar governanca, permissoes, auditoria e pendencias de colaboradores em viewModel dedicado.
+[x] Reduzir useCollaboratorsDashboardData.js para menos de 350 linhas.
+[x] Separar estado persistido e widgets do VisaoGeral.jsx em hook dedicado.
+[x] Separar tendencias e atividades recentes do VisaoGeral.jsx em hook dedicado.
+[x] Reduzir VisaoGeral.jsx para menos de 350 linhas.
+[x] Separar estado/formularios do AdminEmpresas.jsx em hook dedicado.
+[x] Separar indicadores e tabelas do AdminEmpresas.jsx em hook dedicado.
+[x] Reduzir AdminEmpresas.jsx para menos de 350 linhas.
+[x] Separar impressao/documentos logisticos do logisticsViewModel.js em modulo dedicado.
+[x] Reduzir logisticsViewModel.js para menos de 350 linhas.
+[x] Separar geracao de Code128/QR do productLabels.js em utilitario dedicado.
+[x] Reduzir productLabels.js para menos de 350 linhas.
+[x] Criar padrao documentado para novos modulos do front.
+
+
+2. ACENTOS, TEXTOS E PADRONIZACAO VISUAL
+========================================
+
+[x] Remover mojibake principal do front.
+[x] Corrigir textos visiveis quebrados como Proximo/Nao/Concluida.
+[x] Rodar nova varredura tecnica de mojibake no frontend/src.
+[ ] [!] Fazer varredura manual tela por tela.
+[x] Corrigir mojibake e acentos quebrados detectados na varredura tecnica do frontend/src.
+[x] Corrigir acentos restantes detectados em textos de tela, botao, tabela e modal.
+[x] Padronizar nomes de menus.
+[x] Corrigir mensagens, placeholders e estados vazios detectados por varredura tecnica em Vendas e Servicos.
+[x] Corrigir placeholders e textos visiveis sem acento detectados por varredura tecnica no frontend/src.
+[x] Refinar acentos e mensagens visiveis em downloads fiscais, PDV, OS, insights comerciais e governanca de permissoes.
+[x] Padronizar mensagens de erro.
+[x] Padronizar mensagens de sucesso.
+[x] Padronizar estados vazios.
+[x] Padronizar textos de confirmacao.
+[x] Revisar placeholders de formularios.
+[x] Revisar titulos e subtitulos dos paineis.
+[x] Conferir se textos nao estouram em botoes/cards.
+
+
+3. RESPONSIVIDADE E EXPERIENCIA DO USUARIO
+==========================================
+
+[ ] [!] Testar todas as telas em desktop.
+[ ] [!] Testar todas as telas em notebook.
+[ ] [!] Testar telas principais em mobile.
+[x] Corrigir sobreposicao de elementos.
+[x] Corrigir tabelas largas.
+[x] Corrigir modais em telas pequenas.
+[ ] Conferir sidebar recolhida/expandida.
+[ ] Conferir header e filtros.
+[ ] Conferir scroll interno das telas.
+[x] Conferir loading em chamadas demoradas.
+[x] Conferir estados de erro.
+[x] Conferir estados de lista vazia.
+[x] Conferir se botoes desabilitados explicam motivo quando necessario.
+
+
+4. LOGIN, AUTENTICACAO E ACESSO
+===============================
+
+[x] [!] Validar login com usuario correto.
+[x] [!] Validar login com senha errada.
+[x] [!] Validar token expirado.
+[x] [!] Validar logout.
+[x] [!] Validar acesso sem login.
+[x] [!] Validar PrivateRoute.
+[x] Validar recuperacao de senha.
+[x] Validar reset de senha.
+[x] Validar usuario bloqueado/inativo.
+[x] Validar perfis: ADMIN, GERENTE, VENDEDOR e demais.
+[x] Validar usuario master/admin.
+[x] Conferir se telas sensiveis ficam bloqueadas para perfil sem permissao.
+[x] Conferir se botoes sensiveis ficam bloqueados para perfil sem permissao.
+
+
+5. PAINEL PRINCIPAL / VISAO GERAL
+=================================
+
+[x] [!] Abrir painel sem erro visual.
+[x] [!] Conferir carregamento dos indicadores.
+[x] Conferir periodo selecionado.
+[x] Conferir alertas.
+[x] Conferir resumo operacional.
+[x] Conferir pedidos recentes/prioritarios.
+[x] Conferir indicadores por filial.
+[x] Conferir recomendacoes/insights.
+[x] Conferir exportacao/resumo quando existir.
+[x] Conferir atualizacao manual.
+
+
+6. CLIENTES
+===========
+
+[x] [!] Criar cliente.
+[x] [!] Editar cliente.
+[x] [!] Excluir cliente.
+[x] [!] Listar clientes.
+[x] Buscar/filtrar cliente.
+[x] Validar campos obrigatorios.
+[x] Validar cliente sem historico.
+[x] Validar historico comercial.
+[x] Validar follow-up de cliente.
+[x] Validar produtos favoritos.
+[x] Conferir perfil do cliente.
+[x] Conferir relacao cliente -> pedido.
+
+
+7. PRODUTOS, ESTOQUE E COMPRAS
+==============================
+
+[x] [!] Criar produto.
+[x] [!] Editar produto.
+[x] [!] Excluir produto.
+[x] [!] Listar produtos.
+[x] [!] Buscar produto.
+[x] Validar preco de venda.
+[x] Validar preco com desconto.
+[x] Validar custo/margem.
+[x] Validar categoria.
+[x] Validar marca.
+[x] Validar fornecedor.
+[x] Validar campos fiscais do produto.
+[x] Validar entrada de estoque.
+[x] Validar saida de estoque.
+[x] Validar ajuste de estoque.
+[x] Validar transferencia de estoque.
+[x] Validar compra de estoque.
+[x] Validar historico de compras.
+[x] Validar estoque minimo.
+[x] Validar alerta de estoque baixo.
+[x] Validar estoque por filial.
+[x] Validar etiquetas.
+[x] Validar inventario.
+
+
+8. PEDIDOS, PDV E VENDAS
+========================
+
+[x] [!] Criar pedido pelo fluxo normal.
+[x] [!] Criar venda pelo PDV.
+[x] [!] Adicionar produto no carrinho.
+[x] [!] Remover produto do carrinho.
+[x] [!] Alterar quantidade.
+[x] [!] Aplicar desconto.
+[x] [!] Selecionar cliente.
+[x] [!] Finalizar pedido.
+[x] [!] Gerar cobranca do pedido.
+[x] [!] Converter orcamento em pedido.
+[x] Validar pedido sem cliente.
+[x] Validar pedido sem produto.
+[x] Validar estoque insuficiente.
+[x] Validar baixa de estoque ao finalizar.
+[x] Validar formas de pagamento.
+[x] Validar pagamento misto.
+[x] Validar parcelamento.
+[x] Validar recibo/comprovante.
+[x] Validar status do pedido.
+[x] Validar cancelamento.
+[x] Validar dashboard de vendas.
+[x] Validar ranking de vendedores.
+[x] Validar comissoes.
+[x] Validar metas de vendedor.
+
+
+9. SEPARACAO DE PEDIDOS
+=======================
+
+[x] [!] Iniciar separacao.
+[x] [!] Concluir separacao.
+[x] Validar fila de separacao.
+[x] Validar status visual.
+[x] Validar filtros da separacao.
+[x] Validar cancelamento de pedido inconsistente.
+[x] Validar cancelamento em lote.
+[x] Conferir se separacao conversa corretamente com estoque.
+
+
+10. CAIXA
+=========
+
+[x] [!] Abrir caixa.
+[x] [!] Ver caixa aberto.
+[x] [!] Registrar suprimento.
+[x] [!] Registrar sangria.
+[x] [!] Receber pagamento.
+[x] [!] Fechar caixa.
+[x] Validar caixa ja aberto.
+[x] Validar fechamento com divergencia.
+[x] Validar historico de movimentos.
+[x] Validar resumo do caixa.
+[x] Validar pedidos pendentes.
+[x] Validar relatorio de fechamento.
+[x] Conferir se venda/recebimento impacta caixa corretamente.
+
+
+11. FINANCEIRO
+==============
+
+[x] [!] Criar lancamento financeiro.
+[x] [!] Editar lancamento.
+[x] [!] Cancelar lancamento.
+[x] [!] Baixar conta.
+[x] [!] Estornar conta.
+[x] [!] Gerar cobranca.
+[x] Validar contas a pagar.
+[x] Validar contas a receber.
+[x] Validar vencidos.
+[x] Validar inadimplencia.
+[x] Validar fluxo de caixa.
+[x] Validar DRE.
+[x] Validar previsao financeira.
+[x] Validar categorias financeiras.
+[x] Validar recorrencias.
+[x] Validar gerar recorrencia.
+[x] Validar follow-up de cobranca.
+[x] Validar conciliacao.
+[x] Validar pedidos sem financeiro.
+[x] Conferir integracao com pedido.
+[x] Conferir integracao com caixa.
+[x] Conferir integracao com Asaas/webhook.
+
+
+12. FISCAL
+==========
+
+[x] [!] Validar configuracao fiscal.
+[x] [!] Validar status da configuracao fiscal.
+[x] [!] Validar certificado/configuracao sensivel.
+[x] [!] Preparar documento fiscal de pedido.
+[x] [!] Gerar XML homologacao.
+[x] [!] Validar XML homologacao.
+[x] [!] Transmitir homologacao.
+[x] Revalidar pendencias.
+[x] Reprocessar rejeicao.
+[x] Validar contingencia.
+[x] Regularizar contingencia.
+[x] Gerar DANFE homologacao.
+[x] Carta de correcao.
+[x] Autorizar homologacao.
+[x] Rejeitar homologacao.
+[x] Cancelar homologacao.
+[x] Inutilizar homologacao.
+[x] Validar checklist de emissao real.
+[x] Validar pacote de emissao real.
+[x] Validar manifesto do pacote.
+[x] Validar integridade do pacote.
+[x] Validar relatorios fiscais por filial.
+
+
+13. SERVICOS / ORDENS DE SERVICO
+================================
+
+[x] [!] Criar ordem de servico.
+[x] [!] Editar ordem de servico.
+[x] [!] Alterar status da OS.
+[x] [!] Faturar OS.
+[x] [!] Baixar pecas no estoque.
+[x] Validar checklist.
+[x] Validar prioridade.
+[x] Validar SLA.
+[x] Validar garantia.
+[x] Validar recorrencia.
+[x] Validar anexos.
+[x] Validar assinatura do cliente.
+[x] Validar evidencias.
+[x] Validar historico de OS.
+[x] Validar kanban.
+[x] Validar impacto no financeiro.
+[x] Validar impacto no estoque.
+
+
+14. LOGISTICA
+=============
+
+[x] [!] Criar rota.
+[x] [!] Editar rota.
+[x] [!] Alterar status da rota.
+[x] [!] Vincular entregas a rota.
+[x] [!] Vincular entregador.
+[x] [!] Vincular veiculo.
+[x] Criar entregador.
+[x] Criar veiculo.
+[x] Criar transportadora.
+[x] Validar lista de entregas.
+[x] Validar rotas pendentes.
+[x] Validar dashboard logistico.
+[x] Validar linha do tempo.
+[x] Validar performance de entregador.
+[x] Validar exclusao de rota/transportadora quando permitido.
+
+
+15. COLABORADORES E RH
+======================
+
+[x] [!] Listar colaboradores.
+[x] [!] Criar/editar usuario colaborador.
+[x] Validar cargo/departamento.
+[x] Validar salario/meta quando usado.
+[x] Validar escala de trabalho.
+[x] Validar metas por funcao.
+[x] Validar riscos RH.
+[x] Validar painel de organizacao.
+[x] Validar cobertura por filial.
+[x] Validar auditoria RH.
+[x] Validar permissoes operacionais.
+
+
+16. PAINEL DE CONTROLE / ADMIN
+==============================
+
+[x] [!] Abrir painel de controle sem erro.
+[x] [!] Validar aba de usuarios.
+[x] [!] Validar aba de permissoes.
+[x] [!] Validar aba de empresa.
+[x] [!] Validar aba de filiais.
+[x] [!] Validar aba de contratos.
+[x] [!] Validar aba fiscal.
+[x] [!] Validar aba de cobranca dos planos.
+[x] [!] Validar auditoria.
+[x] Criar empresa master.
+[x] Editar empresa master.
+[x] Alterar status da empresa.
+[x] Atualizar plano da empresa.
+[x] Liberar/bloquear modulos.
+[x] Validar limites do plano.
+[x] Validar adicionais controlados.
+[x] Validar acoes em lote da cobranca de planos.
+[x] Validar exportacao da cobranca de planos.
+
+
+17. RELATORIOS E EXPORTACOES
+============================
+
+[x] [!] Abrir relatorios sem erro.
+[x] [!] Validar relatorio comercial.
+[x] [!] Validar relatorio executivo.
+[x] [!] Validar relatorio fiscal por filial.
+[x] [!] Validar relatorio de vendas por periodo.
+[x] Validar selecao de campos.
+[x] Validar exportacao JSON/CSV quando existir.
+[x] Validar dados vazios.
+[x] Validar filtros.
+[x] Validar agenda/agendamento visual.
+[x] Conferir acentos nos cabecalhos.
+
+
+18. AUDITORIA E RASTREABILIDADE
+===============================
+
+[x] [!] Validar registro de exclusao.
+[x] [!] Validar quem excluiu.
+[x] [!] Validar ID excluido.
+[x] [!] Validar nome/entidade excluida.
+[x] [!] Validar horario da exclusao.
+[x] Validar auditoria de login.
+[x] Validar auditoria de permissoes.
+[x] Validar auditoria de empresa/plano.
+[x] Validar auditoria de fiscal.
+[x] Validar tela de consulta da auditoria.
+[x] Validar filtros de auditoria.
+[x] Validar que auditoria nao bloqueia operacao normal.
+
+
+19. BACK-END E BANCO DE DADOS
+=============================
+
+[ ] [!] Back-end sobe sem erro.
+[ ] [!] Conexao PostgreSQL validada.
+[ ] [!] Database TB_ADS conectando.
+[x] [!] application.yml revisado.
+[x] [!] Compilacao Maven passando.
+[x] [!] Testes principais passando.
+[x] Conferir entidades JPA.
+[x] Conferir relacionamentos.
+[x] Conferir cascades para nao excluir dados indevidos.
+[x] Conferir enums.
+[x] Conferir DTOs.
+[x] Conferir tratamento de erros.
+[x] Conferir validacoes de entrada.
+[x] Conferir BusinessException.
+[x] Conferir GlobalExceptionHandler.
+[x] Criar/organizar migrations se necessario.
+[x] Criar backup do banco.
+[x] Criar script de carga inicial se necessario.
+
+
+20. SEGURANCA
+=============
+
+[x] [!] Revisar JWT.
+[x] [!] Revisar expiracao do token.
+[x] [!] Revisar CORS.
+[x] [!] Revisar Spring Security.
+[x] [!] Revisar roles/perfis.
+[x] [!] Revisar acesso master.
+[x] [!] Revisar endpoints sensiveis.
+[x] [!] Revisar senhas e secrets.
+[x] [!] Garantir que secrets nao estejam no Git.
+[x] Conferir .env.
+[x] Conferir .env.example.
+[x] Conferir application-prod.yml.
+[x] Conferir logs para nao expor senha/token.
+[x] Validar bloqueio de usuario inativo.
+[x] Validar permissao por modulo.
+[x] Validar liberacao por plano.
+
+
+21. TESTES AUTOMATIZADOS
+========================
+
+[x] [!] Testes de Auth/Login.
+[x] [!] Testes de Usuario/Permissao.
+[x] [!] Testes de Pedido.
+[x] [!] Testes de Produto/Estoque.
+[x] [!] Testes de Financeiro.
+[x] [!] Testes de Caixa.
+[x] [!] Testes de Ordem de Servico.
+[x] [!] Testes de Fiscal.
+[x] Testes de Logistica.
+[x] Testes de Auditoria.
+[x] Testes de Planos Comerciais.
+[x] Testes de Follow-up Comercial.
+[x] Testes de Follow-up Cobranca.
+[x] Testes de Recorrencia Financeira.
+[x] Testes front basicos para rotas protegidas.
+[x] Testes front basicos para telas principais.
+
+
+22. PERFORMANCE E BUILD
+=======================
+
+[x] Build front passando.
+[x] [!] Resolver aviso de chunk grande do Vite.
+[x] Aplicar lazy loading por modulo.
+[x] Separar vendors se necessario.
+[ ] Medir tempo de carregamento inicial.
+[x] Medir telas com tabelas grandes.
+[x] Otimizar filtros pesados.
+[x] Evitar renderizacao desnecessaria.
+[x] Revisar imports de bibliotecas grandes.
+[x] Conferir tamanho do CSS final.
+[x] Conferir build de producao.
+
+
+23. DEPLOY E PRODUCAO
+=====================
+
+[x] [!] Definir ambiente de homologacao.
+[x] [!] Definir ambiente de producao.
+[x] [!] Revisar Dockerfile.
+[x] [!] Revisar docker-compose.prod.yml.
+[x] [!] Revisar docker-compose.homolog.yml.
+[x] [!] Configurar variaveis de ambiente.
+[x] [!] Configurar banco de producao.
+[x] [!] Configurar usuario master seguro.
+[x] [!] Configurar backup.
+[x] [!] Configurar logs.
+[x] [!] Configurar monitoramento basico.
+[x] Validar HTTPS.
+[x] Validar dominio.
+[x] Validar CORS em producao.
+[x] Validar build final do front.
+[x] Validar jar/container do back.
+[x] Criar roteiro de rollback.
+
+
+24. DOCUMENTACAO
+================
+
+[x] Criar manual geral do sistema.
+[x] Criar checklist sistema 10/10.
+[x] [!] Criar manual do usuario final.
+[x] [!] Criar manual tecnico do desenvolvedor.
+[x] [!] Criar mapa do banco de dados.
+[x] Criar guia de instalacao local.
+[x] Criar guia de deploy.
+[x] Criar guia de backup/restore.
+[x] Criar guia de permissao por perfil.
+[x] Criar guia de fiscal.
+[x] Criar guia financeiro/caixa.
+[x] Criar guia de operacao diaria.
+[x] Atualizar README.md.
+
+
+25. HOMOLOGACAO FINAL
+=====================
+
+[ ] [!] Smoke test completo.
+[ ] [!] Testar fluxo: login -> cliente -> produto -> pedido -> pagamento -> caixa -> financeiro.
+[ ] [!] Testar fluxo: pedido -> fiscal.
+[ ] [!] Testar fluxo: pedido -> separacao -> logistica.
+[ ] [!] Testar fluxo: OS -> pecas -> faturamento -> financeiro.
+[ ] [!] Testar fluxo: plano -> liberacao modulo -> permissao usuario.
+[ ] [!] Testar fluxo: exclusao -> auditoria.
+[ ] Testar com usuario admin.
+[ ] Testar com usuario gerente.
+[ ] Testar com usuario vendedor.
+[ ] Testar com usuario sem permissao.
+[ ] Testar dados vazios.
+[ ] Testar dados invalidos.
+[ ] Testar refresh da pagina.
+[ ] Testar logout/login novamente.
+[ ] Testar em navegador limpo.
+
+
+26. CRITERIOS PARA CONSIDERAR 10/10
+===================================
+
+[ ] Todas as telas abrem sem erro visual.
+[ ] Console do navegador sem erro critico.
+[x] Build front passando.
+[x] Back-end compila sem erro.
+[x] Testes principais passando.
+[ ] Banco conectado e consistente.
+[ ] Login e permissoes funcionando.
+[ ] Fluxos principais validados.
+[x] Auditoria funcionando.
+[x] Fiscal validado em homologacao/controlado.
+[ ] Financeiro e caixa sincronizados.
+[ ] Estoque sincronizado com pedidos e OS.
+[ ] Responsividade aceitavel.
+[x] Documentacao basica criada.
+[x] Deploy/homologacao local documentado.
+[x] Backup definido.
+[x] Usuario master seguro.
+
+
+27. PROXIMA ORDEM RECOMENDADA DE EXECUCAO
+=========================================
+
+1. Validar back-end subindo.
+2. Rodar build front.
+3. Fazer smoke test de todas as telas.
+4. Corrigir erros visuais/console por modulo.
+5. Validar login/permissoes.
+6. Validar pedido/PDV.
+7. Validar estoque.
+8. Validar caixa.
+9. Validar financeiro.
+10. Validar fiscal.
+11. Validar painel de controle.
+12. Validar auditoria.
+13. Fazer smoke test de todas as telas.
+14. Resolver performance/lazy loading.
+15. Preparar homologacao/producao.

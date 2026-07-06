@@ -49,6 +49,12 @@ Para homologacao:
 .\scripts\backup-postgres.ps1 -ComposeFile docker-compose.homolog.yml -OutputDir backups\homolog -ServiceName postgres-homolog
 ```
 
+Com retencao customizada:
+
+```powershell
+.\scripts\backup-postgres.ps1 -RetentionDays 30
+```
+
 Para agendar backup diario no Windows:
 
 ```powershell
@@ -73,6 +79,8 @@ Retencao sugerida:
 - 7 backups diarios.
 - 4 backups semanais.
 - 6 backups mensais.
+
+O script local valida se o arquivo `.dump` foi criado e se nao esta vazio.
 
 ## Restauracao de Teste
 
@@ -104,6 +112,7 @@ Comandos uteis:
 docker compose -f docker-compose.prod.yml logs -f backend
 docker compose -f docker-compose.prod.yml logs -f frontend
 docker compose -f docker-compose.prod.yml logs -f postgres
+.\scripts\verificar-observabilidade.ps1 -EnvFile .env -ComposeFile docker-compose.prod.yml
 ```
 
 Eventos que exigem analise:
@@ -120,6 +129,7 @@ Eventos que exigem analise:
 
 - Healthcheck do compose ativo.
 - Verificacao diaria executada.
+- Logs e monitoramento validados por `scripts/verificar-observabilidade.ps1`.
 - Backup diario executado.
 - Backup diario agendado no servidor.
 - Restauracao testada em ambiente separado.

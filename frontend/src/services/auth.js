@@ -1,4 +1,5 @@
-import { api } from "./api";
+import { api } from "./api.js";
+import { hasValidSession } from "./authSession.js";
 
 const SESSION_KEY = "nexus.session";
 const TOKEN_KEY = "nexus.token";
@@ -29,7 +30,12 @@ export function getSession() {
   if (!raw) return null;
 
   try {
-    return JSON.parse(raw);
+    const session = JSON.parse(raw);
+    if (!hasValidSession(session)) {
+      logout();
+      return null;
+    }
+    return session;
   } catch {
     sessionStorage.removeItem(TOKEN_KEY);
     sessionStorage.removeItem(SESSION_KEY);
@@ -38,5 +44,20 @@ export function getSession() {
 }
 
 export function isAuthenticated() {
-  return Boolean(sessionStorage.getItem(TOKEN_KEY) && sessionStorage.getItem(SESSION_KEY));
+  const raw = sessionStorage.getItem(SESSION_KEY);
+  if (!raw || !sessionStorage.getItem(TOKEN_KEY)) return false;
+
+  try {
+    const session = JSON.parse(raw);
+    if (!hasValidSession(session)) {
+      logout();
+      return false;
+    }
+    return true;
+  } catch {
+    logout();
+    return false;
+  }
 }
+
+export { getJwtPayload, hasValidSession, isTokenExpired, isUserInactive } from "./authSession.js";

@@ -18,27 +18,28 @@ import java.util.UUID;
 @Service
 public class JwtService {
 
-    private static final long EXPIRATION = 1000L * 60 * 60; // 1 hora
-
     private final String secret;
+    private final long expirationMs;
 
-    public JwtService(@Value("${jwt.secret}") String secret) {
+    public JwtService(
+            @Value("${jwt.secret}") String secret,
+            @Value("${jwt.expiration-ms:3600000}") long expirationMs
+    ) {
         if (secret == null || secret.isBlank() || secret.length() < 32) {
             throw new IllegalStateException("JWT_SECRET deve ter pelo menos 32 caracteres.");
         }
+        if (expirationMs < 300000) {
+            throw new IllegalStateException("jwt.expiration-ms deve ser de pelo menos 300000 ms.");
+        }
         this.secret = secret;
+        this.expirationMs = expirationMs;
     }
 
     private Key getKey() {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
-    // =====================================================
-    // TOKEN PREMIUM SAAS
-    // - subject: login
-    // - empresaId: isolamento multi-empresa
-    // - perfil: suporte ao frontend e auditoria
-    // =====================================================
+    // TOKEN PREMIUM SAAS: login, isolamento multi-empresa, perfil e auditoria.
     public String gerarToken(Usuario usuario) {
         if (usuario == null) {
             throw new IllegalArgumentException("Usuário não informado para gerar token");
@@ -53,7 +54,7 @@ public class JwtService {
                 .claim("usuarioId", usuario.getId() != null ? usuario.getId().toString() : null)
                 .claim("perfil", usuario.getPerfil() != null ? usuario.getPerfil().name() : null)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION));
+                .setExpiration(new Date(System.currentTimeMillis() + expirationMs));
 
         if (usuario.getEmpresa() != null && usuario.getEmpresa().getId() != null) {
             builder.claim("empresaId", usuario.getEmpresa().getId().toString());
@@ -64,17 +65,17 @@ public class JwtService {
                 .compact();
     }
 
-    // Mantido por compatibilidade com código antigo
+    // Mantido por compatibilidade com código antigo.
     public String gerarToken(String login) {
         return Jwts.builder()
                 .setSubject(login)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
+                .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    // Mantido por compatibilidade com Spring Security
+    // Mantido por compatibilidade com Spring Security.
     public String generateToken(UserDetails userDetails) {
         if (userDetails instanceof Usuario usuario) {
             return gerarToken(usuario);

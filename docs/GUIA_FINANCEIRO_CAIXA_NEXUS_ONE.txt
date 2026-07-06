@@ -1,0 +1,259 @@
+GUIA FINANCEIRO E CAIXA - NEXUS ONE
+===================================
+
+Objetivo
+--------
+Este guia explica como operar, conferir e manter os modulos Caixa e Financeiro
+do Nexus One. A ideia e deixar claro o caminho do dinheiro dentro do sistema:
+pedido, recebimento, caixa, lancamento financeiro, conciliacao e relatorios.
+
+
+1. Onde cada modulo atua
+------------------------
+
+Caixa:
+- Abertura de caixa.
+- Recebimento de pedidos pendentes.
+- Registro de suprimento.
+- Registro de sangria.
+- Pagamento por dinheiro, Pix, cartao, boleto ou metodo misto.
+- Emissao de comprovante.
+- Fechamento com conferencia de divergencia.
+- Historico de movimentos.
+
+Financeiro:
+- Contas a receber.
+- Contas a pagar.
+- Lancamentos avulsos.
+- Lancamentos parcelados.
+- Recorrencias financeiras.
+- Baixa e estorno.
+- Cobrancas.
+- Inadimplencia.
+- Fluxo de caixa.
+- DRE gerencial.
+- Conciliacao entre vendas, caixa e financeiro.
+
+
+2. Fluxo ideal do dinheiro
+--------------------------
+
+1. Pedido e criado em Vendas/PDV.
+2. Pedido e finalizado ou fica pendente de pagamento.
+3. Caixa recebe o pagamento.
+4. Movimento de caixa e registrado.
+5. Lancamento financeiro e criado ou vinculado.
+6. Financeiro acompanha vencimento, baixa e cobranca.
+7. Conciliacao compara:
+   - vendas recebidas;
+   - total do caixa;
+   - receitas financeiras;
+   - divergencias.
+8. Relatorios gerenciais mostram fluxo, DRE e inadimplencia.
+
+
+3. Operacao diaria do Caixa
+---------------------------
+
+Antes de vender:
+- Conferir usuario logado.
+- Conferir empresa/filial.
+- Abrir caixa.
+- Informar valor inicial quando aplicavel.
+- Confirmar que nao existe outro caixa aberto indevidamente para o operador.
+
+Durante a operacao:
+- Receber pedidos pendentes.
+- Registrar metodo de pagamento correto.
+- Conferir troco, Pix, cartao ou boleto antes de concluir.
+- Registrar suprimento quando entrar dinheiro extra.
+- Registrar sangria quando retirar valor do caixa.
+- Evitar ajustes manuais sem justificativa.
+
+No fechamento:
+- Conferir total esperado.
+- Conferir valor contado.
+- Registrar divergencia quando houver.
+- Salvar fechamento.
+- Gerar/baixar relatorio de fechamento quando necessario.
+- Encaminhar divergencias para conferencia financeira.
+
+
+4. Cuidados com formas de pagamento
+-----------------------------------
+
+Dinheiro:
+- Conferir valor recebido e troco.
+- Divergencia deve aparecer no fechamento.
+
+Pix:
+- Confirmar pagamento antes de concluir quando houver integracao externa.
+- Guardar comprovante quando o fluxo exigir.
+
+Cartao:
+- Separar credito e debito.
+- Conferir taxa, bandeira e comprovante.
+
+Boleto:
+- Confirmar geracao da cobranca.
+- A baixa pode depender de retorno externo ou conferencia manual.
+
+Pagamento misto:
+- Conferir se a soma das formas fecha exatamente o total do pedido.
+- Evitar finalizar com diferenca sem justificativa.
+
+
+5. Operacao do Financeiro
+-------------------------
+
+Lancamento unico:
+- Usar para receita ou despesa pontual.
+- Preencher descricao, categoria, valor, data e vencimento.
+
+Lancamento parcelado:
+- Usar quando uma venda/despesa sera dividida em parcelas.
+- Conferir quantidade de parcelas, vencimento inicial e periodicidade.
+
+Lancamento recorrente:
+- Usar para despesas/receitas fixas.
+- Conferir regra, proxima geracao e status ativo/pausado.
+
+Baixa:
+- Usar quando o valor foi efetivamente recebido ou pago.
+- Conferir metodo, data e usuario responsavel.
+
+Estorno:
+- Usar quando uma baixa foi feita incorretamente.
+- Registrar motivo e conferir impacto no fluxo.
+
+Cancelamento:
+- Usar quando o lancamento nao deve mais impactar o financeiro.
+- Deve ter motivo claro.
+
+
+6. Conciliacao
+--------------
+
+Conferir regularmente:
+- Pedidos recebidos sem lancamento financeiro.
+- Vendas no caixa diferentes das receitas financeiras.
+- Caixas com divergencia.
+- Contas vencidas.
+- Receitas sem categoria.
+- Despesas sem categoria.
+- Recorrencias pausadas indevidamente.
+- Lancamentos duplicados.
+
+Se houver divergencia:
+- Identificar pedido, caixa, operador e horario.
+- Conferir movimento de caixa.
+- Conferir lancamento financeiro vinculado.
+- Conferir forma de pagamento.
+- Corrigir cadastro/lancamento quando permitido.
+- Registrar observacao para auditoria.
+
+
+7. DRE e fluxo de caixa
+-----------------------
+
+DRE gerencial:
+- Mostra receitas, despesas, custos, margem e resultado.
+- Deve ser usado para gestao, nao como DRE contabil oficial sem revisao de
+  contador.
+
+Fluxo de caixa:
+- Mostra entradas e saidas por periodo.
+- Ajuda a prever vencimentos e falta/sobra de caixa.
+
+Antes de usar para decisao:
+- Conferir se lancamentos estao categorizados.
+- Conferir se baixas foram feitas corretamente.
+- Conferir se contas vencidas foram tratadas.
+- Conferir se caixa e vendas estao conciliados.
+
+
+8. Permissoes recomendadas
+--------------------------
+
+ADMIN:
+- Acesso total a caixa, financeiro, relatorios e ajustes sensiveis.
+
+GERENTE:
+- Acesso a operacao, conferencia, fechamento e relatorios gerenciais.
+
+OPERADOR_CAIXA:
+- Abertura, recebimento, suprimento, sangria e fechamento conforme regra.
+
+VENDEDOR:
+- Nao deve operar caixa sensivel se a regra da empresa separar venda e
+  recebimento.
+
+FINANCEIRO:
+- Contas, baixas, estornos, cobrancas, conciliacao e relatorios.
+
+
+9. Evidencias recomendadas
+--------------------------
+
+Salvar ou conferir evidencias de:
+- Caixa aberto.
+- Caixa fechado.
+- Movimento de suprimento.
+- Movimento de sangria.
+- Comprovante de pagamento.
+- Baixa financeira.
+- Estorno financeiro.
+- Cobranca gerada.
+- Contas vencidas tratadas.
+- Conciliacao sem divergencia bloqueante.
+- Relatorio de DRE/fluxo do periodo.
+
+
+10. Teste rapido de manutencao
+------------------------------
+
+Executar quando houver alteracao em Caixa ou Financeiro:
+
+1. Fazer login com usuario autorizado.
+2. Abrir Caixa.
+3. Abrir um caixa novo.
+4. Receber um pedido pendente.
+5. Registrar suprimento.
+6. Registrar sangria.
+7. Fechar caixa.
+8. Abrir Financeiro.
+9. Criar lancamento de receita.
+10. Criar lancamento de despesa.
+11. Baixar uma conta.
+12. Estornar uma baixa de teste.
+13. Criar recorrencia.
+14. Gerar lancamento recorrente.
+15. Conferir conciliacao entre venda, caixa e financeiro.
+
+
+11. Criterio de Caixa/Financeiro OK
+-----------------------------------
+
+O conjunto Caixa + Financeiro pode ser considerado OK quando:
+- Caixa abre e fecha sem erro.
+- Recebimento registra movimento corretamente.
+- Suprimento e sangria aparecem no historico.
+- Fechamento aponta divergencia quando existir.
+- Lancamentos financeiros podem ser criados, baixados e estornados.
+- Recorrencias geram lancamentos corretamente.
+- Contas vencidas e a vencer aparecem corretamente.
+- Conciliacao encontra pedidos sem financeiro e caixas divergentes.
+- DRE e fluxo refletem os lancamentos do periodo.
+- Usuarios sem permissao nao acessam acoes sensiveis.
+
+
+12. Pontos de atencao
+---------------------
+
+- Nao alterar valores diretamente no banco sem registrar justificativa.
+- Nao apagar lancamentos reais sem trilha de auditoria.
+- Evitar baixa manual sem comprovante.
+- Revisar categorias financeiras antes de usar DRE.
+- Conferir timezone/data em vencimentos e fechamentos.
+- Conferir se a filial do pedido, caixa e lancamento financeiro esta correta.
+- Manter backup ativo antes de operacao real.

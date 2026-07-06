@@ -1,0 +1,53 @@
+.customer-table-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 190px;
+}
+
+.customer-name-cell {
+  align-items: flex-start;
+}
+
+.customer-name-cell > span:last-child {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.customer-row-selected td {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.1), rgba(20, 184, 166, 0.055));
+  border-bottom-color: rgba(96, 165, 250, 0.32);
+}
+
+.customer-row-selected td:first-child {
+  box-shadow: inset 3px 0 0 #2563eb;
+}
+
+.customer-history-button {
+  min-width: 96px;
+  border-color: rgba(37, 99, 235, 0.24);
+  color: #1d4ed8;
+  background: linear-gradient(180deg, #ffffff, #eef4ff);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.1);
+}
+
+.customer-history-button.active {
+  color: #fff;
+  border-color: rgba(37, 99, 235, 0.2);
+  background: linear-gradient(135deg, #2563eb, #0891b2);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+}
+
+
+.customer-filter-row {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(220px, 0.35fr);
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+
+.customer-filter-row .search-field {
+  margin: 0;
+}

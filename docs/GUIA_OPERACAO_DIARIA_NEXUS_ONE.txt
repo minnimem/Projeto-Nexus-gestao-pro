@@ -1,0 +1,284 @@
+GUIA DE OPERACAO DIARIA - NEXUS ONE
+===================================
+
+Objetivo
+--------
+Este guia organiza a rotina diaria de uso do Nexus One. Ele ajuda o operador,
+gerente ou administrador a abrir o dia, operar vendas, caixa, estoque,
+financeiro, fiscal e logistica, e encerrar o dia com conferencia.
+
+
+1. Abertura do dia
+------------------
+
+Antes de iniciar a operacao:
+- Confirmar que o backend e o frontend estao acessiveis.
+- Fazer login com usuario correto.
+- Conferir empresa e filial selecionadas.
+- Conferir se o usuario tem o perfil adequado.
+- Verificar alertas do painel inicial.
+- Verificar pedidos pendentes do dia anterior.
+- Verificar estoque baixo ou produtos criticos.
+- Verificar contas vencidas ou a vencer.
+- Verificar entregas pendentes.
+- Abrir caixa, quando houver operacao presencial.
+
+Bloqueios antes de operar:
+- Usuario sem permissao.
+- Caixa necessario ainda fechado.
+- Produto sem estoque para venda.
+- Banco ou backend instavel.
+- Configuracao fiscal obrigatoria ausente.
+- Pendencia critica de pagamento, plano ou modulo.
+
+
+2. Rotina de vendas
+-------------------
+
+Durante a venda:
+- Selecionar cliente quando aplicavel.
+- Adicionar produtos corretos.
+- Conferir quantidade, preco e desconto.
+- Conferir disponibilidade de estoque.
+- Conferir vendedor e filial.
+- Finalizar pedido ou gerar orcamento.
+- Converter orcamento em pedido quando aprovado.
+- Enviar para separacao, caixa, fiscal ou logistica conforme fluxo.
+
+Conferencias:
+- Pedido sem produto nao deve seguir.
+- Desconto deve respeitar regra da empresa.
+- Pedido finalizado deve atualizar status.
+- Pedido recebido deve conversar com caixa/financeiro.
+- Pedido de entrega deve seguir para logistica.
+
+
+3. Rotina de caixa
+------------------
+
+Ao abrir:
+- Conferir operador.
+- Conferir filial.
+- Registrar valor inicial quando necessario.
+
+Durante o dia:
+- Receber pedidos pendentes.
+- Conferir forma de pagamento.
+- Registrar Pix, boleto, dinheiro, cartao ou pagamento misto corretamente.
+- Registrar suprimento quando entrar valor extra.
+- Registrar sangria quando houver retirada.
+- Emitir comprovante quando necessario.
+
+Ao fechar:
+- Conferir total esperado.
+- Conferir valor contado.
+- Registrar divergencia se existir.
+- Salvar fechamento.
+- Enviar divergencia para gerente/financeiro.
+
+
+4. Rotina de estoque
+--------------------
+
+Durante o dia:
+- Conferir produtos com alerta de estoque baixo.
+- Registrar entrada de compra.
+- Registrar ajuste apenas com justificativa.
+- Registrar transferencia entre filiais quando aplicavel.
+- Conferir baixas por venda.
+- Conferir inventario quando houver contagem.
+
+Pontos de atencao:
+- Produto sem NCM/CFOP pode travar fluxo fiscal.
+- Estoque negativo deve ser investigado.
+- Transferencia deve ter origem e destino diferentes.
+- Compra recebida deve atualizar saldo.
+
+
+5. Rotina financeira
+--------------------
+
+Durante o dia:
+- Conferir contas a receber.
+- Conferir contas a pagar.
+- Conferir vencidos.
+- Gerar ou acompanhar cobrancas.
+- Baixar contas pagas/recebidas.
+- Estornar baixa feita incorretamente.
+- Conferir recorrencias geradas.
+- Conferir fluxo de caixa.
+- Conferir DRE gerencial quando necessario.
+
+Conferencia diaria:
+- Vendas recebidas devem bater com caixa.
+- Caixa deve bater com receitas financeiras.
+- Contas vencidas devem ter acao registrada.
+- Lancamentos sem categoria devem ser revisados.
+- Divergencias devem ter responsavel e prazo.
+
+
+6. Rotina fiscal
+----------------
+
+Quando fiscal estiver no escopo:
+- Conferir configuracao fiscal da empresa.
+- Conferir ambiente: homologacao ou producao.
+- Preparar documento fiscal do pedido.
+- Revalidar pendencias.
+- Gerar XML.
+- Validar XML.
+- Transmitir em homologacao/producao conforme liberacao.
+- Baixar XML, retorno e DANFE quando necessario.
+- Registrar rejeicao, contingencia, cancelamento ou carta de correcao.
+
+Regra de cuidado:
+- Nunca liberar producao fiscal sem homologacao.
+- Nunca salvar certificado/senha no Git.
+- Toda rejeicao recorrente deve ter causa documentada.
+
+
+7. Rotina de logistica
+----------------------
+
+Para pedidos de entrega:
+- Conferir pedido aprovado.
+- Conferir endereco.
+- Conferir cliente e telefone.
+- Conferir motorista/rota quando aplicavel.
+- Gerar separacao/romaneio.
+- Atualizar status da entrega.
+- Registrar comprovante de entrega.
+
+Conferencias:
+- Pedido entregue deve estar com status coerente.
+- Pedido cancelado nao deve ficar em rota ativa.
+- Entrega sem responsavel deve ser tratada como pendencia.
+
+
+8. Rotina de colaboradores e permissoes
+---------------------------------------
+
+Quando houver movimentacao de equipe:
+- Criar usuario com perfil correto.
+- Bloquear usuario inativo.
+- Revisar permissoes de caixa, financeiro, fiscal e admin.
+- Conferir se usuario sem permissao nao acessa telas sensiveis.
+- Registrar alteracoes sensiveis.
+
+Boa pratica:
+- Usar menor permissao necessaria.
+- Evitar compartilhar usuario/senha.
+- Revisar usuarios ativos periodicamente.
+
+
+9. Rotina de relatorios
+-----------------------
+
+Relatorios recomendados no dia:
+- Vendas do periodo.
+- Caixa/fechamento.
+- Estoque baixo.
+- Contas vencidas.
+- Fluxo de caixa.
+- Pedidos pendentes.
+- Entregas pendentes.
+- Auditoria/exclusoes quando houver ocorrencia.
+
+Antes de enviar relatorio:
+- Conferir filtro de periodo.
+- Conferir filial.
+- Conferir se dados sensiveis podem ser compartilhados.
+- Exportar evidencia quando necessario.
+
+
+10. Encerramento do dia
+-----------------------
+
+Antes de finalizar:
+- Fechar caixa.
+- Conferir divergencias.
+- Conferir pedidos pendentes.
+- Conferir entregas pendentes.
+- Conferir estoque critico.
+- Conferir contas vencidas.
+- Conferir vendas sem financeiro.
+- Conferir erros fiscais ou notificacoes.
+- Registrar pendencias com responsavel.
+- Garantir backup diario quando estiver em producao.
+
+Registro recomendado:
+- Data.
+- Responsavel.
+- Filial.
+- Total de vendas.
+- Caixa fechado: sim/nao.
+- Divergencias: sim/nao.
+- Pendencias principais.
+- Incidentes do dia.
+- Acao prevista para o proximo dia.
+
+
+11. Checklist rapido diario
+---------------------------
+
+Abertura:
+- [ ] Login validado.
+- [ ] Empresa/filial conferida.
+- [ ] Alertas revisados.
+- [ ] Caixa aberto quando necessario.
+- [ ] Estoque critico revisado.
+
+Durante o dia:
+- [ ] Vendas registradas corretamente.
+- [ ] Pagamentos recebidos corretamente.
+- [ ] Estoque movimentado corretamente.
+- [ ] Financeiro acompanhado.
+- [ ] Entregas acompanhadas.
+
+Encerramento:
+- [ ] Caixa fechado.
+- [ ] Divergencias registradas.
+- [ ] Financeiro conciliado.
+- [ ] Pedidos pendentes revisados.
+- [ ] Backup confirmado quando aplicavel.
+
+
+12. Quando chamar suporte ou manutencao
+---------------------------------------
+
+Abrir chamado quando:
+- Tela apresentar erro visual.
+- Login falhar para usuario correto.
+- Caixa nao abrir ou nao fechar.
+- Pedido nao atualizar estoque.
+- Financeiro nao refletir recebimento.
+- Fiscal rejeitar sem causa clara.
+- Relatorio mostrar dados incoerentes.
+- Usuario acessar modulo indevido.
+- Backup falhar.
+- Sistema ficar lento ou indisponivel.
+
+Informacoes para o chamado:
+- Usuario.
+- Empresa/filial.
+- Horario.
+- Tela/modulo.
+- Acao realizada.
+- Mensagem de erro.
+- Print quando possivel.
+- ID de pedido, cliente, produto, caixa ou lancamento envolvido.
+
+
+13. Criterio de dia operacional OK
+----------------------------------
+
+O dia pode ser considerado OK quando:
+- Sistema ficou acessivel.
+- Vendas principais foram registradas.
+- Caixa foi fechado.
+- Financeiro foi conferido.
+- Estoque nao ficou com divergencia critica.
+- Fiscal/logistica nao ficaram com pendencia bloqueante.
+- Relatorios essenciais foram conferidos.
+- Pendencias foram registradas com responsavel e prazo.
+- Backup foi confirmado em ambiente real.

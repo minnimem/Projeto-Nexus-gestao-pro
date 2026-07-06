@@ -1,0 +1,1257 @@
+MANUAL GERAL DO SISTEMA NEXUS ONE
+=================================
+
+Arquivo: docs/MANUAL_GERAL_SISTEMA.txt
+Projeto: Nexus One / Gestao Pro
+Objetivo: explicar, em linguagem de estudo, como o sistema foi criado, como o front-end conversa com o back-end e qual a funcao geral de cada entidade/modulo.
+
+
+1. VISAO GERAL DO SISTEMA
+=========================
+
+O Nexus One e um sistema de gestao operacional para empresas. Ele junta em um unico painel:
+
+- Login e controle de acesso.
+- Painel principal / visao geral.
+- Clientes.
+- Produtos, estoque, fornecedores, categorias e marcas.
+- Pedidos, PDV, orcamentos, separacao, fiscal e follow-up comercial.
+- Caixa.
+- Financeiro, contas, recorrencias, cobrancas e conciliacao.
+- Colaboradores e permissoes.
+- Relatorios.
+- Logistica.
+- Servicos / ordens de servico.
+- Painel de controle administrativo, planos comerciais, filiais, contratos, liberacao de modulos e auditoria.
+
+O sistema tem duas partes principais:
+
+FRONT-END
+- Local principal: frontend/src
+- Tecnologia: React + Vite.
+- Responsabilidade: telas, formularios, tabelas, filtros, dashboards, chamadas para API e experiencia do usuario.
+
+BACK-END
+- Local principal: backend/projectoads/projectoads/src/main/java/br/com/diego/projectoads
+- Tecnologia: Java + Spring Boot + Spring Security + JPA/Hibernate.
+- Banco: PostgreSQL.
+- Responsabilidade: regras de negocio, autenticacao, validacoes, persistencia no banco, endpoints REST, fiscal, financeiro, auditoria e integracoes.
+
+
+2. FLUXO GERAL DE DADOS
+=======================
+
+O fluxo mais comum do sistema segue esta ordem:
+
+1. Usuario acessa uma tela no front.
+2. A tela chama uma funcao de frontend/src/services/resources.js.
+3. resources.js usa frontend/src/services/api.js para fazer HTTP.
+4. O back recebe a chamada em um Controller.
+5. O Controller chama um Service.
+6. O Service aplica regra de negocio.
+7. O Service usa um Repository para ler/gravar no PostgreSQL.
+8. O back retorna DTO/JSON.
+9. O front transforma os dados em viewModels e renderiza componentes.
+
+Exemplo:
+
+Tela Produtos
+-> endpoints.produtos.listar()
+-> GET /produtos
+-> ProdutoController
+-> ProdutoService
+-> ProdutoRepository
+-> tabela/model Produto
+-> retorna lista de produtos
+-> Produtos.jsx monta a tela com componentes e viewModels.
+
+
+3. ESTRUTURA DO FRONT-END
+=========================
+
+Local: frontend/src
+
+Arquivos raiz:
+
+- main.jsx
+  Ponto de entrada do React. Monta o app no navegador.
+
+- App.jsx
+  Componente principal. Depois da separacao, ficou mais enxuto e delega rotas/layouts.
+
+Pastas principais:
+
+- routes/
+  Define as rotas da aplicacao.
+  AppRoutes.jsx organiza as telas.
+  PrivateRoute.jsx protege telas que exigem login.
+
+- layouts/
+  Define a estrutura visual base.
+  AuthLayout.jsx: layout para login/autenticacao.
+  DashboardLayout.jsx: layout principal apos login.
+  Sidebar.jsx: menu lateral.
+  Header.jsx: topo do sistema.
+
+- pages/
+  Cada pasta representa uma tela/modulo maior do sistema.
+  Exemplo: Login, Dashboard, Clientes, Produtos, Pedidos, Financeiro.
+
+- components/
+  Componentes reutilizaveis entre varias telas.
+  Exemplo: Button, Modal, Table, StatusBadge, HeaderSearch, HeaderAlerts.
+
+- services/
+  Camada de comunicacao com o back-end.
+  api.js configura a base HTTP.
+  auth.js cuida de token/sessao.
+  resources.js centraliza endpoints.
+
+- utils/
+  Funcoes auxiliares reutilizaveis.
+  Exemplo: formatCurrency, formatDate, permissions, stock, products, exporters.
+
+- constants/
+  Constantes compartilhadas.
+  Exemplo: roles, modules, status, fiscal, admin.
+
+- styles/
+  CSS global separado por responsabilidade.
+  Exemplo: base, layout, forms, tables, cards, controls, responsive.
+
+
+4. ROTAS, LOGIN E SEGURANCA NO FRONT
+====================================
+
+Login:
+- Pasta: frontend/src/pages/Login
+- Responsabilidade:
+  - Exibir formulario de login.
+  - Recuperacao e reset de senha.
+  - Chamar endpoints de autenticacao.
+  - Salvar sessao/token conforme auth.js.
+
+Arquivos importantes:
+- Login.jsx: tela principal.
+- hooks/useLoginPageState.js: estado do formulario.
+- hooks/useLoginActions.js: acoes de login/recuperacao.
+- services/loginService.js: apoio de comunicacao.
+- components/LoginAuthForm.jsx: formulario.
+- components/LoginBrandPanel.jsx: area visual/institucional.
+
+PrivateRoute:
+- Local: frontend/src/routes/PrivateRoute.jsx
+- Responsabilidade:
+  - Bloquear acesso sem autenticacao.
+  - Redirecionar usuario para login quando necessario.
+
+Permissoes:
+- Local: frontend/src/utils/permissions.js
+- Responsabilidade:
+  - Normalizar perfil.
+  - Verificar acesso por perfil/modulo.
+  - Ajudar a esconder/liberar funcionalidades no front.
+
+
+5. PAINEL PRINCIPAL / DASHBOARD
+===============================
+
+Pastas:
+- frontend/src/pages/Dashboard
+- frontend/src/pages/VisaoGeral
+
+Funcao:
+- Mostrar resumo operacional da empresa.
+- Mostrar alertas.
+- Mostrar modulos disponiveis.
+- Mostrar indicadores de vendas, estoque, financeiro e operacao.
+
+Dashboard:
+- Dashboard.jsx: tela do painel.
+- hooks/useDashboardController.js: coordena carregamento/estado.
+- services/dashboardDataService.js: busca dados.
+- services/dashboardOverviewLoader.js: carrega visao geral.
+- services/dashboardOperationalLoaders.js: carrega operacoes.
+- services/dashboardManagementLoaders.js: carrega gestao.
+- viewModels/dashboardAlerts.js: cria alertas do painel.
+- components/ActiveDashboardModule.jsx: exibe modulo selecionado.
+- components/DashboardModuleNavigation.jsx: navegacao dos modulos.
+- components/DashboardWorkspace.jsx: area de trabalho.
+
+VisaoGeral:
+- VisaoGeral.jsx: painel consolidado.
+- viewModels/overviewInsightsViewModel.js: indicadores e insights.
+- viewModels/overviewPeriodViewModel.js: periodo analisado.
+- components/ActivityAlertsPanel.jsx: alertas.
+- components/AiRecommendationPanel.jsx: recomendacoes.
+- components/BranchOverviewPanel.jsx: filiais.
+- components/DailyReportPanel.jsx: relatorio diario.
+- components/OperationalBiPanel.jsx: BI operacional.
+- components/OrdersPrioritiesPanel.jsx: pedidos prioritarios.
+- components/SalesTrendPanel.jsx: tendencia de vendas.
+
+
+6. CLIENTES
+===========
+
+Front:
+- Pasta: frontend/src/pages/Clientes
+
+Funcao:
+- Cadastro e consulta de clientes.
+- Historico comercial.
+- Follow-up.
+- Produtos favoritos.
+- Perfil do cliente.
+
+Arquivos importantes:
+- Clientes.jsx: tela principal.
+- createCustomerPageViewModel.js: monta dados para a tela.
+- customerService.js: chamadas especificas do modulo.
+- useCustomerActions.js: acoes de criar/atualizar/excluir.
+- useCustomerPageState.js: estado local da tela.
+
+Componentes:
+- CustomerCreateModal.jsx: cadastro de cliente.
+- CustomerListSection.jsx: lista.
+- CustomerProfilePanel.jsx: perfil.
+- CustomerCommercialSummary.jsx: resumo comercial.
+- CustomerFollowUpForm.jsx: follow-up.
+- CustomerFavoriteProductsSection.jsx: favoritos.
+- CustomerHistoryActivitySection.jsx: historico.
+- CustomerInsightsSection.jsx: insights.
+
+Back:
+- Model: Cliente.java
+- Controller: ClienteController.java
+- Repository: ClienteRepository.java
+
+Endpoints principais:
+- GET /clientes
+- POST /clientes
+- PUT /clientes/{id}
+- DELETE /clientes/{id}
+
+
+7. PRODUTOS, ESTOQUE E CADASTROS AUXILIARES
+===========================================
+
+Front:
+- Pasta: frontend/src/pages/Produtos
+
+Funcao:
+- Cadastro de produtos.
+- Controle de estoque.
+- Compras.
+- Fornecedores.
+- Categorias.
+- Marcas.
+- Etiquetas.
+- Alertas de estoque baixo.
+- Inventario e transferencia.
+
+Arquivos importantes:
+- Produtos.jsx: tela principal.
+- createProductPageViewModel.js: cria modelo da pagina.
+- productPageContext.js: contexto de pagina.
+- productInventoryListViewModel.js: lista de inventario.
+- productInventoryIntelligenceViewModel.js: inteligencia de estoque.
+- productStockScopeViewModel.js: escopo por filial/empresa.
+- productToolSelectionViewModel.js: selecoes de ferramentas.
+- productPurchaseSummaryViewModel.js: resumo de compras.
+- productStockSummaryViewModel.js: resumo de estoque.
+- productService.js: service especifico do modulo.
+
+Hooks:
+- useProductCatalogActions.js: cadastro de produto.
+- useProductInventoryTools.js: ferramentas de inventario.
+- useProductPageActions.js: acoes gerais.
+- useProductPageState.js: estado da tela.
+- useProductPurchaseActions.js: compras.
+- useProductStockActions.js: estoque.
+
+Componentes:
+- ProductInventoryPageContent.jsx: conteudo principal.
+- ProductInventoryTableBody.jsx / Header.jsx: tabela.
+- ProductInventoryFilters.jsx: filtros.
+- ProductInventoryCommandPanel.jsx: comandos.
+- ProductStockAdjustmentForm.jsx: ajuste.
+- ProductStockTransferForm.jsx: transferencia.
+- ProductPurchaseForm.jsx: compra.
+- ProductPurchaseHistorySection.jsx: historico de compras.
+- ProductSupplierForm.jsx: fornecedor.
+- ProductTaxonomyForm.jsx: categoria/marca.
+- ProductLabelsSection.jsx: etiquetas.
+- ProductKpiSection.jsx: indicadores.
+- ProductStockAlertsSection.jsx: alertas.
+- ProductStaleStockSection.jsx: estoque parado.
+
+Back - entidades:
+- Produto.java: produto principal.
+- Estoque.java: saldo/controle de estoque.
+- MovimentoEstoque.java: movimentacoes.
+- EstoqueMovimentacao.java: registros adicionais de estoque.
+- CompraEstoque.java: compra.
+- ItemCompraEstoque.java: itens da compra.
+- Fornecedor.java: fornecedores.
+- Categoria.java: categorias.
+- Marca.java: marcas.
+- ProdutoEstoqueDTO.java: DTO/model auxiliar de estoque.
+
+Back - controllers:
+- ProdutoController.java
+- EstoqueController.java
+- MovimentoEstoqueController.java
+- CompraEstoqueController.java
+- FornecedorController.java
+- CategoriaController.java
+- MarcaController.java
+
+Endpoints principais:
+- GET /produtos
+- POST /produtos
+- PUT /produtos/{id}
+- DELETE /produtos/{id}
+- GET /produtos/buscar
+- GET /estoque/baixo
+- GET /estoque/saldos
+- POST /estoque/entrada/{produtoId}
+- POST /estoque/saida/{produtoId}
+- POST /estoque/compra
+- POST /estoque/ajuste
+- POST /estoque/transferencia
+- GET /compras
+- POST /compras
+- GET/POST/PUT/DELETE /fornecedores
+- GET/POST/PUT/DELETE /categorias
+- GET/POST/PUT/DELETE /marcas
+
+
+8. PEDIDOS, VENDAS, PDV, SEPARACAO E FISCAL
+===========================================
+
+Front:
+- Pasta: frontend/src/pages/Pedidos
+
+Funcao:
+- Cadastro de pedidos.
+- Orcamentos.
+- PDV.
+- Carrinho.
+- Finalizacao de venda.
+- Pagamentos.
+- Separacao de pedidos.
+- Controle fiscal/homologacao.
+- Follow-up comercial.
+- Ranking de vendedores e comissoes.
+- Analise comercial.
+
+Arquivo principal:
+- Pedidos.jsx
+
+Servicos internos do front:
+- pointOfSale.js e arquivos pointOfSale*: regras do PDV.
+- pointOfSaleCart.js: carrinho.
+- pointOfSaleTotals.js: totais.
+- pointOfSaleSubmission.js: envio/finalizacao.
+- salesDashboardData.js: dados de vendas.
+- salesKpis.js: indicadores.
+- salesFiscal.js: fiscal.
+- fiscalWorkflow.js: fluxo fiscal.
+- fiscalReal.js: emissao real/controlada.
+- separationService.js: separacao.
+- separationQueue.js: fila de separacao.
+- commercialFollowUp.js: follow-up.
+- commercialAutomation.js: automacao comercial.
+- sellerPerformance.js: vendedor/comissao.
+- commissionActions.js: salvar metas/comissoes.
+
+Hooks:
+- usePedidosPageData.js: carrega dados.
+- usePointOfSaleController.js: coordena PDV.
+- usePointOfSaleCart.js: carrinho.
+- usePointOfSaleSubmission.js: finalizacao.
+- useSalesOrders.js: pedidos.
+- useSalesFiscal.js: fiscal.
+- useSeparationQueue.js: separacao.
+- useSalesCommission.js: comissao.
+- useSalesCommercialFollowUp.js: follow-up.
+- useFiscal*Actions.js: acoes fiscais.
+
+Componentes:
+- PointOfSale.jsx: PDV.
+- PointOfSaleCatalog.jsx: catalogo.
+- PointOfSaleCartList.jsx: carrinho.
+- PointOfSaleCheckout.jsx: fechamento.
+- PointOfSalePaymentPanel.jsx: pagamento.
+- SalesOrdersSection.jsx: pedidos.
+- SalesOrdersTable.jsx: tabela.
+- SalesSeparationSection.jsx: separacao.
+- SeparationOrdersTable.jsx: tabela de separacao.
+- FiscalWorkspace.jsx: area fiscal.
+- FiscalQueueTable.jsx: fila fiscal.
+- FiscalActionGroups.jsx: botoes fiscais.
+- CommercialFollowUpSection.jsx: follow-up.
+- CommercialKanbanBoard.jsx: kanban comercial.
+- SellerRankingSection.jsx: ranking.
+
+Back - entidades:
+- Pedido.java: pedido/venda/orcamento.
+- ItemPedido.java: itens do pedido.
+- Pagamento.java: pagamentos.
+- DocumentoFiscal.java: documento fiscal vinculado ao pedido.
+- FollowUpComercial.java: follow-up comercial.
+- ConfiguracaoComissao.java: percentual/metas de comissao.
+- ConfiguracaoAutomacaoComercial.java: regras de automacao comercial.
+
+Back - controllers:
+- PedidoController.java
+- ItemPedidoController.java
+- PagamentoController.java
+- DocumentoFiscalController.java
+- FollowUpComercialController.java
+- ComissaoController.java
+
+Endpoints principais:
+- GET /pedidos
+- GET /pedidos/{id}
+- GET /pedidos/{id}/itens
+- POST /pedidos
+- PUT /pedidos/{id}
+- PATCH /pedidos/{id}/finalizar
+- PATCH /pedidos/{id}/gerar-cobranca
+- PATCH /pedidos/{id}/converter-orcamento
+- PATCH /pedidos/{id}/iniciar-separacao
+- PATCH /pedidos/{id}/concluir-separacao
+- PATCH /pedidos/{id}/cancelar-inconsistente
+- GET /pedidos/dashboard
+- GET /pedidos/dashboard/usuario/{usuarioId}
+- GET/POST/PATCH /pedidos/follow-ups
+- GET/PUT /pedidos/follow-ups/configuracao
+- GET/POST/PATCH /pagamentos
+- GET/PATCH/POST /documentos-fiscais/*
+- GET/PUT /comissoes/config
+
+
+9. CAIXA
+========
+
+Front:
+- Pasta: frontend/src/pages/Caixa
+
+Funcao:
+- Abertura de caixa.
+- Fechamento.
+- Suprimento.
+- Sangria.
+- Recebimento de pagamento.
+- Historico de movimentos.
+- Pedidos pendentes.
+- Relatorio de pagamentos.
+
+Arquivos:
+- Caixa.jsx: tela principal.
+- cashRegisterViewModel.js: modelo de dados do caixa.
+
+Componentes:
+- CashOpenForm.jsx: abrir caixa.
+- CashCloseForm.jsx: fechar.
+- CashMovementForm.jsx: suprimento/sangria.
+- CashPendingOrdersSection.jsx: pedidos pendentes.
+- CashOrderPicker.jsx: selecionar pedido.
+- CashPaymentColumn.jsx: formas de pagamento.
+- CashHistorySection.jsx: historico.
+- CashClosingReportSection.jsx: relatorio.
+- CashTerminalHeader.jsx: cabecalho do terminal.
+
+Back - entidades:
+- Caixa.java
+- MovimentoCaixa.java
+
+Back - controller/service:
+- CaixaController.java
+- CaixaService.java
+
+Endpoints:
+- POST /caixas/abrir
+- GET /caixas/aberto
+- GET /caixas
+- GET /caixas/{id}/resumo
+- POST /caixas/{id}/suprimento
+- POST /caixas/{id}/pagamento-recebido
+- POST /caixas/{id}/sangria
+- POST /caixas/{id}/fechar
+
+
+10. FINANCEIRO, COBRANCAS E RECORRENCIAS
+========================================
+
+Front:
+- Pasta: frontend/src/pages/Financeiro
+
+Funcao:
+- Lancamentos financeiros.
+- Contas a pagar/receber.
+- Fluxo de caixa.
+- DRE.
+- Recorrencias.
+- Cobrancas.
+- Inadimplencia.
+- Conciliacao.
+- Contas sem financeiro.
+- Plano de acao financeiro.
+
+Arquivo:
+- Financeiro.jsx
+
+ViewModels:
+- financeViewModel.js: base da tela.
+- financeSummaries.js: resumos.
+- financeAccountsViewModel.js: contas.
+- financeActionPlanViewModel.js: plano de acao.
+- financeCollectionViewModel.js: cobrancas.
+- financeDreViewModel.js: DRE.
+- financeForecastViewModel.js: previsao.
+- financeReconciliationViewModel.js: conciliacao.
+- financePageContext.js: contexto de pagina.
+
+Hooks:
+- useFinanceEntryActions.js: lancamentos.
+- useFinanceLifecycleActions.js: baixar/cancelar/estornar.
+- useFinanceCollectionActions.js: cobranca/follow-up.
+- useFinanceOrphanActions.js: pedidos sem financeiro.
+- useFinanceNavigation.js: navegacao.
+
+Componentes:
+- FinanceKpiSection.jsx: indicadores.
+- FinanceEntryForm.jsx: formulario.
+- FinanceMovementsPanel.jsx: movimentacoes.
+- FinanceCashFlowSection.jsx: fluxo de caixa.
+- FinanceDreSection.jsx: DRE.
+- FinanceForecastSection.jsx: previsao.
+- FinanceRecurrenceSection.jsx: recorrencias.
+- FinanceCollectionDashboardSection.jsx: cobrancas.
+- FinanceCustomerCollectionSection.jsx: cobranca por cliente.
+- FinanceDelinquencySection.jsx: inadimplencia.
+- FinanceReconciliationSection.jsx: conciliacao.
+- FinanceOrphanOrdersPanel.jsx: pedidos sem financeiro.
+- FinanceChargePanel.jsx: gerar cobranca.
+
+Back - entidades:
+- Financeiro.java
+- RecorrenciaFinanceira.java
+- FollowUpCobranca.java
+
+Back - controllers:
+- FinanceiroController.java
+- RecorrenciaFinanceiraController.java
+- FollowUpCobrancaController.java
+- AsaasWebhookController.java
+
+Endpoints:
+- GET /financeiro
+- GET /financeiro/resumo
+- POST /financeiro
+- PUT /financeiro/{id}
+- DELETE /financeiro/{id}
+- PATCH /financeiro/{id}/cancelar
+- PATCH /financeiro/{id}/baixar
+- PATCH /financeiro/{id}/gerar-cobranca
+- PATCH /financeiro/{id}/estornar
+- GET/POST/PATCH /financeiro/follow-ups
+- GET/POST/PATCH /financeiro/recorrencias
+- POST /webhooks/asaas
+
+
+11. COLABORADORES, USUARIOS, PERMISSOES E PAINEL DE CONTROLE
+============================================================
+
+Front:
+- Pasta principal: frontend/src/pages/Usuarios
+- Tela relacionada: frontend/src/pages/Colaboradores
+- Tela master: frontend/src/pages/AdminEmpresas
+
+Funcao:
+- Gerenciar usuarios.
+- Perfis e permissoes.
+- Liberacao de modulos por empresa.
+- Planos comerciais e cobranca dos planos.
+- Empresas master.
+- Filiais.
+- Contratos.
+- Configuracao fiscal.
+- Auditoria.
+- Governanca de acesso.
+- Colaboradores/RH.
+
+Usuarios.jsx:
+- Tela principal do painel de controle.
+- Usa hooks e componentes separados para empresas, usuarios, planos, permissoes, fiscal, contratos e auditoria.
+
+Hooks:
+- useUsuariosDashboardData.js: carrega dados do painel.
+- useUserManagementOperations.js: operacoes de usuarios.
+- usePlanBillingOperations.js: cobranca dos planos.
+- useFiscalConfigOperations.js: fiscal.
+- useCompanyAdminOperations.js: empresas/filiais/contratos.
+
+Utils:
+- userPayload.js: payload de usuario.
+- userAccessViewModel.js: acesso.
+- planBillingViewModel.js: cobranca de planos.
+- permissionGovernanceViewModel.js: governanca.
+- permissionDraft.js: rascunho de permissao.
+- moduleLiberationViewModel.js: liberacao de modulos.
+- companyPayloads.js: payload de empresa.
+- companyOperationsViewModel.js: operacoes da empresa.
+- auditGovernanceViewModel.js: auditoria.
+
+Componentes importantes:
+- ControlPanelContent.jsx: corpo do painel.
+- ControlPanelTabs.jsx: abas.
+- PlanBillingPanel.jsx: cobranca de planos.
+- PlanBillingTable.jsx: tabela.
+- PlanBillingBulkActions.jsx: acoes em lote.
+- PlanSection.jsx: plano da empresa.
+- ModuleLiberationPanel.jsx: liberacao de modulos.
+- CompanySection.jsx: dados da empresa.
+- BranchesSection.jsx: filiais.
+- ContractsSection.jsx: contratos.
+- FiscalConfigSection.jsx: configuracao fiscal.
+- AdminAuditSection.jsx: auditoria.
+- AccessGovernanceSection.jsx: governanca de acesso.
+- UsersPermissionsSection.jsx: permissoes de usuarios.
+
+Colaboradores:
+- Colaboradores.jsx: painel de colaboradores.
+- OrganizationPanel.jsx: organizacao.
+- WorkSchedulePanel.jsx: escala.
+- RoleGoalsPanel.jsx: metas.
+- RhRiskPlanPanel.jsx: riscos.
+- PermissionsOperationsPanel.jsx: permissoes.
+- AuditRhPanel.jsx: auditoria RH.
+- CollaboratorsTable.jsx: tabela.
+
+AdminEmpresas:
+- AdminEmpresas.jsx: area master para empresas.
+- CompaniesManagementPanel.jsx: gestao.
+- CompaniesTablePanel.jsx: tabela.
+- NewCompanyForm.jsx: criar empresa.
+- CompanyEditFormPanel.jsx: editar empresa.
+- CompanyPlanFormPanel.jsx: plano.
+- ControlledAddonsPanel.jsx: adicionais/liberacoes.
+
+Back - entidades:
+- Usuario.java
+- Permissao.java
+- Empresa.java
+- Filial.java
+- ContratoEmpresa.java
+- LiberacaoModuloEmpresa.java
+- AuditoriaEvento.java
+- LoginAuditoria.java
+- ConfiguracaoFiscal.java
+- PasswordResetToken.java
+
+Back - controllers:
+- UsuarioController.java
+- EmpresaController.java
+- AuditoriaController.java
+- ConfiguracaoFiscalController.java
+- AuthController.java
+- PasswordController.java
+
+Endpoints:
+- POST /auth/login
+- POST /auth/cadastro
+- POST /auth/recuperar
+- POST /auth/resetar
+- GET/POST/PUT/DELETE /usuarios
+- PUT /usuarios/{id}/perfil
+- PATCH /usuarios/{id}/acesso
+- PATCH /usuarios/{id}/permissoes
+- GET /usuarios/admin
+- GET/PUT /empresa/minha
+- GET/PUT /empresa/plano
+- GET/PUT /empresa/liberacoes
+- GET/POST/PUT /empresa/filiais
+- GET/POST/PUT /empresa/contratos
+- GET/POST/PUT/PATCH /empresa/master/empresas
+- GET/PUT /empresa/master/empresas/{id}/liberacoes
+- GET /auditoria
+- GET/POST/PUT /configuracoes-fiscais
+
+
+12. RELATORIOS
+==============
+
+Front:
+- Pasta: frontend/src/pages/Relatorios
+
+Funcao:
+- Relatorios comerciais.
+- Relatorios executivos.
+- Relatorios fiscais por filial.
+- Relatorios por periodo de venda.
+- Exportacao seletiva de campos.
+- Agendamento/organizacao de relatorios.
+
+Arquivo:
+- Relatorios.jsx
+
+ViewModels:
+- reportCardsViewModel.js: cards de relatorio.
+- reportFieldSelectionViewModel.js: selecao de campos.
+- commercialReportViewModel.js: relatorio comercial.
+- executiveReportViewModel.js: relatorio executivo.
+- branchFiscalReportViewModel.js: fiscal por filial.
+- salesPeriodReportViewModel.js: periodo de venda.
+- reportScheduleViewModel.js: agenda.
+
+Componentes:
+- ReportsExportGrid.jsx: exportacoes.
+- ReportKpiSection.jsx: KPIs.
+- ReportAnalyticsPanel.jsx: analise.
+- CommercialReportsPanel.jsx: comercial.
+- ExecutiveBiPanel.jsx: executivo.
+- FiscalBranchReportsPanel.jsx: fiscal.
+- SalesPeriodReport.jsx: vendas por periodo.
+- ReportSchedulePanel.jsx: agenda.
+
+Back:
+- Relatorios sao montados majoritariamente no front com dados vindos de pedidos, clientes, produtos, financeiro, fiscal, empresa e auditoria.
+- Nao ha um controller unico de relatorios; o modulo consolida dados dos endpoints existentes.
+
+
+13. LOGISTICA
+=============
+
+Front:
+- Pasta: frontend/src/pages/Logistica
+
+Funcao:
+- Entregas.
+- Rotas.
+- Transportadoras.
+- Veiculos.
+- Entregadores.
+- Vinculo de entregas com rota.
+- Vinculo de motorista e veiculo.
+- Status de entrega/rota.
+
+Arquivo:
+- Logistica.jsx
+
+ViewModel:
+- logisticsViewModel.js: consolida dados da tela.
+
+Componentes:
+- LogisticsRoutesDashboard.jsx: dashboard de rotas.
+- LogisticsRouteForm.jsx: formulario de rota.
+- LogisticsRouteTablePanel.jsx: tabela de rotas.
+- LogisticsRouteStatusPanel.jsx: status.
+- LogisticsDispatchPanel.jsx: despacho.
+- LogisticsDeliveryStatusPanel.jsx: entregas.
+- LogisticsDriverForm.jsx: entregador.
+- LogisticsVehicleForm.jsx: veiculo.
+- LogisticsCarrierForm.jsx: transportadora.
+- LogisticsRouteMapPanel.jsx: mapa/representacao.
+- LogisticsTimelinePanel.jsx: linha do tempo.
+
+Back - entidades:
+- Entrega.java
+- Entregador.java
+- RotaEntrega.java
+- Transportadora.java
+- Veiculo.java
+
+Back - controllers:
+- LogisticaController.java
+- EntregaController.java
+- EntregadorController.java
+- RotaEntregaController.java
+- TransportadoraController.java
+- VeiculoController.java
+
+Endpoints:
+- GET /logistica
+- GET /entregas
+- GET/POST/PUT/DELETE /entregadores
+- GET /entregadores/ativos
+- GET/POST/PUT/DELETE /veiculos
+- GET /veiculos/ativos
+- GET/POST/PUT/DELETE /transportadoras
+- GET/POST/PUT/PATCH/DELETE /rotas-entrega
+- PATCH /rotas-entrega/{id}/status
+- PATCH /rotas-entrega/{id}/entregas
+- PATCH /rotas-entrega/{id}/entregador/{idEntregador}
+- PATCH /rotas-entrega/{id}/veiculo/{idVeiculo}
+
+
+14. SERVICOS / ORDENS DE SERVICO
+================================
+
+Front:
+- Pasta: frontend/src/pages/Servicos
+
+Funcao:
+- Criar e controlar ordens de servico.
+- Checklist.
+- Prioridade.
+- SLA.
+- Pecas utilizadas.
+- Baixa de pecas no estoque.
+- Faturamento da OS.
+- Evidencias e anexos.
+- Assinatura do cliente.
+- Historico e recorrencias.
+
+Arquivo:
+- Servicos.jsx
+
+ViewModel:
+- serviceViewModel.js: parse de prioridade, evidencias, recorrencia, SLA, pecas e historico.
+
+Constantes:
+- serviceConstants.js: status/prioridades/opcoes.
+
+Componentes:
+- ServiceOrderForm.jsx: formulario.
+- ServiceOrdersPanel.jsx: painel.
+- ServiceOrdersTable.jsx: tabela.
+- ServiceOrderSummaryStep.jsx: resumo.
+- ServiceOrderFlowActions.jsx: fluxo.
+- ServiceKpiSection.jsx: KPIs.
+- ServiceKanbanBoard.jsx: kanban.
+- ServiceHistoryReport.jsx: historico.
+- ServiceEvidencePanel.jsx: evidencias.
+- ServicePriorityPanel.jsx: prioridades.
+- ServiceSignatureModal.jsx: assinatura.
+
+Back - entidades:
+- OrdemServico.java
+- OrdemServicoPeca.java
+
+Back - controller/service:
+- OrdemServicoController.java
+- OrdemServicoService.java
+
+Endpoints:
+- GET /ordens-servico
+- GET /ordens-servico/{id}
+- POST /ordens-servico
+- PUT /ordens-servico/{id}
+- PATCH /ordens-servico/{id}/status
+- POST /ordens-servico/{id}/faturar
+- POST /ordens-servico/{id}/baixar-pecas
+- POST /ordens-servico/{id}/anexos
+- POST /ordens-servico/{id}/assinatura
+- GET /ordens-servico/{id}/anexos/{nomeArquivo}
+
+
+15. FISCAL
+==========
+
+O fiscal fica conectado principalmente com Pedidos e Painel de Controle.
+
+Front:
+- Pedidos: fluxo fiscal de documento por pedido.
+- Usuarios/Painel Controle: configuracoes fiscais por empresa/filial.
+- Relatorios: leitura fiscal consolidada.
+
+Back - entidades:
+- DocumentoFiscal.java
+- ConfiguracaoFiscal.java
+
+Back - DTOs:
+- DocumentoFiscalResponse
+- DocumentoFiscalResumoResponse
+- DocumentoFiscalConsultaResponse
+- DocumentoFiscalHomologacaoRequest
+- DocumentoFiscalCartaCorrecaoRequest
+- ConfiguracaoFiscalRequest
+- ConfiguracaoFiscalResponse
+- ConfiguracaoFiscalStatusResponse
+- StatusServicoFiscalResponse
+
+Back - fiscal services:
+- DocumentoFiscalService.java
+- ConfiguracaoFiscalService.java
+- FiscalProvider.java
+- FiscalXmlSigner.java
+- FiscalSecretResolver.java
+- ControlledHomologationFiscalProvider.java
+- HttpFiscalProvider.java
+- Pkcs12FiscalCertificateLoader.java
+- Pkcs12FiscalXmlSigner.java
+
+Funcao:
+- Preparar documento fiscal.
+- Gerar/validar XML.
+- Transmitir em homologacao.
+- Controlar pendencias.
+- Simular/organizar emissao real.
+- Validar configuracao fiscal e certificado.
+
+
+16. AUDITORIA E REGISTRO DE EXCLUSOES
+=====================================
+
+Back:
+- AuditoriaEvento.java: entidade de auditoria geral.
+- AuditoriaService.java: registra eventos.
+- AuditoriaController.java: consulta eventos.
+- DeleteAuditFilter.java: filtro para registrar exclusoes.
+- LoginAuditoria.java: auditoria de login.
+
+Funcao:
+- Guardar quem fez a acao.
+- Guardar entidade afetada.
+- Guardar ID/identificacao.
+- Guardar horario.
+- Ajudar a rastrear exclusoes e alteracoes importantes.
+
+Front:
+- Painel de Controle / Auditoria.
+- Colaboradores / Auditoria RH.
+- AdminAuditTable.jsx e componentes de auditoria.
+
+
+17. ENTIDADES PRINCIPAIS DO BACK-END
+====================================
+
+EMPRESA E ACESSO
+- Empresa: dados da empresa/tenant, plano, status e limites.
+- Filial: unidade operacional da empresa.
+- Usuario: login, perfil, acesso, dados profissionais.
+- Permissao: modulos/permissoes por usuario.
+- LiberacaoModuloEmpresa: liberacao de modulos por empresa.
+- ContratoEmpresa: contratos comerciais da empresa.
+- PasswordResetToken: token para reset de senha.
+- LoginAuditoria: registros de login.
+- AuditoriaEvento: registros de auditoria.
+
+COMERCIAL E CLIENTES
+- Cliente: cadastro de clientes.
+- Pedido: venda/orcamento/pedido.
+- ItemPedido: produtos dentro do pedido.
+- FollowUpComercial: contato/acompanhamento comercial.
+- ConfiguracaoAutomacaoComercial: regras automaticas de follow-up.
+- ConfiguracaoComissao: percentual padrao e regras de comissao.
+
+PRODUTOS E ESTOQUE
+- Produto: cadastro do produto.
+- Categoria: agrupamento de produtos/servicos.
+- Marca: marca do produto.
+- Fornecedor: fornecedor.
+- Estoque: saldo.
+- MovimentoEstoque: movimentacao de estoque.
+- EstoqueMovimentacao: historico de movimentacao.
+- CompraEstoque: compra.
+- ItemCompraEstoque: item de compra.
+- ProdutoEstoqueDTO: transporte de dados de estoque/produto.
+
+CAIXA E FINANCEIRO
+- Caixa: abertura/fechamento.
+- MovimentoCaixa: suprimento, sangria, recebimentos.
+- Financeiro: contas a pagar/receber, status, valores.
+- RecorrenciaFinanceira: contas recorrentes.
+- FollowUpCobranca: acompanhamento de cobranca.
+- Pagamento: pagamento ligado a venda/pedido.
+
+FISCAL
+- DocumentoFiscal: documento fiscal de pedido.
+- ConfiguracaoFiscal: configuracao fiscal por empresa/filial.
+
+LOGISTICA
+- Entrega: entrega vinculada a pedido/rota.
+- Entregador: motorista/entregador.
+- RotaEntrega: rota logistica.
+- Transportadora: transportadora.
+- Veiculo: veiculo de entrega.
+
+SERVICOS
+- OrdemServico: ordem de servico.
+- OrdemServicoPeca: pecas usadas em ordem de servico.
+
+
+18. ENUMS IMPORTANTES DO BACK-END
+=================================
+
+- Perfil: ADMIN, GERENTE, VENDEDOR e demais perfis de acesso.
+- PlanoComercial: planos comerciais.
+- ModuloPlano: modulos liberaveis por plano.
+- StatusAssinatura: status da assinatura/plano.
+- StatusPedido: status do pedido.
+- StatusPagamento: status do pagamento.
+- MetodoPagamento: forma de pagamento.
+- StatusCaixa: status do caixa.
+- TipoMovimentoCaixa: suprimento, sangria etc.
+- TipoFinanceiro: pagar/receber.
+- StatusDocumentoFiscal: ciclo fiscal.
+- ModeloDocumentoFiscal: modelo fiscal.
+- AmbienteFiscal: homologacao/producao.
+- StatusEntrega: status da entrega.
+- StatusRota: status da rota.
+- PrioridadeEntrega: prioridade logistica.
+- TipoEntrega: tipo de entrega.
+- StatusOrdemServico: status da OS.
+- StatusFollowUpCobranca: status de cobranca.
+- TipoCategoria: categoria de produto/servico.
+- TipoDocumento: tipo de documento.
+- TipoMovimentacao: movimentacao de estoque.
+- StatusLiberacaoModulo: liberacao/bloqueio de modulo.
+
+
+19. CAMADAS DO BACK-END
+=======================
+
+controller/
+- Recebe HTTP.
+- Valida parametros basicos.
+- Chama services.
+- Retorna ResponseEntity/DTO.
+
+service/
+- Concentra regra de negocio.
+- Cria, atualiza, cancela, baixa, finaliza, fatura, valida.
+- Pode chamar outros services.
+- Pode registrar auditoria.
+
+repository/
+- Interface com banco via Spring Data JPA.
+- Busca por ID, lista, filtros e consultas customizadas.
+
+model/
+- Entidades persistidas no banco.
+- Representam tabelas e relacoes.
+
+dto/
+- Objetos de entrada e saida.
+- Evitam expor entidade diretamente em alguns fluxos.
+
+security/
+- Spring Security.
+- JWT.
+- CORS.
+- UserDetails.
+- Hierarquia de roles.
+
+config/
+- Configuracoes gerais.
+- Conversores.
+- Bootstrap.
+- Auditoria de delete.
+- Enums.
+
+exception/
+- BusinessException.
+- GlobalExceptionHandler.
+- Padroniza erros.
+
+
+20. SERVICES PRINCIPAIS DO BACK-END
+===================================
+
+- UsuarioService: cria/atualiza usuarios, perfis, acesso.
+- UsuarioPermissionService: permissoes por usuario.
+- PlanoComercialService: limites e regras dos planos.
+- PedidoService: pedidos, finalizacao, orcamento, separacao, cobranca.
+- ProdutoService: produtos.
+- EstoqueService: entrada, saida, ajuste, transferencia.
+- MovimentoEstoqueService: movimentacoes.
+- CompraEstoqueService: compras.
+- CaixaService: abertura, movimentacoes, fechamento.
+- FinanceiroService: lancamentos, baixar, cancelar, estornar, cobranca.
+- RecorrenciaFinanceiraService: geracao recorrente.
+- FollowUpComercialService: acompanhamento comercial.
+- FollowUpCobrancaService: cobrancas.
+- OrdemServicoService: OS, status, faturamento, baixa de pecas.
+- LogisticaService: resumo logistico.
+- DocumentoFiscalService: fiscal.
+- ConfiguracaoFiscalService: configuracoes fiscais.
+- ConfiguracaoAutomacaoComercialService: automacao comercial.
+- AuditoriaService: registro de auditoria.
+- PasswordResetService: recuperacao de senha.
+- JwtService / JwtFilter: autenticacao.
+- ExternalNotificationService: notificacoes externas.
+- AsaasPaymentGatewayService: integracao de cobranca.
+
+
+21. COMO ESTUDAR O SISTEMA
+==========================
+
+Sugestao de ordem:
+
+1. Comece por frontend/src/services/resources.js
+   - Ele mostra quais endpoints o front chama.
+   - Ajuda a entender quais modulos existem.
+
+2. Leia frontend/src/routes/AppRoutes.jsx
+   - Mostra como as telas sao acessadas.
+
+3. Leia frontend/src/layouts/DashboardLayout.jsx e Sidebar.jsx
+   - Mostra estrutura visual e menu.
+
+4. Escolha um modulo por vez.
+   Exemplo Produtos:
+   - frontend/src/pages/Produtos/Produtos.jsx
+   - viewModels de Produtos
+   - hooks de Produtos
+   - components de Produtos
+   - endpoints.produtos / endpoints.estoque em resources.js
+   - ProdutoController.java
+   - ProdutoService.java
+   - ProdutoRepository.java
+   - Produto.java
+
+5. Depois estude Pedidos.
+   - E o modulo mais conectado: cliente, produto, estoque, financeiro, fiscal, caixa e logistica.
+
+6. Depois Financeiro.
+   - Entenda Financeiro.java, FinanceiroService e Financeiro.jsx.
+
+7. Depois Painel de Controle.
+   - Entenda Empresa, Usuario, Permissao, Plano, LiberacaoModuloEmpresa e ConfiguracaoFiscal.
+
+8. Por fim estude auditoria, fiscal e integracoes.
+
+
+22. MAPA RAPIDO: MODULO -> FRONT -> BACK
+========================================
+
+Login
+- Front: pages/Login
+- Back: AuthController, PasswordController, UsuarioService, JwtService
+- Entidades: Usuario, PasswordResetToken, LoginAuditoria
+
+Clientes
+- Front: pages/Clientes
+- Back: ClienteController, ClienteRepository
+- Entidade: Cliente
+
+Produtos/Estoque
+- Front: pages/Produtos
+- Back: ProdutoController, EstoqueController, CompraEstoqueController
+- Entidades: Produto, Estoque, MovimentoEstoque, CompraEstoque, ItemCompraEstoque, Fornecedor, Categoria, Marca
+
+Pedidos/PDV
+- Front: pages/Pedidos
+- Back: PedidoController, ItemPedidoController, PagamentoController
+- Entidades: Pedido, ItemPedido, Pagamento
+
+Fiscal
+- Front: pages/Pedidos/components/Fiscal*, pages/Usuarios/components/Fiscal*
+- Back: DocumentoFiscalController, ConfiguracaoFiscalController
+- Entidades: DocumentoFiscal, ConfiguracaoFiscal
+
+Caixa
+- Front: pages/Caixa
+- Back: CaixaController
+- Entidades: Caixa, MovimentoCaixa
+
+Financeiro
+- Front: pages/Financeiro
+- Back: FinanceiroController, RecorrenciaFinanceiraController, FollowUpCobrancaController
+- Entidades: Financeiro, RecorrenciaFinanceira, FollowUpCobranca
+
+Servicos
+- Front: pages/Servicos
+- Back: OrdemServicoController
+- Entidades: OrdemServico, OrdemServicoPeca
+
+Logistica
+- Front: pages/Logistica
+- Back: LogisticaController, RotaEntregaController, EntregadorController, VeiculoController, TransportadoraController, EntregaController
+- Entidades: Entrega, RotaEntrega, Entregador, Veiculo, Transportadora
+
+Usuarios/Painel Controle
+- Front: pages/Usuarios, pages/AdminEmpresas
+- Back: UsuarioController, EmpresaController, AuditoriaController
+- Entidades: Usuario, Empresa, Filial, ContratoEmpresa, Permissao, LiberacaoModuloEmpresa, AuditoriaEvento
+
+Relatorios
+- Front: pages/Relatorios
+- Back: usa dados de varios controllers
+- Entidades: consolida dados de Pedido, Cliente, Produto, Financeiro, DocumentoFiscal, Empresa e Auditoria
+
+
+23. PONTOS DE ATENCAO PARA MANUTENCAO
+=====================================
+
+- Manter nomes internos de propriedades sem acento quando ja fazem parte da API.
+  Exemplo: usuario, recorrencia, garantiaAte, pecas.
+
+- Usar acento em textos visiveis na tela.
+  Exemplo: "Próximo", "Não", "Peças", "Evidências".
+
+- Evitar logica pesada dentro de componentes JSX.
+  Preferir viewModels, hooks e services.
+
+- Ao criar um modulo novo:
+  1. Criar page.
+  2. Criar components.
+  3. Criar hooks se houver estado/acoes.
+  4. Criar viewModels se houver transformacao de dados.
+  5. Registrar endpoint em resources.js.
+  6. Criar controller/service/repository/model no back se precisar persistir.
+
+- Ao mexer em endpoints:
+  1. Conferir resources.js.
+  2. Conferir Controller correspondente.
+  3. Rodar build do front.
+  4. Rodar testes/compile do back quando possivel.
+
+- Ao mexer em permissao:
+  1. Conferir constants/modules.js e roles.js.
+  2. Conferir utils/permissions.js.
+  3. Conferir Usuario/Permissao no back.
+  4. Conferir liberacao de modulo por empresa.
+
+
+24. COMANDOS UTEIS
+==================
+
+Front:
+- cd frontend
+- npm run dev
+- npm run build
+
+Back:
+- cd backend/projectoads/projectoads
+- mvnw.cmd spring-boot:run
+- mvnw.cmd test
+- mvnw.cmd -DskipTests compile
+
+Banco:
+- Host: localhost
+- Porta: 5432
+- Database: TB_ADS
+- Usuario: postgres
+
+
+25. RESUMO FINAL
+================
+
+O Nexus One foi organizado como uma aplicacao de gestao modular.
+
+No front, cada modulo deve ficar separado em:
+- Page principal.
+- Components.
+- Hooks.
+- ViewModels.
+- Services quando necessario.
+- CSS proprio quando fizer sentido.
+
+No back, cada area segue o padrao:
+- Model representa a tabela.
+- Repository conversa com o banco.
+- Service aplica regra de negocio.
+- Controller expoe endpoint REST.
+- DTO transporta dados de entrada/saida.
+
+O ponto mais importante para entender o projeto e sempre seguir o fluxo:
+
+Tela -> resources.js -> Controller -> Service -> Repository -> Model/Banco
+
+Esse caminho permite estudar qualquer funcionalidade do sistema sem se perder.

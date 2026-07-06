@@ -1,0 +1,48 @@
+.inventory-grid {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.inventory-grid > .orders-panel {
+  align-self: start;
+  order: 2;
+}
+
+.inventory-grid > .inventory-workbench-panel {
+  order: 1;
+}
+
+.inventory-grid .table-wrap {
+  max-height: min(58vh, 620px);
+  overflow: auto;
+}
+
+.stale-stock-panel {
+  margin-bottom: 16px;
+}
+
+.stock-badge {
+  min-width: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.stock-badge.ok {
+  color: #087669;
+  background: #e8f8f5;
+}
+
+.stock-badge.empty {
+  color: #991b1b;
+  background: #fef2f2;
+}
+
+.stock-badge.low {
+  color: #a15c07;
+  background: #fff4df;
+}

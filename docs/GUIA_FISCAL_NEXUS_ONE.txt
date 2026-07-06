@@ -1,0 +1,268 @@
+GUIA FISCAL - NEXUS ONE
+=======================
+
+Objetivo
+--------
+Este guia explica como o modulo fiscal do Nexus One deve ser configurado,
+validado e operado com seguranca. Ele serve para manutencao do sistema,
+homologacao controlada e preparacao antes de qualquer emissao real.
+
+
+1. Onde o fiscal aparece no sistema
+-----------------------------------
+
+Front-end:
+- Painel de pedidos/vendas: fila fiscal, preparacao de documento, geracao de
+  XML, validacao, transmissao em homologacao, retornos, contingencia, DANFE,
+  carta de correcao e pacote de emissao real.
+- Admin/Empresas: configuracao fiscal por empresa, ambiente, modelo,
+  certificado, token/provedor e validacao de prontidao.
+- Relatorios/Downloads: arquivos fiscais, manifesto, integridade e evidencias.
+
+Back-end:
+- DocumentoFiscalController: endpoints de documento fiscal.
+- ConfiguracaoFiscalController: endpoints de configuracao fiscal.
+- DocumentoFiscalService: regras do fluxo fiscal.
+- Services em service/fiscal: assinatura, provedor controlado, provedor HTTP,
+  status do servico e resolucao de segredos.
+- Repositories de DocumentoFiscal e ConfiguracaoFiscal: persistencia dos dados.
+
+
+2. Dados obrigatorios antes de emitir
+-------------------------------------
+
+Empresa:
+- Razao social e nome fantasia.
+- CNPJ valido.
+- Inscricao estadual quando aplicavel.
+- Endereco fiscal completo.
+- Regime tributario correto.
+- Ambiente fiscal selecionado: HOMOLOGACAO ou PRODUCAO.
+
+Produto:
+- NCM.
+- CFOP.
+- Unidade.
+- Origem.
+- CST/CSOSN conforme regime.
+- Preco, quantidade e impostos coerentes.
+
+Cliente:
+- CPF/CNPJ quando necessario.
+- Nome/razao social.
+- Endereco completo quando o modelo fiscal exigir.
+
+Pedido:
+- Itens com produto fiscalmente preenchido.
+- Total calculado.
+- Forma de pagamento.
+- Empresa/filial definida.
+
+
+3. Segredos e configuracoes sensiveis
+-------------------------------------
+
+Nunca salvar certificado, senha de certificado, token de provedor ou chave
+sensivel dentro do Git.
+
+Usar variaveis de ambiente para:
+- Senha do certificado.
+- Token do provedor fiscal.
+- URL do provedor fiscal HTTP.
+- Configuracao de assinatura XML quando aplicavel.
+
+Antes de homologar:
+- Conferir se o status de segredo aparece como configurado.
+- Conferir se o certificado pertence a empresa correta.
+- Conferir vencimento do certificado.
+- Conferir se o ambiente esta em HOMOLOGACAO.
+
+
+4. Fluxo recomendado de homologacao
+-----------------------------------
+
+1. Cadastrar ou revisar a configuracao fiscal da empresa.
+2. Validar a configuracao fiscal.
+3. Consultar status do servico fiscal.
+4. Criar um pedido de teste com cliente e produtos fiscalmente preenchidos.
+5. Preparar documento fiscal a partir do pedido.
+6. Revalidar pendencias do documento.
+7. Gerar XML em homologacao.
+8. Validar o XML.
+9. Transmitir em homologacao.
+10. Registrar retorno: autorizado, rejeitado ou erro tecnico.
+11. Baixar XML, payload, retorno e DANFE de homologacao.
+12. Conferir historico e evidencias.
+
+Somente depois desse ciclo estar estavel deve-se pensar em producao.
+
+
+5. Status fiscais principais
+----------------------------
+
+PENDENTE:
+- Documento ainda precisa de preparacao ou validacao.
+
+XML_GERADO:
+- XML foi montado, mas ainda precisa ser validado/transmitido.
+
+VALIDADO:
+- Documento passou nas validacoes internas.
+
+TRANSMITIDO:
+- Documento foi enviado ao provedor/servico fiscal.
+
+AUTORIZADO:
+- Documento aceito em homologacao/provedor.
+
+REJEITADO:
+- Documento recusado. Corrigir causa, revalidar e reprocessar.
+
+CONTINGENCIA:
+- Documento entrou em fluxo excepcional. Deve ser regularizado.
+
+CANCELADO ou INUTILIZADO:
+- Documento encerrado por cancelamento/inutilizacao conforme regra fiscal.
+
+
+6. Rejeicao e reprocessamento
+-----------------------------
+
+Quando ocorrer rejeicao:
+- Ler a mensagem de retorno.
+- Corrigir cadastro fiscal da empresa, cliente, produto ou pedido.
+- Revalidar pendencias.
+- Gerar novo XML quando necessario.
+- Transmitir novamente em homologacao.
+- Registrar evidencia do antes/depois.
+
+Nao liberar emissao real enquanto houver rejeicoes recorrentes sem causa
+documentada.
+
+
+7. Contingencia
+---------------
+
+Usar contingencia apenas quando o fluxo normal falhar por motivo operacional ou
+indisponibilidade do servico fiscal.
+
+Checklist de contingencia:
+- Confirmar motivo da contingencia.
+- Registrar data/hora e responsavel.
+- Gerar documento em contingencia.
+- Regularizar assim que o servico normal voltar.
+- Conferir se o documento regularizado ficou com retorno final consistente.
+
+
+8. Carta de correcao
+--------------------
+
+Usar carta de correcao somente para ajustes permitidos pela regra fiscal.
+
+Nao usar carta de correcao para:
+- Alterar valor.
+- Alterar imposto.
+- Alterar destinatario quando a regra fiscal nao permitir.
+- Corrigir erro que exige cancelamento e nova emissao.
+
+Registrar sempre:
+- Documento original.
+- Texto da correcao.
+- Responsavel.
+- Data/hora.
+- Retorno do provedor.
+
+
+9. Cancelamento e inutilizacao
+------------------------------
+
+Cancelamento:
+- Usar quando o documento autorizado precisa ser cancelado dentro do prazo e
+  regra permitida.
+
+Inutilizacao:
+- Usar quando houve quebra de numeracao fiscal que precisa ser comunicada.
+
+Antes de executar:
+- Confirmar permissao do usuario.
+- Confirmar empresa e serie.
+- Confirmar motivo.
+- Conferir retorno e evidencia.
+
+
+10. Pacote de emissao real
+--------------------------
+
+Antes de habilitar emissao real:
+- Homologacao fiscal controlada concluida.
+- Certificado valido.
+- Segredos configurados fora do codigo.
+- Empresa e produtos revisados.
+- Fluxo pedido -> fiscal testado.
+- XML, DANFE, retorno, manifesto e integridade baixados e conferidos.
+- Logs sem erro critico.
+- Back-end e banco com backup ativo.
+- Usuario master/admin seguro.
+- Roteiro de rollback conhecido.
+
+Liberar producao somente com aceite tecnico e operacional.
+
+
+11. Evidencias recomendadas
+---------------------------
+
+Salvar evidencias de:
+- Configuracao fiscal validada.
+- Status do servico fiscal.
+- XML gerado.
+- XML validado.
+- Transmissao homologada.
+- Retorno autorizado/rejeitado.
+- DANFE gerado.
+- Carta de correcao quando existir.
+- Cancelamento/inutilizacao quando existir.
+- Pacote de emissao real.
+- Manifesto e validacao de integridade.
+
+
+12. Teste rapido de manutencao
+------------------------------
+
+Executar quando houver alteracao no modulo fiscal:
+
+1. Abrir tela de Admin/Empresas.
+2. Validar configuracao fiscal.
+3. Abrir Pedidos/Vendas.
+4. Criar ou localizar pedido de teste.
+5. Preparar documento fiscal.
+6. Gerar XML de homologacao.
+7. Validar XML.
+8. Simular transmissao/retorno em homologacao.
+9. Baixar XML/DANFE/retorno.
+10. Conferir se nao houve erro visual no front.
+11. Conferir logs do back-end.
+12. Rodar testes automatizados quando houver alteracao de codigo.
+
+
+13. Criterio de fiscal OK
+-------------------------
+
+O modulo fiscal pode ser considerado OK quando:
+- Configuracao fiscal valida por empresa.
+- Segredos nao expostos.
+- Homologacao controlada funcionando.
+- XML e DANFE gerados.
+- Rejeicao e reprocessamento documentados.
+- Contingencia e regularizacao documentadas.
+- Cancelamento/inutilizacao testados quando aplicavel.
+- Pacote de emissao real conferido.
+- Usuario sem permissao nao acessa operacoes sensiveis.
+- Evidencias salvas para auditoria.
+
+
+Observacao final
+----------------
+
+Fiscal e uma area sensivel. Qualquer mudanca em regras fiscais, certificado,
+ambiente, provedor ou modelo de documento deve passar por homologacao antes de
+ser liberada para producao.

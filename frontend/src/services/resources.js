@@ -1,4 +1,4 @@
-import { api } from "./api";
+import { api } from "./api.js";
 
 export const endpoints = {
   auth: {
@@ -62,8 +62,7 @@ export const endpoints = {
   },
   dashboard: {
     pedidos: () => api.get("/pedidos/dashboard"),
-    pedidosPorUsuario: (usuarioId) =>
-      api.get(`/pedidos/dashboard/usuario/${usuarioId}`),
+    pedidosPorUsuario: (usuarioId) => api.get(`/pedidos/dashboard/usuario/${usuarioId}`),
   },
   clientes: {
     listar: () => api.get("/clientes"),
@@ -107,10 +106,8 @@ export const endpoints = {
   estoque: {
     baixo: () => api.get("/estoque/baixo"),
     saldos: () => api.get("/estoque/saldos"),
-    entrada: (produtoId, quantidade) =>
-      api.post(`/estoque/entrada/${produtoId}?quantidade=${quantidade}`),
-    saida: (produtoId, quantidade) =>
-      api.post(`/estoque/saida/${produtoId}?quantidade=${quantidade}`),
+    entrada: (produtoId, quantidade) => api.post(`/estoque/entrada/${produtoId}?quantidade=${quantidade}`),
+    saida: (produtoId, quantidade) => api.post(`/estoque/saida/${produtoId}?quantidade=${quantidade}`),
     compra: (data) => api.post("/estoque/compra", data),
     ajuste: (data) => api.post("/estoque/ajuste", data),
     transferencia: (data) => api.post("/estoque/transferencia", data),
@@ -205,14 +202,10 @@ export const endpoints = {
     criarEntregador: (data) => api.post("/entregadores", data),
     criarRota: (data) => api.post("/rotas-entrega", data),
     atualizarRota: (id, data) => api.put(`/rotas-entrega/${id}`, data),
-    atualizarStatusRota: (id, status) =>
-      api.patch(`/rotas-entrega/${id}/status`, { status }),
-    vincularEntregasRota: (rotaId, entregaIds) =>
-      api.patch(`/rotas-entrega/${rotaId}/entregas`, { entregaIds }),
-    vincularEntregadorRota: (rotaId, entregadorId) =>
-      api.patch(`/rotas-entrega/${rotaId}/entregador/${entregadorId}`),
-    vincularVeiculoRota: (rotaId, veiculoId) =>
-      api.patch(`/rotas-entrega/${rotaId}/veiculo/${veiculoId}`),
+    atualizarStatusRota: (id, status) => api.patch(`/rotas-entrega/${id}/status`, { status }),
+    vincularEntregasRota: (rotaId, entregaIds) => api.patch(`/rotas-entrega/${rotaId}/entregas`, { entregaIds }),
+    vincularEntregadorRota: (rotaId, entregadorId) => api.patch(`/rotas-entrega/${rotaId}/entregador/${entregadorId}`),
+    vincularVeiculoRota: (rotaId, veiculoId) => api.patch(`/rotas-entrega/${rotaId}/veiculo/${veiculoId}`),
   },
   notificacoes: {
     status: () => api.get("/notificacoes/status"),
@@ -224,12 +217,9 @@ export const endpoints = {
     admin: () => api.get("/usuarios/admin"),
     criar: (data) => api.post("/usuarios", data),
     atualizar: (id, data) => api.put(`/usuarios/${id}`, data),
-    alterarPerfil: (id, perfil) =>
-      api.put(`/usuarios/${id}/perfil?novoPerfil=${encodeURIComponent(perfil)}`),
-    alterarAcesso: (id, ativo) =>
-      api.patch(`/usuarios/${id}/acesso?ativo=${encodeURIComponent(ativo)}`),
-    alterarPermissoes: (id, data) =>
-      api.patch(`/usuarios/${id}/permissoes`, data),
+    alterarPerfil: (id, perfil) => api.put(`/usuarios/${id}/perfil?novoPerfil=${encodeURIComponent(perfil)}`),
+    alterarAcesso: (id, ativo) => api.patch(`/usuarios/${id}/acesso?ativo=${encodeURIComponent(ativo)}`),
+    alterarPermissoes: (id, data) => api.patch(`/usuarios/${id}/permissoes`, data),
     excluir: (id) => api.delete(`/usuarios/${id}`),
   },
 };

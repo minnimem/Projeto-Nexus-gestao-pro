@@ -1,0 +1,24 @@
+.inventory-alert-card {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #06142e, #0a2454);
+}
+
+.inventory-alert-card .stock-alerts h3,
+.inventory-alert-card .stock-alerts p,
+.inventory-alert-card .ranking-row,
+.inventory-alert-card .ranking-row strong {
+  color: #fff;
+}
+
+.inventory-alert-card .ranking-row {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.inventory-alert-card .ranking-row small {
+  color: #c7d2e5;
+}
+
+.stock-alerts {
+  min-height: 150px;
+}

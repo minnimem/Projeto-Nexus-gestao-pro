@@ -1,0 +1,22 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Backend" type="MavenRunConfiguration" factoryName="Maven">
+    <MavenSettings>
+      <option name="myRunnerParameters">
+        <MavenRunnerParameters>
+          <option name="cmdOptions" value="-DDB_URL=jdbc:postgresql://localhost:5432/TB_ADS -DDB_USERNAME=postgres -DDB_PASSWORD=231247 -DJWT_SECRET=231247 -DNEXUS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173" />
+          <option name="goals">
+            <list>
+              <option value="spring-boot:run" />
+            </list>
+          </option>
+          <option name="pomFileName" value="pom.xml" />
+          <option name="profiles">
+            <set />
+          </option>
+          <option name="workingDirPath" value="$PROJECT_DIR$/projectoads/projectoads" />
+        </MavenRunnerParameters>
+      </option>
+    </MavenSettings>
+    <method v="2" />
+  </configuration>
+</component>

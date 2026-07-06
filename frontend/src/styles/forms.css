@@ -1,0 +1,218 @@
+.form-control {
+  display: grid;
+  gap: 6px;
+}
+
+.form-control span {
+  color: #334155;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.form-control input,
+.form-control select,
+.form-control textarea {
+  width: 100%;
+  border: 1px solid #c8d3e1;
+  border-radius: 10px;
+  color: var(--ink);
+  background: #fff;
+  outline: none;
+}
+
+.form-control input,
+.form-control select {
+  min-height: 40px;
+  padding: 0 11px;
+}
+
+.form-control textarea {
+  min-height: 78px;
+  padding: 10px 11px;
+  resize: vertical;
+}
+
+.form-control input:focus,
+.form-control select:focus,
+.form-control textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-control .client-search-box input,
+.form-control .client-search-box input:focus {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.input-with-icon {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px;
+  border: 1px solid #c8d3e1;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.input-with-icon svg {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.form-control .input-with-icon input,
+.form-control .input-with-icon input:focus {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.input-with-icon:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.compact-form {
+  display: grid;
+  gap: 12px;
+}
+
+.inline-form-panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #edf2f7;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.app-shell.theme-dark .form-control input,
+.app-shell.theme-dark .form-control select,
+.app-shell.theme-dark .form-control textarea,
+.app-shell.theme-dark .input-with-icon {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.86);
+  border-color: rgba(82, 102, 136, 0.52);
+}
+
+.app-shell.theme-dark .form-control span {
+  color: #b7c3d6;
+}
+
+.app-shell.theme-dark input,
+.app-shell.theme-dark select,
+.app-shell.theme-dark textarea {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.86);
+  border-color: rgba(82, 102, 136, 0.52);
+}
+
+.client-picker-control {
+  position: relative;
+  grid-column: 1 / -1;
+}
+
+.client-search-box {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 11px;
+  border: 1px solid #c8d3e1;
+  border-radius: 10px;
+  color: var(--muted);
+  background: #fff;
+}
+
+.client-search-box:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(18, 70, 160, 0.1);
+}
+
+.client-search-box input {
+  width: 100%;
+  min-width: 0;
+  min-height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.client-search-box input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.client-results {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  right: 0;
+  left: 0;
+  display: grid;
+  gap: 4px;
+  max-height: 260px;
+  overflow: auto;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+}
+
+.client-result {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  border: none;
+  border-radius: 9px;
+  color: var(--ink);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.client-result:hover:not(:disabled) {
+  background: #eef4ff;
+}
+
+.client-result strong {
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.client-result small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.client-result.empty {
+  color: var(--muted);
+  cursor: default;
+}
+
+.app-shell.theme-dark .client-search-box,
+.app-shell.theme-dark .client-results {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.82);
+  border-color: rgba(82, 102, 136, 0.46);
+}
+
+.app-shell.theme-dark .client-result:hover:not(:disabled) {
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(96, 165, 250, 0.32);
+}
+

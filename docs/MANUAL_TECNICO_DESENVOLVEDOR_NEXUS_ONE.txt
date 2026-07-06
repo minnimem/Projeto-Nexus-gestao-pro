@@ -1,0 +1,296 @@
+MANUAL TECNICO DO DESENVOLVEDOR - NEXUS ONE
+===========================================
+
+Arquivo: docs/MANUAL_TECNICO_DESENVOLVEDOR_NEXUS_ONE.txt
+Projeto: Nexus One / Gestao Pro
+Objetivo: servir como guia de manutencao para entender a arquitetura, criar novos modulos e evoluir o sistema sem misturar responsabilidades.
+
+
+1. VISAO TECNICA
+================
+
+O Nexus One e dividido em duas aplicacoes principais:
+
+FRONT-END
+- Local: frontend/src
+- Tecnologia: React + Vite.
+- Responsabilidade: experiencia de tela, navegacao, formularios, filtros, tabelas, dashboards, chamadas HTTP e tratamento visual de estados.
+
+BACK-END
+- Local: backend/projectoads/projectoads/src/main/java/br/com/diego/projectoads
+- Tecnologia: Java 21, Spring Boot, Spring Security, JPA/Hibernate e PostgreSQL.
+- Responsabilidade: autenticacao, autorizacao, regra de negocio, validacoes, persistencia, auditoria, integracoes e endpoints REST.
+
+BANCO DE DADOS
+- Banco local padrao: PostgreSQL.
+- Database local usado no projeto: TB_ADS.
+- Usuario local comum: postgres.
+- Configuracao principal: backend/projectoads/projectoads/src/main/resources/application.yml.
+- Configuracao de producao: backend/projectoads/projectoads/src/main/resources/application-prod.yml.
+
+
+2. FLUXO PADRAO DE UMA FUNCIONALIDADE
+=====================================
+
+Fluxo normal de leitura ou gravacao:
+
+1. Usuario interage com uma pagina no front-end.
+2. A pagina usa hooks, viewModels ou services locais para preparar a acao.
+3. A chamada HTTP sai por frontend/src/services/resources.js.
+4. resources.js usa frontend/src/services/api.js.
+5. O backend recebe a requisicao em um Controller.
+6. O Controller delega para um Service.
+7. O Service aplica regra de negocio, validacoes e permissoes de negocio.
+8. O Service usa Repository para acessar o banco.
+9. O backend retorna DTO/JSON.
+10. O front converte o retorno para estado visual, tabela, card, modal ou mensagem.
+
+Regra de manutencao: a tela nao deve conhecer detalhe de SQL ou entidade JPA, e o backend nao deve devolver mais dado sensivel do que a tela realmente precisa.
+
+
+3. ESTRUTURA DO FRONT-END
+=========================
+
+Estrutura alvo em frontend/src:
+
+- main.jsx
+  Entrada do React.
+
+- App.jsx
+  Casca principal do app.
+
+- routes/
+  Rotas publicas, privadas e protecao de acesso.
+
+- layouts/
+  Estrutura visual compartilhada: AuthLayout, DashboardLayout, Sidebar e Header.
+
+- pages/
+  Modulos de tela por dominio: Login, Dashboard, Clientes, Produtos, Pedidos, Financeiro e demais paginas.
+
+- components/
+  Componentes reutilizaveis e pequenos, como Button, Modal, Table e StatusBadge.
+
+- services/
+  api.js, auth.js, resources.js e servicos de acesso remoto.
+
+- utils/
+  Formatadores, helpers de data, moeda, permissoes e normalizacoes.
+
+- constants/
+  Constantes de modulos, status, perfis, textos padrao e chaves de permissao.
+
+- styles/
+  CSS global e arquivos de tema/base quando existirem.
+
+
+4. PADRAO PARA NOVOS MODULOS DO FRONT
+=====================================
+
+Ao criar um novo modulo de tela, seguir este roteiro:
+
+1. Criar a pasta do modulo em frontend/src/pages/NomeModulo.
+2. Criar o arquivo principal NomeModulo.jsx.
+3. Criar NomeModulo.css apenas com estilos do modulo.
+4. Separar componentes grandes em pages/NomeModulo/components.
+5. Separar hooks especificos em pages/NomeModulo/hooks.
+6. Separar adaptadores de tela em pages/NomeModulo/viewModels quando a resposta da API precisar ser transformada.
+7. Registrar chamadas HTTP em frontend/src/services/resources.js.
+8. Registrar constante do modulo em frontend/src/constants/modules.js, se existir controle de permissao/menu.
+9. Adicionar o modulo no carregamento da dashboard/rotas conforme o padrao existente.
+10. Usar lazy loading para modulos grandes, evitando aumentar o bundle inicial.
+
+Padrao de nomes:
+
+- Nome de arquivo React: PascalCase, exemplo Clientes.jsx.
+- Hooks: useNomeDaFuncao.js.
+- Componentes internos: PascalCase.
+- Funcoes internas: camelCase.
+- Chaves de modulo, rotas e permissoes: sem acento e sem espaco, exemplo relatorios, painelControle, financeiro.
+- Texto visivel ao usuario: com acento correto, exemplo Relatorios, Painel de controle, Visao geral.
+
+Evitar:
+
+- Colocar HTML, CSS e JS de varios modulos no mesmo arquivo.
+- Repetir chamadas HTTP diretamente dentro de varios componentes.
+- Criar CSS global para ajuste de um unico componente.
+- Usar nome com acento em chave tecnica.
+- Misturar regra de permissao com regra visual sem helper.
+
+
+5. ESTRUTURA DO BACK-END
+========================
+
+Estrutura principal:
+
+- controller/
+  Endpoints REST. Deve receber request, validar entrada basica e chamar service.
+
+- service/
+  Regra de negocio. Deve concentrar validacoes, calculos, auditoria e fluxo transacional.
+
+- repository/
+  Acesso ao banco via Spring Data JPA.
+
+- model/
+  Entidades JPA persistidas.
+
+- dto/
+  Objetos de entrada e saida da API.
+
+- security/
+  Autenticacao, JWT, filtros, hierarquia de roles e permissoes.
+
+- config/
+  Configuracoes da aplicacao.
+
+- exception/
+  Excecoes e tratamento padronizado de erro.
+
+
+6. PADRAO PARA NOVA ENTIDADE NO BACK-END
+========================================
+
+Ao criar uma nova entidade:
+
+1. Criar a entidade em model/.
+2. Criar o repository em repository/.
+3. Criar DTOs de request/response em dto/.
+4. Criar o service com regra de negocio em service/.
+5. Criar o controller com endpoints REST em controller/.
+6. Validar permissoes com Spring Security ou regra no service.
+7. Adicionar auditoria quando for operacao sensivel.
+8. Criar teste unitario ou de integracao conforme risco.
+9. Conferir se datas, dinheiro e status usam tipos consistentes.
+10. Conferir se o front usa resources.js para consumir o endpoint.
+
+Padrao de endpoints:
+
+- GET /entidades
+- GET /entidades/{id}
+- POST /entidades
+- PUT /entidades/{id}
+- DELETE /entidades/{id}
+- PATCH /entidades/{id}/acao-especifica
+
+Usar PATCH para transicoes de status ou acoes de dominio, como cancelar, autorizar, concluir, regularizar ou reprocessar.
+
+
+7. SEGURANCA E CONFIGURACAO
+===========================
+
+Regras atuais importantes:
+
+- JWT_SECRET deve ter pelo menos 32 caracteres.
+- Em producao, JWT_SECRET deve vir de variavel de ambiente.
+- application-prod.yml nao deve ter fallback sensivel.
+- spring.jpa.open-in-view fica false para reduzir consultas acidentais fora da camada de service.
+- .env e arquivos locais com segredo nao devem ser versionados.
+- Segredos reais de banco, token, certificado ou provedor fiscal nao devem ir para o Git.
+
+Arquivos de referencia:
+
+- .env.example
+- .env.backend.example
+- docs/POLITICA_SEGREDOS_NEXUS_ONE.md
+- docs/INVENTARIO_SEGREDOS_NEXUS_ONE.md
+
+
+8. AUDITORIA
+============
+
+O sistema deve registrar operacoes sensiveis, principalmente exclusoes.
+
+Padrao esperado:
+
+- Quem executou.
+- Qual entidade foi afetada.
+- Qual ID foi afetado.
+- Qual acao foi feita.
+- Data e hora.
+- Resultado quando aplicavel.
+
+O filtro de auditoria de DELETE registra exclusoes bem-sucedidas e evita registrar operacoes que falharam ou que nao sao DELETE.
+
+
+9. VALIDACOES TECNICAS
+======================
+
+Front-end:
+
+```text
+cd frontend
+npm run build
+```
+
+Back-end:
+
+```text
+cd backend/projectoads/projectoads
+mvnw.cmd -DskipTests compile
+mvnw.cmd test
+```
+
+Raiz do projeto:
+
+```text
+git diff --check
+```
+
+Quando mexer apenas em documentacao, `git diff --check` costuma ser suficiente. Quando mexer em codigo, rodar o build/teste correspondente.
+
+
+10. CUIDADOS COM TEXTO E ENCODING
+=================================
+
+O projeto ja passou por correcao de acentos e mojibake. Para evitar regressao:
+
+- Texto visivel ao usuario deve ter acento correto.
+- Chaves tecnicas podem ficar sem acento.
+- Arquivos Java devem ficar em UTF-8 sem BOM.
+- Preferir apply_patch para edicoes manuais.
+- Em PowerShell, cuidado com comandos que salvam UTF-8 com BOM em arquivos Java.
+
+Exemplos:
+
+- Texto de tela: "Relatorios", "Proximo", "Nao", "Configuracao fiscal".
+- Chave tecnica: relatorios, proximo, nao, configuracaoFiscal.
+
+
+11. CRIANDO UMA NOVA ABA NO PAINEL
+==================================
+
+Checklist rapido:
+
+1. Definir nome tecnico do modulo sem acento.
+2. Definir texto visivel com acento.
+3. Criar page/componentes separados.
+4. Criar ou reutilizar endpoints em resources.js.
+5. Adicionar permissao/role se necessario.
+6. Adicionar item no menu/sidebar.
+7. Adicionar lazy import se o modulo for grande.
+8. Criar estado vazio, loading e erro.
+9. Testar abertura da aba sem erro visual.
+10. Testar com usuario sem permissao, quando aplicavel.
+
+
+12. MANUTENCAO RECOMENDADA
+==========================
+
+Antes de uma entrega:
+
+- Rodar build do front.
+- Rodar testes do back.
+- Abrir as abas principais.
+- Conferir console do navegador.
+- Conferir logs do backend.
+- Validar login/logout.
+- Validar permissao de admin e usuario comum.
+- Conferir se nenhum segredo entrou no Git.
+- Atualizar checklist e documentacao quando uma melhoria for finalizada.
+
+
+13. STATUS DESTE MANUAL
+=======================
+
+Criado para fechar a pendencia de documentacao tecnica do CHECKLIST_SISTEMA_10_10.txt e manter um padrao claro para novas separacoes, novos modulos e novas entidades.

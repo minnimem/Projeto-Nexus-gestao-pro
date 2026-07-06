@@ -1,0 +1,158 @@
+.separation-stage-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 12px;
+}
+
+.separation-stage-summary button {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 13px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  color: var(--ink);
+  background: #f8fafc;
+  cursor: pointer;
+  text-align: left;
+}
+
+.separation-stage-summary button:hover,
+.separation-stage-summary button.active {
+  border-color: #60a5fa;
+  background: #eff6ff;
+}
+
+.separation-stage-summary span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.separation-stage-summary strong {
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.separation-toolbar {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(150px, 190px) minmax(150px, 190px) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.separation-search {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px;
+  border: 1px solid #c8d3e1;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.separation-search:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.separation-search svg {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.separation-search input,
+.separation-search input:focus {
+  width: 100%;
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+.separation-toolbar select {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid #c8d3e1;
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.separation-filter-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.separation-filter-summary strong {
+  color: var(--ink);
+}
+
+.operation-chip.pronto {
+  color: #047857;
+  background: #ecfdf5;
+  border-color: #bbf7d0;
+}
+
+.mini-action-button.icon-only {
+  width: 34px;
+  min-width: 34px;
+  padding: 0;
+}
+
+.sales-view .spin {
+  animation: separation-spin 0.8s linear infinite;
+}
+
+@keyframes separation-spin {
+  to { transform: rotate(360deg); }
+}
+
+.app-shell.theme-dark .separation-stage-summary button,
+.app-shell.theme-dark .separation-search,
+.app-shell.theme-dark .separation-toolbar select {
+  color: var(--ink);
+  background: rgba(17, 24, 39, 0.86);
+  border-color: rgba(82, 102, 136, 0.52);
+}
+
+.app-shell.theme-dark .separation-stage-summary button.active {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(96, 165, 250, 0.72);
+}
+
+@media (max-width: 900px) {
+  .separation-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .separation-search {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 620px) {
+  .separation-stage-summary,
+  .separation-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .separation-search {
+    grid-column: auto;
+  }
+}

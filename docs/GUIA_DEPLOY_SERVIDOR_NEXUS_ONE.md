@@ -54,6 +54,8 @@ Validar:
 
 ```powershell
 .\scripts\verificar-producao.ps1
+.\scripts\verificar-usuario-master.ps1 -EnvFile .env -ComposeFile docker-compose.prod.yml -ServiceName postgres
+.\scripts\verificar-observabilidade.ps1 -EnvFile .env -ComposeFile docker-compose.prod.yml
 .\scripts\monitorar-disponibilidade.ps1 -EnvironmentName producao
 .\scripts\smoke-test-operacional.ps1 -BaseUrl http://localhost:8081 -Login admin -Senha "senha" -EnvironmentName producao
 ```
@@ -90,7 +92,7 @@ Antes de atualizar:
 Se falhar:
 
 ```powershell
-.\scripts\rollback-compose.ps1 -ComposeFile docker-compose.prod.yml -GitRef <tag-ou-commit-anterior>
+.\scripts\rollback-compose.ps1 -ComposeFile docker-compose.prod.yml -EnvFile .env -GitRef <tag-ou-commit-anterior> -ConfirmRollback
 ```
 
 Se houve migracao destrutiva ou dado inconsistente, restaurar backup em janela aprovada antes de reabrir o sistema.

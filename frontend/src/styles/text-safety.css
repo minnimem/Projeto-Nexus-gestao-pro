@@ -1,0 +1,88 @@
+:where(
+  .panel,
+  .report-card,
+  .report-card-stat,
+  .account-plan-item,
+  .sales-insight-card,
+  .stock-severity-card,
+  .cash-status-card,
+  .executive-snapshot article,
+  .kpi-card,
+  .customer-card,
+  .product-card
+) {
+  min-width: 0;
+}
+
+:where(
+  .panel-title,
+  .panel-title > div,
+  .report-card-head,
+  .account-plan-head,
+  .topbar-alert-copy,
+  .inventory-insight-row > div,
+  .customer-mobile-head,
+  .customer-mobile-meta
+) {
+  min-width: 0;
+}
+
+:where(
+  .panel h1,
+  .panel h2,
+  .panel h3,
+  .panel p,
+  .panel small,
+  .panel strong,
+  .report-card h2,
+  .report-card p,
+  .report-card small,
+  .account-plan-item span,
+  .account-plan-item strong,
+  .account-plan-item small,
+  .sales-insight-card span,
+  .sales-insight-card strong,
+  .sales-insight-card small,
+  .stock-severity-card span,
+  .stock-severity-card strong,
+  .stock-severity-card small,
+  .cash-status-card span,
+  .cash-status-card strong,
+  .cash-status-card small,
+  .topbar-alert-copy strong,
+  .topbar-alert-copy small
+) {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+:where(
+  .panel-action-button,
+  .report-export,
+  .checkout-button,
+  .invoice-button,
+  .mini-action-button,
+  .ui-button,
+  .chart-tabs button,
+  .view-switch button,
+  .segmented button,
+  .topbar-alert-summary button,
+  .topbar-alert-ops button,
+  .topbar-alert-action,
+  .topbar-alert-dismiss,
+  .export-action-menu-options button,
+  .seller-goal-editor button,
+  .barcode-generate-button
+) {
+  max-width: 100%;
+  min-width: 0;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+:where(.table-icon-button, .icon-button, .modal-close, .topbar-alert-button) {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}

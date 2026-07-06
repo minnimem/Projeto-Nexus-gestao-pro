@@ -5,6 +5,7 @@ spring:
     password:
     driver-class-name: org.h2.Driver
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: create-drop
     show-sql: false
@@ -14,3 +15,4 @@ spring:
 
 jwt:
   secret: dGVzdC1qd3Qtc2VjcmV0LWZvci1uZXh1cy1vbmUtdGVzdHMtMzItYnl0ZXM=
+  expiration-ms: 3600000
